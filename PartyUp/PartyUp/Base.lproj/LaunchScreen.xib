@@ -10,15 +10,19 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="PartyUp_arrow_placeholder.png" translatesAutoresizingMaskIntoConstraints="NO" id="jBL-v3-8Pl">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="PartyUp_arrow_placeholder.png" translatesAutoresizingMaskIntoConstraints="NO" id="jBL-v3-8Pl">
                     <rect key="frame" x="165" y="165" width="150" height="150"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="128" id="3c4-Nr-4mC"/>
+                        <constraint firstAttribute="height" constant="240" id="3c4-Nr-4mC"/>
                         <constraint firstAttribute="width" constant="240" id="nrZ-ZC-6XK"/>
                     </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="0.18720780914780583" green="0.47819010416666663" blue="0.41442448835413848" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="jBL-v3-8Pl" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="B9m-uH-d70"/>
+                <constraint firstItem="jBL-v3-8Pl" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Wgk-f8-s6J"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="548" y="455"/>

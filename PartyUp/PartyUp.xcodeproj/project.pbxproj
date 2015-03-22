@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E12883A1ABF34ED00922622 /* PartyUp_arrow_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E1288391ABF34ED00922622 /* PartyUp_arrow_placeholder.png */; };
 		7EDD4ED51ABE727C00CEECD0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDD4ED41ABE727C00CEECD0 /* AppDelegate.swift */; };
 		7EDD4ED71ABE727C00CEECD0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDD4ED61ABE727C00CEECD0 /* ViewController.swift */; };
 		7EDD4EDA1ABE727C00CEECD0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7EDD4ED81ABE727C00CEECD0 /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7E1288391ABF34ED00922622 /* PartyUp_arrow_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PartyUp_arrow_placeholder.png; path = ../../../../Pictures/Miscellany/PartyUp_arrow_placeholder.png; sourceTree = "<group>"; };
 		7EDD4ECF1ABE727C00CEECD0 /* PartyUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PartyUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EDD4ED31ABE727C00CEECD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7EDD4ED41ABE727C00CEECD0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +58,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E1288291ABF33EF00922622 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7E1288391ABF34ED00922622 /* PartyUp_arrow_placeholder.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		7EDD4EC61ABE727C00CEECD0 = {
 			isa = PBXGroup;
 			children = (
@@ -77,6 +87,7 @@
 		7EDD4ED11ABE727C00CEECD0 /* PartyUp */ = {
 			isa = PBXGroup;
 			children = (
+				7E1288291ABF33EF00922622 /* Resources */,
 				7EDD4ED41ABE727C00CEECD0 /* AppDelegate.swift */,
 				7EDD4ED61ABE727C00CEECD0 /* ViewController.swift */,
 				7EDD4ED81ABE727C00CEECD0 /* Main.storyboard */,
@@ -193,6 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7EDD4EDA1ABE727C00CEECD0 /* Main.storyboard in Resources */,
+				7E12883A1ABF34ED00922622 /* PartyUp_arrow_placeholder.png in Resources */,
 				7EDD4EDF1ABE727C00CEECD0 /* LaunchScreen.xib in Resources */,
 				7EDD4EDC1ABE727C00CEECD0 /* Images.xcassets in Resources */,
 			);
@@ -405,6 +417,7 @@
 				7EDD4EF01ABE727D00CEECD0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7EDD4EF11ABE727D00CEECD0 /* Build configuration list for PBXNativeTarget "PartyUpTests" */ = {
 			isa = XCConfigurationList;
@@ -413,6 +426,7 @@
 				7EDD4EF31ABE727D00CEECD0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

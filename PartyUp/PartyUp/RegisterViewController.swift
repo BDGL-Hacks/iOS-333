@@ -26,11 +26,6 @@ class RegisterViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(false)
-        firstName.text = "First Name"
-        lastName.text = "Last Name"
-        email.text = "Email address"
-        password.text = "Password"
-        retypePassword.text = "Retype password"
     }
 
     override func didReceiveMemoryWarning() {

@@ -9,12 +9,14 @@ General
 Login
 -----
  - Connect with backend
+ - Perform form validation
  - Save authentication in NSUserDefaultPrefs and authentication cookie (NSHTTPCookieStorage)
  - Have view scroll down slightly when keyboard is displayed
 
 Register
 --------
- - Connect with backend
  - Clean up ugly backend test code / refactor (see General)
+ - Perform form validation
+ - Automatically login new user upon successful registration -> go straight to home page
  - Have view scroll down when keyboard is displayed (such that all fields and register button is still displayed)
  - Make "Back to Login" button placement more consistent with Login's '"Register for PartyUp" button

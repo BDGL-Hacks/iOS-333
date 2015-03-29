@@ -77,7 +77,9 @@ class RegisterViewController: PartyUpViewController {
         var password: NSString = passwordTextField.text
         
         /* TODO: Put IP into a constant! */
-        var url: NSURL = NSURL(string: "52.4.3.6/users/register")!
+        // Ubuntu IP = "52.4.3.6"
+        // David's Linode IP = "23.239.14.40:8000"
+        var url: NSURL = NSURL(string: "http://23.239.14.40:8000/users/register/")!
         
         var post: NSString = "email=\(email)&first_name=\(firstName)&last_name=\(lastName)&password=\(password)"
         var postData: NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
@@ -112,7 +114,7 @@ class RegisterViewController: PartyUpViewController {
                 let jsonData: NSDictionary = NSJSONSerialization.JSONObjectWithData(urlData!, options: NSJSONReadingOptions.MutableContainers, error: &error) as NSDictionary
                 
                 let accepted: Bool = jsonData.valueForKey("accepted") as Bool
-                var errorMessage: NSString = jsonData.valueForKey("error") as NSString
+                var errorMessage: NSString? = jsonData.valueForKey("error") as NSString?
                 
                 if (accepted) {
                     NSLog("Register Successful!")
@@ -120,10 +122,12 @@ class RegisterViewController: PartyUpViewController {
                 }
                 else
                 {
-                    if errorMessage == "" {
-                        errorMessage = "Unknown Error"
+                    if (errorMessage != nil) {
+                        NSLog("Register Failed: %@", errorMessage!)
                     }
-                    NSLog("Error: %@", errorMessage)
+                    else {
+                        NSLog("Register Failed: No error message sent back", errorMessage!)
+                    }
                     
                     var alertView: UIAlertView = UIAlertView()
                     alertView.title = "Sign Up Failed"
@@ -139,7 +143,7 @@ class RegisterViewController: PartyUpViewController {
                 
                 var alertView: UIAlertView = UIAlertView()
                 alertView.title = "Sign Up Failed"
-                alertView.message = "Connection Failed"
+                alertView.message = "Connection Error: Bad status code"
                 alertView.delegate = self
                 alertView.addButtonWithTitle("OK")
                 alertView.show()
@@ -147,7 +151,21 @@ class RegisterViewController: PartyUpViewController {
         }
         else
         {
-            NSLog("Error: Connection Failed")
+            NSLog("Error: Connection Failed - No data received back")
+            
+            if (response != nil) {
+                NSLog("Response:%@", response!)
+            }
+            else {
+                NSLog("Response var is nil")
+            }
+            
+            if (responseError != nil) {
+                NSLog("Response Error:%@", responseError!)
+            }
+            else {
+                NSLog("Response Error var is nil")
+            }
             
             var alertView: UIAlertView = UIAlertView()
             alertView.title = "Sign Up Failed"

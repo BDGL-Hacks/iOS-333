@@ -8,15 +8,18 @@
 
 import UIKit
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: PartyUpViewController {
     
     // regModel = new RegisterModel()
 
-    @IBOutlet weak var firstName: UITextField!
-    @IBOutlet weak var lastName: UITextField!
-    @IBOutlet weak var email: UITextField!
-    @IBOutlet weak var password: UITextField!
-    @IBOutlet weak var retypePassword: UITextField!
+    @IBOutlet weak var firstNameTextField: UITextField!
+    @IBOutlet weak var lastNameTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var retypePasswordTextField: UITextField!
+    
+    @IBOutlet weak var registerButton: UIButton!
+    @IBOutlet weak var backToLoginButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,23 +36,128 @@ class RegisterViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    
+    /*--------------------------------------------*
+     * View response methods
+     *--------------------------------------------*/
+    
     @IBAction func register(sender: UIButton) {
-        // send registration info to controller
+        backendRegister()
     }
     
-    @IBAction func backtoLogin(sender: UIButton) {
-        // go back to the login screen
+    @IBAction func backToLogin() {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func viewTapped(sender : AnyObject) {
+        firstNameTextField.resignFirstResponder()
+        lastNameTextField.resignFirstResponder()
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        retypePasswordTextField.resignFirstResponder()
     }
-    */
+   
+    
+   /*--------------------------------------------*
+    * Backend Interfacing methods
+    *--------------------------------------------*/
+    
+    // Saving Cookies: NSHTTPCookieStorage
+    // Put POST stuff in seperate method
+    // Save some constants
+    // Put alert stuff in seperate method
+    
+    @IBAction func backendRegister()
+    {
+        NSLog("Register:\n---------------")
+        
+        var firstName: NSString = firstNameTextField.text
+        var lastName: NSString = lastNameTextField.text
+        var email: NSString = emailTextField.text
+        var password: NSString = passwordTextField.text
+        
+        /* TODO: Put IP into a constant! */
+        var url: NSURL = NSURL(string: "52.4.3.6/users/register")!
+        
+        var post: NSString = "email=\(email)&first_name=\(firstName)&last_name=\(lastName)&password=\(password)"
+        var postData: NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
+        var postLength: NSString = String(postData.length)
+        NSLog("Post: %@", post)
+        
+        var request: NSMutableURLRequest = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "POST"
+        request.HTTPBody = postData
+        request.setValue(postLength, forHTTPHeaderField: "Content-Length")
+        
+        // ?? What's happening here ??
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        
+        var response: NSURLResponse?
+        var responseError: NSError?
+        
+        var urlData: NSData? = NSURLConnection.sendSynchronousRequest(request, returningResponse: &response, error: &responseError)
+        
+        if (urlData != nil)
+        {
+            let httpResponse = response as NSHTTPURLResponse
+            NSLog("Response Status Code: %ld", httpResponse.statusCode)
+            
+            if (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300)
+            {
+                var responseData: NSString = NSString(data: urlData!, encoding: NSUTF8StringEncoding)!
+                NSLog("Response Data %@", responseData)
+                
+                var error: NSError?
+                let jsonData: NSDictionary = NSJSONSerialization.JSONObjectWithData(urlData!, options: NSJSONReadingOptions.MutableContainers, error: &error) as NSDictionary
+                
+                let accepted: Bool = jsonData.valueForKey("accepted") as Bool
+                var errorMessage: NSString = jsonData.valueForKey("error") as NSString
+                
+                if (accepted) {
+                    NSLog("Register Successful!")
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
+                else
+                {
+                    if errorMessage == "" {
+                        errorMessage = "Unknown Error"
+                    }
+                    NSLog("Error: %@", errorMessage)
+                    
+                    var alertView: UIAlertView = UIAlertView()
+                    alertView.title = "Sign Up Failed"
+                    alertView.message = errorMessage
+                    alertView.delegate = self
+                    alertView.addButtonWithTitle("OK")
+                    alertView.show()
+                }
+            }
+            else
+            {
+                NSLog("Error: Connection Failed")
+                
+                var alertView: UIAlertView = UIAlertView()
+                alertView.title = "Sign Up Failed"
+                alertView.message = "Connection Failed"
+                alertView.delegate = self
+                alertView.addButtonWithTitle("OK")
+                alertView.show()
+            }
+        }
+        else
+        {
+            NSLog("Error: Connection Failed")
+            
+            var alertView: UIAlertView = UIAlertView()
+            alertView.title = "Sign Up Failed"
+            alertView.message = "Connection Failed"
+            alertView.delegate = self
+            alertView.addButtonWithTitle("OK")
+            alertView.show()
+        }
+        
+        NSLog("---------------")
+    }
 
 }

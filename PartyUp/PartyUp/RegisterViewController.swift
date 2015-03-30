@@ -8,8 +8,7 @@
 
 import UIKit
 
-class RegisterViewController: PartyUpViewController
-{
+class RegisterViewController: PartyUpViewController {
     
    /*--------------------------------------------*
     * UI Components
@@ -30,7 +29,17 @@ class RegisterViewController: PartyUpViewController
      *--------------------------------------------*/
     
     @IBAction func register(sender: UIButton) {
-        backendRegister()
+        var error: NSString? = backendRegister()
+        
+        // Registration successful: Dismiss Registration view and go to homepage
+        if (error == nil) {
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+        
+        // Registration failed: Alert user of the failure
+        else {
+            displayAlert("Registration Failed", message: error!)
+        }
     }
     
     @IBAction func backToLogin() {
@@ -50,7 +59,10 @@ class RegisterViewController: PartyUpViewController
     * Backend Interfacing methods
     *--------------------------------------------*/
     
-    func backendRegister()
+    /* Performs user registration on the backend.      *
+     * Returns an error message string if registration *
+     * failed, nil otherwise.                          */
+    func backendRegister() -> NSString?
     {
         NSLog("Attempting to register new user...")
         
@@ -71,38 +83,26 @@ class RegisterViewController: PartyUpViewController
             let accepted: Bool = jsonData.valueForKey("accepted") as Bool
             var errorMessage: NSString? = jsonData.valueForKey("error") as NSString?
             
-            // Register successful on server side: dimiss register view and go to homepage
+            // Register successful on server side
             if (accepted) {
                 NSLog("Register Successful!")
-                self.dismissViewControllerAnimated(true, completion: nil)
+                return nil
             }
             
-            // Register was unsuccessful on server side: alert user to failure
+            // Register was unsuccessful on server side
             else {
                 if (errorMessage == nil) {
                     errorMessage = "No error message received from server"
                 }
                 NSLog("Register Failed: %@", errorMessage!)
-                
-                var alertView: UIAlertView = UIAlertView()
-                alertView.title = "Register Failed"
-                alertView.message = errorMessage
-                alertView.delegate = self
-                alertView.addButtonWithTitle("OK")
-                alertView.show()
+                return errorMessage
             }
         }
 
-        // We did not receive JSON data back: alert user to failure
+        // We did not receive JSON data back
         else {
             NSLog("Register Failed: No JSON data received")
-            
-            var alertView: UIAlertView = UIAlertView()
-            alertView.title = "Sign Up Failed"
-            alertView.message = "Connection Failure"
-            alertView.delegate = self
-            alertView.addButtonWithTitle("OK")
-            alertView.show()
+            return "Failed to connect to server"
         }
     }
 

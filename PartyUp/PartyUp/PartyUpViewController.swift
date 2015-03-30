@@ -22,7 +22,15 @@ class PartyUpViewController: UIViewController {
     * Global UI Methods
     *--------------------------------------------*/
     
-    
+    /* Displays an alert with the provided title and message */
+    func displayAlert(title: NSString, message: NSString, buttonText: NSString = "OK") {
+        var alertView: UIAlertView = UIAlertView()
+        alertView.title = title
+        alertView.message = message
+        alertView.delegate = self
+        alertView.addButtonWithTitle(buttonText)
+        alertView.show()
+    }
     
     
    /*--------------------------------------------*

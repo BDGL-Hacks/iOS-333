@@ -3,20 +3,28 @@ TODO
 
 General
 -------
- - Flush out PartyUpViewController with helpful methods and constants (post, template, alert)
  - Make NSLog not print out everything under the sun before its message
+
+(Homepage)
+----------
+ - Check for authentication => redirect to Homepage if necessary
 
 Login
 -----
- - Connect with backend
+ - Fix and throughly test login with backend
  - Perform form validation
- - Save authentication in NSUserDefaultPrefs and authentication cookie (NSHTTPCookieStorage)
+ - Save authentication in NSUserDefaultPrefs and transition to Homepage
+ - Save authentication cookie (NSHTTPCookieStorage)
+ - Automatically redirect to Homepage if the user is logged in (so Registration can cleanly transition to Homepage)
  - Have view scroll down slightly when keyboard is displayed
 
 Register
 --------
- - Clean up ugly backend test code / refactor (see General)
  - Perform form validation
  - Automatically login new user upon successful registration -> go straight to home page
  - Have view scroll down when keyboard is displayed (such that all fields and register button is still displayed)
  - Make "Back to Login" button placement more consistent with Login's '"Register for PartyUp" button
+
+Backend (Not us!)
+-----------------
+ - Have error message for register and login be more useful (an alert saying MISSING INFO is hardly professional)

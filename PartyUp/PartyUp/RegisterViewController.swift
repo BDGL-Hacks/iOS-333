@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RegisterViewController: PartyUpViewController {
+class RegisterViewController: PartyUpViewController, UITextFieldDelegate {
     
    /*--------------------------------------------*
     * UI Components
@@ -20,9 +20,43 @@ class RegisterViewController: PartyUpViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var retypePasswordTextField: UITextField!
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var backToLoginButton: UIButton!
     
+    var activeTextField: UITextField? {
+        get {
+            if (firstNameTextField.isFirstResponder()) {
+                return firstNameTextField
+            }
+            else if (lastNameTextField.isFirstResponder()) {
+                return lastNameTextField
+            }
+            else if (emailTextField.isFirstResponder()) {
+                return emailTextField
+            }
+            else if (passwordTextField.isFirstResponder()) {
+                return passwordTextField
+            }
+            else if (retypePasswordTextField.isFirstResponder()) {
+                return retypePasswordTextField
+            }
+            return nil
+        }
+        set(newActive) {
+            
+        }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.registerForKeyboardNotifications()
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
     
     /*--------------------------------------------*
      * View response methods
@@ -52,6 +86,11 @@ class RegisterViewController: PartyUpViewController {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
         retypePasswordTextField.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
    
     
@@ -104,6 +143,65 @@ class RegisterViewController: PartyUpViewController {
             NSLog("Register Failed: No JSON data received")
             return "Failed to connect to server"
         }
+    }
+    
+    /*--------------------------------------------*
+    * UITextField Delegate Methods
+    *--------------------------------------------*/
+    
+    func textFieldDidBeginEditing(textField: UITextField!) {
+        activeTextField = textField
+        scrollView.scrollEnabled = true
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField!) {
+        activeTextField = nil
+        scrollView.scrollEnabled = false
+    }
+    
+    /*--------------------------------------------*
+    * Keyboard Scrolling Methods
+    *--------------------------------------------*/
+    
+    // Code from creativecoefficient.net
+    
+    func registerForKeyboardNotifications() {
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(self,
+            selector: "keyboardWillBeShown:",
+            name: UIKeyboardWillShowNotification,
+            object: nil)
+        notificationCenter.addObserver(self,
+            selector: "keyboardWillBeHidden:",
+            name: UIKeyboardWillHideNotification,
+            object: nil)
+    }
+    
+    // Called when the UIKeyboardDidShowNotification is sent.
+    func keyboardWillBeShown(sender: NSNotification) {
+        let info: NSDictionary = sender.userInfo!
+        let value: NSValue = info.valueForKey(UIKeyboardFrameBeginUserInfoKey) as NSValue
+        let keyboardSize: CGSize = value.CGRectValue().size
+        let contentInsets: UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0)
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
+        
+        // If active text field is hidden by keyboard, scroll it so it's visible
+        // Your app might not need or want this behavior.
+        var aRect: CGRect = self.view.frame
+        aRect.size.height -= keyboardSize.height
+        let activeTextFieldRect: CGRect? = activeTextField?.frame
+        let activeTextFieldOrigin: CGPoint? = activeTextFieldRect?.origin
+        if (!CGRectContainsPoint(aRect, activeTextFieldOrigin!)) {
+            scrollView.scrollRectToVisible(activeTextFieldRect!, animated:true)
+        }
+    }
+    
+    // Called when the UIKeyboardWillHideNotification is sent
+    func keyboardWillBeHidden(sender: NSNotification) {
+        let contentInsets: UIEdgeInsets = UIEdgeInsetsZero
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
     }
 
 }

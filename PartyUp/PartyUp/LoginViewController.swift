@@ -26,16 +26,27 @@ class LoginViewController: PartyUpViewController, UITextFieldDelegate {
     
     @IBAction func login(sender: UIButton)
     {
+        NSLog("Login button pressed")
+        
         // Ensure the form is valid
         var validationError: NSString? = validateForm()
         if (validationError != nil) {
+            NSLog("Form is invalid: %@", validationError!)
             displayAlert("Login Failed", message: validationError!)
             return
         }
         
         // Attempt backend authentication
         var backendError: NSString? = backendLogin()
-        if (backendError == nil) {
+        if (backendError == nil)
+        {
+            NSLog("Login Success!")
+            
+            // Save logged in status in app defaults
+            var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+            userDefaults.setBool(true, forKey: "IS_LOGGED_IN")
+            userDefaults.synchronize()
+            
             self.dismissViewControllerAnimated(true, completion:nil)
         }
         else {

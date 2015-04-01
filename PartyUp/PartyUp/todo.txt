@@ -13,7 +13,6 @@ General
 
 Login
 -----
- - Save authentication in NSUserDefaultPrefs and transition to Homepage
  - Automatically redirect to Homepage if the user is logged in (so Registration can cleanly transition to Homepage)
  - Have view scroll down slightly when keyboard is displayed
 

@@ -24,6 +24,11 @@ class RegisterViewController: PartyUpViewController, UITextFieldDelegate {
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var backToLoginButton: UIButton!
     
+    
+   /*--------------------------------------------*
+    * Computed Properties
+    *--------------------------------------------*/
+    
     var activeTextField: UITextField? {
         get {
             if (firstNameTextField.isFirstResponder()) {
@@ -48,15 +53,6 @@ class RegisterViewController: PartyUpViewController, UITextFieldDelegate {
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        self.registerForKeyboardNotifications()
-    }
-    
-    override func viewDidDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
     
    /*--------------------------------------------*
     * View response methods
@@ -64,9 +60,12 @@ class RegisterViewController: PartyUpViewController, UITextFieldDelegate {
     
     @IBAction func register(sender: UIButton)
     {
+        NSLog("Register button pressed")
+        
         // Ensure the form is valid
         var validationError: NSString? = validateForm()
         if (validationError != nil) {
+            NSLog("Form is invalid: %@", validationError!)
             displayAlert("Registration Failed", message: validationError!)
             return
         }
@@ -74,6 +73,7 @@ class RegisterViewController: PartyUpViewController, UITextFieldDelegate {
         // Registration successful: Dismiss Registration view and go to homepage
         var backendError: NSString? = backendRegister()
         if (backendError == nil) {
+            NSLog("Registration sucess!")
             self.dismissViewControllerAnimated(true, completion: nil)
         }
         else {
@@ -91,6 +91,16 @@ class RegisterViewController: PartyUpViewController, UITextFieldDelegate {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
         retypePasswordTextField.resignFirstResponder()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.registerForKeyboardNotifications()
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     func textFieldShouldReturn(textField: UITextField!) -> Bool {
@@ -197,7 +207,8 @@ class RegisterViewController: PartyUpViewController, UITextFieldDelegate {
         }
     }
     
-    /*--------------------------------------------*
+    
+   /*--------------------------------------------*
     * UITextField Delegate Methods
     *--------------------------------------------*/
     
@@ -211,7 +222,8 @@ class RegisterViewController: PartyUpViewController, UITextFieldDelegate {
         scrollView.scrollEnabled = false
     }
     
-    /*--------------------------------------------*
+    
+   /*--------------------------------------------*
     * Keyboard Scrolling Methods
     *--------------------------------------------*/
     

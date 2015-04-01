@@ -24,21 +24,26 @@ class RegisterViewController: PartyUpViewController {
     @IBOutlet weak var backToLoginButton: UIButton!
     
     
-    /*--------------------------------------------*
-     * View response methods
-     *--------------------------------------------*/
+   /*--------------------------------------------*
+    * View response methods
+    *--------------------------------------------*/
     
-    @IBAction func register(sender: UIButton) {
-        var error: NSString? = backendRegister()
-        
-        // Registration successful: Dismiss Registration view and go to homepage
-        if (error == nil) {
-            self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func register(sender: UIButton)
+    {
+        // Ensure the form is valid
+        var validationError: NSString? = validateForm()
+        if (validationError != nil) {
+            displayAlert("Registration Failed", message: validationError!)
+            return
         }
         
-        // Registration failed: Alert user of the failure
+        // Registration successful: Dismiss Registration view and go to homepage
+        var backendError: NSString? = backendRegister()
+        if (backendError == nil) {
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
         else {
-            displayAlert("Registration Failed", message: error!)
+            displayAlert("Registration Failed", message: backendError!)
         }
     }
     
@@ -54,6 +59,53 @@ class RegisterViewController: PartyUpViewController {
         retypePasswordTextField.resignFirstResponder()
     }
    
+    
+   /*--------------------------------------------*
+    * View helper methods
+    *--------------------------------------------*/
+    
+    /* Validates the form fields.         *
+     * Returns an error message string    *
+     * if form is invalid, nil otherwise. */
+    func validateForm() -> NSString?
+    {
+        var firstName: NSString = firstNameTextField.text
+        var lastName: NSString = lastNameTextField.text
+        var email: NSString = emailTextField.text
+        var password: NSString = passwordTextField.text
+        var retypePassword: NSString = retypePasswordTextField.text
+        
+        if (firstName == "") {
+            return "First Name is required."
+        }
+        if (lastName == "") {
+            return "Last Name is required."
+        }
+        if (email == "") {
+            return "Email Address is required."
+        }
+        if (password == "") {
+            return "Password is required."
+        }
+        if (!stringMatchesRegex(firstName, regex: NAME_VALIDATOR_REGEX)) {
+            return "First Name is invalid."
+        }
+        if (!stringMatchesRegex(lastName, regex: NAME_VALIDATOR_REGEX)) {
+            return "Last Name is invalid."
+        }
+        if (!stringMatchesRegex(email, regex: EMAIL_VALIDATOR_REGEX)) {
+            return "Email Address is invalid."
+        }
+        if (password.length < 5) {
+            return "Password is too short."
+        }
+        if (password != retypePassword) {
+            return "Password and re-typed password do not match."
+        }
+        
+        return nil
+    }
+    
     
    /*--------------------------------------------*
     * Backend Interfacing methods

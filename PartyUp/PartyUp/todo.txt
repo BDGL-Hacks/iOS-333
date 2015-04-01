@@ -4,27 +4,42 @@ TODO
 General
 -------
  - Make NSLog not print out everything under the sun before its message
+ - Write some tests for Login and Register
 
 (Homepage)
 ----------
  - Check for authentication => redirect to Homepage if necessary
+ - Have Logout button actually log you out and delete authentication cookie
 
 Login
 -----
- - Fix and throughly test login with backend
- - Perform form validation
  - Save authentication in NSUserDefaultPrefs and transition to Homepage
- - Save authentication cookie (NSHTTPCookieStorage)
  - Automatically redirect to Homepage if the user is logged in (so Registration can cleanly transition to Homepage)
  - Have view scroll down slightly when keyboard is displayed
 
 Register
 --------
- - Perform form validation
  - Automatically login new user upon successful registration -> go straight to home page
  - Have view scroll down when keyboard is displayed (such that all fields and register button is still displayed)
  - Make "Back to Login" button placement more consistent with Login's '"Register for PartyUp" button
 
 Backend (Not us!)
 -----------------
- - Have error message for register and login be more useful (an alert saying MISSING INFO is hardly professional)
+ - Server does not appear to accept unicode characters (at least not registration)
+
+
+NOTES
+=====
+
+Create Group Flow
+-----------------
+ - Click "Create Group" Button
+ - Choose Event(s) Page
+   - You must choose at least one event
+   - Before you search, it shows you soon-to-occur event near you
+   - Search for events and select the ones you want
+   - Click "Finish"
+ - Choose Members Page
+   - Before you search, it shows you people you've recently been in groups with
+   - Search for people and select the ones you want
+   - Click "Create Group"

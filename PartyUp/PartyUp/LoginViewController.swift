@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: PartyUpViewController {
+class LoginViewController: PartyUpViewController, UITextFieldDelegate {
     
    /*--------------------------------------------*
     * UI Components
@@ -46,6 +46,11 @@ class LoginViewController: PartyUpViewController {
     @IBAction func viewTapped(sender : AnyObject) {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     

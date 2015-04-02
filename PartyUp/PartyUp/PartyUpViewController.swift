@@ -14,11 +14,8 @@ class PartyUpViewController: UIViewController {
     * Global Constants
     *--------------------------------------------*/
     
-    let UBUNTU_SERVER_IP: NSString = "52.4.3.6"
-    let DAVID_LINODE_SERVER_IP: NSString = "23.239.14.40:8000"
-    
-    let NAME_VALIDATOR_REGEX: NSString = "\\A\\p{L}+\\z"
-    let EMAIL_VALIDATOR_REGEX: NSString = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+[.]{1}[A-Za-z]{2,4}$"
+    let UBUNTU_SERVER_IP = "52.4.3.6"
+    let DAVID_LINODE_SERVER_IP = "23.239.14.40:8000"
     
     
    /*--------------------------------------------*
@@ -33,28 +30,6 @@ class PartyUpViewController: UIViewController {
         alertView.delegate = self
         alertView.addButtonWithTitle(buttonText)
         alertView.show()
-    }
-    
-   
-   /*--------------------------------------------*
-    * Global Helper Methods
-    *--------------------------------------------*/
-    
-    /* Returns whether the string matches the regex */
-    func stringMatchesRegex(string: NSString, regex: NSString, caseInsensitive: Bool = false) -> Bool
-    {
-        var regexOptions: NSRegularExpressionOptions
-        if caseInsensitive {
-            regexOptions = .CaseInsensitive
-        } else {
-            regexOptions = nil
-        }
-        var error: NSError?
-        
-        let regularExpression: NSRegularExpression = NSRegularExpression(pattern: regex, options: regexOptions, error: &error)!
-        let numMatches: Int = regularExpression.numberOfMatchesInString(string, options: nil, range: NSMakeRange(0, string.length))
-        
-        return numMatches > 0
     }
     
     
@@ -83,7 +58,7 @@ class PartyUpViewController: UIViewController {
         }
         
         NSLog("Request Data String: %@", requestString)
-        let requestData: NSData = requestString.dataUsingEncoding(NSUTF8StringEncoding)!
+        let requestData: NSData = requestString.dataUsingEncoding(NSASCIIStringEncoding)!
         
         request.HTTPMethod = "POST"
         request.HTTPBody = requestData

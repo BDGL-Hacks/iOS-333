@@ -58,33 +58,17 @@ class LoginViewController: PartyUpViewController, UITextFieldDelegate {
     * View response methods
     *--------------------------------------------*/
     
-    @IBAction func login(sender: UIButton)
-    {
-        NSLog("Login button pressed")
+    @IBAction func login(sender: UIButton) {
+        var error: NSString? = backendLogin()
         
-        // Ensure the form is valid
-        var validationError: NSString? = validateForm()
-        if (validationError != nil) {
-            NSLog("Form is invalid: %@", validationError!)
-            displayAlert("Login Failed", message: validationError!)
-            return
-        }
-        
-        // Attempt backend authentication
-        var backendError: NSString? = backendLogin()
-        if (backendError == nil)
-        {
-            NSLog("Login Success!")
-            
-            // Save logged in status in app defaults
-            var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-            userDefaults.setBool(true, forKey: "IS_LOGGED_IN")
-            userDefaults.synchronize()
-            
+        // Authentication successful: Dismiss Login view and go to homepage
+        if (error == nil) {
             self.dismissViewControllerAnimated(true, completion:nil)
         }
+        
+        // Authentication failed: Alert user of the failure
         else {
-            displayAlert("Login Failed", message: backendError!)
+            displayAlert("Login Failed", message: error!)
         }
     }
     
@@ -98,34 +82,11 @@ class LoginViewController: PartyUpViewController, UITextFieldDelegate {
         return true
     }
    /*--------------------------------------------*
-    * View helper methods
-    *--------------------------------------------*/
-    
-    /* Validates the form fields.         *
-     * Returns an error message string    *
-     * if form is invalid, nil otherwise. */
-    func validateForm() -> NSString?
-    {
-        let email: NSString = emailTextField.text
-        let password: NSString = passwordTextField.text
-        
-        if (email == "" || password == "") {
-            return "Email Address and Password are required."
-        }
-        if (!stringMatchesRegex(email, regex: EMAIL_VALIDATOR_REGEX)) {
-            return "Email Address is invalid."
-        }
-        
-        return nil
-    }
-    
-    
-   /*--------------------------------------------*
     * Backend Interfacing methods
     *--------------------------------------------*/
     
     /* Performs user authentication on the backend.                    *
-     * Returns an error message string if login failed, nil otherwise. */
+     * Returns an error message string is login failed, nil otherwise. */
     func backendLogin() -> NSString?
     {
         NSLog("Attempting to authenticate user...")
@@ -134,7 +95,7 @@ class LoginViewController: PartyUpViewController, UITextFieldDelegate {
         var password: NSString = passwordTextField.text
         
         var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/users/login/"
-        var postParams: [String: String] = ["username": email, "password": password]
+        var postParams: [String: String] = ["email": email, "password": password]
         
         var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
         

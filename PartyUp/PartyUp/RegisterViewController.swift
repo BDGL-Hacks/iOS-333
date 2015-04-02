@@ -43,11 +43,19 @@ class RegisterViewController: PartyUpViewController, UITextFieldDelegate {
             }
             return nil
         }
-        set(newActive) {
+        set {
             
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        firstNameTextField.delegate = self
+        lastNameTextField.delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        retypePasswordTextField.delegate = self
+    }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.registerForKeyboardNotifications()

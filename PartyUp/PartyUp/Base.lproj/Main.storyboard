@@ -1,57 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="zUv-T1-br3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SLw-45-19W">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Home (Groups)-->
-        <scene sceneID="ufC-wZ-h7g">
-            <objects>
-                <viewController title="Home (Groups)" id="vXZ-lx-hvc" customClass="HomeGroupsViewController" customModule="PartyUp" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
-                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wV0-iu-0oF">
-                                <rect key="frame" x="136" y="518" width="49" height="30"/>
-                                <state key="normal" title="Logout">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="logout:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="A8r-CW-VWR"/>
-                                    <segue destination="lbU-PQ-Vkh" kind="presentation" identifier="homeToLogin" id="Yrc-pQ-h7M"/>
-                                </connections>
-                            </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Ev5-mE-GaL">
-                                <rect key="frame" x="0.0" y="102" width="320" height="236"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="Ev5-mE-GaL"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <navigationItem key="navigationItem" id="OTY-LM-hj3">
-                        <nil key="title"/>
-                    </navigationItem>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
-                    <connections>
-                        <outlet property="logoutButton" destination="wV0-iu-0oF" id="kgi-a6-9rt"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2090" y="1271"/>
-        </scene>
         <!--Login-->
         <scene sceneID="e9A-uf-CBV">
             <objects>
@@ -163,7 +117,6 @@
                             <outletCollection property="gestureRecognizers" destination="321-af-VC7" appends="YES" id="E9x-Lb-JB1"/>
                         </connections>
                     </view>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="emailTextField" destination="8Kl-Zw-u9h" id="Wdb-aE-4DW"/>
                         <outlet property="loginButton" destination="evh-wE-3ds" id="JCY-1I-DWU"/>
@@ -179,7 +132,75 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2531" y="585"/>
+            <point key="canvasLocation" x="2173" y="1997"/>
+        </scene>
+        <!--Homepage View Controller-->
+        <scene sceneID="N1O-BG-eMS">
+            <objects>
+                <viewController id="SLw-45-19W" customClass="HomepageViewController" customModule="PartyUp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Df0-EH-pWk"/>
+                        <viewControllerLayoutGuide type="bottom" id="2q9-0M-ngP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="top" id="aVO-ew-a0i">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K2d-Ma-1eX" userLabel="Groups Child View">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <connections>
+                                    <segue destination="TyQ-WJ-xK7" kind="embed" id="WWs-Q3-mf4"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zZF-Qk-p9f" userLabel="Events Child View">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <connections>
+                                    <segue destination="1gF-7V-kWr" kind="embed" id="S54-W5-JqV"/>
+                                </connections>
+                            </containerView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gdx-Ee-7qp">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <items>
+                                    <navigationItem id="Kop-B9-B6g">
+                                        <nil key="title"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Logout" id="ZFt-6X-AEf">
+                                            <connections>
+                                                <action selector="logout:" destination="SLw-45-19W" id="fAi-TD-Zkm"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="R79-zw-A6K">
+                                            <rect key="frame" x="96" y="7" width="128" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <segments>
+                                                <segment title="Groups"/>
+                                                <segment title="Events"/>
+                                            </segments>
+                                            <connections>
+                                                <action selector="navSegmentedControlChanged:" destination="SLw-45-19W" eventType="valueChanged" id="NXL-Fd-ZlV"/>
+                                            </connections>
+                                        </segmentedControl>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="oPv-jF-gac"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="createButton" destination="oPv-jF-gac" id="HcA-oT-FUo"/>
+                        <outlet property="eventsChildView" destination="zZF-Qk-p9f" id="lmu-tS-QRW"/>
+                        <outlet property="groupsChildView" destination="K2d-Ma-1eX" id="MnI-SG-qzI"/>
+                        <outlet property="logoutButton" destination="ZFt-6X-AEf" id="4Gp-pJ-ii8"/>
+                        <outlet property="navSegmentedControl" destination="R79-zw-A6K" id="Lft-jR-kLk"/>
+                        <segue destination="lbU-PQ-Vkh" kind="presentation" identifier="homeToLogin" id="JkK-RB-7NF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aGq-Lm-GeE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2173" y="1323"/>
         </scene>
         <!--Register-->
         <scene sceneID="m8c-JU-sPC">
@@ -312,27 +333,61 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2970" y="585"/>
+            <point key="canvasLocation" x="2173" y="2677"/>
         </scene>
-        <!--Item-->
-        <scene sceneID="3Va-Hu-PKy">
+        <!--Home Groups View Controller-->
+        <scene sceneID="07y-sZ-Vnj">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zUv-T1-br3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Tlv-Xv-XHk"/>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="TyQ-WJ-xK7" customClass="HomeGroupsViewController" customModule="PartyUp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6c6-1K-Ecw"/>
+                        <viewControllerLayoutGuide type="bottom" id="kAD-Xa-tI8"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="2QD-C9-J4G">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Yo, this is the Group Page!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vdy-GT-nwx">
+                                <rect key="frame" x="58" y="241" width="204" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
                     <toolbarItems/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oy9-OU-4It">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="fah-TN-Fgp"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sRT-FY-wm7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="baa-Nn-FSh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1640" y="1271"/>
+            <point key="canvasLocation" x="2730" y="943"/>
+        </scene>
+        <!--Home Events View Controller-->
+        <scene sceneID="CCZ-uQ-tNn">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="1gF-7V-kWr" customClass="HomeEventsViewController" customModule="PartyUp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="34R-gr-EZ8"/>
+                        <viewControllerLayoutGuide type="bottom" id="mMj-5J-XgS"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="7Lb-YQ-f93">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Yo, this is the Event Page!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epz-V4-cum">
+                                <rect key="frame" x="61" y="241" width="199" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ecl-qj-lKq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2730" y="1748"/>
         </scene>
     </scenes>
     <resources>

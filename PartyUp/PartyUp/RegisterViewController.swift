@@ -24,6 +24,11 @@ class RegisterViewController: PartyUpViewController, UITextFieldDelegate {
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var backToLoginButton: UIButton!
     
+    
+   /*--------------------------------------------*
+    * Computed Properties
+    *--------------------------------------------*/
+    
     var activeTextField: UITextField? {
         get {
             if (firstNameTextField.isFirstResponder()) {
@@ -43,44 +48,36 @@ class RegisterViewController: PartyUpViewController, UITextFieldDelegate {
             }
             return nil
         }
-        set {
+        set(newActive) {
             
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        firstNameTextField.delegate = self
-        lastNameTextField.delegate = self
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
-        retypePasswordTextField.delegate = self
-    }
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        self.registerForKeyboardNotifications()
-    }
     
-    override func viewDidDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
+   /*--------------------------------------------*
+    * View response methods
+    *--------------------------------------------*/
     
-    /*--------------------------------------------*
-     * View response methods
-     *--------------------------------------------*/
-    
-    @IBAction func register(sender: UIButton) {
-        var error: NSString? = backendRegister()
+    @IBAction func register(sender: UIButton)
+    {
+        NSLog("Register button pressed")
         
-        // Registration successful: Dismiss Registration view and go to homepage
-        if (error == nil) {
-            self.dismissViewControllerAnimated(true, completion: nil)
+        // Ensure the form is valid
+        var validationError: NSString? = validateForm()
+        if (validationError != nil) {
+            NSLog("Form is invalid: %@", validationError!)
+            displayAlert("Registration Failed", message: validationError!)
+            return
         }
         
-        // Registration failed: Alert user of the failure
+        // Registration successful: Dismiss Registration view and go to homepage
+        var backendError: NSString? = backendRegister()
+        if (backendError == nil) {
+            NSLog("Registration sucess!")
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
         else {
-            displayAlert("Registration Failed", message: error!)
+            displayAlert("Registration Failed", message: backendError!)
         }
     }
     
@@ -96,11 +93,68 @@ class RegisterViewController: PartyUpViewController, UITextFieldDelegate {
         retypePasswordTextField.resignFirstResponder()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.registerForKeyboardNotifications()
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
     func textFieldShouldReturn(textField: UITextField!) -> Bool {
         textField.resignFirstResponder()
         return true
     }
    
+    
+   /*--------------------------------------------*
+    * View helper methods
+    *--------------------------------------------*/
+    
+    /* Validates the form fields.         *
+     * Returns an error message string    *
+     * if form is invalid, nil otherwise. */
+    func validateForm() -> NSString?
+    {
+        var firstName: NSString = firstNameTextField.text
+        var lastName: NSString = lastNameTextField.text
+        var email: NSString = emailTextField.text
+        var password: NSString = passwordTextField.text
+        var retypePassword: NSString = retypePasswordTextField.text
+        
+        if (firstName == "") {
+            return "First Name is required."
+        }
+        if (lastName == "") {
+            return "Last Name is required."
+        }
+        if (email == "") {
+            return "Email Address is required."
+        }
+        if (password == "") {
+            return "Password is required."
+        }
+        if (!stringMatchesRegex(firstName, regex: NAME_VALIDATOR_REGEX)) {
+            return "First Name is invalid."
+        }
+        if (!stringMatchesRegex(lastName, regex: NAME_VALIDATOR_REGEX)) {
+            return "Last Name is invalid."
+        }
+        if (!stringMatchesRegex(email, regex: EMAIL_VALIDATOR_REGEX)) {
+            return "Email Address is invalid."
+        }
+        if (password.length < 5) {
+            return "Password is too short."
+        }
+        if (password != retypePassword) {
+            return "Password and re-typed password do not match."
+        }
+        
+        return nil
+    }
+    
     
    /*--------------------------------------------*
     * Backend Interfacing methods
@@ -153,7 +207,8 @@ class RegisterViewController: PartyUpViewController, UITextFieldDelegate {
         }
     }
     
-    /*--------------------------------------------*
+    
+   /*--------------------------------------------*
     * UITextField Delegate Methods
     *--------------------------------------------*/
     
@@ -167,7 +222,8 @@ class RegisterViewController: PartyUpViewController, UITextFieldDelegate {
         scrollView.scrollEnabled = false
     }
     
-    /*--------------------------------------------*
+    
+   /*--------------------------------------------*
     * Keyboard Scrolling Methods
     *--------------------------------------------*/
     

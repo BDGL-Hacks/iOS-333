@@ -4,9 +4,33 @@ TODO
 General
 -------
  - Make NSLog not print out everything under the sun before its message
+ - Move backend methods to PartyUpStore
 
-Homepage - Groups
------------------
+Homepage
+--------
+
+Groups
+------
+
+Events (General)
+----------------
+ - Start working at them!
+ - Change tab icons and descriptions
+
+My Events
+---------
+
+Find Events
+-----------
+
+Current Event
+-------------
+
+Create Event
+------------
+
+Event Info
+----------
 
 Login
 -----
@@ -32,6 +56,7 @@ NOTES
 Create Group Flow
 -----------------
  - Click "Create Group" Button
+ - Name the Group Page
  - Choose Event(s) Page
    - You must choose at least one event
    - Before you search, it shows you soon-to-occur event near you

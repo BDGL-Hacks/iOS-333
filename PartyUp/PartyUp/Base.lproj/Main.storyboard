@@ -155,7 +155,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zZF-Qk-p9f" userLabel="Events Child View">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <connections>
-                                    <segue destination="1gF-7V-kWr" kind="embed" id="S54-W5-JqV"/>
+                                    <segue destination="Lbl-aD-Scn" kind="embed" id="S54-W5-JqV"/>
                                 </connections>
                             </containerView>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gdx-Ee-7qp">
@@ -360,12 +360,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="baa-Nn-FSh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2730" y="943"/>
+            <point key="canvasLocation" x="2722" y="951"/>
         </scene>
         <!--Home Events View Controller-->
         <scene sceneID="CCZ-uQ-tNn">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="1gF-7V-kWr" customClass="HomeEventsViewController" customModule="PartyUp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="1gF-7V-kWr" userLabel="Home Events View Controller" customClass="MyEventsViewController" customModule="PartyUp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="34R-gr-EZ8"/>
                         <viewControllerLayoutGuide type="bottom" id="mMj-5J-XgS"/>
@@ -374,8 +374,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Yo, this is the Event Page!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epz-V4-cum">
-                                <rect key="frame" x="61" y="241" width="199" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Yo, this is the My Events Page!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epz-V4-cum">
+                                <rect key="frame" x="42" y="241" width="236" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -383,11 +383,86 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="" systemItem="contacts" id="tAb-RS-504"/>
                     <toolbarItems/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ecl-qj-lKq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2730" y="1748"/>
+            <point key="canvasLocation" x="3288" y="1680"/>
+        </scene>
+        <!--Find Events View Controller-->
+        <scene sceneID="Heb-mD-5cj">
+            <objects>
+                <viewController id="aDp-fu-7fs" customClass="FindEventsViewController" customModule="PartyUp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3Mc-fd-9ug"/>
+                        <viewControllerLayoutGuide type="bottom" id="TnA-4L-jQ0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BJS-Qt-f5e">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Yo, this is the Find Events Page!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x11-Al-INN">
+                                <rect key="frame" x="37" y="241" width="246" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="pha-Ke-Hbt"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dsh-bh-8JA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3288" y="2285"/>
+        </scene>
+        <!--Current Event View Controller-->
+        <scene sceneID="A0k-ln-wGi">
+            <objects>
+                <viewController id="6mf-Fd-v5z" customClass="CurrentEventViewController" customModule="PartyUp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KAb-hQ-vbG"/>
+                        <viewControllerLayoutGuide type="bottom" id="lga-P4-AXG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QT2-BW-akS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Yo, this is the Current Event Page!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ucl-k3-AdE">
+                                <rect key="frame" x="30" y="241" width="261" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="k0I-jS-cxU"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n0A-Is-7ax" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3288" y="2885"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Gr4-3c-bVt">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Lbl-aD-Scn" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="EE1-oL-aib">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="1gF-7V-kWr" kind="relationship" relationship="viewControllers" id="uBj-mp-SDh"/>
+                        <segue destination="aDp-fu-7fs" kind="relationship" relationship="viewControllers" id="z6P-3N-uPl"/>
+                        <segue destination="6mf-Fd-v5z" kind="relationship" relationship="viewControllers" id="ehH-2T-uZE"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zE7-Cl-b0o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2722" y="1680"/>
         </scene>
     </scenes>
     <resources>

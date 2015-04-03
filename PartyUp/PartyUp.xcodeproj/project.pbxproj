@@ -8,9 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		7E12883D1ABF3E2400922622 /* PartyUp_arrow_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E12883C1ABF3E2400922622 /* PartyUp_arrow_placeholder.png */; };
+		7E54DB5B1ACE6D0D002E43E3 /* FindEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E54DB5A1ACE6D0D002E43E3 /* FindEventsViewController.swift */; };
+		7E54DB5D1ACE6D3A002E43E3 /* CurrentEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E54DB5C1ACE6D3A002E43E3 /* CurrentEventViewController.swift */; };
 		7E706A171AC78CC500B991F2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E706A161AC78CC500B991F2 /* LoginViewController.swift */; };
 		7EA0DD021ACE25E900FC3EC1 /* HomeGroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA0DD011ACE25E900FC3EC1 /* HomeGroupsViewController.swift */; };
-		7EA0DD041ACE260500FC3EC1 /* HomeEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA0DD031ACE260500FC3EC1 /* HomeEventsViewController.swift */; };
+		7EA0DD041ACE260500FC3EC1 /* MyEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA0DD031ACE260500FC3EC1 /* MyEventsViewController.swift */; };
 		7ECBC7951ACE4A50005329B5 /* HomepageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECBC7941ACE4A50005329B5 /* HomepageViewController.swift */; };
 		7EDC76D41AC7C46000252753 /* PartyUp_icon_2x_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EDC76D21AC7C46000252753 /* PartyUp_icon_2x_placeholder.png */; };
 		7EDC76D51AC7C46000252753 /* PartyUp_icon_3x_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EDC76D31AC7C46000252753 /* PartyUp_icon_3x_placeholder.png */; };
@@ -37,10 +39,12 @@
 
 /* Begin PBXFileReference section */
 		7E12883C1ABF3E2400922622 /* PartyUp_arrow_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PartyUp_arrow_placeholder.png; sourceTree = "<group>"; };
+		7E54DB5A1ACE6D0D002E43E3 /* FindEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindEventsViewController.swift; sourceTree = "<group>"; };
+		7E54DB5C1ACE6D3A002E43E3 /* CurrentEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentEventViewController.swift; sourceTree = "<group>"; };
 		7E706A161AC78CC500B991F2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7E706A181AC7BCAA00B991F2 /* PartyUpPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = PartyUpPlayground.playground; sourceTree = "<group>"; };
 		7EA0DD011ACE25E900FC3EC1 /* HomeGroupsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeGroupsViewController.swift; sourceTree = "<group>"; };
-		7EA0DD031ACE260500FC3EC1 /* HomeEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeEventsViewController.swift; sourceTree = "<group>"; };
+		7EA0DD031ACE260500FC3EC1 /* MyEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyEventsViewController.swift; sourceTree = "<group>"; };
 		7ECBC7941ACE4A50005329B5 /* HomepageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomepageViewController.swift; sourceTree = "<group>"; };
 		7EDC76D21AC7C46000252753 /* PartyUp_icon_2x_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PartyUp_icon_2x_placeholder.png; sourceTree = "<group>"; };
 		7EDC76D31AC7C46000252753 /* PartyUp_icon_3x_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PartyUp_icon_3x_placeholder.png; sourceTree = "<group>"; };
@@ -112,7 +116,9 @@
 			children = (
 				7EDD4ED41ABE727C00CEECD0 /* AppDelegate.swift */,
 				7ECBC7941ACE4A50005329B5 /* HomepageViewController.swift */,
-				7EA0DD031ACE260500FC3EC1 /* HomeEventsViewController.swift */,
+				7EA0DD031ACE260500FC3EC1 /* MyEventsViewController.swift */,
+				7E54DB5A1ACE6D0D002E43E3 /* FindEventsViewController.swift */,
+				7E54DB5C1ACE6D3A002E43E3 /* CurrentEventViewController.swift */,
 				7EA0DD011ACE25E900FC3EC1 /* HomeGroupsViewController.swift */,
 				7E706A161AC78CC500B991F2 /* LoginViewController.swift */,
 				7EDD4ED61ABE727C00CEECD0 /* PartyUpViewController.swift */,
@@ -260,8 +266,10 @@
 			files = (
 				7E706A171AC78CC500B991F2 /* LoginViewController.swift in Sources */,
 				8B9140221AC5DB1300205FA6 /* RegisterViewController.swift in Sources */,
-				7EA0DD041ACE260500FC3EC1 /* HomeEventsViewController.swift in Sources */,
+				7EA0DD041ACE260500FC3EC1 /* MyEventsViewController.swift in Sources */,
 				8B9140241AC86E0200205FA6 /* PartyUpStore.swift in Sources */,
+				7E54DB5B1ACE6D0D002E43E3 /* FindEventsViewController.swift in Sources */,
+				7E54DB5D1ACE6D3A002E43E3 /* CurrentEventViewController.swift in Sources */,
 				7ECBC7951ACE4A50005329B5 /* HomepageViewController.swift in Sources */,
 				7EA0DD021ACE25E900FC3EC1 /* HomeGroupsViewController.swift in Sources */,
 				7EDD4ED71ABE727C00CEECD0 /* PartyUpViewController.swift in Sources */,

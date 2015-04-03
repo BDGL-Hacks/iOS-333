@@ -69,6 +69,12 @@ class HomepageViewController: PartyUpViewController
     }
     
     @IBAction func navSegmentedControlChanged(sender: UISegmentedControl) {
+        NSLog("Navbar segment control changed")
+        if (activeView == groupsChildView) {
+            NSLog("Displaying Groups child view")
+        } else {
+            NSLog("Displaying Events child view")
+        }
         activeView.hidden = false
         inactiveView.hidden = true
     }
@@ -93,9 +99,8 @@ class HomepageViewController: PartyUpViewController
         // If the user is logged in, display the homepage
         else {
             NSLog("User is logged in. Displaying homepage.")
-            navSegmentedControl.selectedSegmentIndex = 0
-            groupsChildView.hidden = false
-            eventsChildView.hidden = true
+            activeView.hidden = false
+            inactiveView.hidden = true
         }
     }
     

@@ -4,7 +4,7 @@ TODO
 General
 -------
  - Make NSLog not print out everything under the sun before its message
- - Move backend methods to PartyUpStore
+ - Have loading wheel appear when logging in, registering, and backend things that may require waiting
 
 Homepage
 --------
@@ -34,13 +34,11 @@ Event Info
 
 Login
 -----
- - Further separate backendLogin from views (have text get passed in as parameters)
  - Have view scroll down slightly when keyboard is displayed
  - Write some tests
 
 Register
 --------
- - Further separate backendLogin from views (have text get passed in as parameters)
  - Automatically login new user upon successful registration -> go straight to home page
  - Have view scroll down when keyboard is displayed (such that all fields and register button is still displayed)
  - Make "Back to Login" button placement more consistent with Login's '"Register for PartyUp" button

@@ -24,7 +24,7 @@
 		7EDD4EDF1ABE727C00CEECD0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EDD4EDD1ABE727C00CEECD0 /* LaunchScreen.xib */; };
 		7EDD4EEB1ABE727D00CEECD0 /* PartyUpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDD4EEA1ABE727D00CEECD0 /* PartyUpTests.swift */; };
 		8B9140221AC5DB1300205FA6 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9140211AC5DB1300205FA6 /* RegisterViewController.swift */; };
-		8B9140241AC86E0200205FA6 /* PartyUpStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9140231AC86E0200205FA6 /* PartyUpStore.swift */; };
+		8B9140241AC86E0200205FA6 /* PartyUpBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9140231AC86E0200205FA6 /* PartyUpBackend.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,7 +60,7 @@
 		7EDD4EE91ABE727D00CEECD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7EDD4EEA1ABE727D00CEECD0 /* PartyUpTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyUpTests.swift; sourceTree = "<group>"; };
 		8B9140211AC5DB1300205FA6 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		8B9140231AC86E0200205FA6 /* PartyUpStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyUpStore.swift; sourceTree = "<group>"; };
+		8B9140231AC86E0200205FA6 /* PartyUpBackend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyUpBackend.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,7 +122,7 @@
 				7EA0DD011ACE25E900FC3EC1 /* HomeGroupsViewController.swift */,
 				7E706A161AC78CC500B991F2 /* LoginViewController.swift */,
 				7EDD4ED61ABE727C00CEECD0 /* PartyUpViewController.swift */,
-				8B9140231AC86E0200205FA6 /* PartyUpStore.swift */,
+				8B9140231AC86E0200205FA6 /* PartyUpBackend.swift */,
 				8B9140211AC5DB1300205FA6 /* RegisterViewController.swift */,
 				7EDD4ED81ABE727C00CEECD0 /* Main.storyboard */,
 				7EDD4EDB1ABE727C00CEECD0 /* Images.xcassets */,
@@ -267,7 +267,7 @@
 				7E706A171AC78CC500B991F2 /* LoginViewController.swift in Sources */,
 				8B9140221AC5DB1300205FA6 /* RegisterViewController.swift in Sources */,
 				7EA0DD041ACE260500FC3EC1 /* MyEventsViewController.swift in Sources */,
-				8B9140241AC86E0200205FA6 /* PartyUpStore.swift in Sources */,
+				8B9140241AC86E0200205FA6 /* PartyUpBackend.swift in Sources */,
 				7E54DB5B1ACE6D0D002E43E3 /* FindEventsViewController.swift in Sources */,
 				7E54DB5D1ACE6D3A002E43E3 /* CurrentEventViewController.swift in Sources */,
 				7ECBC7951ACE4A50005329B5 /* HomepageViewController.swift in Sources */,

@@ -43,16 +43,8 @@ class LoginViewController: PartyUpViewController, UITextFieldDelegate {
         var password: NSString = passwordTextField.text
         
         // Attempt backend authentication
-        var backendError: NSString? = PartyUpBackend.instance.backendLogin(email, password: password)
-        if (backendError == nil)
-        {
-            NSLog("Login Success!")
-            
-            // Save logged in status in app defaults
-            var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-            userDefaults.setBool(true, forKey: "IS_LOGGED_IN")
-            userDefaults.synchronize()
-            
+        var backendError: NSString? = authenticate(email, password: password)
+        if (backendError == nil) {
             self.dismissViewControllerAnimated(true, completion:nil)
         }
         else {

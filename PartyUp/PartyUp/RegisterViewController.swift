@@ -76,11 +76,20 @@ class RegisterViewController: PartyUpViewController, UITextFieldDelegate {
         var email: NSString = emailTextField.text
         var password: NSString = passwordTextField.text
         
-        // Registration successful: Dismiss Registration view and go to homepage
-        var backendError: NSString? = PartyUpBackend.instance.backendRegister(firstName, lastName: lastName, email: email, password: password)
-        if (backendError == nil) {
-            NSLog("Registration sucess!")
-            self.dismissViewControllerAnimated(true, completion: nil)
+        // Registration successful: Dismiss Registration view and attempt login
+        var backendError: NSString? = PartyUpBackend.instance.backendRegister(firstName,
+            lastName: lastName, email: email, password: password)
+        if (backendError == nil)
+        {
+            // Attempt backend authentication
+            var authError: NSString? = authenticate(email, password: password)
+            if (authError == nil) {
+                self.performSegueWithIdentifier("registerToHome", sender: self)
+            }
+            else {
+                self.dismissViewControllerAnimated(true, completion:nil)
+                displayAlert("Login Failed", message: authError!)
+            }
         }
         else {
             displayAlert("Registration Failed", message: backendError!)

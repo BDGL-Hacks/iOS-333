@@ -324,6 +324,7 @@
                         <outlet property="registerButton" destination="z8c-GZ-9BH" id="wjG-DM-p5B"/>
                         <outlet property="retypePasswordTextField" destination="Rmi-PV-Ddu" id="wrV-p4-z8I"/>
                         <outlet property="scrollView" destination="pE7-BG-ydJ" id="2J1-Q3-Tks"/>
+                        <segue destination="SLw-45-19W" kind="show" identifier="registerToHome" id="L1k-YG-Jgb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nJf-uA-Q2c" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -333,7 +334,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2173" y="2677"/>
+            <point key="canvasLocation" x="2173" y="2687"/>
         </scene>
         <!--Home Groups View Controller-->
         <scene sceneID="07y-sZ-Vnj">

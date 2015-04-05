@@ -11,6 +11,13 @@ import UIKit
 class PartyUpViewController: UIViewController {
     
    /*--------------------------------------------*
+    * View Information:
+    *  - The keys stored in user default prefs are:
+    *    USERNAME (NSString), IS_LOGGED_IN (Bool)
+    *--------------------------------------------*/
+    
+    
+   /*--------------------------------------------*
     * Global View Constants
     *--------------------------------------------*/
     
@@ -37,6 +44,24 @@ class PartyUpViewController: UIViewController {
     * Global Helper Methods
     *--------------------------------------------*/
     
+    /* Authenticate the user and save related values   *
+     * in user default prefs. Returns an error message *
+     * string if login failed, nil otherwise.          */
+    func authenticate(email: NSString, password: NSString) -> NSString? {
+        var backendError: NSString? = PartyUpBackend.instance.backendLogin(email, password: password)
+        if (backendError == nil) {
+            NSLog("Login Success!")
+            var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+            userDefaults.setBool(true, forKey: "IS_LOGGED_IN")
+            userDefaults.setObject(email, forKey: "USERNAME")
+            userDefaults.synchronize()
+        }
+        else {
+            NSLog("Login Failed.")
+        }
+        return backendError
+    }
+    
     /* Returns whether the string matches the regex */
     func stringMatchesRegex(string: NSString, regex: NSString, caseInsensitive: Bool = false) -> Bool
     {
@@ -55,4 +80,3 @@ class PartyUpViewController: UIViewController {
     }
 
 }
-

@@ -15,7 +15,7 @@ Groups
 Events (General)
 ----------------
  - Start working at them!
- - Change tab icons and descriptions
+ - Change tab icons and labels
 
 My Events
 ---------
@@ -39,9 +39,8 @@ Login
 
 Register
 --------
- - Automatically login new user upon successful registration -> go straight to home page
  - Have view scroll down when keyboard is displayed (such that all fields and register button is still displayed)
- - Make "Back to Login" button placement more consistent with Login's '"Register for PartyUp" button
+ - Make "Back to Login" button placement more consistent with Login's "Register for PartyUp" button
  - Write some tests
 
 Backend (Not us!)

@@ -28,12 +28,12 @@ class LoginViewController: PartyUpViewController, UITextFieldDelegate {
     
     @IBAction func login(sender: UIButton)
     {
-        NSLog("Login button pressed")
+        PULog("Login button pressed")
         
         // Ensure the form is valid
         var validationError: NSString? = validateForm()
         if (validationError != nil) {
-            NSLog("Form is invalid: %@", validationError!)
+            PULog("Form is invalid: \(validationError!)")
             displayAlert("Login Failed", message: validationError!)
             return
         }

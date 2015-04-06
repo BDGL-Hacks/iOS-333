@@ -3,7 +3,6 @@ TODO
 
 General
 -------
- - Make NSLog not print out everything under the sun before its message
  - Have loading wheel appear when logging in, registering, and backend things that may require waiting
 
 Homepage

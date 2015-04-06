@@ -38,7 +38,7 @@ class PartyUpBackend {
      * Returns an error message string if login failed, nil otherwise. */
     func backendLogin(email: NSString, password: NSString) -> NSString?
     {
-        NSLog("Attempting to authenticate user...")
+        PULog("Attempting to authenticate user...")
         
         var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/users/login/"
         var postParams: [String: String] = ["username": email, "password": password]
@@ -54,7 +54,7 @@ class PartyUpBackend {
             
             // Authentication successful on server side
             if (accepted) {
-                NSLog("Authentication Successful!")
+                PULog("Authentication Successful!")
                 return nil
             }
                 
@@ -63,14 +63,14 @@ class PartyUpBackend {
                 if (errorMessage == nil) {
                     errorMessage = "No error message received from server"
                 }
-                NSLog("Authentication Failed: %@", errorMessage!)
+                PULog("Authentication Failed: \(errorMessage!)")
                 return errorMessage
             }
         }
             
         // We did not receive JSON data back
         else {
-            NSLog("Authentication Failed: No JSON data received")
+            PULog("Authentication Failed: No JSON data received")
             return "Failed to connect to server"
         }
     }
@@ -81,7 +81,7 @@ class PartyUpBackend {
     func backendRegister(firstName: NSString, lastName: NSString,
         email: NSString, password: NSString) -> NSString?
     {
-        NSLog("Attempting to register new user...")
+        PULog("Attempting to register new user...")
         
         var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/users/register/"
         var postParams: [String: String] = ["email": email, "first_name": firstName, "last_name": lastName, "password": password]
@@ -97,7 +97,7 @@ class PartyUpBackend {
             
             // Register successful on server side
             if (accepted) {
-                NSLog("Register Successful!")
+                PULog("Register Successful!")
                 return nil
             }
                 
@@ -106,14 +106,14 @@ class PartyUpBackend {
                 if (errorMessage == nil) {
                     errorMessage = "No error message received from server"
                 }
-                NSLog("Register Failed: %@", errorMessage!)
+                PULog("Register Failed: \(errorMessage!)")
                 return errorMessage
             }
         }
             
             // We did not receive JSON data back
         else {
-            NSLog("Register Failed: No JSON data received")
+            PULog("Register Failed: No JSON data received")
             return "Failed to connect to server"
         }
     }
@@ -127,9 +127,9 @@ class PartyUpBackend {
      * Returns JSON data as NSDictionary if successful, nil otherwise. */
     func sendPostRequest(params: Dictionary<String, String>, url: NSString) -> NSDictionary?
     {
-        NSLog("\nSending POST Request:")
-        NSLog("URL: %@", url)
-        NSLog("Params Dictionary: %@", params)
+        PULog("\nSending POST Request:")
+        PULog("URL: \(url)")
+        PULog("Params Dictionary: \(params)")
         
         var requestURL: NSURL = NSURL(string: url)!
         var requestErr: NSError?
@@ -143,7 +143,7 @@ class PartyUpBackend {
             requestString = NSMutableString(string: requestString.substringFromIndex(1))
         }
         
-        NSLog("Request Data String: %@", requestString)
+        PULog("Request Data String: \(requestString)")
         let requestData: NSData = requestString.dataUsingEncoding(NSUTF8StringEncoding)!
         
         request.HTTPMethod = "POST"
@@ -161,33 +161,33 @@ class PartyUpBackend {
         if (urlData != nil)
         {
             let httpResponse = response as NSHTTPURLResponse
-            NSLog("Response Status Code: %ld", httpResponse.statusCode)
+            PULog("Response Status Code: \(httpResponse.statusCode)")
             
             // We got a success status code from URL: return JSON data
             if (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300)
             {
                 var responseData: NSString = NSString(data: urlData!, encoding: NSUTF8StringEncoding)!
-                NSLog("Response Data: %@", responseData)
+                PULog("Response Data: \(responseData)")
                 
                 var jsonError: NSError?
                 let jsonData: NSDictionary = NSJSONSerialization.JSONObjectWithData(urlData!, options: NSJSONReadingOptions.MutableContainers, error: &jsonError) as NSDictionary
                 
-                NSLog("End POST Request Method\n")
+                PULog("End POST Request Method\n")
                 return jsonData
             }
                 
             // We got a failure status code from URL: return nil
             else {
-                NSLog("Bad Response Status Code. Response data was not received.")
-                NSLog("End POST Request Method\n")
+                PULog("Bad Response Status Code. Response data was not received.")
+                PULog("End POST Request Method\n")
                 return nil
             }
         }
             
         // We did not get data back from URL: return nil
         else {
-            NSLog("No response from URL. Response data was not received.")
-            NSLog("End POST Request Method\n")
+            PULog("No response from URL. Response data was not received.")
+            PULog("End POST Request Method\n")
             return nil
         }
     }

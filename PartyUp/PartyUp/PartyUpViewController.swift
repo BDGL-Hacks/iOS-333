@@ -50,14 +50,14 @@ class PartyUpViewController: UIViewController {
     func authenticate(email: NSString, password: NSString) -> NSString? {
         var backendError: NSString? = PartyUpBackend.instance.backendLogin(email, password: password)
         if (backendError == nil) {
-            NSLog("Login Success!")
+            PULog("Login Success!")
             var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
             userDefaults.setBool(true, forKey: "IS_LOGGED_IN")
             userDefaults.setObject(email, forKey: "USERNAME")
             userDefaults.synchronize()
         }
         else {
-            NSLog("Login Failed.")
+            PULog("Login Failed.")
         }
         return backendError
     }

@@ -22,7 +22,7 @@ class CurrentEventViewController: PartyUpViewController
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        NSLog("Displaying Current Event tab")
+        PULog("Displaying Current Event tab")
     }
     
 }

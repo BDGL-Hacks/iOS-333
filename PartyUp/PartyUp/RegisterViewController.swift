@@ -60,12 +60,12 @@ class RegisterViewController: PartyUpViewController, UITextFieldDelegate {
     
     @IBAction func register(sender: UIButton)
     {
-        NSLog("Register button pressed")
+        PULog("Register button pressed")
         
         // Ensure the form is valid
         var validationError: NSString? = validateForm()
         if (validationError != nil) {
-            NSLog("Form is invalid: %@", validationError!)
+            PULog("Form is invalid: \(validationError!)")
             displayAlert("Registration Failed", message: validationError!)
             return
         }

@@ -53,27 +53,27 @@ class HomepageViewController: PartyUpViewController
     *--------------------------------------------*/
     
     @IBAction func logout(sender: UIButton) {
-        NSLog("Logout button pressed")
-        NSLog("Deleting cookies...")
+        PULog("Logout button pressed")
+        PULog("Deleting cookies...")
         var cookieStorage: NSHTTPCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
         for cookie in cookieStorage.cookies! {
             cookieStorage.deleteCookie(cookie as NSHTTPCookie)
         }
-        NSLog("Deleting app preferences...")
+        PULog("Deleting app preferences...")
         var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
         let appDomain: String = NSBundle.mainBundle().bundleIdentifier!
         userDefaults.removePersistentDomainForName(appDomain)
         userDefaults.synchronize()
-        NSLog("Transitioning to Login screen")
+        PULog("Transitioning to Login screen")
         self.performSegueWithIdentifier("homeToLogin", sender: self)
     }
     
     @IBAction func navSegmentedControlChanged(sender: UISegmentedControl) {
-        NSLog("Navbar segment control changed")
+        PULog("Navbar segment control changed")
         if (activeView == groupsChildView) {
-            NSLog("Displaying Groups child view")
+            PULog("Displaying Groups child view")
         } else {
-            NSLog("Displaying Events child view")
+            PULog("Displaying Events child view")
         }
         activeView.hidden = false
         inactiveView.hidden = true
@@ -86,19 +86,20 @@ class HomepageViewController: PartyUpViewController
         
         // If the user is not logged in, delete cookies and go to login screen
         if (!isLoggedIn) {
-            NSLog("User is not logged in.")
-            NSLog("Deleting cookies...")
+            PULog("User is not logged in.")
+            PULog("Deleting cookies...")
             var cookieStorage: NSHTTPCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
             for cookie in cookieStorage.cookies! {
                 cookieStorage.deleteCookie(cookie as NSHTTPCookie)
             }
-            NSLog("Transitioning to Login screen")
+            PULog("Transitioning to Login screen")
             self.performSegueWithIdentifier("homeToLogin", sender: self)
         }
         
         // If the user is logged in, display the homepage
         else {
-            NSLog("User is logged in. Displaying homepage.")
+            NSLogPageSize()
+            PULog("User is logged in. Displaying homepage.")
             activeView.hidden = false
             inactiveView.hidden = true
         }

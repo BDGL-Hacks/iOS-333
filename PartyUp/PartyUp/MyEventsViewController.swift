@@ -22,7 +22,7 @@ class MyEventsViewController: PartyUpViewController
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        NSLog("Displaying My Events tab")
+        PULog("Displaying My Events tab")
     }
     
 }

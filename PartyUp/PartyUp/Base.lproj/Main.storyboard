@@ -1,30 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SLw-45-19W">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SLw-45-19W">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Item-->
-        <scene sceneID="nA5-rc-1AF">
-            <objects>
-                <viewController id="gdd-A7-CoR" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="xk6-1H-GwV"/>
-                        <viewControllerLayoutGuide type="bottom" id="a6D-cz-oRe"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="vpG-27-DDf">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="VUs-xb-FNp"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OpQ-KU-I9J" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1472" y="1703"/>
-        </scene>
         <!--GroupController-->
         <scene sceneID="8zS-n1-5Ig">
             <objects>
@@ -253,7 +234,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1985" y="1909"/>
+            <point key="canvasLocation" x="2317" y="1733"/>
         </scene>
         <!--Homepage View Controller-->
         <scene sceneID="N1O-BG-eMS">
@@ -276,7 +257,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zZF-Qk-p9f" userLabel="Events Child View">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <connections>
-                                    <segue destination="iDH-9r-U2n" kind="presentation" identifier="homeToCreate" id="94B-Vf-hHJ"/>
+                                    <segue destination="Lbl-aD-Scn" kind="embed" id="Ocd-Ni-5kD"/>
                                 </connections>
                             </containerView>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gdx-Ee-7qp">
@@ -321,6 +302,7 @@
                         <outlet property="logoutButton" destination="ZFt-6X-AEf" id="4Gp-pJ-ii8"/>
                         <outlet property="navSegmentedControl" destination="R79-zw-A6K" id="Lft-jR-kLk"/>
                         <segue destination="lbU-PQ-Vkh" kind="presentation" identifier="homeToLogin" id="JkK-RB-7NF"/>
+                        <segue destination="iDH-9r-U2n" kind="presentation" identifier="homeToCreateEvent" id="Saa-B7-OGF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aGq-Lm-GeE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -459,7 +441,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2467" y="2595"/>
+            <point key="canvasLocation" x="2317" y="2421"/>
         </scene>
         <!--Home Groups View Controller-->
         <scene sceneID="07y-sZ-Vnj">
@@ -486,7 +468,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="baa-Nn-FSh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2722" y="951"/>
+            <point key="canvasLocation" x="2812" y="675"/>
         </scene>
         <!--My Events View Controller-->
         <scene sceneID="CCZ-uQ-tNn">
@@ -497,7 +479,7 @@
                         <viewControllerLayoutGuide type="bottom" id="mMj-5J-XgS"/>
                     </layoutGuides>
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="7Lb-YQ-f93">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Yo, this is the My Events Page!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epz-V4-cum">
@@ -525,7 +507,7 @@
                         <viewControllerLayoutGuide type="bottom" id="TnA-4L-jQ0"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="BJS-Qt-f5e">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Yo, this is the Find Events Page!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x11-Al-INN">
@@ -552,7 +534,7 @@
                         <viewControllerLayoutGuide type="bottom" id="lga-P4-AXG"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="QT2-BW-akS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Yo, this is the Current Event Page!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ucl-k3-AdE">
@@ -588,7 +570,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zE7-Cl-b0o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2722" y="1680"/>
+            <point key="canvasLocation" x="2812" y="1680"/>
         </scene>
     </scenes>
     <resources>

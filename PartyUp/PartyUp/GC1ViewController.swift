@@ -15,6 +15,7 @@ class GC1ViewController: PartyUpViewController // UIPageViewControllerDataSource
     //private var pageViewController: UIPageViewController?
     //private let numPages = 3
     
+    
     @IBOutlet weak var selectedDate: UILabel!
 
     @IBOutlet weak var myDatePicker: UIDatePicker!
@@ -24,21 +25,21 @@ class GC1ViewController: PartyUpViewController // UIPageViewControllerDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
        // createPageViewController()
-        myDatePicker.datePickerMode = UIDatePickerMode.Time
-        let currentDate = NSDate()
-        myDatePicker.minimumDate = currentDate
-        myDatePicker.date = currentDate
+        
         // Do any additional setup after loading the view.
     }
     
-   
-    @IBAction func datePickerAction(sender: UIDatePicker) {
+    @IBAction func datePickerChanged(sender: UIDatePicker) {
+        
         var dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
-        var strDate = dateFormatter.stringFromDate(myDatePicker.date)
-        self.selectedDate.text = strDate
+        dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
+        var dateStr = dateFormatter.stringFromDate(myDatePicker.date)
+        selectedDate.text = dateStr
     }
     
+    @IBAction func dismissModal(sender: UIButton) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     /*
     private func createPageViewController() {
         let pageController = self.storyboard!.instantiateViewControllerWithIdentifier("GroupController") as UIPageViewController

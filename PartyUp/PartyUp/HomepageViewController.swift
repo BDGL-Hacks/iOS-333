@@ -71,7 +71,7 @@ class HomepageViewController: PartyUpViewController
     @IBAction func createButton(sender: UIBarButtonItem) {
         
         if activeView == eventsChildView {
-            self.performSegueWithIdentifier("homeToCreate", sender: self)
+            self.performSegueWithIdentifier("homeToCreateEvent", sender: self)
         }
     }
     @IBAction func navSegmentedControlChanged(sender: UISegmentedControl) {

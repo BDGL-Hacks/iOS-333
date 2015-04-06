@@ -101,7 +101,7 @@ class PartyUpBackend {
                 return nil
             }
                 
-                // Register was unsuccessful on server side
+            // Register was unsuccessful on server side
             else {
                 if (errorMessage == nil) {
                     errorMessage = "No error message received from server"
@@ -111,13 +111,13 @@ class PartyUpBackend {
             }
         }
             
-            // We did not receive JSON data back
+        // We did not receive JSON data back
         else {
             PULog("Register Failed: No JSON data received")
             return "Failed to connect to server"
         }
     }
-    
+
     
    /*--------------------------------------------*
     * Backend Helper Methods

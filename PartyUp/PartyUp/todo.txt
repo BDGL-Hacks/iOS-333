@@ -4,6 +4,7 @@ TODO
 General
 -------
  - Have loading wheel appear when logging in, registering, and backend things that may require waiting
+ - Improve PULog method (code location maybe, perhaps have some debugging options in globals?)
 
 Homepage
 --------
@@ -13,8 +14,8 @@ Groups
 
 Events (General)
 ----------------
- - Start working at them!
  - Change tab icons and labels
+ - Write backend events code
 
 My Events
 ---------
@@ -62,3 +63,56 @@ Create Group Flow
    - Before you search, it shows you people you've recently been in groups with
    - Search for people and select the ones you want
    - Click "Create Group"
+
+Event: Search all events API
+----------------------------
+
+URL: /events/search
+
+POST Parameters:
+- API : Search events
+- title
+- description
+- public (1 or 0)
+- location (??? - Not implementd)
+- date: YYYYMMDDhhmm
+- age: (integer)
+- price: (integer)
+- category (??? - Not implemented
+
+Returns:
+{
+accepted: bool
+results:
+[
+    description
+    price
+    location_name
+    title
+    admin {
+        username
+        first_name
+        last_name
+        id
+    }
+    age_restrictions
+    invite_list
+    [
+        <Users - same as admin>
+    ]
+    time: "YYYY-MM-DD hh:mm:ss+<timezone?>"
+    date_created
+    public: bool
+]
+}
+
+/* /events/search - searches all events
+* API : Search events
+* title
+* description
+* public (1 or 0)
+* location (??? - Not implementd)
+* date: YYYYMMDDhhmm
+* age: (integer)
+* price: (integer)
+* category (??? - Not implemented

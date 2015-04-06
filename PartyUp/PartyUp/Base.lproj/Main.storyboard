@@ -1,67 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SLw-45-19W">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SLw-45-19W">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Home (Groups)-->
-        <scene sceneID="ufC-wZ-h7g">
-            <objects>
-                <viewController title="Home (Groups)" id="vXZ-lx-hvc" customClass="PartyUpViewController" customModule="PartyUp" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
-                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wV0-iu-0oF">
-                                <rect key="frame" x="16" y="64" width="49" height="30"/>
-                                <state key="normal" title="Logout">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="lbU-PQ-Vkh" kind="presentation" id="2pp-YO-HaB"/>
-                                </connections>
-                            </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Ev5-mE-GaL">
-                                <rect key="frame" x="0.0" y="102" width="320" height="236"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WDA-Va-KEb">
-                                <rect key="frame" x="16" y="346" width="39" height="30"/>
-                                <state key="normal" title="Event">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="iDH-9r-U2n" kind="presentation" id="3zd-El-VHD"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="wV0-iu-0oF" firstAttribute="leading" secondItem="WDA-Va-KEb" secondAttribute="leading" id="BBe-FL-MRq"/>
-                            <constraint firstItem="Ev5-mE-GaL" firstAttribute="top" secondItem="wV0-iu-0oF" secondAttribute="bottom" constant="8" symbolic="YES" id="CAJ-5e-usw"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="WDA-Va-KEb" secondAttribute="bottom" constant="143" id="Fcz-91-YnS"/>
-                            <constraint firstItem="WDA-Va-KEb" firstAttribute="top" secondItem="Ev5-mE-GaL" secondAttribute="bottom" constant="8" symbolic="YES" id="WMX-py-88f"/>
-                            <constraint firstAttribute="trailing" secondItem="Ev5-mE-GaL" secondAttribute="trailing" id="WTi-ao-GgP"/>
-                            <constraint firstItem="wV0-iu-0oF" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="fPh-5T-StM"/>
-                            <constraint firstItem="wV0-iu-0oF" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="qu2-06-TxA"/>
-                            <constraint firstItem="Ev5-mE-GaL" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="wss-WB-a8Z"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="OTY-LM-hj3">
-                        <nil key="title"/>
-                    </navigationItem>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2090" y="1271"/>
-        </scene>
         <!--Item-->
         <scene sceneID="nA5-rc-1AF">
             <objects>
@@ -71,7 +15,7 @@
                         <viewControllerLayoutGuide type="bottom" id="a6D-cz-oRe"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="vpG-27-DDf">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -79,7 +23,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OpQ-KU-I9J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1636" y="1959"/>
+            <point key="canvasLocation" x="1472" y="1703"/>
         </scene>
         <!--GroupController-->
         <scene sceneID="8zS-n1-5Ig">
@@ -87,7 +31,7 @@
                 <pageViewController storyboardIdentifier="GroupController" autoresizesArchivedViewToFullSize="NO" title="GroupController" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="kfh-5S-zsp" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cTC-4M-Lxa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2428" y="2422"/>
+            <point key="canvasLocation" x="4216" y="1014"/>
         </scene>
         <!--GroupCreation1-->
         <scene sceneID="22h-4N-XjK">
@@ -180,7 +124,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XRM-9R-eIK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2906" y="1597"/>
+            <point key="canvasLocation" x="2286" y="305"/>
         </scene>
         <!--Login-->
         <scene sceneID="e9A-uf-CBV">
@@ -309,7 +253,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2173" y="1997"/>
+            <point key="canvasLocation" x="1985" y="1909"/>
         </scene>
         <!--Homepage View Controller-->
         <scene sceneID="N1O-BG-eMS">
@@ -332,7 +276,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zZF-Qk-p9f" userLabel="Events Child View">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <connections>
-                                    <segue destination="Lbl-aD-Scn" kind="embed" id="S54-W5-JqV"/>
+                                    <segue destination="iDH-9r-U2n" kind="presentation" identifier="homeToCreate" id="94B-Vf-hHJ"/>
                                 </connections>
                             </containerView>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gdx-Ee-7qp">
@@ -356,7 +300,11 @@
                                                 <action selector="navSegmentedControlChanged:" destination="SLw-45-19W" eventType="valueChanged" id="NXL-Fd-ZlV"/>
                                             </connections>
                                         </segmentedControl>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="oPv-jF-gac"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="oPv-jF-gac">
+                                            <connections>
+                                                <action selector="createButton:" destination="SLw-45-19W" id="GWZ-Qi-OJc"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -377,7 +325,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aGq-Lm-GeE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2173" y="1323"/>
+            <point key="canvasLocation" x="2317" y="1019"/>
         </scene>
         <!--Register-->
         <scene sceneID="m8c-JU-sPC">
@@ -511,7 +459,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2173" y="2687"/>
+            <point key="canvasLocation" x="2467" y="2595"/>
         </scene>
         <!--Home Groups View Controller-->
         <scene sceneID="07y-sZ-Vnj">
@@ -549,7 +497,7 @@
                         <viewControllerLayoutGuide type="bottom" id="mMj-5J-XgS"/>
                     </layoutGuides>
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="7Lb-YQ-f93">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Yo, this is the My Events Page!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epz-V4-cum">
@@ -577,7 +525,7 @@
                         <viewControllerLayoutGuide type="bottom" id="TnA-4L-jQ0"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="BJS-Qt-f5e">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Yo, this is the Find Events Page!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x11-Al-INN">
@@ -604,7 +552,7 @@
                         <viewControllerLayoutGuide type="bottom" id="lga-P4-AXG"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="QT2-BW-akS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Yo, this is the Current Event Page!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ucl-k3-AdE">

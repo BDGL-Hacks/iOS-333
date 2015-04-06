@@ -8,11 +8,12 @@
 
 import UIKit
 
-class GC1ViewController: UIViewController, UIPageViewControllerDataSource {
+class GC1ViewController: PartyUpViewController // UIPageViewControllerDataSource, UIPageViewControllerDelegate
+{
 
     var itemIndex: Int = 0
-    private var pageViewController: UIPageViewController?
-    private let numPages = 3
+    //private var pageViewController: UIPageViewController?
+    //private let numPages = 3
     
     @IBOutlet weak var selectedDate: UILabel!
 
@@ -22,7 +23,7 @@ class GC1ViewController: UIViewController, UIPageViewControllerDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        createPageViewController()
+       // createPageViewController()
         myDatePicker.datePickerMode = UIDatePickerMode.Time
         let currentDate = NSDate()
         myDatePicker.minimumDate = currentDate
@@ -37,6 +38,8 @@ class GC1ViewController: UIViewController, UIPageViewControllerDataSource {
         var strDate = dateFormatter.stringFromDate(myDatePicker.date)
         self.selectedDate.text = strDate
     }
+    
+    /*
     private func createPageViewController() {
         let pageController = self.storyboard!.instantiateViewControllerWithIdentifier("GroupController") as UIPageViewController
         pageController.dataSource = self
@@ -90,6 +93,8 @@ class GC1ViewController: UIViewController, UIPageViewControllerDataSource {
     func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
         return 0
     }
+
+*/
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

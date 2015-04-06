@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GC1ViewController: PartyUpViewController // UIPageViewControllerDataSource, UIPageViewControllerDelegate
+class CreateEvent1ViewController: PartyUpViewController // UIPageViewControllerDataSource, UIPageViewControllerDelegate
 {
 
     var itemIndex: Int = 0

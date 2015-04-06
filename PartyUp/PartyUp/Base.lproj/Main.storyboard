@@ -6,18 +6,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--GroupController-->
-        <scene sceneID="8zS-n1-5Ig">
-            <objects>
-                <pageViewController storyboardIdentifier="GroupController" autoresizesArchivedViewToFullSize="NO" title="GroupController" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="kfh-5S-zsp" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cTC-4M-Lxa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4216" y="1014"/>
-        </scene>
-        <!--GroupCreation1-->
+        <!--Create Event 1 View Controller-->
         <scene sceneID="22h-4N-XjK">
             <objects>
-                <viewController storyboardIdentifier="GroupCreation1" title="GroupCreation1" id="iDH-9r-U2n" customClass="GC1ViewController" customModule="PartyUp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GroupCreation1" title="GroupCreation1" id="iDH-9r-U2n" userLabel="Create Event 1 View Controller" customClass="CreateEvent1ViewController" customModule="PartyUp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="asV-im-xSS"/>
                         <viewControllerLayoutGuide type="bottom" id="TJx-81-Azf"/>
@@ -105,7 +97,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XRM-9R-eIK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2286" y="305"/>
+            <point key="canvasLocation" x="3892" y="1382"/>
         </scene>
         <!--Login-->
         <scene sceneID="e9A-uf-CBV">
@@ -234,7 +226,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2317" y="1733"/>
+            <point key="canvasLocation" x="2317" y="1727"/>
         </scene>
         <!--Homepage View Controller-->
         <scene sceneID="N1O-BG-eMS">
@@ -283,7 +275,7 @@
                                         </segmentedControl>
                                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="oPv-jF-gac">
                                             <connections>
-                                                <action selector="createButton:" destination="SLw-45-19W" id="GWZ-Qi-OJc"/>
+                                                <action selector="createButtonPressed:" destination="SLw-45-19W" id="bne-jc-rVg"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -496,7 +488,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ecl-qj-lKq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3288" y="1680"/>
+            <point key="canvasLocation" x="3288" y="1382"/>
         </scene>
         <!--Find Events View Controller-->
         <scene sceneID="Heb-mD-5cj">
@@ -523,7 +515,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dsh-bh-8JA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3288" y="2285"/>
+            <point key="canvasLocation" x="3288" y="2005"/>
         </scene>
         <!--Current Event View Controller-->
         <scene sceneID="A0k-ln-wGi">
@@ -550,7 +542,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n0A-Is-7ax" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3288" y="2885"/>
+            <point key="canvasLocation" x="3288" y="2629"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Gr4-3c-bVt">
@@ -570,7 +562,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zE7-Cl-b0o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2812" y="1680"/>
+            <point key="canvasLocation" x="2812" y="1382"/>
         </scene>
     </scenes>
     <resources>

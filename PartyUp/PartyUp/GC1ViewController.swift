@@ -15,7 +15,7 @@ class GC1ViewController: PartyUpViewController, UITextFieldDelegate // UIPageVie
     //private var pageViewController: UIPageViewController?
     //private let numPages = 3
     
-    //let create = EventCreation()
+    let create = EventCreation()
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var eventTitleTextField: UITextField!
     @IBOutlet weak var selectedDate: UILabel!
@@ -45,7 +45,6 @@ class GC1ViewController: PartyUpViewController, UITextFieldDelegate // UIPageVie
         }
     }
 
-    
     @IBAction func datePickerChanged(sender: UIDatePicker) {
         
         var dateFormatter = NSDateFormatter()
@@ -82,6 +81,11 @@ class GC1ViewController: PartyUpViewController, UITextFieldDelegate // UIPageVie
     func textFieldShouldReturn(textField: UITextField!) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let destinationVC = segue.destinationViewController as EventTwoViewController
+        destinationVC.create = self.create
     }
     
     
@@ -123,12 +127,7 @@ class GC1ViewController: PartyUpViewController, UITextFieldDelegate // UIPageVie
         var eventLocation: NSString = locationTextField.text
         var eventDateTime: NSString = backendDate!
         
-        //create.firstPage(eventTitle, location: eventLocation, dateTime: eventDateTime)
-        
-        // Registration successful: Dismiss Registration view and attempt login
-        /*
-        var backendError: NSString? = PartyUpBackend.instance.backendStoreEventOne(eventTitle, location: eventLocation, dateTime: eventDateTime)
-*/
+        create.firstPage(eventTitle, location: eventLocation, dateTime: eventDateTime)
     }
 
     

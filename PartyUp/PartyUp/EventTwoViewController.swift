@@ -10,12 +10,10 @@ import UIKit
 
 class EventTwoViewController: PartyUpViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
-    
-    
+    var create: EventCreation?
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var friendsLabel: UILabel!
-    
     
     var searchActive : Bool = false
     var fakeData = ["Blake Lawson","Graham Turk","Lance Goodridge","David Gilhooley","Alan Turing","Bob Dondero","Brian Kernighan"]
@@ -31,6 +29,7 @@ class EventTwoViewController: PartyUpViewController, UITableViewDataSource, UITa
         tableView.dataSource = self
         searchBar.delegate = self
         
+        
         //mySwitch.addTarget(self, action: Selector("stateChanged:"), forControlEvents: UIControlEvents.ValueChanged)
 
         // Do any additional setup after loading the view.
@@ -38,6 +37,46 @@ class EventTwoViewController: PartyUpViewController, UITableViewDataSource, UITa
     
     @IBAction func backToFirst(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
+    @IBAction func createEvent(sender: UIButton) {
+        
+        /* Iterate through friends list and send it to the backend */
+        var cells = [NSMutableArray]()
+        for var j = 0; j < tableView.numberOfSections(); ++j {
+            for var i = 0; i < tableView.numberOfRowsInSection(j); ++i {
+                
+                var indexPath: NSIndexPath = NSIndexPath(forRow: i,inSection: j)
+                var cell = tableView.cellForRowAtIndexPath(indexPath)
+                
+                //var sview = cell.accessoryView as UISwitch
+                //if sview.isOn() {
+                   // cells.addObject(cell)
+                //}
+            }
+        }
+        
+        /*
+        for c in cells {
+            friends.append(c.textLabel)
+        }
+        
+        
+        
+        create.secondPage(friends)
+        
+        var backendError: NSString? = create?.sendToBackend()
+        if (backendError == nil)
+        {
+            
+            self.performSegueWithIdentifier("eventCreationTwoToHome", sender: self)
+        }
+        else {
+            displayAlert("Event creation Failed", message: backendError!)
+            self.performSegueWithIdentifier("eventCreationTwoToHome", sender: self)
+        }
+        */
     }
     
     /*
@@ -95,6 +134,12 @@ class EventTwoViewController: PartyUpViewController, UITableViewDataSource, UITa
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as UITableViewCell;
+        
+        /*
+        var switchview = UISwitch(frame: CGRectZero)
+        cell.accessoryView = switchview;
+        */
+        
         if(searchActive){
             cell.textLabel?.text = filtered[indexPath.row]
         } else {

@@ -117,7 +117,7 @@ class PartyUpBackend {
             return "Failed to connect to server"
         }
     }
-
+    
     
    /*--------------------------------------------*
     * Backend Helper Methods

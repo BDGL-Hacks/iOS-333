@@ -5,6 +5,8 @@ General
 -------
  - Have loading wheel appear when logging in, registering, and backend things that may require waiting
  - Improve PULog method (code location maybe, perhaps have some debugging options in globals?)
+ - Fix textShouldReturn
+ - Buttons in names in the search bar
 
 Homepage
 --------

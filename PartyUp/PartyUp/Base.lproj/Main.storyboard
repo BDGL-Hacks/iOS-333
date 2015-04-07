@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SLw-45-19W">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SLw-45-19W">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
@@ -8,18 +8,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--GroupController-->
-        <scene sceneID="8zS-n1-5Ig">
-            <objects>
-                <pageViewController storyboardIdentifier="GroupController" autoresizesArchivedViewToFullSize="NO" title="GroupController" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="kfh-5S-zsp" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cTC-4M-Lxa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4216" y="1014"/>
-        </scene>
-        <!--GroupCreation1-->
+        <!--Create Event 1 View Controller-->
         <scene sceneID="22h-4N-XjK">
             <objects>
-                <viewController storyboardIdentifier="GroupCreation1" title="GroupCreation1" id="iDH-9r-U2n" customClass="GC1ViewController" customModule="PartyUp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GroupCreation1" title="GroupCreation1" id="iDH-9r-U2n" userLabel="Create Event 1 View Controller" customClass="CreateEvent1ViewController" customModule="PartyUp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="asV-im-xSS"/>
                         <viewControllerLayoutGuide type="bottom" id="TJx-81-Azf"/>
@@ -52,7 +44,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YEb-vn-4Pb">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YEb-vn-4Pb">
                                         <constraints>
                                             <constraint firstAttribute="width" id="JxI-G6-fVg"/>
                                             <constraint firstAttribute="height" id="qLt-ZN-phx"/>
@@ -171,12 +163,12 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2286" y="305"/>
+            <point key="canvasLocation" x="3854" y="1414"/>
         </scene>
-        <!--Event Two View Controller-->
+        <!--Create Event 2 View Controller-->
         <scene sceneID="rJJ-wi-Ht1">
             <objects>
-                <viewController id="wMW-DH-uB4" customClass="EventTwoViewController" customModule="PartyUp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="wMW-DH-uB4" userLabel="Create Event 2 View Controller" customClass="CreateEvent2ViewController" customModule="PartyUp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Yro-Aj-W5F"/>
                         <viewControllerLayoutGuide type="bottom" id="rvb-dp-4N4"/>
@@ -262,7 +254,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="stw-EP-rdz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2717" y="-107"/>
+            <point key="canvasLocation" x="4334" y="1414"/>
         </scene>
         <!--Login-->
         <scene sceneID="e9A-uf-CBV">
@@ -391,7 +383,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2317" y="1733"/>
+            <point key="canvasLocation" x="2317" y="1727"/>
         </scene>
         <!--Homepage View Controller-->
         <scene sceneID="N1O-BG-eMS">
@@ -440,7 +432,7 @@
                                         </segmentedControl>
                                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="oPv-jF-gac">
                                             <connections>
-                                                <action selector="createButton:" destination="SLw-45-19W" id="GWZ-Qi-OJc"/>
+                                                <action selector="createButtonPressed:" destination="SLw-45-19W" id="bne-jc-rVg"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -653,7 +645,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ecl-qj-lKq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3288" y="1680"/>
+            <point key="canvasLocation" x="3288" y="1382"/>
         </scene>
         <!--Find Events View Controller-->
         <scene sceneID="Heb-mD-5cj">
@@ -680,7 +672,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dsh-bh-8JA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3288" y="2285"/>
+            <point key="canvasLocation" x="3288" y="2005"/>
         </scene>
         <!--Current Event View Controller-->
         <scene sceneID="A0k-ln-wGi">
@@ -707,7 +699,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n0A-Is-7ax" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3072" y="2965"/>
+            <point key="canvasLocation" x="3288" y="2629"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Gr4-3c-bVt">
@@ -727,7 +719,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zE7-Cl-b0o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2800" y="1696"/>
+            <point key="canvasLocation" x="2812" y="1382"/>
         </scene>
     </scenes>
     <resources>

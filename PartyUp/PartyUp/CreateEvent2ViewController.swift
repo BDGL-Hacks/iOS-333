@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EventTwoViewController: PartyUpViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
     var create: EventCreation?
     @IBOutlet weak var searchBar: UISearchBar!

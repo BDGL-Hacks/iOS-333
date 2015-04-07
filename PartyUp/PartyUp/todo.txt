@@ -17,13 +17,17 @@ Groups
 Events (General)
 ----------------
  - Change tab icons and labels
- - Write backend events code
+ - Test backend query code
 
 My Events
 ---------
+ - Create View and integrate with queries
+ - Create custom Tabel Cell views
 
 Find Events
 -----------
+ - Create View and integrate with queries
+ - Create custom Table Cell views
 
 Current Event
 -------------
@@ -107,14 +111,3 @@ results:
     public: bool
 ]
 }
-
-/* /events/search - searches all events
-* API : Search events
-* title
-* description
-* public (1 or 0)
-* location (??? - Not implementd)
-* date: YYYYMMDDhhmm
-* age: (integer)
-* price: (integer)
-* category (??? - Not implemented

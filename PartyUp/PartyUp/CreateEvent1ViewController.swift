@@ -15,29 +15,197 @@ class CreateEvent1ViewController: PartyUpViewController // UIPageViewControllerD
     //private var pageViewController: UIPageViewController?
     //private let numPages = 3
     
+    //let create = EventCreation()
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var eventTitleTextField: UITextField!
     @IBOutlet weak var selectedDate: UILabel!
-
     @IBOutlet weak var myDatePicker: UIDatePicker!
-
     @IBOutlet weak var locationTextField: UITextField!
+    var backendDate: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
        // createPageViewController()
-        myDatePicker.datePickerMode = UIDatePickerMode.Time
-        let currentDate = NSDate()
-        myDatePicker.minimumDate = currentDate
-        myDatePicker.date = currentDate
+        
         // Do any additional setup after loading the view.
     }
     
-   
-    @IBAction func datePickerAction(sender: UIDatePicker) {
-        var dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
-        var strDate = dateFormatter.stringFromDate(myDatePicker.date)
-        self.selectedDate.text = strDate
+    var activeTextField: UITextField? {
+        get {
+            if (eventTitleTextField.isFirstResponder()) {
+                return eventTitleTextField
+            }
+            else if (locationTextField.isFirstResponder()) {
+                return locationTextField
+            }
+            return nil
+        }
+        set {
+            
+        }
     }
+
+    
+    @IBAction func datePickerChanged(sender: UIDatePicker) {
+        
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
+        var dateStr = dateFormatter.stringFromDate(myDatePicker.date)
+        selectedDate.text = dateStr
+        dateFormatter.dateFormat = "YYYYMMDDhhmm"
+        var backendStr = dateFormatter.stringFromDate(myDatePicker.date)
+        backendDate = backendStr
+        
+    }
+    
+    @IBAction func dismissModal(sender: UIButton) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+  
+    @IBAction func viewTapped(sender: AnyObject) {
+        eventTitleTextField.resignFirstResponder()
+        locationTextField.resignFirstResponder()
+    }
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.registerForKeyboardNotifications()
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    
+    /*--------------------------------------------*
+    * UITextField Delegate Methods
+    *--------------------------------------------*/
+    
+    func textFieldDidBeginEditing(textField: UITextField!) {
+        activeTextField = textField
+        scrollView.scrollEnabled = true
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField!) {
+        activeTextField = nil
+        scrollView.scrollEnabled = false
+    }
+
+    
+    
+    /*--------------------------------------------*
+    * View response methods
+    *--------------------------------------------*/
+    
+   
+    @IBAction func addFriendsPressed(sender: UIButton) {
+        
+        PULog("Add friends button pressed")
+        
+        // Ensure the form is valid
+        var validationError: NSString? = validateForm()
+        if (validationError != nil) {
+            PULog("Form is invalid: \(validationError!)")
+            displayAlert("Event creation failed", message: validationError!)
+            return
+        }
+        
+        // Retrieve all necessary fields
+        var eventTitle: NSString = eventTitleTextField.text
+        var eventLocation: NSString = locationTextField.text
+        var eventDateTime: NSString = backendDate!
+        
+        //create.firstPage(eventTitle, location: eventLocation, dateTime: eventDateTime)
+        
+        // Registration successful: Dismiss Registration view and attempt login
+        /*
+        var backendError: NSString? = PartyUpBackend.instance.backendStoreEventOne(eventTitle, location: eventLocation, dateTime: eventDateTime)
+*/
+    }
+
+    
+    
+    /*--------------------------------------------*
+    * View helper methods
+    *--------------------------------------------*/
+    
+    /* Validates the form fields.         *
+    * Returns an error message string    *
+    * if form is invalid, nil otherwise. */
+    func validateForm() -> NSString?
+    {
+        var eventTitle: NSString = eventTitleTextField.text
+        var eventLocation: NSString = locationTextField.text
+        var eventTime: NSString = selectedDate.text!
+        
+        if (eventTitle == "") {
+            return "Event title is required."
+        }
+        if (eventLocation == "") {
+            return "Event location is required."
+        }
+        if (eventTime == "Date and Time") {
+            return "Date and Time is required"
+        }
+        return nil
+    }
+    
+    /*--------------------------------------------*
+    * Keyboard Scrolling Methods
+    *--------------------------------------------*/
+    
+    // Code from creativecoefficient.net
+    
+    func registerForKeyboardNotifications() {
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(self,
+            selector: "keyboardWillBeShown:",
+            name: UIKeyboardWillShowNotification,
+            object: nil)
+        notificationCenter.addObserver(self,
+            selector: "keyboardWillBeHidden:",
+            name: UIKeyboardWillHideNotification,
+            object: nil)
+    }
+    
+    // Called when the UIKeyboardDidShowNotification is sent.
+    func keyboardWillBeShown(sender: NSNotification) {
+        let info: NSDictionary = sender.userInfo!
+        let value: NSValue = info.valueForKey(UIKeyboardFrameBeginUserInfoKey) as NSValue
+        let keyboardSize: CGSize = value.CGRectValue().size
+        let contentInsets: UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0)
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
+        
+        // If active text field is hidden by keyboard, scroll it so it's visible
+        // Your app might not need or want this behavior.
+        var aRect: CGRect = self.view.frame
+        aRect.size.height -= keyboardSize.height
+        let activeTextFieldRect: CGRect? = activeTextField?.frame
+        let activeTextFieldOrigin: CGPoint? = activeTextFieldRect?.origin
+        if (!CGRectContainsPoint(aRect, activeTextFieldOrigin!)) {
+            scrollView.scrollRectToVisible(activeTextFieldRect!, animated:true)
+        }
+    }
+    
+    // Called when the UIKeyboardWillHideNotification is sent
+    func keyboardWillBeHidden(sender: NSNotification) {
+        let contentInsets: UIEdgeInsets = UIEdgeInsetsZero
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
+    }
+
+    
+
+    
     
     /*
     private func createPageViewController() {

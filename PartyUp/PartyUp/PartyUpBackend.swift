@@ -43,6 +43,9 @@ class PartyUpBackend {
     {
         PULog("Attempting to create an event...")
         
+        var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let username: NSString = userDefaults.objectForKey("USERNAME") as NSString
+        
         var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/users/events/create"
         var postParams: [String: String] = ["title": title, "public": isPublic, "age_restrictions": ageRestrictions, "price": price]
         

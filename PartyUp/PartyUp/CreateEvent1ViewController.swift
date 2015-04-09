@@ -45,6 +45,7 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
         }
     }
 
+    /* User changes the date in the date picker */
     @IBAction func datePickerChanged(sender: UIDatePicker) {
         
         var dateFormatter = NSDateFormatter()
@@ -57,11 +58,12 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
         
     }
     
+    /* User goes back to the previous screen */
     @IBAction func dismissModal(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    
+    /* Tap anywhere outside text field dismisses keyboard */
     @IBAction func viewTapped(sender: AnyObject) {
         eventTitleTextField.resignFirstResponder()
         locationTextField.resignFirstResponder()
@@ -78,13 +80,15 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
+    /* Dismisses keyboard if user returns */
     func textFieldShouldReturn(textField: UITextField!) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
+    /* Send EventCreation object to next stage of event creation */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let destinationVC = segue.destinationViewController as EventTwoViewController
+        let destinationVC = segue.destinationViewController as CreateEvent2ViewController
         destinationVC.create = self.create
     }
     

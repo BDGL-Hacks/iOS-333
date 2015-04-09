@@ -35,48 +35,61 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
         // Do any additional setup after loading the view.
     }
     
+    /* Button to return to fist event creation page */
     @IBAction func backToFirst(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     
+    /* User finalizes choices and creates event */
     @IBAction func createEvent(sender: UIButton) {
         
+        PULog("Finalize event pressed")
         /* Iterate through friends list and send it to the backend */
-        var cells = [NSMutableArray]()
+        var cells = [UITableViewCell]()
         for var j = 0; j < tableView.numberOfSections(); ++j {
             for var i = 0; i < tableView.numberOfRowsInSection(j); ++i {
                 
-                var indexPath: NSIndexPath = NSIndexPath(forRow: i,inSection: j)
+                var indexPath: NSIndexPath = NSIndexPath(forRow: i, inSection: j)
                 var cell = tableView.cellForRowAtIndexPath(indexPath)
                 
-                //var sview = cell.accessoryView as UISwitch
-                //if sview.isOn() {
-                   // cells.addObject(cell)
-                //}
+                for v in cell!.contentView.subviews  {
+                    if let thisView = v as? UISwitch {
+                        if thisView.on {
+                            let thisCell = v as? UITableViewCell
+                            cells.append(thisCell!)
+                        }
+                    }
+                }
             }
         }
         
-        /*
+        var friends = [NSString]()
+        
+        /* Extract text field from selected cells */
         for c in cells {
-            friends.append(c.textLabel)
+            friends.append(c.textLabel!.text!)
         }
         
+        /* Check that friends list was actually populated */
+        for friend in friends {
+            PULog("\(friend)")
+        }
         
+        /* Send to backend */
         
-        create.secondPage(friends)
+        create?.secondPage(friends)
         
         var backendError: NSString? = create?.sendToBackend()
         if (backendError == nil)
         {
-            
             self.performSegueWithIdentifier("eventCreationTwoToHome", sender: self)
         }
         else {
             displayAlert("Event creation Failed", message: backendError!)
             self.performSegueWithIdentifier("eventCreationTwoToHome", sender: self)
         }
-        */
+    
     }
     
     /*
@@ -88,6 +101,11 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
         }
     }
     */
+    
+    
+    /*--------------------------------
+    /* Table search helper methods */
+    --------------------------------*/
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
         searchActive = true;
@@ -134,11 +152,6 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as UITableViewCell;
-        
-        /*
-        var switchview = UISwitch(frame: CGRectZero)
-        cell.accessoryView = switchview;
-        */
         
         if(searchActive){
             cell.textLabel?.text = filtered[indexPath.row]

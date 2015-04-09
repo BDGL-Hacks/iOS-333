@@ -29,10 +29,71 @@ class PartyUpBackend {
     let UBUNTU_SERVER_IP: NSString = "52.4.3.6"
     let DAVID_LINODE_SERVER_IP: NSString = "23.239.14.40:8000"
     
+    /* title, public?, age_restrictions, price, invite-list */
     
-   /*--------------------------------------------*
+    /*--------------------------------------------*
     * Backend Interfacing Methods
     *--------------------------------------------*/
+    
+    /* Performs event creation      *
+    * Returns an error message string if registration *
+    * failed, nil otherwise.                          */
+    func backendEventCreation(title: NSString, location: NSString, ageRestrictions: NSString,
+        isPublic: NSString, price: NSString, inviteList: [NSString]) -> NSString?
+    {
+        PULog("Attempting to create an event...")
+        
+        var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let username: NSString = userDefaults.objectForKey("USERNAME") as NSString
+        
+        var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/users/events/create"
+        var postParams: [String: String] = ["title": title, "public": isPublic, "age_restrictions": ageRestrictions, "price": price]
+        
+        var stringOfFriends: String = ""
+        var i: Int = 0
+        for friend in inviteList {
+            if i == 0 {
+                stringOfFriends += friend
+            }
+            else {
+                stringOfFriends += "," + friend
+            }
+            i += 1
+        }
+        postParams["invite_list"] = stringOfFriends
+        
+        var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
+        
+        // We received JSON data back: process it
+        if (postData != nil)
+        {
+            let jsonData: NSDictionary = postData!
+            let accepted: Bool = jsonData.valueForKey("accepted") as Bool
+            var errorMessage: NSString? = jsonData.valueForKey("error") as NSString?
+            
+            // Event creation successful on server side
+            if (accepted) {
+                PULog("Event Creation Successful!")
+                return nil
+            }
+                
+                // Register was unsuccessful on server side
+            else {
+                if (errorMessage == nil) {
+                    errorMessage = "No error message received from server"
+                }
+                PULog("Event creation Failed: \(errorMessage!)")
+                return errorMessage
+            }
+        }
+            
+            // We did not receive JSON data back
+        else {
+            PULog("Event Creation Failed: No JSON data received")
+            return "Failed to connect to server"
+        }
+    }
+    
     
     /* Performs user authentication on the backend.                    *
      * Returns an error message string if login failed, nil otherwise. */

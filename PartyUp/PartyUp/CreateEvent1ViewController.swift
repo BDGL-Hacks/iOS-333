@@ -15,7 +15,7 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
     //private var pageViewController: UIPageViewController?
     //private let numPages = 3
     
-    //let create = EventCreation()
+    let create = EventCreation()
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var eventTitleTextField: UITextField!
     @IBOutlet weak var selectedDate: UILabel!
@@ -44,8 +44,8 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
             
         }
     }
-    
-    
+
+    /* User changes the date in the date picker */
     @IBAction func datePickerChanged(sender: UIDatePicker) {
         
         var dateFormatter = NSDateFormatter()
@@ -58,11 +58,12 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
         
     }
     
+    /* User goes back to the previous screen */
     @IBAction func dismissModal(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    
+    /* Tap anywhere outside text field dismisses keyboard */
     @IBAction func viewTapped(sender: AnyObject) {
         eventTitleTextField.resignFirstResponder()
         locationTextField.resignFirstResponder()
@@ -79,9 +80,16 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
+    /* Dismisses keyboard if user returns */
     func textFieldShouldReturn(textField: UITextField!) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    /* Send EventCreation object to next stage of event creation */
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let destinationVC = segue.destinationViewController as CreateEvent2ViewController
+        destinationVC.create = self.create
     }
     
     
@@ -123,12 +131,7 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
         var eventLocation: NSString = locationTextField.text
         var eventDateTime: NSString = backendDate!
         
-        //create.firstPage(eventTitle, location: eventLocation, dateTime: eventDateTime)
-        
-        // Registration successful: Dismiss Registration view and attempt login
-        /*
-        var backendError: NSString? = PartyUpBackend.instance.backendStoreEventOne(eventTitle, location: eventLocation, dateTime: eventDateTime)
-        */
+        create.firstPage(eventTitle, location: eventLocation, dateTime: eventDateTime)
     }
     
     

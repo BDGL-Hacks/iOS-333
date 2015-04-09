@@ -62,6 +62,8 @@ class PartyUpViewController: UIViewController {
         return backendError
     }
     
+    
+    
     /* Returns whether the string matches the regex */
     func stringMatchesRegex(string: NSString, regex: NSString, caseInsensitive: Bool = false) -> Bool
     {

@@ -1,5 +1,5 @@
 //
-//  EventCreation.swift
+//  CreateEventModel.swift
 //  PartyUp
 //
 //  Created by Graham Turk on 4/6/15.
@@ -9,7 +9,7 @@
 import Foundation
 
 
-class EventCreation {
+class CreateEventModel {
     
     var eventTitle: NSString?
     var eventLocation: NSString?

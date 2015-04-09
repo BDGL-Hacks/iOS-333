@@ -15,7 +15,7 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
     //private var pageViewController: UIPageViewController?
     //private let numPages = 3
     
-    let create = EventCreation()
+    let create = CreateEventModel()
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var eventTitleTextField: UITextField!
     @IBOutlet weak var selectedDate: UILabel!

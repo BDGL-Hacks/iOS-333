@@ -1,5 +1,5 @@
 //
-//  EventTwoViewController.swift
+//  CreateEventTwoViewController.swift
 //  PartyUp
 //
 //  Created by Graham Turk on 4/6/15.

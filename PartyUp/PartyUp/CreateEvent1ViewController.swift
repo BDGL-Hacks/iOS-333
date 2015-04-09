@@ -1,5 +1,5 @@
 //
-//  GC1ViewController.swift
+//  CreateEvent1ViewController.swift
 //  PartyUp
 //
 //  Created by Graham Turk on 4/2/15.

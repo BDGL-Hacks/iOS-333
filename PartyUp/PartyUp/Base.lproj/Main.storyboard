@@ -44,7 +44,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YEb-vn-4Pb">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YEb-vn-4Pb">
                                         <constraints>
                                             <constraint firstAttribute="height" id="UTx-n9-bW5"/>
                                             <constraint firstAttribute="width" id="eyw-WK-5Wq"/>
@@ -125,8 +125,8 @@
                                     <constraint firstAttribute="bottom" secondItem="BIe-ij-IGK" secondAttribute="bottom" constant="20" id="dVf-sJ-vjN"/>
                                     <constraint firstItem="5Cq-CR-gSQ" firstAttribute="top" secondItem="aKb-8s-NfC" secondAttribute="bottom" constant="23" id="gbV-ag-6m1"/>
                                     <constraint firstItem="L1C-I0-IDI" firstAttribute="centerX" secondItem="OLT-Cg-f0o" secondAttribute="centerX" id="m6G-Iv-JXZ"/>
-                                    <constraint firstItem="YEb-vn-4Pb" firstAttribute="top" secondItem="I2b-E6-DYI" secondAttribute="top" constant="5" id="s38-jK-uUh"/>
-                                    <constraint firstItem="aKb-8s-NfC" firstAttribute="leading" secondItem="YEb-vn-4Pb" secondAttribute="leading" id="svS-yV-FnO"/>
+                                    <constraint firstItem="YEb-vn-4Pb" firstAttribute="top" secondItem="I2b-E6-DYI" secondAttribute="top" id="s38-jK-uUh"/>
+                                    <constraint firstItem="aKb-8s-NfC" firstAttribute="leading" secondItem="YEb-vn-4Pb" secondAttribute="leading" constant="20" id="svS-yV-FnO"/>
                                     <constraint firstItem="aKb-8s-NfC" firstAttribute="top" secondItem="JH5-QA-enw" secondAttribute="bottom" constant="8" symbolic="YES" id="tHw-kT-rBh"/>
                                     <constraint firstItem="OLT-Cg-f0o" firstAttribute="trailing" secondItem="mQ5-tp-xsP" secondAttribute="trailing" id="txi-ng-0zl"/>
                                     <constraint firstItem="WUR-62-agb" firstAttribute="leading" secondItem="I2b-E6-DYI" secondAttribute="leading" constant="36" id="uWU-97-Jcq"/>

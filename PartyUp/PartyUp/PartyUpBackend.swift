@@ -118,11 +118,11 @@ class PartyUpBackend {
         }
     }
     
-    /* Queries backend for events the current user owns,   *
-     * is attending, or has been invited to. Returns a     *
-     * tuple: an error message string if something went    *
-     * wrong, and query results as NSArray if successful.  */
-    func queryUserEvents() -> (NSString?, NSArray?)
+    /* Queries backend for events the current user owns,     *
+     * is attending, or has been invited to. Returns a       *
+     * tuple: an error message string if something went      *
+     * wrong, and query results as dictionary if successful. */
+    func queryUserEvents() -> (NSString?, NSDictionary?)
     {
         PULog("Querying for user's events...");
         
@@ -130,7 +130,7 @@ class PartyUpBackend {
         let username: NSString = userDefaults.objectForKey("USERNAME") as NSString
         let types: NSString = "created invited attending"
         
-        var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/users/get/"
+        var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/events/get/"
         var postParams: [String: String] = ["username": username, "type": types]
         
         var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
@@ -141,13 +141,16 @@ class PartyUpBackend {
             let jsonData: NSDictionary = postData!
             let accepted: Bool = jsonData.valueForKey("accepted") as Bool
             var errorMessage: NSString? = jsonData.valueForKey("error") as NSString?
-            let results: NSArray? = jsonData.valueForKey("results") as NSArray?
+            var results: NSMutableDictionary = NSMutableDictionary()
             
             // Query successful: return JSON data as dictionary
             if (accepted) {
                 PULog("Query Successful!")
+                results["created"] = jsonData.valueForKey("created") as NSArray?
+                results["attending"] = jsonData.valueForKey("attending") as NSArray?
+                results["invited"] = jsonData.valueForKey("invited") as NSArray?
                 PULog("Query data: \(results)")
-                return (nil, results!)
+                return (nil, results as NSDictionary)
             }
                 
             // Query failed: return error message
@@ -177,7 +180,7 @@ class PartyUpBackend {
     {
         PULog("Querying for local events...")
         
-        var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/users/search/"
+        var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/events/search/"
         
         // Populate query parameter list with whatever arguments were provided
         var postParams: [String: String] = Dictionary<String, String>()
@@ -299,7 +302,7 @@ class PartyUpBackend {
                 
             // We got a failure status code from URL: return nil
             else {
-                PULog("Bad Response Status Code. Response data was not received.")
+                PULog("Bad Response Status Code. Response data is invalid.")
                 PULog("End POST Request Method\n")
                 return nil
             }

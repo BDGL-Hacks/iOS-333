@@ -87,8 +87,8 @@ class HomepageViewController: PartyUpViewController
         inactiveView.hidden = true
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
         let isLoggedIn: Bool = userDefaults.boolForKey("IS_LOGGED_IN")
         
@@ -103,7 +103,7 @@ class HomepageViewController: PartyUpViewController
             PULog("Transitioning to Login screen")
             self.performSegueWithIdentifier("homeToLogin", sender: self)
         }
-        
+            
         // If the user is logged in, display the homepage
         else {
             NSLogPageSize()

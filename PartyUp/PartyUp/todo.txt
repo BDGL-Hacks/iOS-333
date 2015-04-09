@@ -51,6 +51,7 @@ Register
 
 Backend (Not us!)
 -----------------
+ - For users/get/, return a dictionary specifying which results correspond to which type
 
 
 NOTES

@@ -34,6 +34,12 @@ Current Event
 
 Create Event
 ------------
+- usernames
+- populate table with actual friends
+- public, cost, age, anything else backend needs
+- fix switches in the table
+- scroll/keyboard/tap for login and event creation
+- autolayout alignment
 
 Event Info
 ----------
@@ -80,7 +86,7 @@ POST Parameters:
 - title
 - description
 - public (1 or 0)
-- location (??? - Not implementd)
+- location (??? - Not implemented)
 - date: YYYYMMDDhhmm
 - age: (integer)
 - price: (integer)

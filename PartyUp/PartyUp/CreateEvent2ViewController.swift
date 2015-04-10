@@ -1,5 +1,5 @@
 //
-//  EventTwoViewController.swift
+//  CreateEventTwoViewController.swift
 //  PartyUp
 //
 //  Created by Graham Turk on 4/6/15.
@@ -10,7 +10,7 @@ import UIKit
 
 class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
-    var create: EventCreation?
+    var create: CreateEventModel?
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var friendsLabel: UILabel!

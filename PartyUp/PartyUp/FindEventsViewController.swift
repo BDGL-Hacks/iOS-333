@@ -11,6 +11,13 @@ import UIKit
 class FindEventsViewController: PartyUpViewController
 {
    /*--------------------------------------------*
+    * Model
+    *--------------------------------------------*/
+    
+    let searchEventsModel: SearchEventsModel = SearchEventsModel()
+    
+    
+   /*--------------------------------------------*
     * UI Components
     *--------------------------------------------*/
     
@@ -19,6 +26,10 @@ class FindEventsViewController: PartyUpViewController
    /*--------------------------------------------*
     * View response methods
     *--------------------------------------------*/
+    
+    override func viewDidLoad() {
+        searchEventsModel.update(SearchEventsModel.QueryType.Find)
+    }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)

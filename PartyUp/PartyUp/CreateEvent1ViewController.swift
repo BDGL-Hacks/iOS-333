@@ -1,5 +1,5 @@
 //
-//  GC1ViewController.swift
+//  CreateEvent1ViewController.swift
 //  PartyUp
 //
 //  Created by Graham Turk on 4/2/15.
@@ -15,7 +15,7 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
     //private var pageViewController: UIPageViewController?
     //private let numPages = 3
     
-    let create = EventCreation()
+    let create = CreateEventModel()
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var eventTitleTextField: UITextField!
     @IBOutlet weak var selectedDate: UILabel!

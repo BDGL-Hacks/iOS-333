@@ -129,7 +129,7 @@ class PartyUpBackend {
         var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
         let username: NSString = userDefaults.objectForKey("USERNAME") as NSString
         
-        var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/users/events/create"
+        var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/events/create"
         var postParams: [String: String] = ["title": title, "public": isPublic, "age_restrictions": ageRestrictions, "price": price]
         
         var stringOfFriends: String = ""
@@ -186,11 +186,16 @@ class PartyUpBackend {
         PULog("Querying for user's events...");
         
         var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        let username: NSString = userDefaults.objectForKey("USERNAME") as NSString
+        let username: NSString? = userDefaults.objectForKey("USERNAME") as NSString?
         let types: NSString = "created invited attending"
         
+        if (username == nil) {
+            PULog("Query Failed: User is not logged in")
+            return ("User is not logged in.", nil)
+        }
+        
         var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/events/get/"
-        var postParams: [String: String] = ["username": username, "type": types]
+        var postParams: [String: String] = ["username": username!, "type": types]
         
         var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
         

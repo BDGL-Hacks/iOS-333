@@ -87,19 +87,22 @@ class HomepageViewController: PartyUpViewController
         inactiveView.hidden = true
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        let isLoggedIn: Bool = userDefaults.boolForKey("IS_LOGGED_IN")
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
         // If the user is not logged in, delete cookies and go to login screen
-        if (!isLoggedIn) {
+        if (!isLoggedIn()) {
             PULog("User is not logged in.")
             PULog("Deleting cookies...")
             var cookieStorage: NSHTTPCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
             for cookie in cookieStorage.cookies! {
                 cookieStorage.deleteCookie(cookie as NSHTTPCookie)
             }
+            PULog("Deleting app preferences...")
+            var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+            let appDomain: String = NSBundle.mainBundle().bundleIdentifier!
+            userDefaults.removePersistentDomainForName(appDomain)
+            userDefaults.synchronize()
             PULog("Transitioning to Login screen")
             self.performSegueWithIdentifier("homeToLogin", sender: self)
         }

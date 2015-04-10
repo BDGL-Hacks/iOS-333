@@ -38,7 +38,7 @@ class SearchEventsModel
             let (errorMessage: NSString?, queryResults: NSDictionary?) =
                 PartyUpBackend.instance.queryUserEvents()
             if (errorMessage != nil) {
-                PULog("Update Failed: \(errorMessage)")
+                PULog("Update Failed: \(errorMessage!)")
                 return errorMessage!
             } else {
                 PULog("Update Success!")
@@ -51,7 +51,7 @@ class SearchEventsModel
             let (errorMessage: NSString?, queryResults: NSArray?) =
                 PartyUpBackend.instance.queryFindEvents()
             if (errorMessage != nil) {
-                PULog("Update Failed: \(errorMessage)")
+                PULog("Update Failed: \(errorMessage!)")
                 return errorMessage!
             } else {
                 PULog("Update Success!")
@@ -78,19 +78,66 @@ class SearchEventsModel
     *--------------------------------------------*/
     
     func getCreatedEvents() -> NSArray {
-        return userEventsQueryResults["created"] as NSArray
+        
+        // TODO: Delete this, fake data
+        var fakeData: [NSString: NSString] = ["title": "Fake Event", "location_name": "I don't know"]
+        var fakeArray: [NSDictionary] = [fakeData]
+        return NSArray(array: fakeArray)
+        
+        let resultArray: NSArray? = userEventsQueryResults["created"] as NSArray?
+        if (resultArray == nil) {
+            return NSArray()
+        }
+        else {
+            return resultArray!
+        }
     }
     
     func getAttendingEvents() -> NSArray {
-        return userEventsQueryResults["attending"] as NSArray
+        let resultArray: NSArray? = userEventsQueryResults["attending"] as NSArray?
+        if (resultArray == nil) {
+            return NSArray()
+        }
+        else {
+            return resultArray!
+        }
     }
     
     func getInvitedEvents() -> NSArray {
-        return userEventsQueryResults["invited"] as NSArray
+        let resultArray: NSArray? = userEventsQueryResults["invited"] as NSArray?
+        if (resultArray == nil) {
+            return NSArray()
+        }
+        else {
+            return resultArray!
+        }
     }
     
     func getNearbyEvents() -> NSArray {
         return findEventsQueryResults
+    }
+    
+    
+   /*--------------------------------------------*
+    * Data extraction methods
+    *--------------------------------------------*/
+    
+    class func getEventTitle(event: NSDictionary) -> NSString {
+        return event["title"] as NSString
+    }
+    
+    class func getEventLocationName(event: NSDictionary) -> NSString {
+        return event["location_name"] as NSString
+    }
+    
+    
+    // TODO: ACTUALLY WRITE THESE METHODS!!!
+    class func getEventDayText(event: NSDictionary) -> NSString {
+        return "Fri"
+    }
+    
+    class func getEventDayNumber(event: NSDictionary) -> NSString {
+        return "00"
     }
 }
 

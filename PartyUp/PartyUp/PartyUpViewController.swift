@@ -62,6 +62,11 @@ class PartyUpViewController: UIViewController {
         return backendError
     }
     
+    /* Returns whether the user is logged in */
+    func isLoggedIn() -> Bool {
+        var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        return userDefaults.boolForKey("IS_LOGGED_IN")
+    }
     
     
     /* Returns whether the string matches the regex */

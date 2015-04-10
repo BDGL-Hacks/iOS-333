@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SLw-45-19W">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SLw-45-19W">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
@@ -163,7 +163,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3854" y="1414"/>
+            <point key="canvasLocation" x="3866" y="1382"/>
         </scene>
         <!--Create Event 2 View Controller-->
         <scene sceneID="rJJ-wi-Ht1">
@@ -254,12 +254,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="stw-EP-rdz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4334" y="1414"/>
+            <point key="canvasLocation" x="4332" y="1382"/>
         </scene>
-        <!--Login-->
+        <!--Login View Controller-->
         <scene sceneID="e9A-uf-CBV">
             <objects>
-                <viewController title="Login" id="lbU-PQ-Vkh" customClass="LoginViewController" customModule="PartyUp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="lbU-PQ-Vkh" customClass="LoginViewController" customModule="PartyUp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3y8-c2-A5K"/>
                         <viewControllerLayoutGuide type="bottom" id="znS-6S-g6o"/>
@@ -327,7 +327,7 @@
                                     <constraint firstItem="8Kl-Zw-u9h" firstAttribute="centerX" secondItem="MB1-06-84O" secondAttribute="centerX" id="7p7-4d-F6f"/>
                                     <constraint firstItem="evh-wE-3ds" firstAttribute="centerX" secondItem="p0X-gD-McP" secondAttribute="centerX" id="DhE-Fp-0oX"/>
                                     <constraint firstItem="p0X-gD-McP" firstAttribute="top" secondItem="4og-gd-tyk" secondAttribute="top" constant="459" id="DiZ-FO-yjl"/>
-                                    <constraint firstAttribute="bottom" secondItem="p0X-gD-McP" secondAttribute="bottom" constant="82" id="Kwa-HM-6It"/>
+                                    <constraint firstAttribute="bottom" secondItem="p0X-gD-McP" secondAttribute="bottom" constant="101" id="Kwa-HM-6It"/>
                                     <constraint firstItem="8Kl-Zw-u9h" firstAttribute="leading" secondItem="4og-gd-tyk" secondAttribute="leading" constant="35" id="Lt2-jJ-HgN"/>
                                     <constraint firstItem="evh-wE-3ds" firstAttribute="trailing" secondItem="GMz-Aa-Nqq" secondAttribute="trailing" id="OMF-kn-U4q"/>
                                     <constraint firstItem="p0X-gD-McP" firstAttribute="top" secondItem="4og-gd-tyk" secondAttribute="top" constant="456" id="Q9F-bS-xm2"/>
@@ -358,7 +358,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="4og-gd-tyk" firstAttribute="bottom" secondItem="znS-6S-g6o" secondAttribute="top" id="7ma-yq-Xm7"/>
+                            <constraint firstItem="4og-gd-tyk" firstAttribute="bottom" secondItem="znS-6S-g6o" secondAttribute="top" constant="44" id="7ma-yq-Xm7"/>
                             <constraint firstItem="4og-gd-tyk" firstAttribute="leading" secondItem="WlK-4P-etr" secondAttribute="leading" id="Yl7-tX-wXR"/>
                             <constraint firstItem="4og-gd-tyk" firstAttribute="top" secondItem="WlK-4P-etr" secondAttribute="top" id="dYu-vd-hNp"/>
                             <constraint firstAttribute="trailing" secondItem="4og-gd-tyk" secondAttribute="trailing" id="mFk-1Y-uVX"/>
@@ -367,7 +367,6 @@
                             <outletCollection property="gestureRecognizers" destination="321-af-VC7" appends="YES" id="E9x-Lb-JB1"/>
                         </connections>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="emailTextField" destination="8Kl-Zw-u9h" id="Wdb-aE-4DW"/>
                         <outlet property="loginButton" destination="evh-wE-3ds" id="JCY-1I-DWU"/>
@@ -450,7 +449,7 @@
                         <outlet property="groupsChildView" destination="K2d-Ma-1eX" id="MnI-SG-qzI"/>
                         <outlet property="logoutButton" destination="ZFt-6X-AEf" id="4Gp-pJ-ii8"/>
                         <outlet property="navSegmentedControl" destination="R79-zw-A6K" id="Lft-jR-kLk"/>
-                        <segue destination="lbU-PQ-Vkh" kind="presentation" identifier="homeToLogin" id="JkK-RB-7NF"/>
+                        <segue destination="lbU-PQ-Vkh" kind="show" identifier="homeToLogin" id="JkK-RB-7NF"/>
                         <segue destination="iDH-9r-U2n" kind="presentation" identifier="homeToCreateEvent" id="Saa-B7-OGF"/>
                     </connections>
                 </viewController>
@@ -458,10 +457,10 @@
             </objects>
             <point key="canvasLocation" x="2317" y="1019"/>
         </scene>
-        <!--Register-->
+        <!--Register View Controller-->
         <scene sceneID="m8c-JU-sPC">
             <objects>
-                <viewController title="Register" id="c3G-Vh-7oU" customClass="RegisterViewController" customModule="PartyUp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="c3G-Vh-7oU" customClass="RegisterViewController" customModule="PartyUp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OL5-W4-FHw"/>
                         <viewControllerLayoutGuide type="bottom" id="M6T-Ac-qQl"/>
@@ -569,8 +568,6 @@
                             <outletCollection property="gestureRecognizers" destination="0oR-ie-m78" appends="YES" id="Fmo-1k-b8B"/>
                         </connections>
                     </view>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="backToLoginButton" destination="0O0-rw-Zae" id="edD-6p-SE3"/>
                         <outlet property="emailTextField" destination="xzq-ie-79o" id="tSE-fF-nON"/>
@@ -631,21 +628,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Yo, this is the My Events Page!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epz-V4-cum">
-                                <rect key="frame" x="42" y="241" width="236" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Events I Own:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epz-V4-cum">
+                                <rect key="frame" x="102" y="20" width="116" height="22"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="xEo-3v-XqM">
+                                <rect key="frame" x="35" y="50" width="250" height="252"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="partyUpCellPrototype" rowHeight="60" id="e5S-B7-A5N" customClass="PartyUpTableCell" customModule="PartyUp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="250" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e5S-B7-A5N" id="qLo-tO-jcg">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="1gF-7V-kWr" id="4Ur-Qw-Znu"/>
+                                    <outlet property="delegate" destination="1gF-7V-kWr" id="WOg-DT-K28"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" systemItem="contacts" id="tAb-RS-504"/>
                     <toolbarItems/>
+                    <connections>
+                        <outlet property="createdEventsTableView" destination="xEo-3v-XqM" id="rJ2-8t-0E4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ecl-qj-lKq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3288" y="1382"/>
+            <point key="canvasLocation" x="3288" y="1380"/>
         </scene>
         <!--Find Events View Controller-->
         <scene sceneID="Heb-mD-5cj">
@@ -726,6 +743,6 @@
         <image name="PartyUp_arrow_placeholder.png" width="999" height="999"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ijx-Cl-ZbZ"/>
+        <segue reference="L1k-YG-Jgb"/>
     </inferredMetricsTieBreakers>
 </document>

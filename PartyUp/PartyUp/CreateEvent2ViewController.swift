@@ -35,6 +35,18 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
         // Do any additional setup after loading the view.
     }
     
+    var activeField: UISearchBar? {
+        get {
+            if (searchBar.isFirstResponder()) {
+                return searchBar
+            }
+            return nil
+        }
+        set {
+            
+        }
+    }
+    
     /* Button to return to fist event creation page */
     @IBAction func backToFirst(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)

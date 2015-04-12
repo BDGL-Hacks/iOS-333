@@ -40,4 +40,16 @@ class PUDynamicTableView: UITableView {
         dynamicHeightConstraint.constant = contentSize.height
     }
     
+    /* Shows the view by restoring its height constraint */
+    func showView() {
+        hidden = false
+        updateView()
+    }
+    
+    /* Hides the view by setting its height constraint to zero */
+    func hideView() {
+        hidden = true
+        dynamicHeightConstraint.constant = 0
+    }
+    
 }

@@ -19,7 +19,6 @@ Events (General)
 ----------------
  - Actually write data extraction methods in SearchEventsModel
  - Change tab icons and labels
- - Test backend query code
 
 Event Tables
 ------------
@@ -28,9 +27,7 @@ Event Tables
 
 My Events
 ---------
- - Implement attending events and invited events tables
- - Have sections not appear if there is nothing returned from the query results
-   - And placeholder text if the user doesn't have any anything!
+ - Put '--' or some other placeholder text when there are no events in a given table.
  - Have cells segue into Event Info page
  - Have attending event table cell subtext display group instead of location and time
 
@@ -45,7 +42,6 @@ Current Event
 
 Create Event
 ------------
- - Are we sure the POST URL is /users/event/create and not /event/create?
 
 Event Info
 ----------
@@ -63,7 +59,6 @@ Register
 
 Backend (Not us!)
 -----------------
- - For users/get/, return a dictionary specifying which results correspond to which type
 
 
 NOTES

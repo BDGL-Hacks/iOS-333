@@ -40,13 +40,10 @@ class MyEventsViewController: PartyUpViewController, UITableViewDelegate, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         var customTableCellNib: UINib = UINib(nibName: "PartyUpTableCell", bundle: nil)
         createdEventsTableView.registerNib(customTableCellNib, forCellReuseIdentifier: "partyUpTableCell")
-        
-        // TODO: UNCOMMENT THESE
-        //attendingEventsTableView.registerNib(customTableCellNib, forCellReuseIdentifier: "partyUpTableCell")
-        //invitedEventsTableView.registerNib(customTableCellNib, forCellReuseIdentifier: "partyUpTableCell")
+        attendingEventsTableView.registerNib(customTableCellNib, forCellReuseIdentifier: "partyUpTableCell")
+        invitedEventsTableView.registerNib(customTableCellNib, forCellReuseIdentifier: "partyUpTableCell")
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -72,6 +69,8 @@ class MyEventsViewController: PartyUpViewController, UITableViewDelegate, UITabl
     func updateViews()
     {
         createdEventsTableView.reloadData()
+        attendingEventsTableView.reloadData()
+        invitedEventsTableView.reloadData()
         
         var isCreatedEventsTableEmpty: Bool = false
         var isAttendingEventsTableEmpty: Bool = false
@@ -79,22 +78,36 @@ class MyEventsViewController: PartyUpViewController, UITableViewDelegate, UITabl
         
         if (createdEventsTableView.numberOfRowsInSection(0) == 0) {
             isCreatedEventsTableEmpty = true
-            createdEventsLabel.hidden = true
+            createdEventsTableView.hideView()
         } else {
-            createdEventsLabel.hidden = false
+            createdEventsTableView.showView()
         }
         
-        // TODO: Delete this and replace with logic similar to above
-        isAttendingEventsTableEmpty = true
-        isInvitedEventsTableEmpty = true
+        if (attendingEventsTableView.numberOfRowsInSection(0) == 0) {
+            isAttendingEventsTableEmpty = true
+            attendingEventsTableView.hideView()
+        } else {
+            attendingEventsTableView.showView()
+        }
         
-        /*
+        if (invitedEventsTableView.numberOfRowsInSection(0) == 0) {
+            isInvitedEventsTableEmpty = true
+            invitedEventsTableView.hideView()
+        } else {
+            invitedEventsTableView.showView()
+        }
+        
         if (isCreatedEventsTableEmpty && isAttendingEventsTableEmpty && isInvitedEventsTableEmpty) {
+            createdEventsLabel.hidden = true
+            attendingEventsLabel.hidden = true
+            invitedEventsLabel.hidden = true
             placeholderLabel.hidden = false
         } else {
+            createdEventsLabel.hidden = false
+            attendingEventsLabel.hidden = false
+            invitedEventsLabel.hidden = false
             placeholderLabel.hidden = true
         }
-        */
     }
    
     

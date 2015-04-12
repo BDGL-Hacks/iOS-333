@@ -628,14 +628,14 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2Cb-F1-mBw" customClass="PUDynamicTableView" customModule="PartyUp" customModuleProvider="target">
-                                        <rect key="frame" x="35" y="50" width="250" height="100"/>
+                                        <rect key="frame" x="35" y="50" width="250" height="80"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="100" placeholder="YES" id="ZNS-9Y-bw6"/>
+                                            <constraint firstAttribute="height" constant="80" placeholder="YES" id="ZNS-9Y-bw6"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" id="dAO-uK-vSJ"/>
                                         </constraints>
                                         <prototypes>
-                                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="partyUpTableCellPrototype" rowHeight="60" id="Fip-zM-kJP" customClass="PartyUpTableCell" customModule="PartyUp" customModuleProvider="target">
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ownedCellPrototype" rowHeight="60" id="Fip-zM-kJP" customClass="PartyUpTableCell" customModule="PartyUp" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="250" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fip-zM-kJP" id="rOF-qI-VRm">
@@ -649,15 +649,90 @@
                                             <outlet property="dynamicHeightConstraint" destination="dAO-uK-vSJ" id="WTS-pb-z0Z"/>
                                         </connections>
                                     </tableView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Events I'm Attending" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y8F-Dj-WQk">
+                                        <rect key="frame" x="80" y="172" width="160" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="EyU-ar-VRD" customClass="PUDynamicTableView" customModule="PartyUp" customModuleProvider="target">
+                                        <rect key="frame" x="35" y="201" width="250" height="80"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" placeholder="YES" id="TCp-Wx-2nz"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" id="i9h-MG-h6S"/>
+                                        </constraints>
+                                        <prototypes>
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="attendingCellPrototype" rowHeight="60" id="efF-Mr-hIK" customClass="PartyUpTableCell" customModule="PartyUp" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="250" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="efF-Mr-hIK" id="HGZ-eZ-xnu">
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="1gF-7V-kWr" id="ail-Aa-m4p"/>
+                                            <outlet property="delegate" destination="1gF-7V-kWr" id="xOz-84-87N"/>
+                                            <outlet property="dynamicHeightConstraint" destination="i9h-MG-h6S" id="9Ju-Hs-6iq"/>
+                                        </connections>
+                                    </tableView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Events I'm Invited To" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UlI-gd-Kej">
+                                        <rect key="frame" x="81" y="323" width="159" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="dC5-Py-e9M" customClass="PUDynamicTableView" customModule="PartyUp" customModuleProvider="target">
+                                        <rect key="frame" x="35" y="352" width="250" height="80"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" id="3op-3O-QG5"/>
+                                            <constraint firstAttribute="height" constant="80" placeholder="YES" id="CPC-Yy-RxD"/>
+                                        </constraints>
+                                        <prototypes>
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="invitedCellPrototype" rowHeight="60" id="YGA-2N-A6y" customClass="PartyUpTableCell" customModule="PartyUp" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="250" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YGA-2N-A6y" id="De5-b7-5AZ">
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="1gF-7V-kWr" id="MFZ-rG-2h0"/>
+                                            <outlet property="delegate" destination="1gF-7V-kWr" id="nYY-GQ-bm4"/>
+                                            <outlet property="dynamicHeightConstraint" destination="3op-3O-QG5" id="KGO-mO-mWe"/>
+                                        </connections>
+                                    </tableView>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pEI-N3-cET">
+                                        <rect key="frame" x="35" y="201" width="250" height="80"/>
+                                        <string key="text">You don't have any events yet! You can create an event by tapping the '+' icon, or search nearby events by tapping the 'Find' tab on the bottom.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="UlI-gd-Kej" secondAttribute="trailing" constant="80" id="7B1-Nx-Mu8"/>
                                     <constraint firstItem="2Cb-F1-mBw" firstAttribute="leading" secondItem="1pf-wd-W0L" secondAttribute="leading" constant="35" id="GaM-fl-aW9"/>
+                                    <constraint firstItem="y8F-Dj-WQk" firstAttribute="leading" secondItem="1pf-wd-W0L" secondAttribute="leading" constant="80" id="JFm-cw-mF2"/>
                                     <constraint firstAttribute="trailing" secondItem="2Cb-F1-mBw" secondAttribute="trailing" constant="35" id="KW9-GK-0fk"/>
                                     <constraint firstAttribute="trailing" secondItem="xTK-wv-J5h" secondAttribute="trailing" constant="109" id="Lab-iT-CBq"/>
+                                    <constraint firstItem="dC5-Py-e9M" firstAttribute="width" secondItem="2Cb-F1-mBw" secondAttribute="width" id="MD5-e6-nkT"/>
+                                    <constraint firstItem="dC5-Py-e9M" firstAttribute="leading" secondItem="1pf-wd-W0L" secondAttribute="leading" constant="35" id="P2L-9F-tA1"/>
+                                    <constraint firstAttribute="trailing" secondItem="y8F-Dj-WQk" secondAttribute="trailing" constant="80" id="Pst-8n-Tne"/>
+                                    <constraint firstItem="EyU-ar-VRD" firstAttribute="top" secondItem="y8F-Dj-WQk" secondAttribute="bottom" constant="8" id="UPG-yQ-QgL"/>
+                                    <constraint firstItem="UlI-gd-Kej" firstAttribute="leading" secondItem="1pf-wd-W0L" secondAttribute="leading" constant="81" id="Uc0-ek-AhY"/>
                                     <constraint firstItem="2Cb-F1-mBw" firstAttribute="top" secondItem="xTK-wv-J5h" secondAttribute="bottom" constant="8" id="Ybo-WS-wW5"/>
-                                    <constraint firstAttribute="bottom" secondItem="2Cb-F1-mBw" secondAttribute="bottom" constant="305" id="bOa-Ru-O4Z"/>
+                                    <constraint firstItem="dC5-Py-e9M" firstAttribute="top" secondItem="UlI-gd-Kej" secondAttribute="bottom" constant="8" id="dFP-3V-Zdl"/>
+                                    <constraint firstItem="EyU-ar-VRD" firstAttribute="leading" secondItem="1pf-wd-W0L" secondAttribute="leading" constant="35" id="dQt-WA-J4x"/>
+                                    <constraint firstItem="y8F-Dj-WQk" firstAttribute="top" secondItem="2Cb-F1-mBw" secondAttribute="bottom" constant="42" id="kwI-Q5-f8F"/>
+                                    <constraint firstItem="2Cb-F1-mBw" firstAttribute="width" secondItem="EyU-ar-VRD" secondAttribute="width" id="ohg-BI-SoA"/>
+                                    <constraint firstItem="UlI-gd-Kej" firstAttribute="top" secondItem="EyU-ar-VRD" secondAttribute="bottom" constant="42" id="qu5-O4-z0j"/>
                                     <constraint firstAttribute="width" constant="320" id="rVX-PV-NTl"/>
                                     <constraint firstItem="xTK-wv-J5h" firstAttribute="top" secondItem="1pf-wd-W0L" secondAttribute="top" constant="21" id="u9u-bh-Imt"/>
+                                    <constraint firstAttribute="bottom" secondItem="dC5-Py-e9M" secondAttribute="bottom" constant="23" id="wBg-eR-ATP"/>
                                     <constraint firstItem="xTK-wv-J5h" firstAttribute="leading" secondItem="1pf-wd-W0L" secondAttribute="leading" constant="109" id="zwh-7V-Uy2"/>
                                 </constraints>
                             </scrollView>
@@ -673,13 +748,18 @@
                     <tabBarItem key="tabBarItem" title="" systemItem="contacts" id="tAb-RS-504"/>
                     <toolbarItems/>
                     <connections>
+                        <outlet property="attendingEventsLabel" destination="y8F-Dj-WQk" id="7px-wT-dLd"/>
+                        <outlet property="attendingEventsTableView" destination="EyU-ar-VRD" id="cJP-90-ega"/>
                         <outlet property="createdEventsLabel" destination="xTK-wv-J5h" id="bde-Mm-OXN"/>
                         <outlet property="createdEventsTableView" destination="2Cb-F1-mBw" id="Wo7-VG-1nI"/>
+                        <outlet property="invitedEventsLabel" destination="UlI-gd-Kej" id="w0C-Fy-6oB"/>
+                        <outlet property="invitedEventsTableView" destination="dC5-Py-e9M" id="N1g-8K-53S"/>
+                        <outlet property="placeholderLabel" destination="pEI-N3-cET" id="p8i-sb-EMV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ecl-qj-lKq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3288" y="1375"/>
+            <point key="canvasLocation" x="3288" y="1374"/>
         </scene>
         <!--Find Events View Controller-->
         <scene sceneID="Heb-mD-5cj">

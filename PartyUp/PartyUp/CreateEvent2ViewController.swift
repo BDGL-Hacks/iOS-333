@@ -8,48 +8,50 @@
 
 import UIKit
 
-class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, UITableViewDelegate  {
 
     var create: CreateEventModel?
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var usersTableView: UITableView!
     @IBOutlet weak var friendsLabel: UILabel!
-    
-    var searchActive : Bool = false
-    var fakeData = ["Blake Lawson","Graham Turk","Lance Goodridge","David Gilhooley","Alan Turing","Bob Dondero","Brian Kernighan"]
-    var fakeBools = [false, false, false, false, false, false, false]
-    var filtered:[String] = []
-    
+    var addedFriends: NSMutableArray? = NSMutableArray()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /* Setup delegates */
-        tableView.delegate = self
-        tableView.dataSource = self
-        searchBar.delegate = self
-        
-        
-        //mySwitch.addTarget(self, action: Selector("stateChanged:"), forControlEvents: UIControlEvents.ValueChanged)
+        usersTableView.delegate = self
+        usersTableView.dataSource = self
 
         // Do any additional setup after loading the view.
     }
-    
-    var activeField: UISearchBar? {
-        get {
-            if (searchBar.isFirstResponder()) {
-                return searchBar
-            }
-            return nil
-        }
-        set {
-            
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if (isLoggedIn()) {
+            usersTableView.reloadData()
         }
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        PULog("Displaying create event 2 page")
+    }
+
     /* Button to return to fist event creation page */
     @IBAction func backToFirst(sender: UIButton) {
+        PULog("Going back to first event page")
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        PULog("Preparing for segue")
+        let destinationVC = segue.destinationViewController as AddFriendsViewController
+        destinationVC.create = self.create
+        destinationVC.previousViewController = self
+    }
+    
+    func reloadView() {
+        usersTableView.reloadData()
     }
     
     
@@ -58,39 +60,25 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
         
         PULog("Finalize event pressed")
         /* Iterate through friends list and send it to the backend */
-        var cells = [UITableViewCell]()
-        for var j = 0; j < tableView.numberOfSections(); ++j {
-            for var i = 0; i < tableView.numberOfRowsInSection(j); ++i {
+        var friendEmails: [NSString] = [NSString]()
+        for var j = 0; j < usersTableView.numberOfSections(); ++j {
+            for var i = 0; i < usersTableView.numberOfRowsInSection(j); ++i {
                 
                 var indexPath: NSIndexPath = NSIndexPath(forRow: i, inSection: j)
-                var cell = tableView.cellForRowAtIndexPath(indexPath)
+                var cell = usersTableView.cellForRowAtIndexPath(indexPath) as? AddFriendsTableViewCell
                 
-                for v in cell!.contentView.subviews  {
-                    if let thisView = v as? UISwitch {
-                        if thisView.on {
-                            let thisCell = v as? UITableViewCell
-                            cells.append(thisCell!)
-                        }
-                    }
-                }
+                friendEmails.append(cell!.usernameEmail!)
             }
         }
         
-        var friends = [NSString]()
-        
-        /* Extract text field from selected cells */
-        for c in cells {
-            friends.append(c.textLabel!.text!)
-        }
-        
         /* Check that friends list was actually populated */
-        for friend in friends {
+        for friend in friendEmails {
             PULog("\(friend)")
         }
         
         /* Send to backend */
         
-        create?.secondPage(friends)
+        create?.secondPage(friendEmails)
         
         var backendError: NSString? = create?.sendToBackend()
         if (backendError == nil)
@@ -104,21 +92,12 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
     
     }
     
-    /*
-    func stateChanged(switchState: UISwitch) {
-        if switchState.on {
-            friendsLabel.text = "The Switch is On"
-        } else {
-            friendsLabel.text = "The Switch is Off"
-        }
-    }
-    */
-    
     
     /*--------------------------------
     /* Table search helper methods */
     --------------------------------*/
     
+    /*
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
         searchActive = true;
     }
@@ -132,12 +111,14 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        
+        self.performSegueWithIdentifier("eventCreationTwoToResults", sender: self)
         searchActive = false;
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         
-        filtered = fakeData.filter({ (text) -> Bool in
+        filtered = usernameList.filter({ (text) -> Bool in
             let tmp: NSString = text
             let range = tmp.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch)
             return range.location != NSNotFound
@@ -147,38 +128,57 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
         } else {
             searchActive = true;
         }
-        self.tableView.reloadData()
+        self.usersTableView.reloadData()
     }
-    
+
+    */
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if(searchActive) {
-            return filtered.count
-        }
-        return fakeData.count;
+        return addedFriends!.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as UITableViewCell;
+        let cell = usersTableView.dequeueReusableCellWithIdentifier("UserCell") as AddFriendsTableViewCell;
         
-        if(searchActive){
-            cell.textLabel?.text = filtered[indexPath.row]
-        } else {
-            cell.textLabel?.text = fakeData[indexPath.row];
+        var user: NSDictionary = NSDictionary()
+        user = addedFriends![indexPath.row] as NSDictionary
+        
+        var firstName: NSString = CreateEventModel.getUserFirstName(user)
+        var lastName: NSString = CreateEventModel.getUserLastName(user)
+        var emailAdd: NSString = CreateEventModel.getUserEmail(user)
+        var idNum: NSString =  "10" as NSString // CreateEventModel.getUserIDStr(user)
+        
+        var fullName = firstName +  " " + lastName
+        cell.loadCell(fullName, first: firstName, last: lastName, id: idNum, email: emailAdd)
+        
+        cell.accessoryType = UITableViewCellAccessoryType.None
+        return cell
+    }
+    
+    func updateAddedFriends() {
+        var friendsToAdd: NSArray = create!.getSelectedFriends()
+        addedFriends?.addObjectsFromArray(friendsToAdd)
+        create?.setAddedFriends(addedFriends! as NSArray)
+    }
+    
+    // Override to support editing the table view.
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            addedFriends!.removeObjectAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        } else if editingStyle == .Insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
-        
-        return cell;
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation

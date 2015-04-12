@@ -36,6 +36,7 @@ Current Event
 Create Event
 ------------
  - Are we sure the POST URL is /users/event/create and not /event/create?
+ - Commonly added users stored locally in NSUserDefaults
 
 Event Info
 ----------

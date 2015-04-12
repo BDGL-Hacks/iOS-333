@@ -163,7 +163,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3866" y="1382"/>
+            <point key="canvasLocation" x="3874" y="1342"/>
         </scene>
         <!--Create Event 2 View Controller-->
         <scene sceneID="rJJ-wi-Ht1">
@@ -244,7 +244,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="stw-EP-rdz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4332" y="1382"/>
+            <point key="canvasLocation" x="4330" y="1342"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="e9A-uf-CBV">
@@ -755,6 +755,7 @@
                         <outlet property="invitedEventsLabel" destination="UlI-gd-Kej" id="w0C-Fy-6oB"/>
                         <outlet property="invitedEventsTableView" destination="dC5-Py-e9M" id="N1g-8K-53S"/>
                         <outlet property="placeholderLabel" destination="pEI-N3-cET" id="p8i-sb-EMV"/>
+                        <segue destination="kxU-B7-LE2" kind="presentation" identifier="myEventsToEventInfo" id="jc2-Pg-Y0b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ecl-qj-lKq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -783,10 +784,77 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="search" id="pha-Ke-Hbt"/>
+                    <connections>
+                        <segue destination="kxU-B7-LE2" kind="presentation" identifier="findEventsToEventInfo" id="zaS-UW-vp0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dsh-bh-8JA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3288" y="2005"/>
+        </scene>
+        <!--Event Info View Controller-->
+        <scene sceneID="fkB-6m-w66">
+            <objects>
+                <viewController id="kxU-B7-LE2" customClass="EventInfoViewController" customModule="PartyUp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uWB-iJ-1rV"/>
+                        <viewControllerLayoutGuide type="bottom" id="C6K-r7-SBI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ujy-PB-YbQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kC7-Rx-TQO">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <items>
+                                    <navigationItem id="ebK-mn-kwa">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="njR-7R-vBa">
+                                            <connections>
+                                                <action selector="backButtonPressed:" destination="kxU-B7-LE2" id="EfT-w3-l2e"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lrO-ff-eDh">
+                                <rect key="frame" x="0.0" y="66" width="320" height="502"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kv5-lB-ucD">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="502"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                            </scrollView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="49o-eV-80V">
+                                <rect key="frame" x="81" y="33" width="159" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kC7-Rx-TQO" firstAttribute="leading" secondItem="ujy-PB-YbQ" secondAttribute="leading" id="7un-Aq-7i0"/>
+                            <constraint firstItem="lrO-ff-eDh" firstAttribute="top" secondItem="49o-eV-80V" secondAttribute="bottom" constant="12" id="BDU-Hm-47v"/>
+                            <constraint firstItem="49o-eV-80V" firstAttribute="leading" secondItem="ujy-PB-YbQ" secondAttribute="leadingMargin" constant="65" id="JNR-J0-hPx"/>
+                            <constraint firstItem="kC7-Rx-TQO" firstAttribute="bottom" secondItem="lrO-ff-eDh" secondAttribute="top" id="Kbb-ZI-t5L"/>
+                            <constraint firstItem="lrO-ff-eDh" firstAttribute="bottom" secondItem="C6K-r7-SBI" secondAttribute="top" id="LdA-lj-7Im"/>
+                            <constraint firstItem="kC7-Rx-TQO" firstAttribute="centerX" secondItem="49o-eV-80V" secondAttribute="centerX" id="U0H-Hd-WaV"/>
+                            <constraint firstItem="kC7-Rx-TQO" firstAttribute="top" secondItem="uWB-iJ-1rV" secondAttribute="bottom" constant="22" id="UNH-h2-hqd"/>
+                            <constraint firstAttribute="trailing" secondItem="kC7-Rx-TQO" secondAttribute="trailing" id="akm-Kz-M3u"/>
+                            <constraint firstItem="kC7-Rx-TQO" firstAttribute="trailing" secondItem="lrO-ff-eDh" secondAttribute="trailing" id="bGF-zA-ANF"/>
+                            <constraint firstItem="kC7-Rx-TQO" firstAttribute="leading" secondItem="lrO-ff-eDh" secondAttribute="leading" id="iWe-tO-paM"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="fw1-1T-smp"/>
+                    <connections>
+                        <outlet property="backButton" destination="njR-7R-vBa" id="qSU-pp-hha"/>
+                        <outlet property="eventTitleLabel" destination="49o-eV-80V" id="bpC-Mr-eIg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dg2-r9-yMr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3874" y="2005"/>
         </scene>
         <!--Current Event View Controller-->
         <scene sceneID="A0k-ln-wGi">
@@ -841,5 +909,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ijx-Cl-ZbZ"/>
+        <segue reference="jc2-Pg-Y0b"/>
     </inferredMetricsTieBreakers>
 </document>

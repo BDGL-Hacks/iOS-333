@@ -28,7 +28,6 @@ Event Tables
 My Events
 ---------
  - Put '--' or some other placeholder text when there are no events in a given table.
- - Have cells segue into Event Info page
  - Have attending event table cell subtext display group instead of location and time
 
 Find Events
@@ -37,14 +36,15 @@ Find Events
  - Implement tables
  - Implement searching
 
+Event Info
+----------
+ - Fully flesh out views
+
 Current Event
 -------------
 
 Create Event
 ------------
-
-Event Info
-----------
 
 Login
 -----

@@ -29,6 +29,7 @@
 		7EDD4EDF1ABE727C00CEECD0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EDD4EDD1ABE727C00CEECD0 /* LaunchScreen.xib */; };
 		7EDD4EEB1ABE727D00CEECD0 /* PartyUpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDD4EEA1ABE727D00CEECD0 /* PartyUpTests.swift */; };
 		7EEA89D51AD4311000EA9985 /* CreateEvent1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEA89D41AD4311000EA9985 /* CreateEvent1ViewController.swift */; };
+		7EFBCB391ADA251B0046E250 /* EventInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFBCB381ADA251B0046E250 /* EventInfoViewController.swift */; };
 		8B9140221AC5DB1300205FA6 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9140211AC5DB1300205FA6 /* RegisterViewController.swift */; };
 		8B9140241AC86E0200205FA6 /* PartyUpBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9140231AC86E0200205FA6 /* PartyUpBackend.swift */; };
 		8BB153F01AD32A7600B0371B /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB153EF1AD32A7600B0371B /* KeyboardViewController.swift */; };
@@ -74,6 +75,7 @@
 		7EDD4EE91ABE727D00CEECD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7EDD4EEA1ABE727D00CEECD0 /* PartyUpTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyUpTests.swift; sourceTree = "<group>"; };
 		7EEA89D41AD4311000EA9985 /* CreateEvent1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEvent1ViewController.swift; sourceTree = "<group>"; };
+		7EFBCB381ADA251B0046E250 /* EventInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventInfoViewController.swift; sourceTree = "<group>"; };
 		8B9140211AC5DB1300205FA6 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		8B9140231AC86E0200205FA6 /* PartyUpBackend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyUpBackend.swift; sourceTree = "<group>"; };
 		8BB153EF1AD32A7600B0371B /* KeyboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				7EEA89D41AD4311000EA9985 /* CreateEvent1ViewController.swift */,
 				8BB153F31AD38A5200B0371B /* CreateEvent2ViewController.swift */,
 				8BB153F11AD382B300B0371B /* CreateEventModel.swift */,
+				7EFBCB381ADA251B0046E250 /* EventInfoViewController.swift */,
 				7EA0DD011ACE25E900FC3EC1 /* HomeGroupsViewController.swift */,
 				7E706A161AC78CC500B991F2 /* LoginViewController.swift */,
 				7EDD4ED61ABE727C00CEECD0 /* PartyUpViewController.swift */,
@@ -309,6 +312,7 @@
 				7EDD4ED71ABE727C00CEECD0 /* PartyUpViewController.swift in Sources */,
 				7EDD4ED51ABE727C00CEECD0 /* AppDelegate.swift in Sources */,
 				7E7ED50D1AD463CE000C2775 /* SearchEventsModel.swift in Sources */,
+				7EFBCB391ADA251B0046E250 /* EventInfoViewController.swift in Sources */,
 				8BB153F41AD38A5200B0371B /* CreateEvent2ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

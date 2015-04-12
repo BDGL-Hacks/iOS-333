@@ -10,6 +10,7 @@ import UIKit
 
 class MyEventsViewController: PartyUpViewController, UITableViewDelegate, UITableViewDataSource
 {
+    
    /*--------------------------------------------*
     * Model and instance variables
     *--------------------------------------------*/
@@ -17,6 +18,7 @@ class MyEventsViewController: PartyUpViewController, UITableViewDelegate, UITabl
     let searchEventsModel: SearchEventsModel = SearchEventsModel()
     
     var shouldPerformQueries: Bool = true
+    var selectedCellEventData: NSDictionary = NSDictionary()
     
     
    /*--------------------------------------------*
@@ -58,6 +60,15 @@ class MyEventsViewController: PartyUpViewController, UITableViewDelegate, UITabl
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         PULog("Displaying My Events tab")
+    }
+    
+    /* If we are segueing to EventInfoVC, send the cell's event data beforehand */
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "myEventsToEventInfo") {
+            let eventInfoVC: EventInfoViewController = segue.destinationViewController
+                as EventInfoViewController
+            eventInfoVC.setEventData(selectedCellEventData)
+        }
     }
     
     
@@ -109,6 +120,8 @@ class MyEventsViewController: PartyUpViewController, UITableViewDelegate, UITabl
             placeholderLabel.hidden = true
         }
     }
+    
+    
    
     
    /*--------------------------------------------*
@@ -132,7 +145,8 @@ class MyEventsViewController: PartyUpViewController, UITableViewDelegate, UITabl
         }
     }
     
-    /* Determines how to populate each cell in the table */
+    /* Determines how to populate each cell in the table: *
+     * Loads the display and event data into each cell.   */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) ->UITableViewCell {
         var cell: PartyUpTableCell = tableView.dequeueReusableCellWithIdentifier("partyUpTableCell") as PartyUpTableCell
         
@@ -161,13 +175,19 @@ class MyEventsViewController: PartyUpViewController, UITableViewDelegate, UITabl
         }
         
         cell.loadCell(dayText: dayText, dayNumber: dayNumber, mainText: mainText, subText: subText)
+        cell.setCellData(event)
         return cell
     }
     
     /* Determines what to do when a table cell is selected */
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        PULog("Cell selected: \(indexPath.row)")
+        let cell: PartyUpTableCell = tableView.cellForRowAtIndexPath(indexPath) as PartyUpTableCell
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        let eventName: NSString = SearchEventsModel.getEventTitle(cell.getCellData())
+        PULog("Event Cell Pressed.\nCell Row: \(indexPath.row), Event Name: \(eventName)")
+        PULog("Transitioning to Event Info screen")
+        selectedCellEventData = cell.getCellData()
+        self.performSegueWithIdentifier("myEventsToEventInfo", sender: self)
     }
     
 }

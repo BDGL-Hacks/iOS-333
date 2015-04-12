@@ -23,9 +23,15 @@ class MyEventsViewController: PartyUpViewController, UITableViewDelegate, UITabl
     * UI Components
     *--------------------------------------------*/
     
-    @IBOutlet weak var createdEventsTableView: UITableView!
-    @IBOutlet weak var attendingEventsTableView: UITableView!
-    @IBOutlet weak var invitedEventsTableView: UITableView!
+    @IBOutlet weak var placeholderLabel: UILabel!
+    
+    @IBOutlet weak var createdEventsLabel: UILabel!
+    @IBOutlet weak var attendingEventsLabel: UILabel!
+    @IBOutlet weak var invitedEventsLabel: UILabel!
+    
+    @IBOutlet weak var createdEventsTableView: PUDynamicTableView!
+    @IBOutlet weak var attendingEventsTableView: PUDynamicTableView!
+    @IBOutlet weak var invitedEventsTableView: PUDynamicTableView!
     
     
    /*--------------------------------------------*
@@ -48,13 +54,47 @@ class MyEventsViewController: PartyUpViewController, UITableViewDelegate, UITabl
         if (shouldPerformQueries && isLoggedIn()) {
             searchEventsModel.update(SearchEventsModel.QueryType.User)
             shouldPerformQueries = false
-            createdEventsTableView.reloadData()
+            updateViews()
         }
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         PULog("Displaying My Events tab")
+    }
+    
+    
+   /*--------------------------------------------*
+    * View helper methods
+    *--------------------------------------------*/
+    
+    /* Updates the views for the tables and their labels */
+    func updateViews()
+    {
+        createdEventsTableView.reloadData()
+        
+        var isCreatedEventsTableEmpty: Bool = false
+        var isAttendingEventsTableEmpty: Bool = false
+        var isInvitedEventsTableEmpty: Bool = false
+        
+        if (createdEventsTableView.numberOfRowsInSection(0) == 0) {
+            isCreatedEventsTableEmpty = true
+            createdEventsLabel.hidden = true
+        } else {
+            createdEventsLabel.hidden = false
+        }
+        
+        // TODO: Delete this and replace with logic similar to above
+        isAttendingEventsTableEmpty = true
+        isInvitedEventsTableEmpty = true
+        
+        /*
+        if (isCreatedEventsTableEmpty && isAttendingEventsTableEmpty && isInvitedEventsTableEmpty) {
+            placeholderLabel.hidden = false
+        } else {
+            placeholderLabel.hidden = true
+        }
+        */
     }
    
     

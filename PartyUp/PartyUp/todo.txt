@@ -10,7 +10,7 @@ General
 
 Homepage
 --------
- - Have homepage not perform queries on startup if not logged in -> go straight to login
+ - Find better way homepage not perform queries on startup if not logged in -> go straight to login
 
 Groups
 ------
@@ -21,14 +21,24 @@ Events (General)
  - Change tab icons and labels
  - Test backend query code
 
+Event Tables
+------------
+ - Have table cell font decrease or show (...) if text is too long
+ - Improve table and custom cell aesthetics
+
 My Events
 ---------
- - Have Table look nicer and autoresize with number of cells
+ - Implement attending events and invited events tables
+ - Have sections not appear if there is nothing returned from the query results
+   - And placeholder text if the user doesn't have any anything!
  - Have cells segue into Event Info page
+ - Have attending event table cell subtext display group instead of location and time
 
 Find Events
 -----------
- -
+ - Implement Scroll View
+ - Implement tables
+ - Implement searching
 
 Current Event
 -------------

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SLw-45-19W">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SLw-45-19W">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
@@ -618,41 +618,68 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Events I Own:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epz-V4-cum">
-                                <rect key="frame" x="102" y="20" width="116" height="22"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="xEo-3v-XqM">
-                                <rect key="frame" x="35" y="50" width="250" height="252"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="partyUpCellPrototype" rowHeight="60" id="e5S-B7-A5N" customClass="PartyUpTableCell" customModule="PartyUp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="250" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e5S-B7-A5N" id="qLo-tO-jcg">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="1gF-7V-kWr" id="4Ur-Qw-Znu"/>
-                                    <outlet property="delegate" destination="1gF-7V-kWr" id="WOg-DT-K28"/>
-                                </connections>
-                            </tableView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1pf-wd-W0L">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Events I Own" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xTK-wv-J5h">
+                                        <rect key="frame" x="109" y="21" width="102" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2Cb-F1-mBw" customClass="PUDynamicTableView" customModule="PartyUp" customModuleProvider="target">
+                                        <rect key="frame" x="35" y="50" width="250" height="100"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" placeholder="YES" id="ZNS-9Y-bw6"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" id="dAO-uK-vSJ"/>
+                                        </constraints>
+                                        <prototypes>
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="partyUpTableCellPrototype" rowHeight="60" id="Fip-zM-kJP" customClass="PartyUpTableCell" customModule="PartyUp" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="250" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fip-zM-kJP" id="rOF-qI-VRm">
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="1gF-7V-kWr" id="2Jf-qe-f0G"/>
+                                            <outlet property="delegate" destination="1gF-7V-kWr" id="qF7-zT-FQT"/>
+                                            <outlet property="dynamicHeightConstraint" destination="dAO-uK-vSJ" id="WTS-pb-z0Z"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="2Cb-F1-mBw" firstAttribute="leading" secondItem="1pf-wd-W0L" secondAttribute="leading" constant="35" id="GaM-fl-aW9"/>
+                                    <constraint firstAttribute="trailing" secondItem="2Cb-F1-mBw" secondAttribute="trailing" constant="35" id="KW9-GK-0fk"/>
+                                    <constraint firstAttribute="trailing" secondItem="xTK-wv-J5h" secondAttribute="trailing" constant="109" id="Lab-iT-CBq"/>
+                                    <constraint firstItem="2Cb-F1-mBw" firstAttribute="top" secondItem="xTK-wv-J5h" secondAttribute="bottom" constant="8" id="Ybo-WS-wW5"/>
+                                    <constraint firstAttribute="bottom" secondItem="2Cb-F1-mBw" secondAttribute="bottom" constant="305" id="bOa-Ru-O4Z"/>
+                                    <constraint firstAttribute="width" constant="320" id="rVX-PV-NTl"/>
+                                    <constraint firstItem="xTK-wv-J5h" firstAttribute="top" secondItem="1pf-wd-W0L" secondAttribute="top" constant="21" id="u9u-bh-Imt"/>
+                                    <constraint firstItem="xTK-wv-J5h" firstAttribute="leading" secondItem="1pf-wd-W0L" secondAttribute="leading" constant="109" id="zwh-7V-Uy2"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="1pf-wd-W0L" secondAttribute="trailing" id="Cgc-MC-ifg"/>
+                            <constraint firstItem="1pf-wd-W0L" firstAttribute="leading" secondItem="7Lb-YQ-f93" secondAttribute="leading" id="Fv2-JN-6rM"/>
+                            <constraint firstItem="1pf-wd-W0L" firstAttribute="top" secondItem="34R-gr-EZ8" secondAttribute="bottom" id="KSC-jn-9Dg"/>
+                            <constraint firstItem="mMj-5J-XgS" firstAttribute="top" secondItem="1pf-wd-W0L" secondAttribute="bottom" id="w2o-2m-Ue5"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" systemItem="contacts" id="tAb-RS-504"/>
                     <toolbarItems/>
                     <connections>
-                        <outlet property="createdEventsTableView" destination="xEo-3v-XqM" id="rJ2-8t-0E4"/>
+                        <outlet property="createdEventsLabel" destination="xTK-wv-J5h" id="bde-Mm-OXN"/>
+                        <outlet property="createdEventsTableView" destination="2Cb-F1-mBw" id="Wo7-VG-1nI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ecl-qj-lKq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3288" y="1380"/>
+            <point key="canvasLocation" x="3288" y="1375"/>
         </scene>
         <!--Find Events View Controller-->
         <scene sceneID="Heb-mD-5cj">

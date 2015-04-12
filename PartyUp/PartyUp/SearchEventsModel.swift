@@ -80,10 +80,22 @@ class SearchEventsModel
     func getCreatedEvents() -> NSArray {
         
         // TODO: Delete this, fake data
-        var fakeData: [NSString: NSString] = ["title": "Fake Event", "location_name": "I don't know"]
-        var fakeArray: [NSDictionary] = [fakeData]
+        var fakeArray: [NSDictionary] = [
+            ["title": "Fake Event", "location_name": "I don't know"],
+            ["title": "Look, Another Event!", "location_name": "Still don't."],
+            ["title": "GAAAGH!", "location_name": "URGH"],
+            ["title": "Derping", "location_name": "derpy-perp"],
+            ["title": "Derping", "location_name": "derpy-perp"],
+            ["title": "Derping", "location_name": "derpy-perp"],
+            ["title": "Derping", "location_name": "derpy-perp"],
+            ["title": "Derping", "location_name": "derpy-perp"],
+            ["title": "Derping", "location_name": "derpy-perp"],
+            ["title": "Derping", "location_name": "derpy-perp"],
+            ["title": "Fake Data", "location_name": "Insert location here"]
+        ]
         return NSArray(array: fakeArray)
         
+        /*
         let resultArray: NSArray? = userEventsQueryResults["created"] as NSArray?
         if (resultArray == nil) {
             return NSArray()
@@ -91,6 +103,7 @@ class SearchEventsModel
         else {
             return resultArray!
         }
+        */
     }
     
     func getAttendingEvents() -> NSArray {

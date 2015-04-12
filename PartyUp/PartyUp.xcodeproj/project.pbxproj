@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E0FA6221AD9864300E59BE3 /* PUDynamicTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0FA6211AD9864300E59BE3 /* PUDynamicTableView.swift */; };
 		7E12883D1ABF3E2400922622 /* PartyUp_arrow_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E12883C1ABF3E2400922622 /* PartyUp_arrow_placeholder.png */; };
 		7E12FFDF1AD750610066D0DC /* PartyUpTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E12FFDE1AD750610066D0DC /* PartyUpTableCell.xib */; };
 		7E12FFE11AD764890066D0DC /* PartyUpTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E12FFE01AD764890066D0DC /* PartyUpTableCell.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7E0FA6211AD9864300E59BE3 /* PUDynamicTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PUDynamicTableView.swift; sourceTree = "<group>"; };
 		7E12883C1ABF3E2400922622 /* PartyUp_arrow_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PartyUp_arrow_placeholder.png; sourceTree = "<group>"; };
 		7E12FFDE1AD750610066D0DC /* PartyUpTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PartyUpTableCell.xib; sourceTree = "<group>"; };
 		7E12FFE01AD764890066D0DC /* PartyUpTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyUpTableCell.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				8BB153EF1AD32A7600B0371B /* KeyboardViewController.swift */,
 				7EDD4ED81ABE727C00CEECD0 /* Main.storyboard */,
 				7EDD4EDB1ABE727C00CEECD0 /* Images.xcassets */,
+				7E0FA6211AD9864300E59BE3 /* PUDynamicTableView.swift */,
 				7E12FFDE1AD750610066D0DC /* PartyUpTableCell.xib */,
 				7E12FFE01AD764890066D0DC /* PartyUpTableCell.swift */,
 				7EDD4EDD1ABE727C00CEECD0 /* LaunchScreen.xib */,
@@ -300,6 +303,7 @@
 				8BB153F01AD32A7600B0371B /* KeyboardViewController.swift in Sources */,
 				7EA0DD021ACE25E900FC3EC1 /* HomeGroupsViewController.swift in Sources */,
 				7EEA89D51AD4311000EA9985 /* CreateEvent1ViewController.swift in Sources */,
+				7E0FA6221AD9864300E59BE3 /* PUDynamicTableView.swift in Sources */,
 				7E12FFE11AD764890066D0DC /* PartyUpTableCell.swift in Sources */,
 				8BB153F21AD382B300B0371B /* CreateEventModel.swift in Sources */,
 				7EDD4ED71ABE727C00CEECD0 /* PartyUpViewController.swift in Sources */,

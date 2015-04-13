@@ -8,6 +8,12 @@ General
  - Fix textShouldReturn
  - Buttons in names in the search bar
 
+Globals / DataManager
+---------------------
+- Actually specified data extraction and formatting methods in DataManager
+- Change getEventAttendees in DataManager to actually get attendees instead of invitees
+- Change getEventGroup in DataManager to actually get the group the user is going to the event with
+
 Homepage
 --------
  - Find better way homepage not perform queries on startup if not logged in -> go straight to login
@@ -17,8 +23,8 @@ Groups
 
 Events (General)
 ----------------
- - Actually write data extraction methods in SearchEventsModel
  - Change tab icons and labels
+ - Write some tests...
 
 Event Tables
 ------------
@@ -38,7 +44,9 @@ Find Events
 
 Event Info
 ----------
- - Fully flesh out views
+ - Improve attendee table aesthetics
+ - Remove huge vertical space under attendee table
+ - Display whether the event is public or private and invited list if private?
 
 Current Event
 -------------
@@ -59,6 +67,8 @@ Register
 
 Backend (Not us!)
 -----------------
+ - Events: Send us back a list of people attending the event as well (and change corresponding model code)
+ - Events: Also send back the group the user is going to the event with
 
 
 NOTES

@@ -110,17 +110,28 @@ class SearchEventsModel
         
         // TODO: Delete this, fake data
         var fakeArray: [NSDictionary] = [
-            ["title": "Fake Event", "location_name": "I don't know"],
-            ["title": "Look, Another Event!", "location_name": "Still don't."],
-            ["title": "GAAAGH!", "location_name": "URGH"],
-            ["title": "Derping", "location_name": "derpy-perp"],
-            ["title": "Derping", "location_name": "derpy-perp"],
-            ["title": "Derping", "location_name": "derpy-perp"],
-            ["title": "Derping", "location_name": "derpy-perp"],
-            ["title": "Derping", "location_name": "derpy-perp"],
-            ["title": "Derping", "location_name": "derpy-perp"],
-            ["title": "Derping", "location_name": "derpy-perp"],
-            ["title": "Fake Data", "location_name": "Insert location here"]
+            ["title": "Fake Event", "location_name": "I don't know", "time": "2015-04-12 09:00:00",
+                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": []],
+            ["title": "Look, Another Event!", "location_name": "Still don't.", "time": "2015-04-12 09:00:00",
+                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": []],
+            ["title": "GAAAGH!", "location_name": "URGH", "time": "2015-04-12 09:00:00",
+                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": []],
+            ["title": "Derping", "location_name": "derpy-perp", "time": "2015-04-12 09:00:00",
+                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": []],
+            ["title": "Derping", "location_name": "derpy-perp", "time": "2015-04-12 09:00:00",
+                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": []],
+            ["title": "Derping", "location_name": "derpy-perp", "time": "2015-04-12 09:00:00",
+                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": []],
+            ["title": "Derping", "location_name": "derpy-perp", "time": "2015-04-12 09:00:00",
+                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": []],
+            ["title": "Derping", "location_name": "derpy-perp", "time": "2015-04-12 09:00:00",
+                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": []],
+            ["title": "Derping", "location_name": "derpy-perp", "time": "2015-04-12 09:00:00",
+                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": []],
+            ["title": "Derping", "location_name": "derpy-perp", "time": "2015-04-12 09:00:00",
+                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": []],
+            ["title": "Fake Data", "location_name": "Insert location here", "time": "2015-04-12 09:00:00",
+                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": []]
         ]
         return NSArray(array: fakeArray)
         
@@ -139,10 +150,25 @@ class SearchEventsModel
         
         // TODO: Delete this, fake data
         var fakeArray: [NSDictionary] = [
-            ["title": "Fake Event", "location_name": "I don't know"],
-            ["title": "Look, Another Event!", "location_name": "Still don't."],
-            ["title": "GAAAGH!", "location_name": "URGH"],
-            ["title": "Fake Data", "location_name": "Insert location here"]
+            ["title": "Fake Event", "location_name": "I don't know", "time": "2015-04-12 09:00:00",
+                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": []],
+            ["title": "Look, Another Event!", "location_name": "Still don't.", "time": "2015-04-12 09:00:00",
+                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": []],
+            ["title": "GAAAGH!", "location_name": "URGH", "time": "2015-04-12 09:00:00",
+                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": []],
+            ["title": "Fake Data", "location_name": "Insert location here", "time": "2015-04-12 09:00:00",
+                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list":
+                [
+                    ["username": "username", "first_name": "First", "last_name": "Last", "id": 2],
+                    ["username": "username", "first_name": "First", "last_name": "Last", "id": 2],
+                    ["username": "username", "first_name": "First", "last_name": "Last", "id": 2],
+                    ["username": "username", "first_name": "First", "last_name": "Last", "id": 2],
+                    ["username": "username", "first_name": "First", "last_name": "Last", "id": 2],
+                    ["username": "username", "first_name": "First", "last_name": "Last", "id": 2],
+                    ["username": "username", "first_name": "First", "last_name": "Last", "id": 2],
+                    ["username": "username", "first_name": "First", "last_name": "Last", "id": 2]
+                ]
+            ]
         ]
         return NSArray(array: fakeArray)
         
@@ -161,54 +187,4 @@ class SearchEventsModel
         return findEventsQueryResults
     }
     
-    
-   /*--------------------------------------------*
-    * Data extraction methods
-    *--------------------------------------------*/
-    
-    class func getEventTitle(event: NSDictionary) -> NSString {
-        return event["title"] as NSString
-    }
-    
-    class func getEventLocationName(event: NSDictionary) -> NSString {
-        return event["location_name"] as NSString
-    }
-    
-    
-    // TODO: ACTUALLY WRITE THESE METHODS!!!
-    class func getEventDayText(event: NSDictionary) -> NSString {
-        return "Fri"
-    }
-    
-    class func getEventDayNumber(event: NSDictionary) -> NSString {
-        return "00"
-    }
 }
-
-/*
-Returns:
-{
-accepted: bool
-results:
-[
-description
-price
-location_name
-title
-admin {
-username
-first_name
-last_name
-id
-}
-age_restrictions
-invite_list
-[
-<Users - same as admin>
-]
-time: "YYYY-MM-DD hh:mm:ss+<timezone?>"
-date_created
-public: bool
-]
-}
-*/

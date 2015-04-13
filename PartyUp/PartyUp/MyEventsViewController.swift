@@ -120,8 +120,6 @@ class MyEventsViewController: PartyUpViewController, UITableViewDelegate, UITabl
             placeholderLabel.hidden = true
         }
     }
-    
-    
    
     
    /*--------------------------------------------*
@@ -161,17 +159,17 @@ class MyEventsViewController: PartyUpViewController, UITableViewDelegate, UITabl
             event = searchEventsModel.getInvitedEvents()[indexPath.row] as NSDictionary
         }
         
-        var dayText: NSString = SearchEventsModel.getEventDayText(event)
-        var dayNumber: NSString = SearchEventsModel.getEventDayNumber(event)
-        var mainText: NSString = SearchEventsModel.getEventTitle(event)
+        var dayText: NSString = DataManager.getEventDayText(event)
+        var dayNumber: NSString = DataManager.getEventDayNumber(event)
+        var mainText: NSString = DataManager.getEventTitle(event)
         
         var subText: NSString = ""
         if (tableView == createdEventsTableView || tableView == invitedEventsTableView) {
-            subText = SearchEventsModel.getEventLocationName(event)
+            subText = DataManager.getEventLocationName(event)
         }
         // TODO: Should actually be group you are going with
         else if (tableView == attendingEventsTableView) {
-            subText = SearchEventsModel.getEventLocationName(event)
+            subText = DataManager.getEventLocationName(event)
         }
         
         cell.loadCell(dayText: dayText, dayNumber: dayNumber, mainText: mainText, subText: subText)
@@ -183,7 +181,7 @@ class MyEventsViewController: PartyUpViewController, UITableViewDelegate, UITabl
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell: PartyUpTableCell = tableView.cellForRowAtIndexPath(indexPath) as PartyUpTableCell
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let eventName: NSString = SearchEventsModel.getEventTitle(cell.getCellData())
+        let eventName: NSString = DataManager.getEventTitle(cell.getCellData())
         PULog("Event Cell Pressed.\nCell Row: \(indexPath.row), Event Name: \(eventName)")
         PULog("Transitioning to Event Info screen")
         selectedCellEventData = cell.getCellData()

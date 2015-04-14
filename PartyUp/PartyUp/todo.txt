@@ -3,6 +3,7 @@ TODO
 
 General
 -------
+ - Change PartyUpViewController to a delegate -> all VCs implement UIViewController and PartyUp
  - Have loading wheel appear when logging in, registering, and backend things that may require waiting
  - Improve PULog method (code location maybe, perhaps have some debugging options in globals?)
  - Fix textShouldReturn
@@ -23,6 +24,7 @@ Groups
 
 Events (General)
 ----------------
+ - Figure out when to actually re-query for data
  - Change tab icons and labels
  - Write some tests...
 
@@ -38,9 +40,7 @@ My Events
 
 Find Events
 -----------
- - Implement Scroll View
- - Implement tables
- - Implement searching
+ - Implement table and searching
 
 Event Info
 ----------

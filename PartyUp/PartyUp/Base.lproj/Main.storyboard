@@ -774,17 +774,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Yo, this is the Find Events Page!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x11-Al-INN">
-                                <rect key="frame" x="37" y="241" width="246" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="pEw-bW-g4Y">
+                                <rect key="frame" x="35" y="0.0" width="250" height="455"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="findEventCellPrototype" rowHeight="60" id="o90-c0-aUe" customClass="PartyUpTableCell" customModule="PartyUp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="250" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o90-c0-aUe" id="bk3-f4-T7a">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="aDp-fu-7fs" id="vsD-ht-Mpm"/>
+                                    <outlet property="delegate" destination="aDp-fu-7fs" id="5dZ-Vb-X3r"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="search" id="pha-Ke-Hbt"/>
                     <connections>
+                        <outlet property="findEventsTableView" destination="pEw-bW-g4Y" id="kiF-ai-KPK"/>
                         <segue destination="kxU-B7-LE2" kind="presentation" identifier="findEventsToEventInfo" id="zaS-UW-vp0"/>
                     </connections>
                 </viewController>
@@ -1095,6 +1107,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ijx-Cl-ZbZ"/>
-        <segue reference="jc2-Pg-Y0b"/>
+        <segue reference="zaS-UW-vp0"/>
     </inferredMetricsTieBreakers>
 </document>

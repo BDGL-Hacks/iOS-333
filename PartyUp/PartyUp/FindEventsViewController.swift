@@ -49,12 +49,6 @@ class FindEventsViewController: PartyUpViewController, UISearchResultsUpdating
             return controller
         })()
         
-        /*
-        searchBarController.searchResultsUpdater = self
-        searchBarController.dimsBackgroundDuringPresentation = false
-        searchBarController.searchBar.sizeToFit()
-        */
-        
         findEventsTableView.tableHeaderView = searchBarController.searchBar
         findEventsTableView.reloadData()
     }

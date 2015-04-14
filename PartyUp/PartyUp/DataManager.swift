@@ -46,7 +46,11 @@ class DataManager {
     }
     
     class func getEventDescription(event: NSDictionary) -> NSString {
-        return event["description"] as NSString
+        if let nullTest = event["description"] as? NSString {
+            return event["description"] as NSString
+        } else {
+            return "--"
+        }
     }
     
     class func getEventLocationName(event: NSDictionary) -> NSString {

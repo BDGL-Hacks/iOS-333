@@ -82,12 +82,12 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
             groupLabel.text = "Going solo..."
         }
         if (price != nil) {
-            priceLabel.text = "This event costs $\(price) to attend."
+            priceLabel.text = "This event costs $\(price!) to attend."
         } else {
             priceLabel.text = "This event is free."
         }
         if (ageRestriction != nil) {
-            ageRestrictionsLabel.text = "You must be at \(ageRestriction) or older to attend."
+            ageRestrictionsLabel.text = "You must be at \(ageRestriction!) or older to attend."
         } else {
             ageRestrictionsLabel.text = "This event is open for all ages"
         }

@@ -301,17 +301,8 @@
                                     <segue destination="SLw-45-19W" kind="show" identifier="eventCreationTwoToHome" id="ijx-Cl-ZbZ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWS-g7-k6f">
-                                <rect key="frame" x="16" y="86" width="48" height="30"/>
-                                <state key="normal" title="Search">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="90y-nF-zQ8" kind="presentation" identifier="createTwoToAddFriends" id="4fK-gC-rRW"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jQO-Io-zuG">
-                                <rect key="frame" x="0.0" y="124" width="320" height="444"/>
+                                <rect key="frame" x="0.0" y="163" width="320" height="405"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="UserCell" id="IRA-Ab-PCU" customClass="AddFriendsTableViewCell" customModule="PartyUp" customModuleProvider="target">
@@ -339,27 +330,45 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Added Friends" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jJW-EX-uhk">
+                                <rect key="frame" x="16" y="134" width="113" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWS-g7-k6f">
+                                <rect key="frame" x="16" y="76" width="48" height="30"/>
+                                <state key="normal" title="Search">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="90y-nF-zQ8" kind="presentation" identifier="createTwoToAddFriends" id="4fK-gC-rRW"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="QaP-ew-5wF" firstAttribute="leading" secondItem="DWS-g7-k6f" secondAttribute="leading" id="07e-0M-D4l"/>
                             <constraint firstItem="jQO-Io-zuG" firstAttribute="bottom" secondItem="rvb-dp-4N4" secondAttribute="top" id="2ro-eG-rxu"/>
-                            <constraint firstItem="jQO-Io-zuG" firstAttribute="top" secondItem="DWS-g7-k6f" secondAttribute="bottom" constant="8" symbolic="YES" id="GEB-Zw-dZz"/>
+                            <constraint firstItem="DWS-g7-k6f" firstAttribute="top" secondItem="QaP-ew-5wF" secondAttribute="bottom" constant="26" id="3Mg-Cw-tA8"/>
+                            <constraint firstItem="DWS-g7-k6f" firstAttribute="leading" secondItem="x4c-Gd-OP3" secondAttribute="leadingMargin" id="E7v-sp-lKr"/>
+                            <constraint firstItem="jJW-EX-uhk" firstAttribute="leading" secondItem="x4c-Gd-OP3" secondAttribute="leadingMargin" id="I2X-lz-DPh"/>
+                            <constraint firstItem="jQO-Io-zuG" firstAttribute="top" secondItem="jJW-EX-uhk" secondAttribute="bottom" constant="8" id="OWq-D8-mUA"/>
                             <constraint firstItem="QaP-ew-5wF" firstAttribute="leading" secondItem="x4c-Gd-OP3" secondAttribute="leadingMargin" id="Rko-ok-KnS"/>
+                            <constraint firstItem="jJW-EX-uhk" firstAttribute="top" secondItem="DWS-g7-k6f" secondAttribute="bottom" constant="28" id="WLn-mi-iCf"/>
                             <constraint firstItem="QaP-ew-5wF" firstAttribute="baseline" secondItem="JUR-sK-jEK" secondAttribute="baseline" id="WiY-fK-SdA"/>
                             <constraint firstItem="JUR-sK-jEK" firstAttribute="top" secondItem="Yro-Aj-W5F" secondAttribute="bottom" id="jav-7V-SqR"/>
                             <constraint firstAttribute="trailing" secondItem="jQO-Io-zuG" secondAttribute="trailing" id="qOz-lI-3xv"/>
                             <constraint firstItem="JUR-sK-jEK" firstAttribute="trailing" secondItem="x4c-Gd-OP3" secondAttribute="trailingMargin" id="rBm-Qj-3ze"/>
                             <constraint firstItem="jQO-Io-zuG" firstAttribute="leading" secondItem="x4c-Gd-OP3" secondAttribute="leading" id="vGi-bd-mST"/>
-                            <constraint firstItem="DWS-g7-k6f" firstAttribute="top" secondItem="QaP-ew-5wF" secondAttribute="bottom" constant="36" id="w7i-bh-OW1"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="qpl-BL-y6O" appends="YES" id="1DY-Uw-82d"/>
                         </connections>
                     </view>
                     <connections>
-                        <outlet property="usersTableView" destination="jQO-Io-zuG" id="lpZ-pR-tpw"/>
+                        <outlet property="addedFriendsTableView" destination="jQO-Io-zuG" id="ghT-ze-1UX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="stw-EP-rdz" userLabel="First Responder" sceneMemberID="firstResponder"/>

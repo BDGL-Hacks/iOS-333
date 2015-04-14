@@ -12,15 +12,16 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
 
     var create: CreateEventModel?
     
-    @IBOutlet weak var usersTableView: UITableView!
-    @IBOutlet weak var friendsLabel: UILabel!
+    
+    
+    @IBOutlet weak var addedFriendsTableView: UITableView!
     var addedFriends: NSMutableArray? = NSMutableArray()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        usersTableView.delegate = self
-        usersTableView.dataSource = self
+        addedFriendsTableView.delegate = self
+        addedFriendsTableView.dataSource = self
 
         // Do any additional setup after loading the view.
     }
@@ -28,7 +29,7 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         if (isLoggedIn()) {
-            usersTableView.reloadData()
+            addedFriendsTableView.reloadData()
         }
     }
     
@@ -60,11 +61,11 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
         PULog("Finalize event pressed")
         /* Iterate through friends list and send it to the backend */
         var friendEmails: [NSString] = [NSString]()
-        for var j = 0; j < usersTableView.numberOfSections(); ++j {
-            for var i = 0; i < usersTableView.numberOfRowsInSection(j); ++i {
+        for var j = 0; j < addedFriendsTableView.numberOfSections(); ++j {
+            for var i = 0; i < addedFriendsTableView.numberOfRowsInSection(j); ++i {
                 
                 var indexPath: NSIndexPath = NSIndexPath(forRow: i, inSection: j)
-                var cell = usersTableView.cellForRowAtIndexPath(indexPath) as? AddFriendsTableViewCell
+                var cell = addedFriendsTableView.cellForRowAtIndexPath(indexPath) as? AddFriendsTableViewCell
                 
                 friendEmails.append(cell!.usernameEmail!)
             }
@@ -141,18 +142,18 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = usersTableView.dequeueReusableCellWithIdentifier("UserCell") as AddFriendsTableViewCell;
+        let cell = tableView.dequeueReusableCellWithIdentifier("UserCell") as AddFriendsTableViewCell;
         
         var user: NSDictionary = NSDictionary()
         user = addedFriends![indexPath.row] as NSDictionary
         
         var firstName: NSString = CreateEventModel.getUserFirstName(user)
         var lastName: NSString = CreateEventModel.getUserLastName(user)
-        var emailAdd: NSString = CreateEventModel.getUserEmail(user)
-        var idNum: NSString =  CreateEventModel.getUserID(user)
+        var usernameEmail: NSString = CreateEventModel.getUserEmail(user)
+        var userID: NSString =  CreateEventModel.getUserID(user)
         
         var fullName = firstName +  " " + lastName
-        cell.loadCell(fullName, firstName: firstName, lastName: lastName, userID: idNum, usernameEmail: emailAdd)
+        cell.loadCell(fullName, firstName: firstName, lastName: lastName, userID: userID, usernameEmail: usernameEmail)
         
         cell.accessoryType = UITableViewCellAccessoryType.None
         return cell
@@ -162,7 +163,7 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
         var friendsToAdd: NSArray = create!.getSelectedUsers()
         addedFriends?.addObjectsFromArray(friendsToAdd)
         create?.setInviteList(addedFriends! as NSArray)
-        usersTableView.reloadData()
+        addedFriendsTableView.reloadData()
     }
     
     // Override to support editing the table view.

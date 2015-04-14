@@ -24,6 +24,8 @@ Groups
 
 Events (General)
 ----------------
+ - Description being null should not break
+ - Fix spaces in POST request method
  - Figure out when to actually re-query for data
  - Change tab icons and labels
  - Write some tests...

@@ -95,8 +95,7 @@ class SearchEventsModel
             ["title": "Fake Data", "location_name": "Insert location here"]*/
         ]
         return NSArray(array: fakeArray)
-*/
-        
+        */
         
         let resultArray: NSArray? = userEventsQueryResults["created"] as NSArray?
         if (resultArray == nil) {

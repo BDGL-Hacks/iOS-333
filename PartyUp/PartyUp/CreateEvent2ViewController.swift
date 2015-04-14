@@ -47,7 +47,6 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
         if segue.identifier == "createTwoToAddFriends" {
             PULog("Preparing for segue")
             let destinationVC = segue.destinationViewController as AddFriendsViewController
@@ -57,7 +56,7 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
         else if segue.identifier == "eventCreationTwoToHome" {
             PULog("Preparing for segue")
             let destinationVC = segue.destinationViewController as HomepageViewController
-            destinationVC.defaultScreenIndex = 1
+            destinationVC.setActiveView(HomepageViewController.NavView.Events)
         }
     }
     

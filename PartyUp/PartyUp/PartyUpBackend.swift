@@ -303,7 +303,7 @@ class PartyUpBackend {
         
         var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
         let username: NSString? = userDefaults.objectForKey("USERNAME") as NSString?
-        let types: NSString = "created invited attending"
+        let types: NSString = "created||invited||attending"
         
         if (username == nil) {
             PULog("Query Failed: User is not logged in")
@@ -439,7 +439,7 @@ class PartyUpBackend {
         
         var requestString: NSMutableString = ""
         for (key, value) in params {
-            for eachValue in value.componentsSeparatedByString(" ") {
+            for eachValue in value.componentsSeparatedByString("||") {
                 requestString.appendString("&\(key)=\(eachValue)")
             }
         }

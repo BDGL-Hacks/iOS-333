@@ -136,6 +136,7 @@
 		7EDD4ED11ABE727C00CEECD0 /* PartyUp */ = {
 			isa = PBXGroup;
 			children = (
+				8B77C2FC1ADA422B00E6E8AE /* AddFriendsViewController.swift */,
 				7EDD4ED41ABE727C00CEECD0 /* AppDelegate.swift */,
 				7E60C3531AD1FBF1001DAA4B /* Globals.swift */,
 				7E3C4CFE1ADB5A2600DD444E /* DataManager.swift */,
@@ -155,10 +156,13 @@
 				8B9140211AC5DB1300205FA6 /* RegisterViewController.swift */,
 				8BB153EF1AD32A7600B0371B /* KeyboardViewController.swift */,
 				7EDD4ED81ABE727C00CEECD0 /* Main.storyboard */,
+				8B77C2F81ADA297E00E6E8AE /* AddFriendsTableViewCell.swift */,
 				7EDD4EDB1ABE727C00CEECD0 /* Images.xcassets */,
 				7E0FA6211AD9864300E59BE3 /* PUDynamicTableView.swift */,
 				7E12FFDE1AD750610066D0DC /* PartyUpTableCell.xib */,
 				7E12FFE01AD764890066D0DC /* PartyUpTableCell.swift */,
+				8B77C2EC1AD987A500E6E8AE /* PartyUpUserCell.swift */,
+				8B77C2ED1AD987A500E6E8AE /* PartyUpUserCell.xib */,
 				7EDD4EDD1ABE727C00CEECD0 /* LaunchScreen.xib */,
 				7EDD4ED21ABE727C00CEECD0 /* Supporting Files */,
 				7EDC76D61AC7C83A00252753 /* todo.txt */,
@@ -281,6 +285,7 @@
 				7EDD4EDC1ABE727C00CEECD0 /* Images.xcassets in Resources */,
 				7EDC76D51AC7C46000252753 /* PartyUp_icon_3x_placeholder.png in Resources */,
 				7EDC76D71AC7C83A00252753 /* todo.txt in Resources */,
+				8B77C2EF1AD987A500E6E8AE /* PartyUpUserCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +303,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B77C2EE1AD987A500E6E8AE /* PartyUpUserCell.swift in Sources */,
 				7E706A171AC78CC500B991F2 /* LoginViewController.swift in Sources */,
 				7E3C4CFF1ADB5A2600DD444E /* DataManager.swift in Sources */,
 				8B9140221AC5DB1300205FA6 /* RegisterViewController.swift in Sources */,
@@ -315,9 +321,11 @@
 				8BB153F21AD382B300B0371B /* CreateEventModel.swift in Sources */,
 				7EDD4ED71ABE727C00CEECD0 /* PartyUpViewController.swift in Sources */,
 				7EDD4ED51ABE727C00CEECD0 /* AppDelegate.swift in Sources */,
+				8B77C2FD1ADA422B00E6E8AE /* AddFriendsViewController.swift in Sources */,
 				7E7ED50D1AD463CE000C2775 /* SearchEventsModel.swift in Sources */,
 				7EFBCB391ADA251B0046E250 /* EventInfoViewController.swift in Sources */,
 				8BB153F41AD38A5200B0371B /* CreateEvent2ViewController.swift in Sources */,
+				8B77C2F91ADA297E00E6E8AE /* AddFriendsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

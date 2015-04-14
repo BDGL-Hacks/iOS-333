@@ -11,6 +11,18 @@ import UIKit
 class HomepageViewController: PartyUpViewController
 {
    /*--------------------------------------------*
+    * Instance variables and Declarations
+    *--------------------------------------------*/
+    
+    var navView: NavView = NavView.Groups
+
+    enum NavView: Int {
+        case Groups = 0
+        case Events = 1
+    }
+
+
+   /*--------------------------------------------*
     * UI Components
     *--------------------------------------------*/
     
@@ -21,7 +33,6 @@ class HomepageViewController: PartyUpViewController
     @IBOutlet weak var logoutButton: UIBarButtonItem!
     @IBOutlet weak var navSegmentedControl: UISegmentedControl!
     
-    var defaultScreenIndex = 0
     
    /*--------------------------------------------*
     * Computed Properties
@@ -81,11 +92,18 @@ class HomepageViewController: PartyUpViewController
         PULog("Navbar segment control changed")
         if (activeView == groupsChildView) {
             PULog("Displaying Groups child view")
+            navView = NavView.Groups
         } else {
             PULog("Displaying Events child view")
+            navView = NavView.Events
         }
         activeView.hidden = false
         inactiveView.hidden = true
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        navSegmentedControl.selectedSegmentIndex = navView.rawValue
+        navSegmentedControlChanged(navSegmentedControl)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -112,12 +130,17 @@ class HomepageViewController: PartyUpViewController
         else {
             NSLogPageSize()
             PULog("User is logged in. Displaying homepage.")
-            /* 
-            activeView.hidden = false
-            inactiveView.hidden = true
-            */
-            navSegmentedControl.selectedSegmentIndex = defaultScreenIndex
         }
     }
+
+
+   /*--------------------------------------------*
+    * View helper methods
+    *--------------------------------------------*/
     
+    /* Sets the active view to either Groups or Events */
+    func setActiveView(newActiveView: NavView) {
+        navView = newActiveView
+    }
+
 }

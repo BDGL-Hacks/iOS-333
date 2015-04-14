@@ -11,13 +11,13 @@ General
 
 Globals / DataManager
 ---------------------
- - Actually specified data extraction and formatting methods in DataManager
+ - Actually implement specified data extraction and formatting methods in DataManager
  - Change getEventAttendees in DataManager to actually get attendees instead of invitees
  - Change getEventGroup in DataManager to actually get the group the user is going to the event with
 
 Homepage
 --------
- ! Properly implement way to set active view for homepage (and change related code at end of create event)
+ ! TEST FIX: Properly implemented way to set active view for homepage (and change related code at end of create event)
  - Find better way homepage not perform queries on startup if not logged in -> go straight to login
 
 Groups (General)
@@ -29,7 +29,7 @@ Groups Main Page
 
 Group Chat
 ----------
- ! Install JSQViewController
+ ! Get JSQViewController working
 
 Create Groups
 -------------
@@ -37,8 +37,8 @@ Create Groups
 
 Events (General)
 ----------------
- ! Fix spaces being converted to multiple attributes in POST request method
- - Figure out when to actually re-query for data
+ ! TEST FIX: for spaces being converted to multiple attributes in POST request method
+ - Figure out why / if event pages automatically re-query for data
  - Change tab icons and labels
  - Write some tests...
 
@@ -54,7 +54,7 @@ My Events
 
 Find Events
 -----------
- ! Fix searching (have it actually display things)
+ ! TEST FIX: for searching (have it actually display things)
 
 Event Info
 ----------

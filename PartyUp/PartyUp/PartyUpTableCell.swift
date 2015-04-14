@@ -18,17 +18,38 @@ class PartyUpTableCell: UITableViewCell {
     @IBOutlet weak var dayNumberLabel: UILabel!
     @IBOutlet weak var mainTextLabel: UILabel!
     @IBOutlet weak var subTextLabel: UILabel!
+   
+    
+   /*--------------------------------------------*
+    * Instance variables
+    *--------------------------------------------*/
+    
+    var data: NSDictionary = NSDictionary()
     
     
    /*--------------------------------------------*
     * Custom Methods
     *--------------------------------------------*/
     
+    /* Set the information to be displayed on the cell:  *
+     * dayText should be a three-letter day (e.g. 'Fri') *
+     * dayNumber should be a two digit day (e.g. '01')   *
+     * mainText and subText is the text to be displayed. */
     func loadCell(#dayText: NSString, dayNumber: NSString, mainText: NSString, subText: NSString) {
         dayTextLabel.text = dayText
         dayNumberLabel.text = dayNumber
         mainTextLabel.text = mainText
         subTextLabel.text = subText
+    }
+    
+    /* Set the NSDictionary object associated with the cell */
+    func setCellData(data: NSDictionary) {
+        self.data = data
+    }
+    
+    /* Retrieve the NSDictionary object associated with the cell */
+    func getCellData() -> NSDictionary {
+        return data
     }
     
     

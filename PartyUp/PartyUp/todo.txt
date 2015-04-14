@@ -3,43 +3,58 @@ TODO
 
 General
 -------
+ - Change PartyUpViewController to a delegate -> all VCs implement UIViewController and PartyUp
  - Have loading wheel appear when logging in, registering, and backend things that may require waiting
  - Improve PULog method (code location maybe, perhaps have some debugging options in globals?)
  - Fix textShouldReturn
  - Buttons in names in the search bar
 
+Globals / DataManager
+---------------------
+- Actually specified data extraction and formatting methods in DataManager
+- Change getEventAttendees in DataManager to actually get attendees instead of invitees
+- Change getEventGroup in DataManager to actually get the group the user is going to the event with
+
 Homepage
 --------
- - Have homepage not perform queries on startup if not logged in -> go straight to login
+ - Find better way homepage not perform queries on startup if not logged in -> go straight to login
 
 Groups
 ------
 
 Events (General)
 ----------------
- - Actually write data extraction methods in SearchEventsModel
+ - Description being null should not break
+ - Fix spaces in POST request method
+ - Figure out when to actually re-query for data
  - Change tab icons and labels
- - Test backend query code
+ - Write some tests...
+
+Event Tables
+------------
+ - Have table cell font decrease or show (...) if text is too long
+ - Improve table and custom cell aesthetics
 
 My Events
 ---------
- - Have Table look nicer and autoresize with number of cells
- - Have cells segue into Event Info page
+ - Put '--' or some other placeholder text when there are no events in a given table.
+ - Have attending event table cell subtext display group instead of location and time
 
 Find Events
 -----------
- -
+ - Implement table and searching
+
+Event Info
+----------
+ - Improve attendee table aesthetics
+ - Remove huge vertical space under attendee table
+ - Display whether the event is public or private and invited list if private?
 
 Current Event
 -------------
 
 Create Event
 ------------
- - Are we sure the POST URL is /users/event/create and not /event/create?
- - Commonly added users stored locally in NSUserDefaults
-
-Event Info
-----------
 
 Login
 -----
@@ -54,7 +69,8 @@ Register
 
 Backend (Not us!)
 -----------------
- - For users/get/, return a dictionary specifying which results correspond to which type
+ - Events: Send us back a list of people attending the event as well (and change corresponding model code)
+ - Events: Also send back the group the user is going to the event with
 
 
 NOTES

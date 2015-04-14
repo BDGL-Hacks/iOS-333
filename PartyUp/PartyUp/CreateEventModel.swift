@@ -179,7 +179,7 @@ class CreateEventModel {
     
     
     class func getUserID(user: NSDictionary) -> NSString {
-        var userID = user["id"]
+        var userID: AnyObject? = user["id"]
         return "\(userID)"
         
         // return user["id"] as NSString

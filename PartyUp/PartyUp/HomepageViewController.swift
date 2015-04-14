@@ -21,6 +21,7 @@ class HomepageViewController: PartyUpViewController
     @IBOutlet weak var logoutButton: UIBarButtonItem!
     @IBOutlet weak var navSegmentedControl: UISegmentedControl!
     
+    var defaultScreenIndex = 0
     
    /*--------------------------------------------*
     * Computed Properties
@@ -111,8 +112,11 @@ class HomepageViewController: PartyUpViewController
         else {
             NSLogPageSize()
             PULog("User is logged in. Displaying homepage.")
+            /* 
             activeView.hidden = false
             inactiveView.hidden = true
+            */
+            navSegmentedControl.selectedSegmentIndex = defaultScreenIndex
         }
     }
     

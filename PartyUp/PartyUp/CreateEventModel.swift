@@ -152,11 +152,11 @@ class CreateEventModel {
         var usersToAdd: NSMutableArray = NSMutableArray()
         for selected in selectedUsers {
             let selectedDict = selected as NSDictionary
-            var selectedID: NSString = "9" as NSString // CreateEventModel.getUserIDStr(selectedDict)
+            var selectedID: NSString = CreateEventModel.getUserID(selectedDict)
             var isInAddedList: Bool = false
             for invitee in inviteList {
                 let inviteeDict = invitee as NSDictionary
-                var inviteeID: NSString = "11" as NSString // CreateEventModel.getUserIDStr(inviteeDict)
+                var inviteeID: NSString = CreateEventModel.getUserID(inviteeDict)
                 if selectedID == inviteeID {
                     isInAddedList = true
                     break

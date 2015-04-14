@@ -12,8 +12,6 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
 
     var create: CreateEventModel?
     
-    
-    
     @IBOutlet weak var addedFriendsTableView: UITableView!
     var addedFriends: NSMutableArray? = NSMutableArray()
     
@@ -51,6 +49,11 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
             let destinationVC = segue.destinationViewController as AddFriendsViewController
             destinationVC.create = self.create
             destinationVC.previousViewController = self
+        }
+        else if segue.identifier == "eventCreationTwoToHome" {
+            PULog("Preparing for segue")
+            let destinationVC = segue.destinationViewController as HomepageViewController
+            destinationVC.defaultScreenIndex = 1
         }
     }
     

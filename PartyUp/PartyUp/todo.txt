@@ -17,7 +17,6 @@ Globals / DataManager
 
 Homepage
 --------
- ! TEST FIX: Properly implemented way to set active view for homepage (and change related code at end of create event)
  - Find better way homepage not perform queries on startup if not logged in -> go straight to login
 
 Groups (General)
@@ -37,7 +36,6 @@ Create Groups
 
 Events (General)
 ----------------
- ! TEST FIX: for spaces being converted to multiple attributes in POST request method
  - Figure out why / if event pages automatically re-query for data
  - Change tab icons and labels
  - Write some tests...
@@ -54,7 +52,7 @@ My Events
 
 Find Events
 -----------
- ! TEST FIX: for searching (have it actually display things)
+ - Have live searching query the database for updated data each time
 
 Event Info
 ----------

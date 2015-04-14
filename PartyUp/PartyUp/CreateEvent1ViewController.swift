@@ -15,6 +15,8 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
     //private var pageViewController: UIPageViewController?
     //private let numPages = 3
     
+    
+    @IBOutlet weak var publicSwitch: UISwitch!
     let create = CreateEventModel()
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var eventTitleTextField: UITextField!
@@ -89,7 +91,6 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
     
     /* Send EventCreation object to next stage of event creation */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
         if segue.identifier == "eventCreationOnetoTwo" {
             let destinationVC = segue.destinationViewController as CreateEvent2ViewController
             destinationVC.create = self.create
@@ -130,12 +131,17 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
             return
         }
         
+        var isPublic = "False"
+        if publicSwitch.on {
+            isPublic = "True"
+        }
+        
         // Retrieve all necessary fields
         var eventTitle: NSString = eventTitleTextField.text
         var eventLocation: NSString = locationTextField.text
         var eventDateTime: NSString = backendDate!
         
-        create.firstPage(eventTitle, location: eventLocation, dateTime: eventDateTime)
+        create.firstPage(eventTitle, location: eventLocation, dateTime: eventDateTime, eventPublic: isPublic)
     }
     
     

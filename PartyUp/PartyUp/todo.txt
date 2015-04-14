@@ -55,6 +55,12 @@ Current Event
 
 Create Event
 ------------
+ - investigate popover presentation
+ - put code from add friends button inside redo search
+ - get rid of David in search (for historical reasons) X
+ - smaller date picker
+ - reload query results when user scrolls
+ - don't display users that are already added
 
 Login
 -----

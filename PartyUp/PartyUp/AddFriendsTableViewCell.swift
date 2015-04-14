@@ -10,6 +10,7 @@ import UIKit
 
 class AddFriendsTableViewCell: UITableViewCell {
 
+    
     @IBOutlet weak var nameLabel: UILabel!
     var firstName: NSString?
     var lastName: NSString?
@@ -17,12 +18,12 @@ class AddFriendsTableViewCell: UITableViewCell {
     var usernameEmail: NSString?
     
     
-    func loadCell(name: NSString, first: NSString?, last: NSString, id: NSString, email: NSString) {
-        nameLabel.text = name
-        firstName = first
-        lastName = last
-        userID = id
-        usernameEmail = email
+    func loadCell(fullName: NSString, firstName: NSString?, lastName: NSString, userID: NSString, usernameEmail: NSString) {
+        self.nameLabel.text = fullName
+        self.firstName = firstName
+        self.lastName = lastName
+        self.userID = userID
+        self.usernameEmail = usernameEmail
     }
     
     override func awakeFromNib() {

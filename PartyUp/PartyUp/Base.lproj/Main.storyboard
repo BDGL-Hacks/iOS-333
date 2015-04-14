@@ -52,12 +52,12 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mQ5-tp-xsP">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mQ5-tp-xsP">
                                         <rect key="frame" x="36" y="456" width="288" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OLT-Cg-f0o">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OLT-Cg-f0o">
                                         <rect key="frame" x="36" y="130" width="288" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -84,8 +84,8 @@
                                             <action selector="dismissModal:" destination="iDH-9r-U2n" eventType="touchUpInside" id="LdW-Fa-89k"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B63-4H-Skx">
-                                        <rect key="frame" x="36" y="101" width="42" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B63-4H-Skx">
+                                        <rect key="frame" x="36" y="101" width="33" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -227,6 +227,9 @@
                                 <state key="normal" title="X">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="dismissView:" destination="90y-nF-zQ8" eventType="touchUpInside" id="eBa-Wf-O6V"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Friends Search Query" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YT4-oh-QmW">
                                 <rect key="frame" x="0.0" y="66" width="320" height="30"/>
@@ -254,8 +257,8 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="queryTableView" destination="7lY-Hm-DhW" id="AYq-Ld-ksX"/>
                         <outlet property="searchTextField" destination="YT4-oh-QmW" id="9Y5-n0-JDc"/>
-                        <outlet property="tableView" destination="7lY-Hm-DhW" id="128-zR-HD9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NLs-TI-CRb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -330,6 +333,9 @@
                                                 <constraint firstAttribute="trailing" secondItem="jl4-OE-Q86" secondAttribute="trailing" id="bUm-me-gko"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="nameLabel" destination="jl4-OE-Q86" id="34M-nD-2XG"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

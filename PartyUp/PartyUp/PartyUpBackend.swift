@@ -130,7 +130,7 @@ class PartyUpBackend {
         let username: NSString = userDefaults.objectForKey("USERNAME") as NSString
         
         var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/events/create"
-        var postParams: [String: String] = ["title": title, "public": isPublic, "age_restrictions": ageRestrictions, "price": price, "location": location, "dateTime": dateTime]
+        var postParams: [String: String] = ["title": title, "public": isPublic, "age_restrictions": ageRestrictions, "price": price, "location_name": location, "time": dateTime]
         
         var stringOfFriendEmails: String = ""
         var i: Int = 0
@@ -484,6 +484,8 @@ class PartyUpBackend {
             else {
                 PULog("Bad Response Status Code. Response data is invalid.")
                 PULog("End POST Request Method\n")
+                var responseData: NSString = NSString(data: urlData!, encoding: NSUTF8StringEncoding)!
+                PULog("Response data \(urlData)")
                 return nil
             }
         }

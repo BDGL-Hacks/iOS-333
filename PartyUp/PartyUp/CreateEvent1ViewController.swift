@@ -52,8 +52,9 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
         dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
         var dateStr = dateFormatter.stringFromDate(myDatePicker.date)
         selectedDate.text = dateStr
-        dateFormatter.dateFormat = "YYYYMMDDhhmm"
+        dateFormatter.dateFormat = "YYYYMMddhhmm"
         var backendStr = dateFormatter.stringFromDate(myDatePicker.date)
+        PULog(backendStr)
         backendDate = backendStr
         
     }
@@ -88,8 +89,11 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
     
     /* Send EventCreation object to next stage of event creation */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let destinationVC = segue.destinationViewController as CreateEvent2ViewController
-        destinationVC.create = self.create
+        
+        if segue.identifier == "eventCreationOnetoTwo" {
+            let destinationVC = segue.destinationViewController as CreateEvent2ViewController
+            destinationVC.create = self.create
+        }
     }
     
     

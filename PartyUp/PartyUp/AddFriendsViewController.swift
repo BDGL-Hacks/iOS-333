@@ -10,8 +10,9 @@ import UIKit
 
 class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
 
-    @IBOutlet weak var tableView: UITableView!
     
+    
+    @IBOutlet weak var queryTableView: UITableView!
     var previousViewController: CreateEvent2ViewController?
     var queryResults: NSArray? = NSArray()
     var create: CreateEventModel?
@@ -28,12 +29,12 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
         super.viewDidLoad()
         
         // set delegates
-        tableView.delegate = self
-        tableView.dataSource = self
+        queryTableView.delegate = self
+        queryTableView.dataSource = self
         
-        self.tableView.rowHeight = 44
+        self.queryTableView.rowHeight = 44
         
-        tableView.allowsMultipleSelection = true
+        queryTableView.allowsMultipleSelection = true
         refresh()
         
         // Uncomment the following line to preserve selection between presentations
@@ -44,16 +45,16 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
     }
     
     
-    // refresh the table by querying the backend
+    /* Make a query to the backend and reload the table */
     func refresh() {
         if (searchText != nil) {
             create?.update(CreateEventModel.QueryType.Search, search: searchText)
             queryResults = create?.getSearchUsers()
-            tableView.reloadData()
+            queryTableView.reloadData()
         }
     }
     
-    //  text box property
+    /* Text field property */
     @IBOutlet weak var searchTextField: UITextField! {
         didSet {
             searchTextField.delegate = self
@@ -61,6 +62,10 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
         }
     }
     
+    
+    // MARK: Keyboard functions
+    
+    /* Dismisses keyboard when user presses "Return" button */
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if textField == searchTextField {
             textField.resignFirstResponder()
@@ -69,36 +74,34 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
         return true
     }
     
-    // dismiss keyboard if view was tapped
+    /* Dismiss keyboard if view was tapped */
     @IBAction func viewTapped(sender: AnyObject) {
         searchTextField.resignFirstResponder()
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @IBAction func dismissView(sender: UIButton) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     // MARK: - Table view data source
     
-    
+    /* Returns the number of sections in tableView */
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
         return 1
     }
     
+    /* Returns the number of rows in section */
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
         return queryResults!.count
     }
     
-    // populate the table using the userList array
+    /* Populate the table using the queryResults array */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         
         let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell") as AddFriendsTableViewCell
-        
         
         // Configure the cell //
         
@@ -108,40 +111,50 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
         // get values from model to display in the cell
         var firstName: NSString = CreateEventModel.getUserFirstName(user)
         var lastName: NSString = CreateEventModel.getUserLastName(user)
-        var emailAddress: NSString = CreateEventModel.getUserEmail(user)
-        var idNum: NSString = "10" as NSString // CreateEventModel.getUserIDNum(user)
+        var usernameEmail: NSString = CreateEventModel.getUserEmail(user)
+        var userID: NSString = CreateEventModel.getUserID(user)
         
         // concatenate the name for cell display
         var fullName = firstName +  " " +  lastName
-        cell.loadCell(fullName, first: firstName, last: lastName, id: idNum, email: emailAddress)
         
-        // set the checkmark
+        cell.loadCell(fullName, firstName: firstName, lastName: lastName, userID: userID, usernameEmail: usernameEmail)
+        
+        // set the checkmark accessory (default is no checkmark)
         cell.accessoryType = UITableViewCellAccessoryType.None
         
         return cell
     }
     
-    // function to determine selection of cells - if cell is selected a checkmark appears
+    /* Called when user selects a cell in the table *
+       Sets a checkmark to indiciate selection      */
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         PULog("Cell selected: \(indexPath.row)")
         let cell: UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
         if cell.accessoryType == UITableViewCellAccessoryType.None {
             cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-        } else {
+        }
+    }
+    
+    /* Called when user deselects a cell in the table  *
+       Removes the checkmark to indiciate deselection  */
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        PULog("Cell deselected: \(indexPath.row)")
+        let cell: UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
+        if cell.accessoryType == UITableViewCellAccessoryType.Checkmark {
             cell.accessoryType = UITableViewCellAccessoryType.None
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }
     }
     
     
-    // user presses "Add Friends" button, send list to model
+    
+    /* User presses "Add Friends" button, send list to model */
     @IBAction func addFriends(sender: UIButton) {
         
         var selectedUsers: NSMutableArray = NSMutableArray()
-        if let indexPaths = tableView.indexPathsForSelectedRows() {
+        if let indexPaths = queryTableView.indexPathsForSelectedRows() {
             for var i = 0; i < indexPaths.count; ++i {
                 var thisPath = indexPaths[i] as NSIndexPath
-                var cell = tableView.cellForRowAtIndexPath(thisPath)
+                var cell = queryTableView.cellForRowAtIndexPath(thisPath)
                 if let cell = cell as? AddFriendsTableViewCell {
                     
                     var userFirstName = cell.firstName!
@@ -152,19 +165,20 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
                     var dict: [NSString : NSString] = ["username": userEmail, "id": userID, "first_name": userFirstName, "last_name": userLastName]
                     
                     selectedUsers.addObject(dict)
-                    
-                    // Do something with the cell
-                    // If it's a custom cell, downcast to the proper type
                 }
             }
         }
         
-        create?.setSelectedFriends(selectedUsers as NSArray)
+        create?.setSelectedUsers(selectedUsers as NSArray)
         previousViewController!.updateAddedFriends()
-        previousViewController!.reloadView()
         
         self.dismissViewControllerAnimated(true, nil)
         
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
     /*

@@ -67,8 +67,8 @@ class CreateEventModel {
     
     var batchUsersQueryResults: NSArray = NSArray()
     var searchUsersQueryResults: NSArray = NSArray()
-    var selectedFriends: NSArray = NSArray()
-    var addedFriends: NSArray = NSArray()
+    var selectedUsers: NSArray = NSArray()
+    var inviteList: NSArray = NSArray()
     
     /*--------------------------------------------*
     * Set methods
@@ -95,7 +95,7 @@ class CreateEventModel {
         
         else if (queryType == QueryType.Search)
         {
-            PULog("Updating batch users...")
+            PULog("Updating search users...")
             let (errorMessage: NSString?, queryResults: NSArray?) =
             PartyUpBackend.instance.queryUsers(search!)
             if (errorMessage != nil) {
@@ -121,13 +121,13 @@ class CreateEventModel {
     }
     
     
-    func setSelectedFriends(friends: NSArray) {
-        selectedFriends = friends
+    func setSelectedUsers(selected: NSArray) {
+        selectedUsers = selected
     }
 
     
-    func setAddedFriends(friends: NSArray) {
-        addedFriends = friends
+    func setInviteList(invited: NSArray) {
+        inviteList = invited
     }
 
     /*--------------------------------------------*
@@ -142,45 +142,47 @@ class CreateEventModel {
         return batchUsersQueryResults
     }
     
-    /* Returns the selected friends from search */
-    func getSelectedFriends() -> NSArray {
-        var friends: NSMutableArray = NSMutableArray()
-        for friend in selectedFriends {
-            let friendDict = friend as NSDictionary
-            var userOneID: NSString = "9" as NSString // CreateEventModel.getUserIDStr(friendDict)
+    /* Returns the selected friends from search     *
+     * Omits users who have already been added to   *
+     * the invite list. Made this design decision   *
+     * rather than only displaying uninvited guests *
+     * in a query because a query could potentially *
+       return thousands of names                    */
+    func getSelectedUsers() -> NSArray {
+        var usersToAdd: NSMutableArray = NSMutableArray()
+        for selected in selectedUsers {
+            let selectedDict = selected as NSDictionary
+            var selectedID: NSString = "9" as NSString // CreateEventModel.getUserIDStr(selectedDict)
             var isInAddedList: Bool = false
-            for added in addedFriends {
-                let addedDict = added as NSDictionary
-                var userTwoID: NSString = "11" as NSString // CreateEventModel.getUserIDStr(addedDict)
-                if userOneID == userTwoID {
+            for invitee in inviteList {
+                let inviteeDict = invitee as NSDictionary
+                var inviteeID: NSString = "11" as NSString // CreateEventModel.getUserIDStr(inviteeDict)
+                if selectedID == inviteeID {
                     isInAddedList = true
                     break
                 }
             }
             if !isInAddedList {
-                friends.addObject(friend)
+                usersToAdd.addObject(selected)
             }
         }
-        return friends as NSArray
+        return usersToAdd as NSArray
+    }
+    
+    func getInvitedList() -> NSArray {
+        return inviteList
     }
     
     /*--------------------------------------------*
     * Data extraction methods
     *--------------------------------------------*/
     
-    /*
-    class func getUserIDNum(user: NSDictionary) -> NSString {
-        /*var num = user["id"] as? Int
-        var numstr = "\(num!)"
-        return numstr as NSString
-        */
-        var num = "10" as NSString
-        return num
-    }
-*/
     
-    class func getUserIDStr(user: NSDictionary) -> NSString {
-        return user["id"] as NSString
+    class func getUserID(user: NSDictionary) -> NSString {
+        var userID = user["id"]
+        return "\(userID)"
+        
+        // return user["id"] as NSString
     }
     
     class func getUserFirstName(user: NSDictionary) -> NSString {

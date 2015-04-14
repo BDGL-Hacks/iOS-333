@@ -44,14 +44,13 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        PULog("Preparing for segue")
-        let destinationVC = segue.destinationViewController as AddFriendsViewController
-        destinationVC.create = self.create
-        destinationVC.previousViewController = self
-    }
-    
-    func reloadView() {
-        usersTableView.reloadData()
+        
+        if segue.identifier == "createTwoToAddFriends" {
+            PULog("Preparing for segue")
+            let destinationVC = segue.destinationViewController as AddFriendsViewController
+            destinationVC.create = self.create
+            destinationVC.previousViewController = self
+        }
     }
     
     
@@ -150,19 +149,20 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
         var firstName: NSString = CreateEventModel.getUserFirstName(user)
         var lastName: NSString = CreateEventModel.getUserLastName(user)
         var emailAdd: NSString = CreateEventModel.getUserEmail(user)
-        var idNum: NSString =  "10" as NSString // CreateEventModel.getUserIDStr(user)
+        var idNum: NSString =  CreateEventModel.getUserID(user)
         
         var fullName = firstName +  " " + lastName
-        cell.loadCell(fullName, first: firstName, last: lastName, id: idNum, email: emailAdd)
+        cell.loadCell(fullName, firstName: firstName, lastName: lastName, userID: idNum, usernameEmail: emailAdd)
         
         cell.accessoryType = UITableViewCellAccessoryType.None
         return cell
     }
     
     func updateAddedFriends() {
-        var friendsToAdd: NSArray = create!.getSelectedFriends()
+        var friendsToAdd: NSArray = create!.getSelectedUsers()
         addedFriends?.addObjectsFromArray(friendsToAdd)
-        create?.setAddedFriends(addedFriends! as NSArray)
+        create?.setInviteList(addedFriends! as NSArray)
+        usersTableView.reloadData()
     }
     
     // Override to support editing the table view.

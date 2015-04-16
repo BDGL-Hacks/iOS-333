@@ -24,7 +24,8 @@ Groups (General)
 
 Groups Main Page
 ----------------
- ! Start it
+ ! Finish porting models and main views over to groups
+ - Provde infrastructure for invitations
 
 Group Chat
 ----------
@@ -47,6 +48,7 @@ Event Tables
 
 My Events
 ---------
+ - Provide infrastructure for invitations
  - Put '--' or some other placeholder text when there are no events in a given table.
  - Have attending event table cell subtext display group instead of location and time
 

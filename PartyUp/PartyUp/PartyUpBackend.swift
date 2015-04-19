@@ -537,8 +537,6 @@ class PartyUpBackend {
             else {
                 PULog("Bad Response Status Code. Response data is invalid.")
                 PULog("End POST Request Method\n")
-                var responseData: NSString = NSString(data: urlData!, encoding: NSUTF8StringEncoding)!
-                PULog("Response data \(urlData)")
                 return nil
             }
         }

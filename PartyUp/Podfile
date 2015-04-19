@@ -3,6 +3,7 @@
 
 target 'PartyUp' do
     pod 'JSQMessagesViewController'
+    pod 'AWSiOSSDKv2'
 end
 
 target 'PartyUpTests' do

@@ -26,10 +26,16 @@ Groups Main Page
 ----------------
  ! Test Main Group tables with fake data
  ! Add segue to Group Chat page and add corresponding code to MainGroupsViewController
+ - Implement invitations
 
 Group Chat
 ----------
  ! Get JSQViewController working
+ - Figure out Photo Integration / AWS Pod
+
+Group Invite
+------------
+ ! Create it
 
 Create Groups
 -------------
@@ -48,6 +54,7 @@ Event Tables
 
 My Events
 ---------
+ ! Implement invitations
  - For 'Events you're invited to' create invitation response popover
  - Put '--' or some other placeholder text when there are no events in a given table.
  - Have attending event table cell subtext display group instead of location and time
@@ -55,6 +62,10 @@ My Events
 Find Events
 -----------
  - Have live searching query the database for updated data each time
+
+Event Invite
+------------
+ ! Create it
 
 Event Info
 ----------

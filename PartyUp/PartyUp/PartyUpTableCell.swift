@@ -36,10 +36,10 @@ class PartyUpTableCell: UITableViewCell {
      * dayNumber should be a two digit day (e.g. '01')   *
      * mainText and subText is the text to be displayed. */
     func loadCell(#dayText: NSString, dayNumber: NSString, mainText: NSString, subText: NSString) {
-        dayTextLabel.text = dayText
-        dayNumberLabel.text = dayNumber
-        mainTextLabel.text = mainText
-        subTextLabel.text = subText
+        dayTextLabel.text = dayText as String
+        dayNumberLabel.text = dayNumber as String
+        mainTextLabel.text = mainText as String
+        subTextLabel.text = subText as String
     }
     
     /* Set the NSDictionary object associated with the cell */

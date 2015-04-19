@@ -66,7 +66,7 @@ class MyEventsViewController: PartyUpViewController, UITableViewDelegate, UITabl
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "myEventsToEventInfo") {
             let eventInfoVC: EventInfoViewController = segue.destinationViewController
-                as EventInfoViewController
+                as! EventInfoViewController
             eventInfoVC.setEventData(selectedCellEventData)
         }
     }
@@ -145,18 +145,19 @@ class MyEventsViewController: PartyUpViewController, UITableViewDelegate, UITabl
     
     /* Determines how to populate each cell in the table: *
      * Loads the display and event data into each cell.   */
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) ->UITableViewCell {
-        var cell: PartyUpTableCell = tableView.dequeueReusableCellWithIdentifier("partyUpTableCell") as PartyUpTableCell
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
+        var cell: PartyUpTableCell = tableView.dequeueReusableCellWithIdentifier("partyUpTableCell") as! PartyUpTableCell
         
         var event: NSDictionary = NSDictionary()
         if (tableView == createdEventsTableView) {
-            event = searchEventsModel.getCreatedEvents()[indexPath.row] as NSDictionary
+            event = searchEventsModel.getCreatedEvents()[indexPath.row] as! NSDictionary
         }
         else if (tableView == attendingEventsTableView) {
-            event = searchEventsModel.getAttendingEvents()[indexPath.row] as NSDictionary
+            event = searchEventsModel.getAttendingEvents()[indexPath.row] as! NSDictionary
         }
         else if (tableView == invitedEventsTableView) {
-            event = searchEventsModel.getInvitedEvents()[indexPath.row] as NSDictionary
+            event = searchEventsModel.getInvitedEvents()[indexPath.row] as! NSDictionary
         }
         
         var dayText: NSString = DataManager.getEventDayText(event)
@@ -179,7 +180,7 @@ class MyEventsViewController: PartyUpViewController, UITableViewDelegate, UITabl
     
     /* Determines what to do when a table cell is selected */
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell: PartyUpTableCell = tableView.cellForRowAtIndexPath(indexPath) as PartyUpTableCell
+        let cell: PartyUpTableCell = tableView.cellForRowAtIndexPath(indexPath) as! PartyUpTableCell
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let eventName: NSString = DataManager.getEventTitle(cell.getCellData())
         PULog("Event Cell Pressed.\nCell Row: \(indexPath.row), Event Name: \(eventName)")

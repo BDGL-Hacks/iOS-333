@@ -71,7 +71,7 @@ class FindEventsViewController: PartyUpViewController, UISearchResultsUpdating
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "findEventsToEventInfo") {
             let eventInfoVC: EventInfoViewController = segue.destinationViewController
-                as EventInfoViewController
+                as! EventInfoViewController
             eventInfoVC.setEventData(selectedCellEventData)
         }
     }
@@ -98,14 +98,14 @@ class FindEventsViewController: PartyUpViewController, UISearchResultsUpdating
     /* Determines how to populate each cell in the table: *
      * Loads the display and event data into each cell.   */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: PartyUpTableCell = tableView.dequeueReusableCellWithIdentifier("partyUpTableCell") as PartyUpTableCell
+        var cell: PartyUpTableCell = tableView.dequeueReusableCellWithIdentifier("partyUpTableCell") as! PartyUpTableCell
         
         var event: NSDictionary
         if (searchBarController.active) {
-            event = searchResults[indexPath.row] as NSDictionary
+            event = searchResults[indexPath.row] as! NSDictionary
         }
         else {
-            event = searchEventsModel.getNearbyEvents()[indexPath.row] as NSDictionary
+            event = searchEventsModel.getNearbyEvents()[indexPath.row] as! NSDictionary
         }
         
         var dayText: NSString = DataManager.getEventDayText(event)
@@ -120,7 +120,7 @@ class FindEventsViewController: PartyUpViewController, UISearchResultsUpdating
     
     /* Determines what to do when a table cell is selected */
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell: PartyUpTableCell = tableView.cellForRowAtIndexPath(indexPath) as PartyUpTableCell
+        let cell: PartyUpTableCell = tableView.cellForRowAtIndexPath(indexPath) as! PartyUpTableCell
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let eventName: NSString = DataManager.getEventTitle(cell.getCellData())
         PULog("Event Cell Pressed.\nCell Row: \(indexPath.row), Event Name: \(eventName)")
@@ -138,7 +138,7 @@ class FindEventsViewController: PartyUpViewController, UISearchResultsUpdating
      * Filters the event data with the search and reloads table data. */
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         let searchPredicate = NSPredicate(format: "title CONTAINS[c] %@ OR description" + "CONTAINS[c] %@ or location_name CONTAINS[c] %@", searchController.searchBar.text, searchController.searchBar.text, searchController.searchBar.text)
-        searchResults = searchEventsModel.getNearbyEvents().filteredArrayUsingPredicate(searchPredicate!)
+        searchResults = searchEventsModel.getNearbyEvents().filteredArrayUsingPredicate(searchPredicate)
         findEventsTableView.reloadData()
     }
     

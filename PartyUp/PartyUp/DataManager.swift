@@ -41,62 +41,66 @@ class DataManager {
     }
     */
     
+    class func getEventID(event: NSDictionary) -> NSInteger {
+        return event["id"] as! NSInteger
+    }
+    
     class func getEventTitle(event: NSDictionary) -> NSString {
-        return event["title"] as NSString
+        return event["title"] as! NSString
     }
     
     class func getEventDescription(event: NSDictionary) -> NSString {
         if let nullTest = event["description"] as? NSString {
-            return event["description"] as NSString
+            return event["description"] as! NSString
         } else {
             return "--"
         }
     }
     
     class func getEventLocationName(event: NSDictionary) -> NSString {
-        return event["location_name"] as NSString
+        return event["location_name"] as! NSString
     }
     
     /* Returns event's date in format: YYYY-MM-DD */
     class func getEventDate(event: NSDictionary) -> NSString {
-        let dateTimeRaw: NSString = event["time"] as NSString
+        let dateTimeRaw: NSString = event["time"] as! NSString
         return extractDate(dateTimeRaw)
     }
     
     /* Returns the day of the event in text format (e.g. "Fri") */
     class func getEventDayText(event: NSDictionary) -> NSString {
-        let dateTimeRaw: NSString = event["time"] as NSString
+        let dateTimeRaw: NSString = event["time"] as! NSString
         return extractDayText(dateTimeRaw)
     }
     
     /* Returns the day of the event in number format (e.g. "01") */
     class func getEventDayNumber(event: NSDictionary) -> NSString {
-        let dateTimeRaw: NSString = event["time"] as NSString
+        let dateTimeRaw: NSString = event["time"] as! NSString
         return extractDayNumber(dateTimeRaw)
     }
     
     /* Returns the event's start time: (h)h:mm [am or pm] */
     class func getEventStartTime(event: NSDictionary) -> NSString {
-        let dateTimeRaw: NSString = event["time"] as NSString
+        let dateTimeRaw: NSString = event["time"] as! NSString
         return extractTime(dateTimeRaw)
     }
     
     class func getEventPrice(event: NSDictionary) -> NSInteger? {
-        return event["price"] as NSInteger?
+        return event["price"] as! NSInteger?
     }
     
     class func getEventAgeRestriction(event: NSDictionary) -> NSInteger? {
-        return event["age_restrictions"] as NSInteger?
+        return event["age_restrictions"] as! NSInteger?
     }
     
     class func getEventInviteList(event: NSDictionary) -> NSArray {
-        return event["invite_list"] as NSArray
+        return event["invite_list"] as! NSArray
     }
     
     // TODO: ACTUALLY WRITE THESE METHODS!!!
     //---------------------------------------------------------------
     class func getEventAttendees(event: NSDictionary) -> NSArray {
-        return event["invite_list"] as NSArray
+        return event["invite_list"] as! NSArray
     }
     
     /* Returns the name of the group the user is attending the event with */
@@ -110,6 +114,48 @@ class DataManager {
     * Group data extraction methods
     *--------------------------------------------*/
     
+    /*
+    Group JSON Object:
+    {
+        id
+        title
+        members {
+            <Users>
+        }
+        events {
+            <Sparse Events>
+        }
+        time: "YYYY-MM-DD hh:mm:ss+<timezone?>"
+    }
+    */
+    
+    class func getGroupID(group: NSDictionary) -> NSInteger {
+        return group["id"] as! NSInteger
+    }
+    
+    class func getGroupTitle(group: NSDictionary) -> NSString {
+        return group["name"] as! NSString
+    }
+    
+    class func getGroupMembers(group: NSDictionary) -> NSArray {
+        return group["members"] as! NSArray
+    }
+    
+    class func getGroupSparseEvents(group: NSDictionary) -> NSArray {
+        return group["events"] as! NSArray
+    }
+    
+    /* Returns the day of the group's events in text format (e.g. "Fri") */
+    class func getGroupDayText(group: NSDictionary) -> NSString {
+        let dateTimeRaw: NSString = group["time"] as! NSString
+        return extractDayText(dateTimeRaw)
+    }
+    
+    /* Returns the day of the group's events in number format (e.g. "01") */
+    class func getGroupDayNumber(group: NSDictionary) -> NSString {
+        let dateTimeRaw: NSString = group["time"] as! NSString
+        return extractDayNumber(dateTimeRaw)
+    }
     
     
    /*--------------------------------------------*
@@ -127,11 +173,11 @@ class DataManager {
     */
     
     class func getUserFirstName(user: NSDictionary) -> NSString {
-        return user["first_name"] as NSString
+        return user["first_name"] as! NSString
     }
     
     class func getUserLastName(user: NSDictionary) -> NSString {
-        return user["last_name"] as NSString
+        return user["last_name"] as! NSString
     }
     
     class func getUserFullName(user: NSDictionary) -> NSString {
@@ -139,11 +185,11 @@ class DataManager {
     }
     
     class func getUserUsername(user: NSDictionary) -> NSString {
-        return user["username"] as NSString
+        return user["username"] as! NSString
     }
     
     class func getUserID(user: NSDictionary) -> NSInteger {
-        return user["id"] as NSInteger
+        return user["id"] as! NSInteger
     }
     
     

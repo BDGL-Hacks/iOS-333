@@ -41,7 +41,7 @@ class PartyUpBackend {
         PULog("Attempting to authenticate user...")
         
         var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/users/login/"
-        var postParams: [String: String] = ["username": email, "password": password]
+        var postParams: [String: String] = ["username": email as String, "password": password as String]
         
         var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
         
@@ -49,8 +49,8 @@ class PartyUpBackend {
         if (postData != nil)
         {
             let jsonData: NSDictionary = postData!
-            let accepted: Bool = jsonData.valueForKey("accepted") as Bool
-            var errorMessage: NSString? = jsonData.valueForKey("error") as NSString?
+            let accepted: Bool = jsonData.valueForKey("accepted") as! Bool
+            var errorMessage: NSString? = jsonData.valueForKey("error") as! NSString?
             
             // Authentication successful on server side
             if (accepted) {
@@ -84,7 +84,7 @@ class PartyUpBackend {
         PULog("Attempting to register new user...")
         
         var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/users/register/"
-        var postParams: [String: String] = ["email": email, "first_name": firstName, "last_name": lastName, "password": password]
+        var postParams: [String: String] = ["email": email as String, "first_name": firstName as String, "last_name": lastName as String, "password": password as String]
         
         var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
         
@@ -92,8 +92,8 @@ class PartyUpBackend {
         if (postData != nil)
         {
             let jsonData: NSDictionary = postData!
-            let accepted: Bool = jsonData.valueForKey("accepted") as Bool
-            var errorMessage: NSString? = jsonData.valueForKey("error") as NSString?
+            let accepted: Bool = jsonData.valueForKey("accepted") as! Bool
+            var errorMessage: NSString? = jsonData.valueForKey("error") as! NSString?
             
             // Register successful on server side
             if (accepted) {
@@ -127,19 +127,19 @@ class PartyUpBackend {
         PULog("Attempting to create an event...")
         
         var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        let username: NSString = userDefaults.objectForKey("USERNAME") as NSString
+        let username: NSString = userDefaults.objectForKey("USERNAME") as! NSString
         
         var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/events/create"
-        var postParams: [String: String] = ["title": title, "public": isPublic, "age_restrictions": ageRestrictions, "price": price, "location_name": location, "time": dateTime]
+        var postParams: [String: String] = ["title": title as String, "public": isPublic as String, "age_restrictions": ageRestrictions as String, "price": price as String, "location_name": location as String, "time": dateTime as String]
         
         var stringOfFriendEmails: String = ""
         var i: Int = 0
         for friend in inviteList {
             if i == 0 {
-                stringOfFriendEmails += friend
+                stringOfFriendEmails += (friend as String)
             }
             else {
-                stringOfFriendEmails += "," + friend
+                stringOfFriendEmails += "," + (friend as String)
             }
             i += 1
         }
@@ -151,8 +151,8 @@ class PartyUpBackend {
         if (postData != nil)
         {
             let jsonData: NSDictionary = postData!
-            let accepted: Bool = jsonData.valueForKey("accepted") as Bool
-            var errorMessage: NSString? = jsonData.valueForKey("error") as NSString?
+            let accepted: Bool = jsonData.valueForKey("accepted") as! Bool
+            var errorMessage: NSString? = jsonData.valueForKey("error") as! NSString?
             
             // Event creation successful on server side
             if (accepted) {
@@ -177,7 +177,6 @@ class PartyUpBackend {
         }
     }
     
-    /*------------------------------------------------------*/
     
     /* Queries backend for search users to populate table in *
         add friend view controller. Returns a tuple: an      *
@@ -188,7 +187,7 @@ class PartyUpBackend {
         PULog("Querying for users to populate table in add freinds ...");
         
         var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        let username: NSString? = userDefaults.objectForKey("USERNAME") as NSString?
+        let username: NSString? = userDefaults.objectForKey("USERNAME") as! NSString?
         
         if (username == nil) {
             PULog("Query Failed: User is not logged in")
@@ -197,7 +196,7 @@ class PartyUpBackend {
         
         /* users/get */
         var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/users/search/" //verify with backend
-        var postParams: [String: String] = ["username": username!, "search": search]
+        var postParams: [String: String] = ["username": username! as String, "search": search as String]
         
         var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
         
@@ -205,10 +204,10 @@ class PartyUpBackend {
         if (postData != nil)
         {
             let jsonData: NSDictionary = postData!
-            let accepted: Bool = jsonData.valueForKey("accepted") as Bool
-            var errorMessage: NSString? = jsonData.valueForKey("error") as NSString?
+            let accepted: Bool = jsonData.valueForKey("accepted") as! Bool
+            var errorMessage: NSString? = jsonData.valueForKey("error") as! NSString?
             /* make sure backend sends back "users" as key */
-            let results: NSArray? = jsonData.valueForKey("results") as NSArray?
+            let results: NSArray? = jsonData.valueForKey("results") as! NSArray?
             
             // Query successful: return JSON data as dictionary
             if (accepted) {
@@ -245,7 +244,7 @@ class PartyUpBackend {
         PULog("Querying a random batch  ...");
         
         var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        let username: NSString? = userDefaults.objectForKey("USERNAME") as NSString?
+        let username: NSString? = userDefaults.objectForKey("USERNAME") as! NSString?
         
         if (username == nil) {
             PULog("Query Failed: User is not logged in")
@@ -254,7 +253,7 @@ class PartyUpBackend {
         
         /* users/get */
         var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/users/batch/" //verify with backend
-        var postParams: [String: String] = ["username": username!]
+        var postParams: [String: String] = ["username": username! as String]
         
         var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
         
@@ -262,10 +261,10 @@ class PartyUpBackend {
         if (postData != nil)
         {
             let jsonData: NSDictionary = postData!
-            let accepted: Bool = jsonData.valueForKey("accepted") as Bool
-            var errorMessage: NSString? = jsonData.valueForKey("error") as NSString?
+            let accepted: Bool = jsonData.valueForKey("accepted") as! Bool
+            var errorMessage: NSString? = jsonData.valueForKey("error") as! NSString?
             /* make sure backend sends back "users" as key */
-            let results: NSArray? = jsonData.valueForKey("results") as NSArray?
+            let results: NSArray? = jsonData.valueForKey("results") as! NSArray?
             
             // Query successful: return JSON data as dictionary
             if (accepted) {
@@ -291,7 +290,61 @@ class PartyUpBackend {
         }
     }
     
-    /*------------------------------------------------------*/
+    /* Queries backend for groups the currnt user belongs or  *
+     * has been invited to. Returns a tuple: an error message *
+     * if something went wrong, and query results as an       *
+     * NSDictionary if successful.                            */
+    func queryUserGroups() -> (NSString?, NSDictionary?)
+    {
+        PULog("Querying for user's groups...")
+        
+        var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let username: NSString? = userDefaults.objectForKey("USERNAME") as! NSString?
+        
+        if (username == nil) {
+            PULog("Query Failed: User is not logged in")
+            return ("User is not logged in.", nil)
+        }
+        
+        var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/groups/get"
+        var postParams: [String: String] = ["username": username! as String]
+        
+        var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
+        
+        // We received JSON data back: process it
+        if (postData != nil)
+        {
+            let jsonData: NSDictionary = postData!
+            let accepted: Bool = jsonData.valueForKey("accepted") as! Bool
+            var errorMessage: NSString? = jsonData.valueForKey("error") as! NSString?
+            var results: NSMutableDictionary = NSMutableDictionary()
+            
+            // Query successful: return JSON data as dictionary
+            if (accepted) {
+                PULog("Query Successful!")
+                results["attending"] = jsonData.valueForKey("attending") as! NSArray?
+                results["invited"] = jsonData.valueForKey("invited") as! NSArray?
+                PULog("Query data: \(results)")
+                return (nil, results as NSDictionary)
+            }
+            
+            // Query failed: return error message
+            else {
+                if (errorMessage == nil) {
+                    errorMessage = "No error message received from server"
+                }
+                PULog("Query Failed: \(errorMessage!)")
+                return (errorMessage, nil)
+            }
+        }
+        
+        // We did not receive JSON data back
+        else {
+            PULog("Query Failed: No JSON data received")
+            return ("Failed to connect to server", nil)
+        }
+        
+    }
     
     /* Queries backend for events the current user owns,     *
      * is attending, or has been invited to. Returns a       *
@@ -299,10 +352,10 @@ class PartyUpBackend {
      * wrong, and query results as dictionary if successful. */
     func queryUserEvents() -> (NSString?, NSDictionary?)
     {
-        PULog("Querying for user's events...");
+        PULog("Querying for user's events...")
         
         var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        let username: NSString? = userDefaults.objectForKey("USERNAME") as NSString?
+        let username: NSString? = userDefaults.objectForKey("USERNAME") as! NSString?
         let types: NSString = "created||invited||attending"
         
         if (username == nil) {
@@ -311,7 +364,7 @@ class PartyUpBackend {
         }
         
         var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/events/get/"
-        var postParams: [String: String] = ["username": username!, "type": types]
+        var postParams: [String: String] = ["username": username! as String, "type": types as String]
         
         var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
         
@@ -319,16 +372,16 @@ class PartyUpBackend {
         if (postData != nil)
         {
             let jsonData: NSDictionary = postData!
-            let accepted: Bool = jsonData.valueForKey("accepted") as Bool
-            var errorMessage: NSString? = jsonData.valueForKey("error") as NSString?
+            let accepted: Bool = jsonData.valueForKey("accepted") as! Bool
+            var errorMessage: NSString? = jsonData.valueForKey("error") as! NSString?
             var results: NSMutableDictionary = NSMutableDictionary()
             
             // Query successful: return JSON data as dictionary
             if (accepted) {
                 PULog("Query Successful!")
-                results["created"] = jsonData.valueForKey("created") as NSArray?
-                results["attending"] = jsonData.valueForKey("attending") as NSArray?
-                results["invited"] = jsonData.valueForKey("invited") as NSArray?
+                results["created"] = jsonData.valueForKey("created") as! NSArray?
+                results["attending"] = jsonData.valueForKey("attending") as! NSArray?
+                results["invited"] = jsonData.valueForKey("invited") as! NSArray?
                 PULog("Query data: \(results)")
                 return (nil, results as NSDictionary)
             }
@@ -365,19 +418,19 @@ class PartyUpBackend {
         // Populate query parameter list with whatever arguments were provided
         var postParams: [String: String] = Dictionary<String, String>()
         if (title != nil) {
-            postParams["title"] = title!
+            postParams["title"] = title! as String
         }
         if (description != nil) {
-            postParams["description"] = description!
+            postParams["description"] = description! as String
         }
         if (isPublic != nil) {
             postParams["public"] = "\(isPublic!)"
         }
         if (date != nil) {
-            postParams["date"] = date!
+            postParams["date"] = date! as String
         }
         if (time != nil) {
-            postParams["time"] = time!
+            postParams["time"] = time! as String
         }
         if (age != nil) {
             postParams["age"] = "\(age!)"
@@ -392,9 +445,9 @@ class PartyUpBackend {
         if (postData != nil)
         {
             let jsonData: NSDictionary = postData!
-            let accepted: Bool = jsonData.valueForKey("accepted") as Bool
-            var errorMessage: NSString? = jsonData.valueForKey("error") as NSString?
-            let results: NSArray? = jsonData.valueForKey("results") as NSArray?
+            let accepted: Bool = jsonData.valueForKey("accepted") as! Bool
+            var errorMessage: NSString? = jsonData.valueForKey("error") as! NSString?
+            let results: NSArray? = jsonData.valueForKey("results") as! NSArray?
             
             // Query successful: return JSON data as dictionary
             if (accepted) {
@@ -433,7 +486,7 @@ class PartyUpBackend {
         PULog("URL: \(url)")
         PULog("Params Dictionary: \(params)")
         
-        var requestURL: NSURL = NSURL(string: url)!
+        var requestURL: NSURL = NSURL(string: url as String)!
         var requestErr: NSError?
         var request: NSMutableURLRequest = NSMutableURLRequest(URL: requestURL)
         
@@ -464,7 +517,7 @@ class PartyUpBackend {
         // We got data back from the URL ...
         if (urlData != nil)
         {
-            let httpResponse = response as NSHTTPURLResponse
+            let httpResponse = response as! NSHTTPURLResponse
             PULog("Response Status Code: \(httpResponse.statusCode)")
             
             // We got a success status code from URL: return JSON data
@@ -474,7 +527,7 @@ class PartyUpBackend {
                 PULog("Response Data: \(responseData)")
                 
                 var jsonError: NSError?
-                let jsonData: NSDictionary = NSJSONSerialization.JSONObjectWithData(urlData!, options: NSJSONReadingOptions.MutableContainers, error: &jsonError) as NSDictionary
+                let jsonData: NSDictionary = NSJSONSerialization.JSONObjectWithData(urlData!, options: NSJSONReadingOptions.MutableContainers, error: &jsonError) as! NSDictionary
                 
                 PULog("End POST Request Method\n")
                 return jsonData

@@ -151,11 +151,11 @@ class CreateEventModel {
     func getSelectedUsers() -> NSArray {
         var usersToAdd: NSMutableArray = NSMutableArray()
         for selected in selectedUsers {
-            let selectedDict = selected as NSDictionary
+            let selectedDict = selected as! NSDictionary
             var selectedID: NSString = CreateEventModel.getUserID(selectedDict)
             var isInAddedList: Bool = false
             for invitee in inviteList {
-                let inviteeDict = invitee as NSDictionary
+                let inviteeDict = invitee as! NSDictionary
                 var inviteeID: NSString = CreateEventModel.getUserID(inviteeDict)
                 if selectedID == inviteeID {
                     isInAddedList = true
@@ -186,14 +186,14 @@ class CreateEventModel {
     }
     
     class func getUserFirstName(user: NSDictionary) -> NSString {
-        return user["first_name"] as NSString
+        return user["first_name"] as! NSString
     }
     
     class func getUserLastName(user: NSDictionary) -> NSString {
-        return user["last_name"] as NSString
+        return user["last_name"] as! NSString
     }
     
-    class func getUserEmail(user: NSDictionary) -> NSString {
-        return user["username"] as NSString // email?
+    class func getUserUsername(user: NSDictionary) -> NSString {
+        return user["username"] as! NSString
     }
 }

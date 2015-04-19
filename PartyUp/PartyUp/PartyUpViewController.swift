@@ -32,10 +32,10 @@ class PartyUpViewController: UIViewController {
     /* Displays an alert with the provided title and message */
     func displayAlert(title: NSString, message: NSString, buttonText: NSString = "OK") {
         var alertView: UIAlertView = UIAlertView()
-        alertView.title = title
-        alertView.message = message
+        alertView.title = title as String
+        alertView.message = message as String
         alertView.delegate = self
-        alertView.addButtonWithTitle(buttonText)
+        alertView.addButtonWithTitle(buttonText as String)
         alertView.show()
     }
     
@@ -80,8 +80,8 @@ class PartyUpViewController: UIViewController {
         }
         var error: NSError?
         
-        let regularExpression: NSRegularExpression = NSRegularExpression(pattern: regex, options: regexOptions, error: &error)!
-        let numMatches: Int = regularExpression.numberOfMatchesInString(string, options: nil, range: NSMakeRange(0, string.length))
+        let regularExpression: NSRegularExpression = NSRegularExpression(pattern: regex as String, options: regexOptions, error: &error)!
+        let numMatches: Int = regularExpression.numberOfMatchesInString(string as String, options: nil, range: NSMakeRange(0, string.length))
         
         return numMatches > 0
     }

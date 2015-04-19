@@ -97,7 +97,7 @@ class SearchEventsModel
         return NSArray(array: fakeArray)
         */
         
-        let resultArray: NSArray? = userEventsQueryResults["created"] as NSArray?
+        let resultArray: NSArray? = userEventsQueryResults["created"] as! NSArray?
         if (resultArray == nil) {
             return NSArray()
         }

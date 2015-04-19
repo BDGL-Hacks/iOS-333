@@ -82,7 +82,7 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
     }
     
     /* Dismisses keyboard if user returns */
-    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
@@ -91,7 +91,7 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "eventCreationOnetoTwo" {
-            let destinationVC = segue.destinationViewController as CreateEvent2ViewController
+            let destinationVC = segue.destinationViewController as! CreateEvent2ViewController
             destinationVC.create = self.create
         }
     }
@@ -101,12 +101,12 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
     * UITextField Delegate Methods
     *--------------------------------------------*/
     
-    func textFieldDidBeginEditing(textField: UITextField!) {
+    func textFieldDidBeginEditing(textField: UITextField) {
         activeTextField = textField
         scrollView.scrollEnabled = true
     }
     
-    func textFieldDidEndEditing(textField: UITextField!) {
+    func textFieldDidEndEditing(textField: UITextField) {
         activeTextField = nil
         scrollView.scrollEnabled = false
     }
@@ -186,7 +186,7 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
     // Called when the UIKeyboardDidShowNotification is sent.
     func keyboardWillBeShown(sender: NSNotification) {
         let info: NSDictionary = sender.userInfo!
-        let value: NSValue = info.valueForKey(UIKeyboardFrameBeginUserInfoKey) as NSValue
+        let value: NSValue = info.valueForKey(UIKeyboardFrameBeginUserInfoKey) as! NSValue
         let keyboardSize: CGSize = value.CGRectValue().size
         let contentInsets: UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0)
         scrollView.contentInset = contentInsets

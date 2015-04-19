@@ -101,21 +101,21 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell") as AddFriendsTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell") as! AddFriendsTableViewCell
         
         // Configure the cell //
         
         var user: NSDictionary = NSDictionary()
-        user = queryResults![indexPath.row] as NSDictionary
+        user = queryResults![indexPath.row] as! NSDictionary
         
         // get values from model to display in the cell
         var firstName: NSString = CreateEventModel.getUserFirstName(user)
         var lastName: NSString = CreateEventModel.getUserLastName(user)
-        var usernameEmail: NSString = CreateEventModel.getUserEmail(user)
+        var usernameEmail: NSString = CreateEventModel.getUserUsername(user)
         var userID: NSString = CreateEventModel.getUserID(user)
         
         // concatenate the name for cell display
-        var fullName = firstName +  " " +  lastName
+        var fullName = (firstName as String) +  " " + (lastName as String)
         
         cell.loadCell(fullName, firstName: firstName, lastName: lastName, userID: userID, usernameEmail: usernameEmail)
         
@@ -153,7 +153,7 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
         var selectedUsers: NSMutableArray = NSMutableArray()
         if let indexPaths = queryTableView.indexPathsForSelectedRows() {
             for var i = 0; i < indexPaths.count; ++i {
-                var thisPath = indexPaths[i] as NSIndexPath
+                var thisPath = indexPaths[i] as! NSIndexPath
                 var cell = queryTableView.cellForRowAtIndexPath(thisPath)
                 if let cell = cell as? AddFriendsTableViewCell {
                     
@@ -172,8 +172,7 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
         create?.setSelectedUsers(selectedUsers as NSArray)
         previousViewController!.updateAddedFriends()
         
-        self.dismissViewControllerAnimated(true, nil)
-        
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {

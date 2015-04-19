@@ -3,7 +3,7 @@ TODO
 
 General
 -------
- ! Change PartyUpViewController to a delegate -> all VCs implement UIViewController and PartyUp
+ - Have views display properly on bigger and smaller devices
  - Have loading wheel appear when logging in, registering, and backend things that may require waiting
  - Improve PULog method (code location maybe, perhaps have some debugging options in globals?)
  - Fix textShouldReturn
@@ -24,7 +24,8 @@ Groups (General)
 
 Groups Main Page
 ----------------
- ! Start it
+ ! Test Main Group tables with fake data
+ ! Add segue to Group Chat page and add corresponding code to MainGroupsViewController
 
 Group Chat
 ----------
@@ -47,6 +48,7 @@ Event Tables
 
 My Events
 ---------
+ - For 'Events you're invited to' create invitation response popover
  - Put '--' or some other placeholder text when there are no events in a given table.
  - Have attending event table cell subtext display group instead of location and time
 
@@ -65,6 +67,7 @@ Current Event
 
 Create Event
 ------------
+ - Put top buttons inside a Navigation Bar
 
 Login
 -----

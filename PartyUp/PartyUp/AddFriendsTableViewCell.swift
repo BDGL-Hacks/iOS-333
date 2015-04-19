@@ -12,6 +12,7 @@ class AddFriendsTableViewCell: UITableViewCell {
 
     
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
     var firstName: NSString?
     var lastName: NSString?
     var userID: NSString?

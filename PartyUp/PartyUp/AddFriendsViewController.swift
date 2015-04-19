@@ -11,16 +11,20 @@ import UIKit
 class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
 
     
-    
     @IBOutlet weak var queryTableView: UITableView!
     var previousViewController: CreateEvent2ViewController?
     var queryResults: NSArray? = NSArray()
     var create: CreateEventModel?
+    var prevSearch: String? = nil
     
     // text that gets sent to search method on backend
-    var searchText: String? = "David" {
+    var searchText: String? = nil {
         didSet{
             searchTextField?.text = searchText
+            if (prevSearch != nil) {
+                addFriends()
+            }
+            prevSearch = oldValue
             refresh()
         }
     }
@@ -32,7 +36,7 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
         queryTableView.delegate = self
         queryTableView.dataSource = self
         
-        self.queryTableView.rowHeight = 44
+        self.queryTableView.rowHeight = 65
         
         queryTableView.allowsMultipleSelection = true
         refresh()
@@ -80,6 +84,7 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
     }
     
     @IBAction func dismissView(sender: UIButton) {
+        addFriends()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -145,11 +150,8 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
         }
     }
     
-    
-    
-    /* User presses "Add Friends" button, send list to model */
-    @IBAction func addFriends(sender: UIButton) {
         
+    func addFriends() {
         var selectedUsers: NSMutableArray = NSMutableArray()
         if let indexPaths = queryTableView.indexPathsForSelectedRows() {
             for var i = 0; i < indexPaths.count; ++i {

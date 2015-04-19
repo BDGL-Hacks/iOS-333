@@ -20,6 +20,8 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
         
         addedFriendsTableView.delegate = self
         addedFriendsTableView.dataSource = self
+        
+        addedFriends?.addObjectsFromArray(create!.getInvitedList())
 
         // Do any additional setup after loading the view.
     }
@@ -39,6 +41,8 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
     /* Button to return to fist event creation page */
     @IBAction func backToFirst(sender: UIButton) {
         PULog("Going back to first event page")
+        var inviteList = addedFriends! as NSArray
+        create?.setInviteList(inviteList)
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     

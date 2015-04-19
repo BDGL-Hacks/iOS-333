@@ -33,12 +33,12 @@ class CreateEventModel {
         eventAgeRestrictions = nil
     }
     
-    func firstPage (title: NSString, location: NSString, dateTime: NSString) {
+    func firstPage (title: NSString, location: NSString, dateTime: NSString, eventPublic: NSString) {
         eventTitle = title
         eventLocation = location
         self.dateTime = dateTime
         eventPrice = "10000000"
-        eventPublic = "True"
+        self.eventPublic = eventPublic
         eventAgeRestrictions = "0"
     }
     
@@ -135,7 +135,27 @@ class CreateEventModel {
     *--------------------------------------------*/
     
     func getSearchUsers() -> NSArray {
-        return searchUsersQueryResults
+        
+        var usersToDisplay: NSMutableArray = NSMutableArray()
+        for query in searchUsersQueryResults {
+            let queryDict = query as NSDictionary
+            var queryID: NSString = CreateEventModel.getUserID(queryDict)
+            var isInQueryList: Bool = false
+            for invitee in inviteList {
+                let inviteeDict = invitee as NSDictionary
+                var inviteeID: NSString = CreateEventModel.getUserID(inviteeDict)
+                if queryID == inviteeID {
+                    isInQueryList = true
+                    break
+                }
+            }
+            if !isInQueryList {
+                usersToDisplay.addObject(query)
+            }
+        }
+        // fix this
+        return usersToDisplay as NSArray
+        // return searchUsersQueryResults
     }
     
     func getBatchUsers() -> NSArray {

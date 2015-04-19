@@ -174,7 +174,8 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
         create?.setSelectedUsers(selectedUsers as NSArray)
         previousViewController!.updateAddedFriends()
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+        // self.dismissViewControllerAnimated(true, completion: nil)
+        
     }
     
     override func didReceiveMemoryWarning() {

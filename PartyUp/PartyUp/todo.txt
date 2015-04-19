@@ -3,6 +3,7 @@ TODO
 
 General
 -------
+ ! Fix 'User is not logged in' error when user is clearly logged in
  - Have views display properly on bigger and smaller devices
  - Have loading wheel appear when logging in, registering, and backend things that may require waiting
  - Improve PULog method (code location maybe, perhaps have some debugging options in globals?)
@@ -78,6 +79,12 @@ Current Event
 
 Create Event
 ------------
+ - investigate popover presentation
+ - put code from add friends button inside redo search
+ - get rid of David in search (for historical reasons) X
+ - smaller date picker
+ - reload query results when user scrolls
+ - don't display users that are already added
  - Put top buttons inside a Navigation Bar
 
 Login
@@ -100,59 +107,3 @@ Backend (Not us!)
 
 NOTES
 =====
-
-Create Group Flow
------------------
- - Click "Create Group" Button
- - Name the Group Page
- - Choose Event(s) Page
-   - You must choose at least one event
-   - Before you search, it shows you soon-to-occur event near you
-   - Search for events and select the ones you want
-   - Click "Finish"
- - Choose Members Page
-   - Before you search, it shows you people you've recently been in groups with
-   - Search for people and select the ones you want
-   - Click "Create Group"
-
-Event: Search all events API
-----------------------------
-
-URL: /events/search
-
-POST Parameters:
-- API : Search events
-- title
-- description
-- public (1 or 0)
-- location (??? - Not implemented)
-- date: YYYYMMDDhhmm
-- age: (integer)
-- price: (integer)
-- category (??? - Not implemented
-
-Returns:
-{
-accepted: bool
-results:
-[
-    description
-    price
-    location_name
-    title
-    admin {
-        username
-        first_name
-        last_name
-        id
-    }
-    age_restrictions
-    invite_list
-    [
-        <Users - same as admin>
-    ]
-    time: "YYYY-MM-DD hh:mm:ss+<timezone?>"
-    date_created
-    public: bool
-]
-}

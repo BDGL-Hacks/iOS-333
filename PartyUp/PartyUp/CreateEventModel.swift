@@ -138,11 +138,11 @@ class CreateEventModel {
         
         var usersToDisplay: NSMutableArray = NSMutableArray()
         for query in searchUsersQueryResults {
-            let queryDict = query as NSDictionary
+            let queryDict = query as! NSDictionary
             var queryID: NSString = CreateEventModel.getUserID(queryDict)
             var isInQueryList: Bool = false
             for invitee in inviteList {
-                let inviteeDict = invitee as NSDictionary
+                let inviteeDict = invitee as! NSDictionary
                 var inviteeID: NSString = CreateEventModel.getUserID(inviteeDict)
                 if queryID == inviteeID {
                     isInQueryList = true

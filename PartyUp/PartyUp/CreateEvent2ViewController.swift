@@ -21,7 +21,7 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
         addedFriendsTableView.delegate = self
         addedFriendsTableView.dataSource = self
         
-        addedFriends?.addObjectsFromArray(create!.getInvitedList())
+        addedFriends?.addObjectsFromArray(create!.getInvitedList() as [AnyObject])
 
         // Do any additional setup after loading the view.
     }

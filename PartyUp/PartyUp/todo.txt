@@ -7,6 +7,7 @@ General
  - Have views display properly on bigger and smaller devices
  - Have loading wheel appear when logging in, registering, and backend things that may require waiting
  - Improve PULog method (code location maybe, perhaps have some debugging options in globals?)
+ - Have PartyUpTableCell display '...' when any text is too long
  - Fix textShouldReturn
  - Buttons in names in the search bar
 
@@ -25,7 +26,6 @@ Groups (General)
 
 Groups Main Page
 ----------------
- ! Test Main Group tables with fake data
  ! Add segue to Group Chat page and add corresponding code to MainGroupsViewController
  - Implement invitations
 
@@ -100,10 +100,4 @@ Register
 
 Backend (Not us!)
 -----------------
- ! Create Event: Add description field
- - Events: Send us back a list of people attending the event as well (and change corresponding model code)
  - Events: Also send back the group the user is going to the event with
-
-
-NOTES
-=====

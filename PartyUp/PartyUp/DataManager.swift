@@ -97,11 +97,12 @@ class DataManager {
         return event["invite_list"] as! NSArray
     }
     
+    class func getEventAttendees(event: NSDictionary) -> NSArray {
+        return event["attending_list"] as! NSArray
+    }
+    
     // TODO: ACTUALLY WRITE THESE METHODS!!!
     //---------------------------------------------------------------
-    class func getEventAttendees(event: NSDictionary) -> NSArray {
-        return event["invite_list"] as! NSArray
-    }
     
     /* Returns the name of the group the user is attending the event with */
     class func getEventGroup(event: NSDictionary) -> NSString? {
@@ -134,7 +135,7 @@ class DataManager {
     }
     
     class func getGroupTitle(group: NSDictionary) -> NSString {
-        return group["name"] as! NSString
+        return group["title"] as! NSString
     }
     
     class func getGroupMembers(group: NSDictionary) -> NSArray {

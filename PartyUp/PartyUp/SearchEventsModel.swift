@@ -85,7 +85,6 @@ class SearchEventsModel
         else {
             return resultArray!
         }
-        
     }
     
     func getAttendingEvents() -> NSArray {

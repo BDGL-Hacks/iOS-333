@@ -1,5 +1,5 @@
 //
-//  CreateEventModel.swift
+//  CreateModel.swift
 //  PartyUp
 //
 //  Created by Graham Turk on 4/6/15.
@@ -9,31 +9,35 @@
 import Foundation
 
 
-class CreateEventModel {
+class CreateModel {
     
     enum QueryType {
         case Batch
         case Search
     }
     
-    var eventTitle: NSString?
-    var eventLocation: NSString?
-    var dateTime: NSString?
+    /* Event data */
+    var eventTitle: NSString? = nil
+    var eventLocation: NSString? = nil
+    var dateTime: NSString? = nil
     var friendsList: [NSString] = [NSString]()
-    var eventPrice: NSString?
-    var eventPublic: NSString?
-    var eventAgeRestrictions: NSString?
+    var eventPrice: NSString? = nil
+    var eventPublic: NSString? = nil
+    var eventAgeRestrictions: NSString? = nil
     
-    init () {
-        eventTitle = nil
-        eventLocation = nil
-        dateTime = nil
-        eventPrice = nil
-        eventPublic = nil
-        eventAgeRestrictions = nil
-    }
+    /* Group data */
+    var eventIDs: [NSString] = [NSString]()
+    var inviteIDs: [NSString] = [NSString]()
+    var groupName: NSString? = nil
     
-    func firstPage (title: NSString, location: NSString, dateTime: NSString, eventPublic: NSString) {
+    // MARK: Event methods
+    
+    /*-------------------------------*
+     * Event Methods 
+     *-------------------------------*/
+    
+    
+    func eventFirstPage (title: NSString, location: NSString, dateTime: NSString, eventPublic: NSString) {
         eventTitle = title
         eventLocation = location
         self.dateTime = dateTime
@@ -42,13 +46,13 @@ class CreateEventModel {
         eventAgeRestrictions = "0"
     }
     
-    func secondPage(friends: [NSString]) {
+    func eventSecondPage(friends: [NSString]) {
         
         friendsList = [NSString]() // reinitialize in case someone goes back to first page
         friendsList = friends
     }
     
-    func sendToBackend() -> NSString? {
+    func eventSendToBackend() -> NSString? {
       
         // Registration successful: Dismiss Registration view and attempt login
         var backendError: NSString? = PartyUpBackend.instance.backendEventCreation(eventTitle!, location: eventLocation!, ageRestrictions: eventAgeRestrictions!, isPublic: eventPublic!, price: eventPrice!, inviteList: friendsList, dateTime: dateTime!)
@@ -61,6 +65,37 @@ class CreateEventModel {
         }
     }
     
+    // MARK: Group methods
+
+    /*-------------------------------*
+     * Group Methods
+     *-------------------------------*/
+
+    func groupFirstPage(inviteIDs: [NSString], groupName: NSString)
+    {
+        self.inviteIDs = inviteIDs
+        self.groupName = groupName
+    }
+    
+    func groupSecondPage(eventIDs: [NSString]) {
+        self.eventIDs = eventIDs
+    }
+
+
+    func groupSendToBackend() -> NSString?
+    {
+        // Registration successful: Dismiss Registration view and attempt login
+        var backendError: NSString? = PartyUpBackend.instance.backendGroupCreation(groupName!, eventIDs: eventIDs, inviteList: inviteIDs)
+        if (backendError == nil)
+        {
+            return nil
+        }
+        else {
+            return "Group creation failed"
+        }
+    }
+
+
     /*--------------------------------------------*
     * Instance variables and Declarations
     *--------------------------------------------*/
@@ -69,6 +104,7 @@ class CreateEventModel {
     var searchUsersQueryResults: NSArray = NSArray()
     var selectedUsers: NSArray = NSArray()
     var inviteList: NSArray = NSArray()
+    var groupEvents: NSArray = NSArray()
     
     /*--------------------------------------------*
     * Set methods
@@ -138,14 +174,15 @@ class CreateEventModel {
         
         var usersToDisplay: NSMutableArray = NSMutableArray()
         for query in searchUsersQueryResults {
-            let queryDict = query as NSDictionary
+            let queryDict = query as! NSDictionary
             var queryID: NSString = CreateEventModel.getUserID(queryDict)
             var isInQueryList: Bool = false
             for invitee in inviteList {
-                let inviteeDict = invitee as NSDictionary
+                let inviteeDict = invitee as! NSDictionary
                 var inviteeID: NSString = CreateEventModel.getUserID(inviteeDict)
                 if queryID == inviteeID {
                     isInQueryList = true
+                    PULog("ID's are equal")
                     break
                 }
             }
@@ -171,11 +208,11 @@ class CreateEventModel {
     func getSelectedUsers() -> NSArray {
         var usersToAdd: NSMutableArray = NSMutableArray()
         for selected in selectedUsers {
-            let selectedDict = selected as NSDictionary
+            let selectedDict = selected as! NSDictionary
             var selectedID: NSString = CreateEventModel.getUserID(selectedDict)
             var isInAddedList: Bool = false
             for invitee in inviteList {
-                let inviteeDict = invitee as NSDictionary
+                let inviteeDict = invitee as! NSDictionary
                 var inviteeID: NSString = CreateEventModel.getUserID(inviteeDict)
                 if selectedID == inviteeID {
                     isInAddedList = true
@@ -193,6 +230,13 @@ class CreateEventModel {
         return inviteList
     }
     
+    
+    /*--------------------------------------------*
+    * Group events methods
+    *--------------------------------------------*/
+    
+    
+    
     /*--------------------------------------------*
     * Data extraction methods
     *--------------------------------------------*/
@@ -206,14 +250,14 @@ class CreateEventModel {
     }
     
     class func getUserFirstName(user: NSDictionary) -> NSString {
-        return user["first_name"] as NSString
+        return user["first_name"] as! NSString
     }
     
     class func getUserLastName(user: NSDictionary) -> NSString {
-        return user["last_name"] as NSString
+        return user["last_name"] as! NSString
     }
     
     class func getUserEmail(user: NSDictionary) -> NSString {
-        return user["username"] as NSString // email?
+        return user["username"] as! NSString // email?
     }
 }

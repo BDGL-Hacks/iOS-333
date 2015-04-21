@@ -86,6 +86,11 @@ class HomepageViewController: PartyUpViewController
             PULog("Transitioning to Create Event Screen")
             self.performSegueWithIdentifier("homeToCreateEvent", sender: self)
         }
+        else if (activeView == groupsChildView)
+        {
+            PULog("Transitioning to Create Group Screen")
+            self.performSegueWithIdentifier("homeToCreateGroup", sender: self)
+        }
     }
     
     @IBAction func navSegmentedControlChanged(sender: UISegmentedControl) {

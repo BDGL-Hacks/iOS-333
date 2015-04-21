@@ -57,7 +57,7 @@ class LoginViewController: PartyUpViewController, UITextFieldDelegate {
         passwordTextField.resignFirstResponder()
     }
     
-    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }

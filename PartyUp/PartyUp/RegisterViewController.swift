@@ -207,7 +207,7 @@ class RegisterViewController: PartyUpViewController, UITextFieldDelegate {
     // Called when the UIKeyboardDidShowNotification is sent.
     func keyboardWillBeShown(sender: NSNotification) {
         let info: NSDictionary = sender.userInfo!
-        let value: NSValue = info.valueForKey(UIKeyboardFrameBeginUserInfoKey) as NSValue
+        let value: NSValue = info.valueForKey(UIKeyboardFrameBeginUserInfoKey) as! NSValue
         let keyboardSize: CGSize = value.CGRectValue().size
         let contentInsets: UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0)
         scrollView.contentInset = contentInsets

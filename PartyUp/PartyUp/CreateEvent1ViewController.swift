@@ -17,13 +17,15 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
     
     
     @IBOutlet weak var publicSwitch: UISwitch!
-    let create = CreateEventModel()
+    let createEvent = CreateModel()
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var eventTitleTextField: UITextField!
     @IBOutlet weak var selectedDate: UILabel!
     @IBOutlet weak var myDatePicker: UIDatePicker!
     @IBOutlet weak var locationTextField: UITextField!
     var backendDate: String?
+    var isFromGroup: Bool = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,7 +86,7 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
     }
     
     /* Dismisses keyboard if user returns */
-    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
@@ -92,8 +94,8 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
     /* Send EventCreation object to next stage of event creation */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "eventCreationOnetoTwo" {
-            let destinationVC = segue.destinationViewController as CreateEvent2ViewController
-            destinationVC.create = self.create
+            let destinationVC = segue.destinationViewController as! CreateEvent2ViewController
+            destinationVC.createEvent = self.createEvent
         }
     }
     
@@ -102,12 +104,12 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
     * UITextField Delegate Methods
     *--------------------------------------------*/
     
-    func textFieldDidBeginEditing(textField: UITextField!) {
+    func textFieldDidBeginEditing(textField: UITextField) {
         activeTextField = textField
         scrollView.scrollEnabled = true
     }
     
-    func textFieldDidEndEditing(textField: UITextField!) {
+    func textFieldDidEndEditing(textField: UITextField) {
         activeTextField = nil
         scrollView.scrollEnabled = false
     }
@@ -141,7 +143,7 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
         var eventLocation: NSString = locationTextField.text
         var eventDateTime: NSString = backendDate!
         
-        create.firstPage(eventTitle, location: eventLocation, dateTime: eventDateTime, eventPublic: isPublic)
+        createEvent.eventFirstPage(eventTitle, location: eventLocation, dateTime: eventDateTime, eventPublic: isPublic)
     }
     
     
@@ -192,7 +194,7 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
     // Called when the UIKeyboardDidShowNotification is sent.
     func keyboardWillBeShown(sender: NSNotification) {
         let info: NSDictionary = sender.userInfo!
-        let value: NSValue = info.valueForKey(UIKeyboardFrameBeginUserInfoKey) as NSValue
+        let value: NSValue = info.valueForKey(UIKeyboardFrameBeginUserInfoKey) as! NSValue
         let keyboardSize: CGSize = value.CGRectValue().size
         let contentInsets: UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0)
         scrollView.contentInset = contentInsets

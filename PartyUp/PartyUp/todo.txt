@@ -66,11 +66,16 @@ Current Event
 Create Event
 ------------
  - investigate popover presentation
- - put code from add friends button inside redo search
+ - put code from add friends button inside redo search X
  - get rid of David in search (for historical reasons) X
  - smaller date picker
  - reload query results when user scrolls
- - don't display users that are already added
+ - don't display users that are already added (still broken)
+
+Create Group
+------------
+
+
 
 Login
 -----
@@ -82,6 +87,7 @@ Register
  - Have view scroll down when keyboard is displayed (such that all fields and register button is still displayed)
  - Make "Back to Login" button placement more consistent with Login's "Register for PartyUp" button
  - Write some tests
+
 
 Backend (Not us!)
 -----------------

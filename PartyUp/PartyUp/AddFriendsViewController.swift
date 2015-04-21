@@ -12,10 +12,11 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
 
     
     @IBOutlet weak var queryTableView: UITableView!
-    var previousViewController: CreateEvent2ViewController?
+    var previousViewController: AnyObject?
     var queryResults: NSArray? = NSArray()
-    var create: CreateEventModel?
+    var create: CreateModel?
     var prevSearch: String? = nil
+    var isEvent: Bool = true
     
     // text that gets sent to search method on backend
     var searchText: String? = nil {
@@ -52,7 +53,7 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
     /* Make a query to the backend and reload the table */
     func refresh() {
         if (searchText != nil) {
-            create?.update(CreateEventModel.QueryType.Search, search: searchText)
+            create?.update(CreateModel.QueryType.Search, search: searchText)
             queryResults = create?.getSearchUsers()
             queryTableView.reloadData()
         }
@@ -106,21 +107,21 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell") as AddFriendsTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell") as! AddFriendsTableViewCell
         
         // Configure the cell //
         
         var user: NSDictionary = NSDictionary()
-        user = queryResults![indexPath.row] as NSDictionary
+        user = queryResults![indexPath.row] as! NSDictionary
         
         // get values from model to display in the cell
-        var firstName: NSString = CreateEventModel.getUserFirstName(user)
-        var lastName: NSString = CreateEventModel.getUserLastName(user)
-        var usernameEmail: NSString = CreateEventModel.getUserEmail(user)
-        var userID: NSString = CreateEventModel.getUserID(user)
+        var firstName: NSString = CreateModel.getUserFirstName(user)
+        var lastName: NSString = CreateModel.getUserLastName(user)
+        var usernameEmail: NSString = CreateModel.getUserEmail(user)
+        var userID: NSString = CreateModel.getUserID(user)
         
         // concatenate the name for cell display
-        var fullName = firstName +  " " +  lastName
+        var fullName = (firstName as String) +  " " +  (lastName as String)
         
         cell.loadCell(fullName, firstName: firstName, lastName: lastName, userID: userID, usernameEmail: usernameEmail)
         
@@ -155,7 +156,7 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
         var selectedUsers: NSMutableArray = NSMutableArray()
         if let indexPaths = queryTableView.indexPathsForSelectedRows() {
             for var i = 0; i < indexPaths.count; ++i {
-                var thisPath = indexPaths[i] as NSIndexPath
+                var thisPath = indexPaths[i] as! NSIndexPath
                 var cell = queryTableView.cellForRowAtIndexPath(thisPath)
                 if let cell = cell as? AddFriendsTableViewCell {
                     
@@ -172,7 +173,15 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
         }
         
         create?.setSelectedUsers(selectedUsers as NSArray)
-        previousViewController!.updateAddedFriends()
+        
+        if (isEvent == true)
+            let prevEventCreation2 = previousViewController as! CreateEvent2ViewController
+            prevEventCreation2.updateAddedFriends()
+        }
+        else {
+            let prevGroupCreation1 = previousViewController as! CreateGroup1ViewController
+            prevGroupCreation1.updateAddedFriends()
+        }
         
         // self.dismissViewControllerAnimated(true, nil)
         

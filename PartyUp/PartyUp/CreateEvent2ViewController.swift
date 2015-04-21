@@ -10,7 +10,7 @@ import UIKit
 
 class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, UITableViewDelegate  {
 
-    var create: CreateEventModel?
+    var createEvent: CreateModel?
     
     @IBOutlet weak var addedFriendsTableView: UITableView!
     var addedFriends: NSMutableArray? = NSMutableArray()
@@ -21,7 +21,7 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
         addedFriendsTableView.delegate = self
         addedFriendsTableView.dataSource = self
         
-        addedFriends?.addObjectsFromArray(create!.getInvitedList())
+        addedFriends?.addObjectsFromArray(createEvent!.getInvitedList() as [AnyObject])
 
         // Do any additional setup after loading the view.
     }
@@ -42,20 +42,21 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
     @IBAction func backToFirst(sender: UIButton) {
         PULog("Going back to first event page")
         var inviteList = addedFriends! as NSArray
-        create?.setInviteList(inviteList)
+        createEvent?.setInviteList(inviteList)
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "createTwoToAddFriends" {
             PULog("Preparing for segue")
-            let destinationVC = segue.destinationViewController as AddFriendsViewController
-            destinationVC.create = self.create
+            let destinationVC = segue.destinationViewController as! AddFriendsViewController
+            destinationVC.create = self.createEvent
             destinationVC.previousViewController = self
+            destinationVC.isEvent = true
         }
         else if segue.identifier == "eventCreationTwoToHome" {
             PULog("Preparing for segue")
-            let destinationVC = segue.destinationViewController as HomepageViewController
+            let destinationVC = segue.destinationViewController as! HomepageViewController
             destinationVC.setActiveView(HomepageViewController.NavView.Events)
         }
     }
@@ -84,9 +85,9 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
         
         /* Send to backend */
         
-        create?.secondPage(friendEmails)
+        createEvent?.eventSecondPage(friendEmails)
         
-        var backendError: NSString? = create?.sendToBackend()
+        var backendError: NSString? = createEvent?.eventSendToBackend()
         if (backendError == nil)
         {
             self.performSegueWithIdentifier("eventCreationTwoToHome", sender: self)
@@ -148,17 +149,17 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("UserCell") as AddFriendsTableViewCell;
+        let cell = tableView.dequeueReusableCellWithIdentifier("UserCell") as! AddFriendsTableViewCell;
         
         var user: NSDictionary = NSDictionary()
-        user = addedFriends![indexPath.row] as NSDictionary
+        user = addedFriends![indexPath.row] as! NSDictionary
         
-        var firstName: NSString = CreateEventModel.getUserFirstName(user)
-        var lastName: NSString = CreateEventModel.getUserLastName(user)
-        var usernameEmail: NSString = CreateEventModel.getUserEmail(user)
-        var userID: NSString =  CreateEventModel.getUserID(user)
+        var firstName: NSString = CreateModel.getUserFirstName(user)
+        var lastName: NSString = CreateModel.getUserLastName(user)
+        var usernameEmail: NSString = CreateModel.getUserEmail(user)
+        var userID: NSString =  CreateModel.getUserID(user)
         
-        var fullName = firstName +  " " + lastName
+        var fullName = (firstName as String) +  " " + (lastName as String)
         cell.loadCell(fullName, firstName: firstName, lastName: lastName, userID: userID, usernameEmail: usernameEmail)
         
         cell.accessoryType = UITableViewCellAccessoryType.None
@@ -166,9 +167,9 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
     }
     
     func updateAddedFriends() {
-        var friendsToAdd: NSArray = create!.getSelectedUsers()
-        addedFriends?.addObjectsFromArray(friendsToAdd)
-        create?.setInviteList(addedFriends! as NSArray)
+        var friendsToAdd: NSArray = createEvent!.getSelectedUsers()
+        addedFriends?.addObjectsFromArray(friendsToAdd as [AnyObject])
+        createEvent?.setInviteList(addedFriends! as NSArray)
         addedFriendsTableView.reloadData()
     }
     

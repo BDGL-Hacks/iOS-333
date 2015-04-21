@@ -174,7 +174,7 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
         
         create?.setSelectedUsers(selectedUsers as NSArray)
         
-        if (isEvent == true)
+        if (isEvent == true) {
             let prevEventCreation2 = previousViewController as! CreateEvent2ViewController
             prevEventCreation2.updateAddedFriends()
         }
@@ -183,7 +183,7 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
             prevGroupCreation1.updateAddedFriends()
         }
         
-        // self.dismissViewControllerAnimated(true, completion: nil)
+        // self.dismissViewControllerAnimated(true, nil)
         
     }
     

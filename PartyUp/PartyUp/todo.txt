@@ -84,6 +84,8 @@ Create Event
  - get rid of David in search (for historical reasons) X
  - smaller date picker
  - reload query results when user scrolls
+ - don't display users that are already added
+ - Put top buttons inside a Navigation Bar
  - don't display users that are already added (still broken)
 
 Create Group

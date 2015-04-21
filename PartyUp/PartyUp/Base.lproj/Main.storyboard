@@ -768,10 +768,10 @@
             </objects>
             <point key="canvasLocation" x="2317" y="2421"/>
         </scene>
-        <!--Home Groups View Controller-->
+        <!--Main Groups View Controller-->
         <scene sceneID="07y-sZ-Vnj">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="TyQ-WJ-xK7" customClass="HomeGroupsViewController" customModule="PartyUp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="TyQ-WJ-xK7" customClass="MainGroupsViewController" customModule="PartyUp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6c6-1K-Ecw"/>
                         <viewControllerLayoutGuide type="bottom" id="kAD-Xa-tI8"/>
@@ -780,16 +780,117 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Yo, this is the Group Page!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vdy-GT-nwx">
-                                <rect key="frame" x="58" y="241" width="204" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Agy-TB-L7y">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Groups I'm Invited To" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nOZ-wl-Sly">
+                                        <rect key="frame" x="78" y="21" width="165" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7Lk-Ne-k6p" customClass="PUDynamicTableView" customModule="PartyUp" customModuleProvider="target">
+                                        <rect key="frame" x="35" y="50" width="250" height="160"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="250" id="0Ld-oS-QNG"/>
+                                            <constraint firstAttribute="height" constant="160" placeholder="YES" id="Trv-vH-ZK3"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" id="lxS-Ov-6BD"/>
+                                        </constraints>
+                                        <prototypes>
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="invitedCellPrototype" rowHeight="60" id="CGp-KA-FnB" customClass="PartyUpTableCell" customModule="PartyUp" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="250" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CGp-KA-FnB" id="6Qg-fQ-XfJ">
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="TyQ-WJ-xK7" id="Q6v-Yi-RAE"/>
+                                            <outlet property="delegate" destination="TyQ-WJ-xK7" id="BQI-oz-lck"/>
+                                            <outlet property="dynamicHeightConstraint" destination="lxS-Ov-6BD" id="ncI-6R-fFc"/>
+                                        </connections>
+                                    </tableView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Groups" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUK-Cw-JuV">
+                                        <rect key="frame" x="118" y="250" width="85" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="IwZ-FH-Vzj" customClass="PUDynamicTableView" customModule="PartyUp" customModuleProvider="target">
+                                        <rect key="frame" x="35" y="279" width="250" height="200"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" placeholder="YES" id="Nie-Fv-lEB"/>
+                                            <constraint firstAttribute="width" constant="250" id="Wwf-vo-eUZ"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" id="eG0-2b-CeW"/>
+                                        </constraints>
+                                        <prototypes>
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="myGroupsCellPrototype" rowHeight="60" id="P3V-Qh-UGz" customClass="PartyUpTableCell" customModule="PartyUp" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="250" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="P3V-Qh-UGz" id="h72-uq-yG9">
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="TyQ-WJ-xK7" id="LQ7-A3-WWE"/>
+                                            <outlet property="delegate" destination="TyQ-WJ-xK7" id="BOG-5e-Fnw"/>
+                                            <outlet property="dynamicHeightConstraint" destination="eG0-2b-CeW" id="6t9-OU-53g"/>
+                                        </connections>
+                                    </tableView>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You don't have any groups
+yet! You can create a group
+by tapping the '+' icon." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VHQ-a7-kX0">
+                                        <rect key="frame" x="35" y="212" width="250" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="250" id="3jL-4h-vnU"/>
+                                            <constraint firstAttribute="height" constant="80" id="ahX-mG-xhm"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="dUK-Cw-JuV" firstAttribute="top" secondItem="7Lk-Ne-k6p" secondAttribute="bottom" constant="40" id="45B-Av-Brb"/>
+                                    <constraint firstAttribute="bottom" secondItem="IwZ-FH-Vzj" secondAttribute="bottom" constant="25" id="7io-SY-ilw"/>
+                                    <constraint firstItem="IwZ-FH-Vzj" firstAttribute="top" secondItem="dUK-Cw-JuV" secondAttribute="bottom" constant="8" id="8Nl-Mj-myR"/>
+                                    <constraint firstItem="VHQ-a7-kX0" firstAttribute="top" secondItem="Agy-TB-L7y" secondAttribute="top" constant="212" id="H9e-jg-ogS"/>
+                                    <constraint firstItem="VHQ-a7-kX0" firstAttribute="leading" secondItem="Agy-TB-L7y" secondAttribute="leading" constant="35" id="Lh9-AG-psy"/>
+                                    <constraint firstItem="7Lk-Ne-k6p" firstAttribute="leading" secondItem="Agy-TB-L7y" secondAttribute="leading" constant="35" id="Tii-UB-vYI"/>
+                                    <constraint firstItem="nOZ-wl-Sly" firstAttribute="leading" secondItem="Agy-TB-L7y" secondAttribute="leading" constant="78" id="Ufo-mA-rHs"/>
+                                    <constraint firstItem="IwZ-FH-Vzj" firstAttribute="leading" secondItem="Agy-TB-L7y" secondAttribute="leading" constant="35" id="Wo2-dF-q2U"/>
+                                    <constraint firstAttribute="trailing" secondItem="IwZ-FH-Vzj" secondAttribute="trailing" constant="35" id="iPr-f4-u1G"/>
+                                    <constraint firstItem="dUK-Cw-JuV" firstAttribute="leading" secondItem="Agy-TB-L7y" secondAttribute="leading" constant="118" id="kLa-Ri-LFQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="VHQ-a7-kX0" secondAttribute="trailing" constant="35" id="o9D-Gq-T9y"/>
+                                    <constraint firstAttribute="trailing" secondItem="nOZ-wl-Sly" secondAttribute="trailing" constant="77" id="qnl-Jp-L5B"/>
+                                    <constraint firstItem="IwZ-FH-Vzj" firstAttribute="width" secondItem="7Lk-Ne-k6p" secondAttribute="width" id="uIH-M7-pen"/>
+                                    <constraint firstItem="nOZ-wl-Sly" firstAttribute="top" secondItem="Agy-TB-L7y" secondAttribute="top" constant="21" id="vy6-Ge-cqn"/>
+                                    <constraint firstItem="7Lk-Ne-k6p" firstAttribute="top" secondItem="nOZ-wl-Sly" secondAttribute="bottom" constant="8" id="w8b-ka-u39"/>
+                                    <constraint firstAttribute="trailing" secondItem="7Lk-Ne-k6p" secondAttribute="trailing" constant="35" id="xrM-hm-H8P"/>
+                                    <constraint firstAttribute="trailing" secondItem="dUK-Cw-JuV" secondAttribute="trailing" constant="117" id="xvS-En-KMn"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Agy-TB-L7y" firstAttribute="leading" secondItem="2QD-C9-J4G" secondAttribute="leading" id="gBu-Bx-5lm"/>
+                            <constraint firstItem="Agy-TB-L7y" firstAttribute="top" secondItem="6c6-1K-Ecw" secondAttribute="bottom" id="iA8-Wl-Gbi"/>
+                            <constraint firstAttribute="trailing" secondItem="Agy-TB-L7y" secondAttribute="trailing" id="usS-Zb-LeK"/>
+                            <constraint firstItem="kAD-Xa-tI8" firstAttribute="top" secondItem="Agy-TB-L7y" secondAttribute="bottom" id="w9R-Ak-A8A"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
+                    <connections>
+                        <outlet property="invitedGroupsLabel" destination="nOZ-wl-Sly" id="rfg-8T-m5G"/>
+                        <outlet property="invitedGroupsTableView" destination="7Lk-Ne-k6p" id="Wye-vW-AJ0"/>
+                        <outlet property="myGroupsLabel" destination="dUK-Cw-JuV" id="oDi-I1-wFd"/>
+                        <outlet property="myGroupsTableView" destination="IwZ-FH-Vzj" id="bbN-OH-8lI"/>
+                        <outlet property="placeholderLabel" destination="VHQ-a7-kX0" id="Plj-xl-OIB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="baa-Nn-FSh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

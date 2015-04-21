@@ -78,26 +78,7 @@ class SearchEventsModel
     *--------------------------------------------*/
     
     func getCreatedEvents() -> NSArray {
-        
-        // TODO: Delete this, fake data
-        /*
-        var fakeArray: [NSDictionary] = [
-            /*["title": "Fake Event", "location_name": "I don't know"],
-            ["title": "Look, Another Event!", "location_name": "Still don't."],
-            ["title": "GAAAGH!", "location_name": "URGH"],
-            ["title": "Derping", "location_name": "derpy-perp"],
-            ["title": "Derping", "location_name": "derpy-perp"],
-            ["title": "Derping", "location_name": "derpy-perp"],
-            ["title": "Derping", "location_name": "derpy-perp"],
-            ["title": "Derping", "location_name": "derpy-perp"],
-            ["title": "Derping", "location_name": "derpy-perp"],
-            ["title": "Derping", "location_name": "derpy-perp"],
-            ["title": "Fake Data", "location_name": "Insert location here"]*/
-        ]
-        return NSArray(array: fakeArray)
-        */
-        
-        let resultArray: NSArray? = userEventsQueryResults["created"] as NSArray?
+        let resultArray: NSArray? = userEventsQueryResults["created"] as! NSArray?
         if (resultArray == nil) {
             return NSArray()
         }
@@ -112,27 +93,38 @@ class SearchEventsModel
         // TODO: Delete this, fake data
         var fakeArray: [NSDictionary] = [
             ["title": "Fake Event", "location_name": "I don't know", "time": "2015-04-12 09:00:00",
-                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": []],
+                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": [],
+                "attending_list": []],
             ["title": "Look, Another Event!", "location_name": "Still don't.", "time": "2015-04-12 09:00:00",
-                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": []],
+                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": [],
+                "attending_list": []],
             ["title": "GAAAGH!", "location_name": "URGH", "time": "2015-04-12 09:00:00",
-                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": []],
+                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": [],
+                "attending_list": []],
             ["title": "Derping", "location_name": "derpy-perp", "time": "2015-04-12 09:00:00",
-                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": []],
+                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": [],
+                "attending_list": []],
             ["title": "Derping", "location_name": "derpy-perp", "time": "2015-04-12 09:00:00",
-                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": []],
+                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": [],
+                "attending_list": []],
             ["title": "Derping", "location_name": "derpy-perp", "time": "2015-04-12 09:00:00",
-                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": []],
+                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": [],
+                "attending_list": []],
             ["title": "Derping", "location_name": "derpy-perp", "time": "2015-04-12 09:00:00",
-                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": []],
+                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": [],
+                "attending_list": []],
             ["title": "Derping", "location_name": "derpy-perp", "time": "2015-04-12 09:00:00",
-                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": []],
+                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": [],
+                "attending_list": []],
             ["title": "Derping", "location_name": "derpy-perp", "time": "2015-04-12 09:00:00",
-                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": []],
+                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": [],
+                "attending_list": []],
             ["title": "Derping", "location_name": "derpy-perp", "time": "2015-04-12 09:00:00",
-                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": []],
+                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": [],
+                "attending_list": []],
             ["title": "Fake Data", "location_name": "Insert location here", "time": "2015-04-12 09:00:00",
-                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": []]
+                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": [],
+                "attending_list": []]
         ]
         return NSArray(array: fakeArray)
         
@@ -152,11 +144,14 @@ class SearchEventsModel
         // TODO: Delete this, fake data
         var fakeArray: [NSDictionary] = [
             ["title": "Fake Event", "location_name": "I don't know", "time": "2015-04-12 09:00:00",
-                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": []],
+                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": [],
+                "attending_list": []],
             ["title": "Look, Another Event!", "location_name": "Still don't.", "time": "2015-04-12 09:00:00",
-                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": []],
+                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": [],
+                "attending_list": []],
             ["title": "GAAAGH!", "location_name": "URGH", "time": "2015-04-12 09:00:00",
-                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": []],
+                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": [],
+                "attending_list": []],
             ["title": "Fake Data", "location_name": "Insert location here", "time": "2015-04-12 09:00:00",
                 "description": "A bad description", "location_name": "Princeton, NJ", "invite_list":
                 [
@@ -168,7 +163,8 @@ class SearchEventsModel
                     ["username": "username", "first_name": "First", "last_name": "Last", "id": 2],
                     ["username": "username", "first_name": "First", "last_name": "Last", "id": 2],
                     ["username": "username", "first_name": "First", "last_name": "Last", "id": 2]
-                ]
+                ],
+                "attending_list": []
             ]
         ]
         return NSArray(array: fakeArray)

@@ -20,8 +20,8 @@ class AddFriendsTableViewCell: UITableViewCell {
     
     
     func loadCell(fullName: NSString, firstName: NSString?, lastName: NSString, userID: NSString, usernameEmail: NSString) {
-        self.nameLabel.text = fullName
-        self.emailLabel.text = usernameEmail
+        self.nameLabel.text = fullName as String
+        self.emailLabel.text = usernameEmail as String
         self.firstName = firstName
         self.lastName = lastName
         self.userID = userID

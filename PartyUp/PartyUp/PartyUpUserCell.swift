@@ -20,7 +20,7 @@ class PartyUpUserCell: UITableViewCell {
     *--------------------------------------------*/
     
     func loadCell(username: NSString, userID: NSString, userEmail: NSString) {
-        usernameLabel.text = username
+        usernameLabel.text = username as String
         mySwitch.on = false
         userIDLabel = userID
         usernameEmail = userEmail

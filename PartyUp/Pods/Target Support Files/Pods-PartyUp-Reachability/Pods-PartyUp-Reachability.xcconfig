@@ -1,0 +1,1 @@
+PODS_PARTYUP_REACHABILITY_OTHER_LDFLAGS = -framework "SystemConfiguration"

@@ -69,7 +69,7 @@ class HomepageViewController: PartyUpViewController
         PULog("Deleting cookies...")
         var cookieStorage: NSHTTPCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
         for cookie in cookieStorage.cookies! {
-            cookieStorage.deleteCookie(cookie as NSHTTPCookie)
+            cookieStorage.deleteCookie(cookie as! NSHTTPCookie)
         }
         PULog("Deleting app preferences...")
         var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
@@ -120,7 +120,7 @@ class HomepageViewController: PartyUpViewController
             PULog("Deleting cookies...")
             var cookieStorage: NSHTTPCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
             for cookie in cookieStorage.cookies! {
-                cookieStorage.deleteCookie(cookie as NSHTTPCookie)
+                cookieStorage.deleteCookie(cookie as! NSHTTPCookie)
             }
             PULog("Deleting app preferences...")
             var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()

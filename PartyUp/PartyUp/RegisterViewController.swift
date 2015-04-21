@@ -118,7 +118,7 @@ class RegisterViewController: PartyUpViewController, UITextFieldDelegate {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
-    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
@@ -175,12 +175,12 @@ class RegisterViewController: PartyUpViewController, UITextFieldDelegate {
     * UITextField Delegate Methods
     *--------------------------------------------*/
     
-    func textFieldDidBeginEditing(textField: UITextField!) {
+    func textFieldDidBeginEditing(textField: UITextField) {
         activeTextField = textField
         scrollView.scrollEnabled = true
     }
     
-    func textFieldDidEndEditing(textField: UITextField!) {
+    func textFieldDidEndEditing(textField: UITextField) {
         activeTextField = nil
         scrollView.scrollEnabled = false
     }

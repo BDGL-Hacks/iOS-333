@@ -71,13 +71,13 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
         let ageRestriction: NSInteger? = DataManager.getEventAgeRestriction(event)
         
         // Put information into corresponding views
-        eventTitleLabel.text = eventTitle
-        dateLabel.text = date
-        timeLabel.text = startTime
-        locationLabel.text = locationName
-        descriptionLabel.text = desc
+        eventTitleLabel.text = eventTitle as String
+        dateLabel.text = date as String
+        timeLabel.text = startTime as String
+        locationLabel.text = locationName as String
+        descriptionLabel.text = desc as String
         if (group != nil) {
-            groupLabel.text = group!
+            groupLabel.text = group! as String
         } else {
             groupLabel.text = "Going solo..."
         }
@@ -111,8 +111,8 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
      * Loads each attendee's name into the cell.          */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) ->UITableViewCell {
         var cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: nil)
-        let user: NSDictionary = DataManager.getEventAttendees(event)[indexPath.row] as NSDictionary
-        cell.textLabel!.text = DataManager.getUserFullName(user)
+        let user: NSDictionary = DataManager.getEventAttendees(event)[indexPath.row] as! NSDictionary
+        cell.textLabel!.text = DataManager.getUserFullName(user) as String
         return cell
     }
     

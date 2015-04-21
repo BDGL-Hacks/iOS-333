@@ -183,7 +183,7 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
             prevGroupCreation1.updateAddedFriends()
         }
         
-        // self.dismissViewControllerAnimated(true, nil)
+        // self.dismissViewControllerAnimated(true, completion: nil)
         
     }
     

@@ -3,9 +3,11 @@ TODO
 
 General
 -------
- ! Change PartyUpViewController to a delegate -> all VCs implement UIViewController and PartyUp
+ ! Fix 'User is not logged in' error when user is clearly logged in
+ - Have views display properly on bigger and smaller devices
  - Have loading wheel appear when logging in, registering, and backend things that may require waiting
  - Improve PULog method (code location maybe, perhaps have some debugging options in globals?)
+ - Have PartyUpTableCell display '...' when any text is too long
  - Fix textShouldReturn
  - Buttons in names in the search bar
 
@@ -24,11 +26,17 @@ Groups (General)
 
 Groups Main Page
 ----------------
- ! Start it
+ ! Add segue to Group Chat page and add corresponding code to MainGroupsViewController
+ - Implement invitations
 
 Group Chat
 ----------
  ! Get JSQViewController working
+ - Figure out Photo Integration / AWS Pod
+
+Group Invite
+------------
+ ! Create it
 
 Create Groups
 -------------
@@ -47,12 +55,18 @@ Event Tables
 
 My Events
 ---------
+ ! Implement invitations
+ - For 'Events you're invited to' create invitation response popover
  - Put '--' or some other placeholder text when there are no events in a given table.
  - Have attending event table cell subtext display group instead of location and time
 
 Find Events
 -----------
  - Have live searching query the database for updated data each time
+
+Event Invite
+------------
+ ! Create it
 
 Event Info
 ----------
@@ -91,66 +105,4 @@ Register
 
 Backend (Not us!)
 -----------------
- ! Create Event: Add description field
- - Events: Send us back a list of people attending the event as well (and change corresponding model code)
  - Events: Also send back the group the user is going to the event with
-
-
-NOTES
-=====
-
-Create Group Flow
------------------
- - Click "Create Group" Button
- - Name the Group Page
- - Choose Event(s) Page
-   - You must choose at least one event
-   - Before you search, it shows you soon-to-occur event near you
-   - Search for events and select the ones you want
-   - Click "Finish"
- - Choose Members Page
-   - Before you search, it shows you people you've recently been in groups with
-   - Search for people and select the ones you want
-   - Click "Create Group"
-
-Event: Search all events API
-----------------------------
-
-URL: /events/search
-
-POST Parameters:
-- API : Search events
-- title
-- description
-- public (1 or 0)
-- location (??? - Not implemented)
-- date: YYYYMMDDhhmm
-- age: (integer)
-- price: (integer)
-- category (??? - Not implemented
-
-Returns:
-{
-accepted: bool
-results:
-[
-    description
-    price
-    location_name
-    title
-    admin {
-        username
-        first_name
-        last_name
-        id
-    }
-    age_restrictions
-    invite_list
-    [
-        <Users - same as admin>
-    ]
-    time: "YYYY-MM-DD hh:mm:ss+<timezone?>"
-    date_created
-    public: bool
-]
-}

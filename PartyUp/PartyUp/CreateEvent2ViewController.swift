@@ -154,10 +154,10 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
         var user: NSDictionary = NSDictionary()
         user = addedFriends![indexPath.row] as! NSDictionary
         
-        var firstName: NSString = CreateModel.getUserFirstName(user)
-        var lastName: NSString = CreateModel.getUserLastName(user)
-        var usernameEmail: NSString = CreateModel.getUserEmail(user)
-        var userID: NSString =  CreateModel.getUserID(user)
+        var firstName: NSString = DataManager.getUserFirstName(user)
+        var lastName: NSString = DataManager.getUserLastName(user)
+        var usernameEmail: NSString = DataManager.getUserUsername(user)
+        var userID: NSString =  "\(DataManager.getUserID(user))"
         
         var fullName = (firstName as String) +  " " + (lastName as String)
         cell.loadCell(fullName, firstName: firstName, lastName: lastName, userID: userID, usernameEmail: usernameEmail)

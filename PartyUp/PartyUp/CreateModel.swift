@@ -175,11 +175,11 @@ class CreateModel {
         var usersToDisplay: NSMutableArray = NSMutableArray()
         for query in searchUsersQueryResults {
             let queryDict = query as! NSDictionary
-            var queryID: NSString = CreateEventModel.getUserID(queryDict)
+            var queryID: NSString = "\(DataManager.getUserID(queryDict))"
             var isInQueryList: Bool = false
             for invitee in inviteList {
                 let inviteeDict = invitee as! NSDictionary
-                var inviteeID: NSString = CreateEventModel.getUserID(inviteeDict)
+                var inviteeID: NSString = "\(DataManager.getUserID(inviteeDict))"
                 if queryID == inviteeID {
                     isInQueryList = true
                     PULog("ID's are equal")
@@ -209,11 +209,11 @@ class CreateModel {
         var usersToAdd: NSMutableArray = NSMutableArray()
         for selected in selectedUsers {
             let selectedDict = selected as! NSDictionary
-            var selectedID: NSString = CreateEventModel.getUserID(selectedDict)
+            var selectedID: NSString = "\(DataManager.getUserID(selectedDict))"
             var isInAddedList: Bool = false
             for invitee in inviteList {
                 let inviteeDict = invitee as! NSDictionary
-                var inviteeID: NSString = CreateEventModel.getUserID(inviteeDict)
+                var inviteeID: NSString = "\(DataManager.getUserID(inviteeDict))"
                 if selectedID == inviteeID {
                     isInAddedList = true
                     break
@@ -231,33 +231,9 @@ class CreateModel {
     }
     
     
-    /*--------------------------------------------*
+   /*--------------------------------------------*
     * Group events methods
     *--------------------------------------------*/
     
     
-    
-    /*--------------------------------------------*
-    * Data extraction methods
-    *--------------------------------------------*/
-    
-    
-    class func getUserID(user: NSDictionary) -> NSString {
-        var userID: AnyObject? = user["id"]
-        return "\(userID)"
-        
-        // return user["id"] as NSString
-    }
-    
-    class func getUserFirstName(user: NSDictionary) -> NSString {
-        return user["first_name"] as! NSString
-    }
-    
-    class func getUserLastName(user: NSDictionary) -> NSString {
-        return user["last_name"] as! NSString
-    }
-    
-    class func getUserEmail(user: NSDictionary) -> NSString {
-        return user["username"] as! NSString // email?
-    }
 }

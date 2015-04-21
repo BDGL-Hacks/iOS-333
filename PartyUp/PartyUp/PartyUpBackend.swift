@@ -1,5 +1,5 @@
 //
-//  PartyUpStore.swift
+//  PartyUpBackend.swift
 //  PartyUp
 //
 //  Created by Graham Turk on 3/29/15.
@@ -118,11 +118,9 @@ class PartyUpBackend {
         }
     }
     
-    /*------------------------------------------------------*/
-    
-    /*  Performs backend event creation.      *
-     *  Returns an error message string if    *
-     *  event creation failed, nil otherwise. */
+    /* Performs backend event creation.      *
+     * Returns an error message string if    *
+     * event creation failed, nil otherwise. */
     func backendEventCreation(title: NSString, location: NSString, ageRestrictions: NSString,
         isPublic: NSString, price: NSString, inviteList: [NSString], dateTime: NSString) -> NSString?
     {
@@ -181,9 +179,8 @@ class PartyUpBackend {
     
     
     /* Performs backend group creation.      *
-    *  Returns an error message string if    *
-    *  event creation failed, nil otherwise. */
-    
+     * Returns an error message string if    *
+     * event creation failed, nil otherwise. */
     func backendGroupCreation(groupName: NSString, eventIDs: [NSString], inviteList: [NSString]) -> NSString?
     {
         PULog("Attempting to create a group...")
@@ -192,7 +189,7 @@ class PartyUpBackend {
         let username: NSString = userDefaults.objectForKey("USERNAME") as! NSString
         
         var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/groups/create"
-        var postParams: [String: String] = ["group_name": groupName]
+        var postParams: [String: String] = ["group_name": groupName as String]
         
         var stringOfUserIDs: String = ""
         var stringOfEventIDs: String = ""
@@ -211,15 +208,16 @@ class PartyUpBackend {
         
         for event in eventIDs {
             if i == 0 {
-                stringOfEventIDs += eventIDs
+                stringOfEventIDs += (event as String)
             }
             else {
-                stringOfEventIDs += "," +
+                stringOfEventIDs += "," + (event as String)
             }
+            i += 1
         }
         
         
-        postParams["invite_list"] = stringOfFriendEmails
+        postParams["invite_list"] = stringOfUserIDs
         postParams["event_ids"] = stringOfEventIDs
             
         
@@ -229,8 +227,8 @@ class PartyUpBackend {
         if (postData != nil)
         {
             let jsonData: NSDictionary = postData!
-            let accepted: Bool = jsonData.valueForKey("accepted") as Bool
-            var errorMessage: NSString? = jsonData.valueForKey("error") as NSString?
+            let accepted: Bool = jsonData.valueForKey("accepted") as! Bool
+            var errorMessage: NSString? = jsonData.valueForKey("error") as! NSString?
             
             // Event creation successful on server side
             if (accepted) {
@@ -255,13 +253,10 @@ class PartyUpBackend {
         }
     }
     
-    
-    /*------------------------------------------------------*/
-    
     /* Queries backend for search users to populate table in *
-        add friend view controller. Returns a tuple: an      *
-        error message string if something went wrong, and    *
-        query results as dictionary if successful.           */
+     * add friend view controller. Returns a tuple: an       *
+     * error message string if something went wrong, and     *
+     * query results as dictionary if successful.            */
     func queryUsers(search: NSString) -> (NSString?, NSArray?)
     {
         PULog("Querying for users to populate table in add freinds ...");
@@ -312,13 +307,11 @@ class PartyUpBackend {
             return ("Failed to connect to server", nil)
         }
     }
-
-    /*------------------------------------------------------*/
     
-    /* Queries backend for search users to populate table in *
-    add friend view controller. Returns a tuple: an      *
-    error message string if something went wrong, and    *
-    a batch of users as dictionary if successful.           */
+    /* Queries backend for search users to populate table *
+     * in add friend view controller. Returns a tuple: an *
+     * error message string if something went wrong, and  *
+     * a batch of users as dictionary if successful.      */
     func queryBatch() -> (NSString?, NSArray?)
     {
         PULog("Querying a random batch  ...");

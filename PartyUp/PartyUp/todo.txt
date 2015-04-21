@@ -76,6 +76,7 @@ Event Info
 
 Current Event
 -------------
+ ! Start it (Message Board, Other Event Info)
 
 Create Event
 ------------
@@ -88,11 +89,6 @@ Create Event
  - Put top buttons inside a Navigation Bar
  - don't display users that are already added (still broken)
 
-Create Group
-------------
-
-
-
 Login
 -----
  - Have view scroll down slightly when keyboard is displayed
@@ -103,7 +99,6 @@ Register
  - Have view scroll down when keyboard is displayed (such that all fields and register button is still displayed)
  - Make "Back to Login" button placement more consistent with Login's "Register for PartyUp" button
  - Write some tests
-
 
 Backend (Not us!)
 -----------------

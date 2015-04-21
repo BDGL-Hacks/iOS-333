@@ -62,7 +62,8 @@ class MainGroupsViewController: PartyUpViewController, UITableViewDelegate, UITa
     /* If we are segueing to GroupChatVC, send the cell's group data beforehand */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "mainGroupsToGroupChat") {
-            /* TODO */
+            let groupChatVC: GroupChatViewController = segue.destinationViewController as! GroupChatViewController
+            groupChatVC.setGroupData(selectedCellGroupData)
         }
     }
     
@@ -162,7 +163,7 @@ class MainGroupsViewController: PartyUpViewController, UITableViewDelegate, UITa
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let groupTitle = DataManager.getGroupTitle(cell.getCellData())
         PULog("Group Cell Pressed.\nCell Row: \(indexPath.row), Group Name: \(groupTitle)")
-        PULog("Transition to Group Char screen")
+        PULog("Transition to Group Chat screen")
         selectedCellGroupData = cell.getCellData()
         self.performSegueWithIdentifier("mainGroupsToGroupChat", sender: self)
     }

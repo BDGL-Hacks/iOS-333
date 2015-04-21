@@ -840,9 +840,7 @@
                                             <outlet property="dynamicHeightConstraint" destination="eG0-2b-CeW" id="6t9-OU-53g"/>
                                         </connections>
                                     </tableView>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You don't have any groups
-yet! You can create a group
-by tapping the '+' icon." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VHQ-a7-kX0">
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You don't have any groups yet! You can create a group by tapping the '+' icon." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VHQ-a7-kX0">
                                         <rect key="frame" x="35" y="212" width="250" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="250" id="3jL-4h-vnU"/>
@@ -889,11 +887,30 @@ by tapping the '+' icon." textAlignment="center" lineBreakMode="tailTruncation" 
                         <outlet property="myGroupsLabel" destination="dUK-Cw-JuV" id="oDi-I1-wFd"/>
                         <outlet property="myGroupsTableView" destination="IwZ-FH-Vzj" id="bbN-OH-8lI"/>
                         <outlet property="placeholderLabel" destination="VHQ-a7-kX0" id="Plj-xl-OIB"/>
+                        <segue destination="WOk-NN-jiY" kind="show" identifier="mainGroupsToGroupChat" id="Nav-PB-qSz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="baa-Nn-FSh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2812" y="675"/>
+        </scene>
+        <!--Group Chat View Controller-->
+        <scene sceneID="2qR-Vd-9OQ">
+            <objects>
+                <viewController id="WOk-NN-jiY" customClass="GroupChatViewController" customModule="PartyUp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RNv-Ad-cPR"/>
+                        <viewControllerLayoutGuide type="bottom" id="Cbm-vb-b4K"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4UI-kC-Hza">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mgi-v7-T2U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3288" y="675"/>
         </scene>
         <!--My Events View Controller-->
         <scene sceneID="CCZ-uQ-tNn">

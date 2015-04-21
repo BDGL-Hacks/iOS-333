@@ -118,9 +118,11 @@ class PartyUpBackend {
         }
     }
     
-    /* Performs backend event creation.      *
-     * Returns an error message string if    *
-     * event creation failed, nil otherwise. */
+    /*------------------------------------------------------*/
+    
+    /*  Performs backend event creation.      *
+     *  Returns an error message string if    *
+     *  event creation failed, nil otherwise. */
     func backendEventCreation(title: NSString, location: NSString, ageRestrictions: NSString,
         isPublic: NSString, price: NSString, inviteList: [NSString], dateTime: NSString) -> NSString?
     {
@@ -177,6 +179,84 @@ class PartyUpBackend {
         }
     }
     
+    
+    /* Performs backend group creation.      *
+    *  Returns an error message string if    *
+    *  event creation failed, nil otherwise. */
+    
+    func backendGroupCreation(groupName: NSString, eventIDs: [NSString], inviteList: [NSString]) -> NSString?
+    {
+        PULog("Attempting to create a group...")
+        
+        var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let username: NSString = userDefaults.objectForKey("USERNAME") as! NSString
+        
+        var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/groups/create"
+        var postParams: [String: String] = ["group_name": groupName]
+        
+        var stringOfUserIDs: String = ""
+        var stringOfEventIDs: String = ""
+        var i: Int = 0
+        for user in inviteList {
+            if i == 0 {
+                stringOfUserIDs += (user as String)
+            }
+            else {
+                stringOfUserIDs += "," + (user as String)
+            }
+            i += 1
+        }
+        
+        i = 0
+        
+        for event in eventIDs {
+            if i == 0 {
+                stringOfEventIDs += eventIDs
+            }
+            else {
+                stringOfEventIDs += "," +
+            }
+        }
+        
+        
+        postParams["invite_list"] = stringOfFriendEmails
+        postParams["event_ids"] = stringOfEventIDs
+            
+        
+        var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
+        
+        // We received JSON data back: process it
+        if (postData != nil)
+        {
+            let jsonData: NSDictionary = postData!
+            let accepted: Bool = jsonData.valueForKey("accepted") as Bool
+            var errorMessage: NSString? = jsonData.valueForKey("error") as NSString?
+            
+            // Event creation successful on server side
+            if (accepted) {
+                PULog("Event Creation Successful!")
+                return nil
+            }
+                
+                // Register was unsuccessful on server side
+            else {
+                if (errorMessage == nil) {
+                    errorMessage = "No error message received from server"
+                }
+                PULog("Event creation Failed: \(errorMessage!)")
+                return errorMessage
+            }
+        }
+            
+            // We did not receive JSON data back
+        else {
+            PULog("Event Creation Failed: No JSON data received")
+            return "Failed to connect to server"
+        }
+    }
+    
+    
+    /*------------------------------------------------------*/
     
     /* Queries backend for search users to populate table in *
         add friend view controller. Returns a tuple: an      *

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SLw-45-19W">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SLw-45-19W">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
@@ -11,7 +11,7 @@
         <!--Create Event 1 View Controller-->
         <scene sceneID="22h-4N-XjK">
             <objects>
-                <viewController storyboardIdentifier="GroupCreation1" title="GroupCreation1" id="iDH-9r-U2n" userLabel="Create Event 1 View Controller" customClass="CreateEvent1ViewController" customModule="PartyUp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="iDH-9r-U2n" userLabel="Create Event 1 View Controller" customClass="CreateEvent1ViewController" customModule="PartyUp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="asV-im-xSS"/>
                         <viewControllerLayoutGuide type="bottom" id="TJx-81-Azf"/>
@@ -268,7 +268,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Friends Search Query" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="YT4-oh-QmW">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Friends Search Query" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="YT4-oh-QmW">
                                 <rect key="frame" x="0.0" y="66" width="320" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="search"/>
@@ -610,6 +610,7 @@
                                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="oPv-jF-gac">
                                             <connections>
                                                 <action selector="createButtonPressed:" destination="SLw-45-19W" id="bne-jc-rVg"/>
+                                                <segue destination="pJ6-rL-ZN6" kind="presentation" identifier="homeToCreateGroup" id="PSi-Lh-fxu"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -1415,7 +1416,9 @@ tapping the 'Find' tab on the bottom.</string>
         <image name="PartyUp_arrow_placeholder.png" width="999" height="999"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="in5-ko-7n1"/>
+        <segue reference="Wpt-N6-eCm"/>
         <segue reference="jc2-Pg-Y0b"/>
-        <segue reference="ijx-Cl-ZbZ"/>
+        <segue reference="NJp-kO-aCE"/>
     </inferredMetricsTieBreakers>
 </document>

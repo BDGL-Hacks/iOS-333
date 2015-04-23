@@ -20,6 +20,7 @@ Globals / DataManager
 Homepage
 --------
  - Find better way homepage not perform queries on startup if not logged in -> go straight to login
+ - Logout confirmation popover so can't logout with one click
 
 Groups (General)
 ----------------
@@ -40,7 +41,10 @@ Group Invite
 
 Create Groups
 -------------
- ! Start it
+ - Allow user to add an event to a group (takes to alternative event creation page)
+    - update group events afterwards
+ - Create a group from within an event
+    - populate table to choose from with the event attendees
 
 Events (General)
 ----------------
@@ -73,6 +77,7 @@ Event Info
  - Improve attendee table aesthetics
  - Remove huge vertical space under attendee table
  - Display whether the event is public or private and invited list if private?
+ - Toggle-able button to accept the invitation (only if it's an invited event)
 
 Current Event
 -------------
@@ -85,7 +90,6 @@ Create Event
  - get rid of David in search (for historical reasons) X
  - smaller date picker
  - reload query results when user scrolls
- - don't display users that are already added
  - Put top buttons inside a Navigation Bar
  - don't display users that are already added (still broken)
 

@@ -183,11 +183,11 @@ class CreateModel {
         var usersToDisplay: NSMutableArray = NSMutableArray()
         for query in searchUsersQueryResults {
             let queryDict = query as! NSDictionary
-            var queryID: NSString = CreateModel.getUserID(queryDict)
+            var queryID: NSString = "\(DataManager.getUserID(queryDict))"
             var isInQueryList: Bool = false
             for invitee in inviteList {
                 let inviteeDict = invitee as! NSDictionary
-                var inviteeID: NSString = CreateModel.getUserID(inviteeDict)
+                var inviteeID: NSString = "\(DataManager.getUserID(inviteeDict))"
                 if queryID == inviteeID {
                     isInQueryList = true
                     PULog("ID's are equal")
@@ -217,11 +217,11 @@ class CreateModel {
         var usersToAdd: NSMutableArray = NSMutableArray()
         for selected in selectedUsers {
             let selectedDict = selected as! NSDictionary
-            var selectedID: NSString = CreateModel.getUserID(selectedDict)
+            var selectedID: NSString = "\(DataManager.getUserID(selectedDict))"
             var isInAddedList: Bool = false
             for invitee in inviteList {
                 let inviteeDict = invitee as! NSDictionary
-                var inviteeID: NSString = CreateModel.getUserID(inviteeDict)
+                var inviteeID: NSString = "\(DataManager.getUserID(inviteeDict))"
                 if selectedID == inviteeID {
                     isInAddedList = true
                     break

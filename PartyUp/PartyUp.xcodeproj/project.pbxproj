@@ -12,6 +12,7 @@
 		7E12FFDF1AD750610066D0DC /* PartyUpTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E12FFDE1AD750610066D0DC /* PartyUpTableCell.xib */; };
 		7E12FFE11AD764890066D0DC /* PartyUpTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E12FFE01AD764890066D0DC /* PartyUpTableCell.swift */; };
 		7E3199A51AE4812000C5AF09 /* GroupChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3199A41AE4812000C5AF09 /* GroupChatViewController.swift */; };
+		7E36CF801AE6E0EF00AAC1F4 /* GroupChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E36CF7F1AE6E0EF00AAC1F4 /* GroupChatModel.swift */; };
 		7E3C4CFF1ADB5A2600DD444E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3C4CFE1ADB5A2600DD444E /* DataManager.swift */; };
 		7E4E798F1ADD9B5B0023C95A /* SearchGroupsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4E798E1ADD9B5B0023C95A /* SearchGroupsModel.swift */; };
 		7E521ED41AE6A83C004CF360 /* AddFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E521ED31AE6A83C004CF360 /* AddFriendsViewController.swift */; };
@@ -65,6 +66,7 @@
 		7E12FFE01AD764890066D0DC /* PartyUpTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyUpTableCell.swift; sourceTree = "<group>"; };
 		7E3199A41AE4812000C5AF09 /* GroupChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupChatViewController.swift; sourceTree = "<group>"; };
 		7E3199A61AE482FB00C5AF09 /* PartyUp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PartyUp-Bridging-Header.h"; sourceTree = "<group>"; };
+		7E36CF7F1AE6E0EF00AAC1F4 /* GroupChatModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupChatModel.swift; sourceTree = "<group>"; };
 		7E3C4CFE1ADB5A2600DD444E /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		7E4E798E1ADD9B5B0023C95A /* SearchGroupsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchGroupsModel.swift; sourceTree = "<group>"; };
 		7E521ED31AE6A83C004CF360 /* AddFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsViewController.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				8B9140231AC86E0200205FA6 /* PartyUpBackend.swift */,
 				7E4E798E1ADD9B5B0023C95A /* SearchGroupsModel.swift */,
 				7E7ED50C1AD463CE000C2775 /* SearchEventsModel.swift */,
+				7E36CF7F1AE6E0EF00AAC1F4 /* GroupChatModel.swift */,
 				7EDD4ED61ABE727C00CEECD0 /* PartyUpViewController.swift */,
 				7ECBC7941ACE4A50005329B5 /* HomepageViewController.swift */,
 				7E3199A41AE4812000C5AF09 /* GroupChatViewController.swift */,
@@ -385,6 +388,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B77C2EE1AD987A500E6E8AE /* PartyUpUserCell.swift in Sources */,
+				7E36CF801AE6E0EF00AAC1F4 /* GroupChatModel.swift in Sources */,
 				7E706A171AC78CC500B991F2 /* LoginViewController.swift in Sources */,
 				7E3C4CFF1ADB5A2600DD444E /* DataManager.swift in Sources */,
 				8B4F21D31AE5DA8C00114381 /* CreateGroup2ViewController.swift in Sources */,

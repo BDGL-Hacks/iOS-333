@@ -137,7 +137,7 @@ class FindEventsViewController: PartyUpViewController, UISearchResultsUpdating
     /* Determines what to do when the table search bar is updated:    *
      * Filters the event data with the search and reloads table data. */
     func updateSearchResultsForSearchController(searchController: UISearchController) {
-        let searchPredicate = NSPredicate(format: "title CONTAINS[c] %@ OR description" + "CONTAINS[c] %@ or location_name CONTAINS[c] %@", searchController.searchBar.text, searchController.searchBar.text, searchController.searchBar.text)
+        let searchPredicate = NSPredicate(format: "title CONTAINS[c] %@ OR description CONTAINS[c] %@ or location_name CONTAINS[c] %@", searchController.searchBar.text, searchController.searchBar.text, searchController.searchBar.text)
         searchResults = searchEventsModel.getNearbyEvents().filteredArrayUsingPredicate(searchPredicate)
         findEventsTableView.reloadData()
     }

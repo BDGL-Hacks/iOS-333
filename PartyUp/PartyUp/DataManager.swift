@@ -50,11 +50,10 @@ class DataManager {
     }
     
     class func getEventDescription(event: NSDictionary) -> NSString {
-        if let nullTest = event["description"] as? NSString {
-            return event["description"] as! NSString
-        } else {
-            return "--"
+        if let description = event["description"] as? NSString {
+            return description
         }
+        return "--"
     }
     
     class func getEventLocationName(event: NSDictionary) -> NSString {
@@ -148,12 +147,18 @@ class DataManager {
     
     /* Returns the day of the group's events in text format (e.g. "Fri") */
     class func getGroupDayText(group: NSDictionary) -> NSString {
+        if (group["time"] == nil) {
+            return "DELETE THIS CODE"
+        }
         let dateTimeRaw: NSString = group["time"] as! NSString
         return extractDayText(dateTimeRaw)
     }
     
     /* Returns the day of the group's events in number format (e.g. "01") */
     class func getGroupDayNumber(group: NSDictionary) -> NSString {
+        if (group["time"] == nil) {
+            return "DELETE THIS CODE"
+        }
         let dateTimeRaw: NSString = group["time"] as! NSString
         return extractDayNumber(dateTimeRaw)
     }
@@ -173,6 +178,11 @@ class DataManager {
     }
     */
     
+    class func getUserID(user: NSDictionary) -> NSInteger {
+        let userIDString: NSString = user["id"] as! NSString
+        return userIDString.integerValue
+    }
+    
     class func getUserFirstName(user: NSDictionary) -> NSString {
         return user["first_name"] as! NSString
     }
@@ -189,8 +199,50 @@ class DataManager {
         return user["username"] as! NSString
     }
     
-    class func getUserID(user: NSDictionary) -> NSInteger {
-        return user["id"] as! NSInteger
+    
+   /*--------------------------------------------*
+    * Messages data extraction methods
+    *--------------------------------------------*/
+    
+    /*
+    Message JSON Object:
+    {
+        id
+        owner <User>
+        message
+        time: "YYYY-MM-DD hh:mm:ss+<timezone?>"
+    }
+    */
+    
+    class func getMessageID(message: NSDictionary) -> NSInteger {
+        return message["id"] as! NSInteger
+    }
+    
+    class func getMessageText(message: NSDictionary) -> NSString {
+        return message["message"] as! NSString
+    }
+    
+    class func getMessageOwner(message: NSDictionary) -> NSDictionary {
+        return message["owner"] as! NSDictionary
+    }
+    
+    class func getMessageOwnerFullName(message: NSDictionary) -> NSString {
+        return getUserFullName(getMessageOwner(message))
+    }
+    
+    class func getMessageDateSent(message: NSDictionary) -> NSString {
+        let dateTimeRaw: NSString = message["time"] as! NSString
+        return extractDate(dateTimeRaw)
+    }
+    
+    class func getMessageTimeSent(message: NSDictionary) -> NSString {
+        let dateTimeRaw: NSString = message["time"] as! NSString
+        return extractTime(dateTimeRaw)
+    }
+    
+    class func getMessageDatetimeRaw(message: NSDictionary) -> NSString {
+        let dateTimeRaw: NSString = message["time"] as! NSString
+        return extractDatetime(dateTimeRaw)
     }
     
     
@@ -219,6 +271,11 @@ class DataManager {
     /* Accepts a raw datetime string and returns the time (ex: 9:05 pm) */
     private class func extractTime(dateTimeRaw: NSString) -> NSString {
         return dateTimeRaw.substringWithRange(NSRange(11...15))
+    }
+    
+    /* Accepts a raw datetime string and returns a formatted datetime string */
+    private class func extractDatetime(dateTimeRaw: NSString) -> NSString {
+        return dateTimeRaw.substringToIndex(10) + " " + dateTimeRaw.substringWithRange(NSRange(11...18))
     }
     //---------------------------------------------------------------
     

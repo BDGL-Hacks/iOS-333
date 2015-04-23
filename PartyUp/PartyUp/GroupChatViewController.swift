@@ -14,7 +14,7 @@ class GroupChatViewController: JSQMessagesViewController {
     * Instance variables
     *--------------------------------------------*/
     
-    var group: NSDictionary = NSDictionary()
+    var groupChatModel: GroupChatModel = GroupChatModel()
     
     
    /*--------------------------------------------*
@@ -24,16 +24,81 @@ class GroupChatViewController: JSQMessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Ba-BOMBS"
-        self.senderId = "B1tch!n"
+        self.senderId = "HahaYouLose"
         self.senderDisplayName = "Lance Goodridge"
+        
+        self.collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeZero;
+        self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero;
+        
+        self.collectionView.reloadData()
+        automaticallyScrollsToMostRecentMessage = true
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        groupChatModel.refreshMessages()
     }
     
     
    /*--------------------------------------------*
-    * Helper methods
+    * Set methods
     *--------------------------------------------*/
     
     func setGroupData(group: NSDictionary) {
-        self.group = group
+        groupChatModel.setGroupData(group)
     }
+    
+    
+   /*--------------------------------------------*
+    * JSQMessagesViewController action methods
+    *--------------------------------------------*/
+    
+    override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
+        PULog("Send button pressed")
+        JSQSystemSoundPlayer.jsq_playMessageSentSound()
+        groupChatModel.sendMessage(text)
+        groupChatModel.refreshMessages()
+        finishSendingMessage()
+    }
+    
+    
+   /*--------------------------------------------*
+    * JSQMessagesViewController collection methods
+    *--------------------------------------------*/
+    
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return groupChatModel.getGroupMessages().count
+    }
+    
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
+    {
+        let cell = super.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as! JSQMessagesCollectionViewCell
+        
+        let message = groupChatModel.getGroupMessageAtIndex(indexPath.item)
+        if (groupChatModel.messageWasSentByUser(message)) {
+            cell.textView.textColor = UIColor.blackColor()
+        } else {
+            cell.textView.textColor = UIColor.whiteColor()
+        }
+        
+        return cell
+    }
+    
+    override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
+        return groupChatModel.getGroupMessageAtIndex(indexPath.item)
+    }
+    
+    override func collectionView(collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageAvatarImageDataSource! {
+        return nil
+    }
+    
+    override func collectionView(collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageBubbleImageDataSource! {
+        let message = groupChatModel.getGroupMessageAtIndex(indexPath.item)
+        if (groupChatModel.messageWasSentByUser(message)) {
+            return groupChatModel.getIncomingBubbleImage()
+        } else {
+            return groupChatModel.getOutgoingBubbleImage()
+        }
+    }
+    
 }

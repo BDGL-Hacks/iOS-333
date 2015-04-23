@@ -49,6 +49,7 @@ class SearchGroupsModel
     func getAttendingGroups() -> NSArray {
         
         // TODO: Delete this, fake data
+        /*
         var fakeArray: [NSDictionary] = [
             ["id": "2", "title": "MAH GROUP", "time": "2015-04-12 09:00:00",
                 "members": [], "events": []],
@@ -68,8 +69,8 @@ class SearchGroupsModel
                 "members": [], "events": [["title": "What"], ["title": "the"], ["title": "*?"]]],
         ]
         return NSArray(array: fakeArray)
+        */
         
-        /*
         let resultArray: NSArray? = groupsQueryResults["attending"] as! NSArray?
         if (resultArray == nil) {
             return NSArray()
@@ -77,7 +78,6 @@ class SearchGroupsModel
         else {
             return resultArray!
         }
-        */
     }
     
     func getInvitedGroups() -> NSArray {

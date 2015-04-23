@@ -13,8 +13,9 @@ General
 
 Globals / DataManager
 ---------------------
+ ! When backend has groups return time parameter, delete time check in getGroupDayText(), etc.
+ ! Change id extractors back to just a direct cast to NSInteger
  - Actually implement specified data extraction and formatting methods in DataManager
- - Change getEventAttendees in DataManager to actually get attendees instead of invitees
  - Change getEventGroup in DataManager to actually get the group the user is going to the event with
 
 Homepage
@@ -28,11 +29,15 @@ Groups (General)
 Groups Main Page
 ----------------
  ! Add segue to Group Chat page and add corresponding code to MainGroupsViewController
- - Implement invitations
 
 Group Chat
 ----------
- ! Get pusher and messages working
+ ! Have messages automatically appear on login (and not have to send message first)
+ ! Add Navigation bar that allows you to go back to the main app
+ - Have message properly align / switch colors
+ - Test multiple person groups
+ - Actually write 'was sent by user' method in group chat model (once backend implements way to check)
+ - Get next 10 messages when user scrolls to top of the page
  - Figure out Photo Integration / AWS Pod
 
 Group Invite
@@ -50,7 +55,6 @@ Events (General)
 ----------------
  - Figure out why / if event pages automatically re-query for data
  - Change tab icons and labels
- - Write some tests...
 
 Event Tables
 ------------
@@ -96,14 +100,16 @@ Create Event
 Login
 -----
  - Have view scroll down slightly when keyboard is displayed
- - Write some tests
 
 Register
 --------
  - Have view scroll down when keyboard is displayed (such that all fields and register button is still displayed)
  - Make "Back to Login" button placement more consistent with Login's "Register for PartyUp" button
- - Write some tests
 
 Backend (Not us!)
 -----------------
+ ! Groups: Should have a time field (of first event)
+ ! Messages: Have a way to get the user id
+ ! Messages: Should return 'results' array not 'messages' array
+ - Events: Repopulate database with events that have non-null descriptions
  - Events: Also send back the group the user is going to the event with

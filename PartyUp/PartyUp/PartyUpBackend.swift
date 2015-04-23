@@ -1,5 +1,5 @@
 //
-//  PartyUpStore.swift
+//  PartyUpBackend.swift
 //  PartyUp
 //
 //  Created by Graham Turk on 3/29/15.
@@ -118,11 +118,9 @@ class PartyUpBackend {
         }
     }
     
-    /*------------------------------------------------------*/
-    
-    /*  Performs backend event creation.      *
-     *  Returns an error message string if    *
-     *  event creation failed, nil otherwise. */
+    /* Performs backend event creation.      *
+     * Returns an error message string if    *
+     * event creation failed, nil otherwise. */
     func backendEventCreation(title: NSString, location: NSString, ageRestrictions: NSString,
         isPublic: NSString, price: NSString, inviteList: [NSString], dateTime: NSString) -> (NSString?, NSString?)
     {
@@ -184,9 +182,8 @@ class PartyUpBackend {
     
     
     /* Performs backend group creation.      *
-    *  Returns an error message string if    *
-    *  event creation failed, nil otherwise. */
-    
+     * Returns an error message string if    *
+     * event creation failed, nil otherwise. */
     func backendGroupCreation(groupName: NSString, eventIDs: [NSString], inviteList: [NSString]) -> NSString?
     {
         PULog("Attempting to create a group...")
@@ -259,13 +256,10 @@ class PartyUpBackend {
         }
     }
     
-    
-    /*------------------------------------------------------*/
-    
     /* Queries backend for search users to populate table in *
-        add friend view controller. Returns a tuple: an      *
-        error message string if something went wrong, and    *
-        query results as dictionary if successful.           */
+     * add friend view controller. Returns a tuple: an       *
+     * error message string if something went wrong, and     *
+     * query results as dictionary if successful.            */
     func queryUsers(search: NSString) -> (NSString?, NSArray?)
     {
         PULog("Querying for users to populate table in add freinds ...");
@@ -316,8 +310,6 @@ class PartyUpBackend {
             return ("Failed to connect to server", nil)
         }
     }
-
-    /*------------------------------------------------------*/
     
     /* Queries backend for search users to populate table in *
     add friend view controller. Returns a tuple: an      *

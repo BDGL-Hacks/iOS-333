@@ -116,10 +116,10 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
         user = queryResults![indexPath.row] as! NSDictionary
         
         // get values from model to display in the cell
-        var firstName: NSString = CreateModel.getUserFirstName(user)
-        var lastName: NSString = CreateModel.getUserLastName(user)
-        var usernameEmail: NSString = CreateModel.getUserEmail(user)
-        var userID: NSString = CreateModel.getUserID(user)
+        var firstName: NSString = DataManager.getUserFirstName(user)
+        var lastName: NSString = DataManager.getUserLastName(user)
+        var usernameEmail: NSString = DataManager.getUserUsername(user)
+        var userID: NSString = "\(DataManager.getUserID(user))"
         
         // concatenate the name for cell display
         var fullName = (firstName as String) +  " " +  (lastName as String)

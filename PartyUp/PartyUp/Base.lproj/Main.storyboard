@@ -210,7 +210,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3874" y="1342"/>
+            <point key="canvasLocation" x="3874" y="1406"/>
         </scene>
         <!--Add Friends View Controller-->
         <scene sceneID="g6b-zm-Pq9">
@@ -324,7 +324,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="4829" y="1340"/>
+            <point key="canvasLocation" x="4837" y="1406"/>
         </scene>
         <!--Create Event 2 View Controller-->
         <scene sceneID="rJJ-wi-Ht1">
@@ -902,11 +902,30 @@
                         <outlet property="myGroupsLabel" destination="dUK-Cw-JuV" id="oDi-I1-wFd"/>
                         <outlet property="myGroupsTableView" destination="IwZ-FH-Vzj" id="bbN-OH-8lI"/>
                         <outlet property="placeholderLabel" destination="VHQ-a7-kX0" id="Plj-xl-OIB"/>
+                        <segue destination="egG-s6-qeH" kind="show" identifier="mainGroupsToGroupChat" id="Bs2-Cw-dHb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="baa-Nn-FSh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2812" y="675"/>
+            <point key="canvasLocation" x="2803" y="675"/>
+        </scene>
+        <!--Group Chat View Controller-->
+        <scene sceneID="jjv-2z-jDt">
+            <objects>
+                <viewController id="egG-s6-qeH" customClass="GroupChatViewController" customModule="PartyUp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="n8a-n6-bjC"/>
+                        <viewControllerLayoutGuide type="bottom" id="7Q2-Pp-kX9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oHv-We-5ZS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HbA-sq-xpo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3295" y="675"/>
         </scene>
         <!--Create Group1 View Controller-->
         <scene sceneID="5CY-6c-eIw">
@@ -1608,7 +1627,7 @@ tapping the 'Find' tab on the bottom.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dsh-bh-8JA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3288" y="2005"/>
+            <point key="canvasLocation" x="3288" y="2037"/>
         </scene>
         <!--Event Info View Controller-->
         <scene sceneID="fkB-6m-w66">
@@ -1873,7 +1892,7 @@ tapping the 'Find' tab on the bottom.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dg2-r9-yMr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3874" y="2005"/>
+            <point key="canvasLocation" x="3874" y="2069"/>
         </scene>
         <!--Current Event View Controller-->
         <scene sceneID="A0k-ln-wGi">
@@ -1900,7 +1919,7 @@ tapping the 'Find' tab on the bottom.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n0A-Is-7ax" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3288" y="2629"/>
+            <point key="canvasLocation" x="3288" y="2685"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Gr4-3c-bVt">

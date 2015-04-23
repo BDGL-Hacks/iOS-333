@@ -9,7 +9,7 @@
 import UIKit
 
 class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
-
+    
     
     @IBOutlet weak var queryTableView: UITableView!
     var previousViewController: AnyObject?
@@ -133,7 +133,7 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
     }
     
     /* Called when user selects a cell in the table *
-       Sets a checkmark to indiciate selection      */
+    Sets a checkmark to indiciate selection      */
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         PULog("Cell selected: \(indexPath.row)")
         let cell: UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
@@ -143,7 +143,7 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
     }
     
     /* Called when user deselects a cell in the table  *
-       Removes the checkmark to indiciate deselection  */
+    Removes the checkmark to indiciate deselection  */
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         PULog("Cell deselected: \(indexPath.row)")
         let cell: UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
@@ -152,7 +152,7 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
         }
     }
     
-        
+    
     func addFriends() {
         var selectedUsers: NSMutableArray = NSMutableArray()
         if let indexPaths = queryTableView.indexPathsForSelectedRows() {
@@ -237,17 +237,17 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
     // Pass the selected object to the new view controller.
     }
     */
-
     
-
+    
+    
     /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
     */
-
+    
 }

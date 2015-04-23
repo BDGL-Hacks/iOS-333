@@ -179,8 +179,12 @@ class DataManager {
     */
     
     class func getUserID(user: NSDictionary) -> NSInteger {
-        let userIDString: NSString = user["id"] as! NSString
-        return userIDString.integerValue
+        if let userID: NSInteger = user["id"] as? NSInteger {
+            return userID
+        } else {
+            let userIDString: NSString = user["id"] as! NSString
+            return userIDString.integerValue
+        }
     }
     
     class func getUserFirstName(user: NSDictionary) -> NSString {

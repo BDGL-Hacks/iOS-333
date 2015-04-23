@@ -129,7 +129,7 @@ class PartyUpBackend {
         let username: NSString = userDefaults.objectForKey("USERNAME") as! NSString
         
         var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/groups/create"
-        var postParams: [String: String] = ["group_name": groupName as String]
+        var postParams: [String: String] = ["title": groupName as String]
         
         var stringOfUserIDs: String = ""
         var stringOfEventIDs: String = ""
@@ -159,7 +159,66 @@ class PartyUpBackend {
         
         postParams["invite_list"] = stringOfUserIDs
         postParams["event_ids"] = stringOfEventIDs
+        
+        
+        var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
+        
+        // We received JSON data back: process it
+        if (postData != nil)
+        {
+            let jsonData: NSDictionary = postData!
+            let accepted: Bool = jsonData.valueForKey("accepted") as! Bool
+            var errorMessage: NSString? = jsonData.valueForKey("error") as! NSString?
             
+            // Event creation successful on server side
+            if (accepted) {
+                PULog("Group Creation Successful!")
+                return nil
+            }
+                
+                // Register was unsuccessful on server side
+            else {
+                if (errorMessage == nil) {
+                    errorMessage = "No error message received from server"
+                }
+                PULog("Group creation Failed: \(errorMessage!)")
+                return errorMessage
+            }
+        }
+            
+            // We did not receive JSON data back
+        else {
+            PULog("Group Creation Failed: No JSON data received")
+            return "Failed to connect to server"
+        }
+    }
+    
+    /* Performs backend event creation.      *
+     * Returns an error message string if    *
+     * event creation failed, nil otherwise. */
+    func backendEventCreation(title: NSString, location: NSString, ageRestrictions: NSString,
+        isPublic: NSString, price: NSString, inviteList: [NSString], dateTime: NSString) -> (NSString?, NSString?)
+    {
+        PULog("Attempting to create an event...")
+        
+        var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let username: NSString = userDefaults.objectForKey("USERNAME") as! NSString
+        
+        var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/events/create"
+        var postParams: [String: String] = ["title": title as String, "public": isPublic as String, "age_restrictions": ageRestrictions as String, "price": price as String, "location_name": location as String, "time": dateTime as String]
+        
+        var stringOfFriendEmails: String = ""
+        var i: Int = 0
+        for friend in inviteList {
+            if i == 0 {
+                stringOfFriendEmails += (friend as String)
+            }
+            else {
+                stringOfFriendEmails += "," + (friend as String)
+            }
+            i += 1
+        }
+        postParams["invite_list"] = stringOfFriendEmails
         
         var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
         
@@ -193,65 +252,6 @@ class PartyUpBackend {
         else {
             PULog("Event Creation Failed: No JSON data received")
             return ("Failed to connect to server", nil)
-        }
-    }
-    
-    /* Performs backend event creation.      *
-     * Returns an error message string if    *
-     * event creation failed, nil otherwise. */
-    func backendEventCreation(title: NSString, location: NSString, ageRestrictions: NSString,
-        isPublic: NSString, price: NSString, inviteList: [NSString], dateTime: NSString) -> NSString?
-    {
-        PULog("Attempting to create an event...")
-        
-        var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        let username: NSString = userDefaults.objectForKey("USERNAME") as! NSString
-        
-        var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/events/create"
-        var postParams: [String: String] = ["title": title as String, "public": isPublic as String, "age_restrictions": ageRestrictions as String, "price": price as String, "location_name": location as String, "time": dateTime as String]
-        
-        var stringOfFriendEmails: String = ""
-        var i: Int = 0
-        for friend in inviteList {
-            if i == 0 {
-                stringOfFriendEmails += (friend as String)
-            }
-            else {
-                stringOfFriendEmails += "," + (friend as String)
-            }
-            i += 1
-        }
-        postParams["invite_list"] = stringOfFriendEmails
-        
-        var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
-        
-        // We received JSON data back: process it
-        if (postData != nil)
-        {
-            let jsonData: NSDictionary = postData!
-            let accepted: Bool = jsonData.valueForKey("accepted") as! Bool
-            var errorMessage: NSString? = jsonData.valueForKey("error") as! NSString?
-            
-            // Event creation successful on server side
-            if (accepted) {
-                PULog("Group Creation Successful!")
-                return nil
-            }
-                
-            // Register was unsuccessful on server side
-            else {
-                if (errorMessage == nil) {
-                    errorMessage = "No error message received from server"
-                }
-                PULog("Group creation Failed: \(errorMessage!)")
-                return errorMessage
-            }
-        }
-            
-        // We did not receive JSON data back
-        else {
-            PULog("Event Creation Failed: No JSON data received")
-            return "Failed to connect to server"
         }
     }
     
@@ -551,6 +551,75 @@ class PartyUpBackend {
         }
     }
     
+    /* Queries backend for search users to populate table *
+     * in add friend view controller. Returns a tuple: an *
+     * error message string if something went wrong, and  *
+     * query results as dictionary if successful.         */
+    func queryEventSearchByID(eventID: NSString?) -> (NSString?, NSDictionary?)
+    {
+        PULog("Trying to retreive an event by its ID ...");
+        
+        var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let username: NSString? = userDefaults.objectForKey("USERNAME") as! NSString?
+        
+        if (username == nil) {
+            PULog("Query Failed: User is not logged in")
+            return ("User is not logged in.", nil)
+        }
+        
+        /*
+        var eIDNum = eventID?.integerValue
+        let dummyNS = eventID! as String
+        PULog("Dummy NS: " + dummyNS)
+        var eID: String! = eventID as String!
+        PULog("\(eID)")
+        
+        let indexOfOpen = dummyNS.indexOf("(")
+        let indexOfClose = dummyNS.indexOf(")")
+        let range = Range(indexOfOpen+1...indexOfClose-1)
+        let strToPass = dummyNS.substringWithRange(range)
+        */
+        
+        //verify with backend
+        var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/events/getid/"
+        var postParams: [String: String] = ["event": eventID! as String]
+        
+        var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
+        
+        // We received JSON data back: process it
+        if (postData != nil)
+        {
+            let jsonData: NSDictionary = postData!
+            let accepted: Bool = jsonData.valueForKey("accepted") as! Bool
+            PULog("Accepted? \(accepted)")
+            var errorMessage: NSString? = jsonData.valueForKey("error") as! NSString?
+            /* make sure backend sends back "users" as key */
+            let result: NSDictionary? = jsonData.valueForKey("event") as! NSDictionary?
+            
+            // Query successful: return JSON data as dictionary
+            if (accepted) {
+                PULog("Query Successful!")
+                PULog("Query data: \(result)")
+                return (nil, result!)
+            }
+                
+            // Query failed: return error message
+            else {
+                if (errorMessage == nil) {
+                    errorMessage = "No error message received from server"
+                }
+                PULog("Query Failed: \(errorMessage!)")
+                return (errorMessage, nil)
+            }
+        }
+            
+        // We did not receive JSON data back
+        else {
+            PULog("Query Failed: No JSON data received")
+            return ("Failed to connect to server", nil)
+        }
+    }
+    
     /* Queries backend for search users to populate table in *
      * add friend view controller. Returns a tuple: an       *
      * error message string if something went wrong, and     *
@@ -582,14 +651,14 @@ class PartyUpBackend {
             /* make sure backend sends back "users" as key */
             let results: NSArray? = jsonData.valueForKey("results") as! NSArray?
             
-            // Query successful: return JSON data as an array
+            // Query successful: return JSON data as dictionary
             if (accepted) {
                 PULog("Query Successful!")
                 PULog("Query data: \(results)")
                 return (nil, results!)
             }
                 
-            // Query failed: return error message
+                // Query failed: return error message
             else {
                 if (errorMessage == nil) {
                     errorMessage = "No error message received from server"
@@ -599,7 +668,7 @@ class PartyUpBackend {
             }
         }
             
-        // We did not receive JSON data back
+            // We did not receive JSON data back
         else {
             PULog("Query Failed: No JSON data received")
             return ("Failed to connect to server", nil)
@@ -637,7 +706,7 @@ class PartyUpBackend {
             /* make sure backend sends back "users" as key */
             let results: NSArray? = jsonData.valueForKey("results") as! NSArray?
             
-            // Query successful: return JSON data as an array
+            // Query successful: return JSON data as dictionary
             if (accepted) {
                 PULog("Query Successful!")
                 PULog("Query data: \(results)")

@@ -22,10 +22,12 @@ class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UI
         groupMembersTableView.delegate = self
         groupMembersTableView.dataSource = self
         
+        // possibly take out (using so that names remain when go back to this page)
         groupMembers?.addObjectsFromArray(createGroup.getInvitedList() as [AnyObject])
 
         // Do any additional setup after loading the view.
     }
+    
     
     /* only insert if necessary to scroll up */
     /* var activeTextField: UITextField? {
@@ -53,6 +55,10 @@ class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UI
         PULog("Displaying Create Group 1 page")
     }
     
+    @IBAction func viewTapped(sender: AnyObject) {
+        groupNameTextField.resignFirstResponder()
+    }
+    
     @IBAction func dismissView(sender: UIButton) {
         PULog("Going back to groups home page")
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -74,12 +80,11 @@ class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UI
     }
     
     
-    
-    
     @IBAction func nextButtonPressed(sender: UIButton) {
         PULog("Next page group pressed")
         /* Iterate through friends list and send it to the backend */
         var friendIDs: [NSString] = [NSString]()
+        var friendEmails: [NSString] = [NSString]()
         for var j = 0; j < groupMembersTableView.numberOfSections(); ++j {
             for var i = 0; i < groupMembersTableView.numberOfRowsInSection(j); ++i {
                 
@@ -87,29 +92,19 @@ class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UI
                 var cell = groupMembersTableView.cellForRowAtIndexPath(indexPath) as? AddFriendsTableViewCell
                 
                 friendIDs.append(cell!.userID!)
+                friendEmails.append(cell!.usernameEmail!)
             }
         }
         
         /* Check that friends list was actually populated */
-        for friend in friendIDs {
+        /*for friend in friendIDs {
             PULog("\(friend)")
-        }
+        }*/
         
         /* Send to backend */
         
         var groupName: NSString = groupNameTextField.text
-        createGroup.groupFirstPage(friendIDs, groupName: groupName)
-        
-        var backendError: NSString? = createGroup.groupSendToBackend()
-        if (backendError == nil)
-        {
-            self.performSegueWithIdentifier("CreateGroup1ToCreateGroup2", sender: self)
-        }
-        else {
-            displayAlert("Group creation failed", message: backendError!)
-            self.performSegueWithIdentifier("CreateGroup1ToCreateGroup2", sender: self)
-        }
-        
+        createGroup.groupFirstPage(friendIDs, groupName: groupName, inviteEmails: friendEmails)
     }
     
     // MARK: Table methods

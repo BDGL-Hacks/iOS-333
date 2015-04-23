@@ -124,7 +124,7 @@ class PartyUpBackend {
      *  Returns an error message string if    *
      *  event creation failed, nil otherwise. */
     func backendEventCreation(title: NSString, location: NSString, ageRestrictions: NSString,
-        isPublic: NSString, price: NSString, inviteList: [NSString], dateTime: NSString) -> NSString?
+        isPublic: NSString, price: NSString, inviteList: [NSString], dateTime: NSString) -> (NSString?, NSString?)
     {
         PULog("Attempting to create an event...")
         
@@ -155,11 +155,14 @@ class PartyUpBackend {
             let jsonData: NSDictionary = postData!
             let accepted: Bool = jsonData.valueForKey("accepted") as! Bool
             var errorMessage: NSString? = jsonData.valueForKey("error") as! NSString?
+            // not sure if event id returned as integer or as an NSString
+            var eventID: NSInteger? = jsonData.valueForKey("id") as! NSInteger?
             
             // Event creation successful on server side
             if (accepted) {
                 PULog("Event Creation Successful!")
-                return nil
+                PULog("\(eventID)")
+                return (nil, "\(eventID!)" as NSString?)
             }
                 
             // Register was unsuccessful on server side
@@ -168,14 +171,14 @@ class PartyUpBackend {
                     errorMessage = "No error message received from server"
                 }
                 PULog("Event creation Failed: \(errorMessage!)")
-                return errorMessage
+                return (errorMessage, nil)
             }
         }
             
         // We did not receive JSON data back
         else {
             PULog("Event Creation Failed: No JSON data received")
-            return "Failed to connect to server"
+            return ("Failed to connect to server", nil)
         }
     }
     
@@ -192,7 +195,7 @@ class PartyUpBackend {
         let username: NSString = userDefaults.objectForKey("USERNAME") as! NSString
         
         var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/groups/create"
-        var postParams: [String: String] = ["group_name": groupName]
+        var postParams: [String: String] = ["title": groupName as String]
         
         var stringOfUserIDs: String = ""
         var stringOfEventIDs: String = ""
@@ -211,15 +214,16 @@ class PartyUpBackend {
         
         for event in eventIDs {
             if i == 0 {
-                stringOfEventIDs += eventIDs
+                stringOfEventIDs += (event as String)
             }
             else {
-                stringOfEventIDs += "," +
+                stringOfEventIDs += "," + (event as String)
             }
+            i += 1
         }
         
         
-        postParams["invite_list"] = stringOfFriendEmails
+        postParams["invite_list"] = stringOfUserIDs
         postParams["event_ids"] = stringOfEventIDs
             
         
@@ -229,12 +233,12 @@ class PartyUpBackend {
         if (postData != nil)
         {
             let jsonData: NSDictionary = postData!
-            let accepted: Bool = jsonData.valueForKey("accepted") as Bool
-            var errorMessage: NSString? = jsonData.valueForKey("error") as NSString?
+            let accepted: Bool = jsonData.valueForKey("accepted") as! Bool
+            var errorMessage: NSString? = jsonData.valueForKey("error") as! NSString?
             
             // Event creation successful on server side
             if (accepted) {
-                PULog("Event Creation Successful!")
+                PULog("Group Creation Successful!")
                 return nil
             }
                 
@@ -243,7 +247,7 @@ class PartyUpBackend {
                 if (errorMessage == nil) {
                     errorMessage = "No error message received from server"
                 }
-                PULog("Event creation Failed: \(errorMessage!)")
+                PULog("Group creation Failed: \(errorMessage!)")
                 return errorMessage
             }
         }
@@ -313,6 +317,79 @@ class PartyUpBackend {
         }
     }
 
+    /*------------------------------------------------------*/
+    
+    /* Queries backend for search users to populate table in *
+    add friend view controller. Returns a tuple: an      *
+    error message string if something went wrong, and    *
+    query results as dictionary if successful.           */
+    func queryEventSearchByID(eventID: NSString?) -> (NSString?, NSDictionary?)
+    {
+        PULog("Trying to retreive an event by its ID ...");
+        
+        var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let username: NSString? = userDefaults.objectForKey("USERNAME") as! NSString?
+        
+        if (username == nil) {
+            PULog("Query Failed: User is not logged in")
+            return ("User is not logged in.", nil)
+        }
+        
+        /* var eIDNum = eventID?.integerValue
+        let dummyNS = eventID! as String
+        PULog("Dummy NS: " + dummyNS)
+        var eID: String! = eventID as String!
+        PULog("\(eID)")
+        
+        let indexOfOpen = dummyNS.indexOf("(")
+        let indexOfClose = dummyNS.indexOf(")")
+        let range = Range(indexOfOpen+1...indexOfClose-1)
+        let strToPass = dummyNS.substringWithRange(range)
+        */
+        
+        
+        //verify with backend
+        var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/events/getid/"
+        var postParams: [String: String] = ["event": eventID! as String]
+        
+        var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
+        
+        // We received JSON data back: process it
+        if (postData != nil)
+        {
+            let jsonData: NSDictionary = postData!
+            let accepted: Bool = jsonData.valueForKey("accepted") as! Bool
+            PULog("Accepted? \(accepted)")
+            var errorMessage: NSString? = jsonData.valueForKey("error") as! NSString?
+            /* make sure backend sends back "users" as key */
+            let result: NSDictionary? = jsonData.valueForKey("event") as! NSDictionary?
+            
+            // Query successful: return JSON data as dictionary
+            if (accepted) {
+                PULog("Query Successful!")
+                PULog("Query data: \(result)")
+                return (nil, result!)
+            }
+                
+                // Query failed: return error message
+            else {
+                if (errorMessage == nil) {
+                    errorMessage = "No error message received from server"
+                }
+                PULog("Query Failed: \(errorMessage!)")
+                return (errorMessage, nil)
+            }
+        }
+            
+            // We did not receive JSON data back
+        else {
+            PULog("Query Failed: No JSON data received")
+            return ("Failed to connect to server", nil)
+        }
+    }
+
+    
+    
     /*------------------------------------------------------*/
     
     /* Queries backend for search users to populate table in *
@@ -402,8 +479,19 @@ class PartyUpBackend {
             // Query successful: return JSON data as dictionary
             if (accepted) {
                 PULog("Query Successful!")
-                results["attending"] = jsonData.valueForKey("attending") as! NSArray?
-                results["invited"] = jsonData.valueForKey("invited") as! NSArray?
+                PULog("Query data: \(results)")
+                if let attendingArray = jsonData.valueForKey("attending") as! NSArray? {
+                    results["attending"] = attendingArray
+                }
+                else {
+                    results["attending"] = NSArray()
+                }
+                if let invitedArray = jsonData.valueForKey("invited") as! NSArray? {
+                    results["invited"] = invitedArray
+                }
+                else {
+                    results["attending"] = NSArray()
+                }
                 PULog("Query data: \(results)")
                 return (nil, results as NSDictionary)
             }

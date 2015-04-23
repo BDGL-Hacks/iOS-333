@@ -16,8 +16,10 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
     //private let numPages = 3
     
     
+    @IBOutlet weak var continueButton: UIButton!
+    @IBOutlet weak var addFriendsButton: UIButton!
     @IBOutlet weak var publicSwitch: UISwitch!
-    let createEvent = CreateModel()
+    var createEvent: CreateModel? = CreateModel()
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var eventTitleTextField: UITextField!
     @IBOutlet weak var selectedDate: UILabel!
@@ -25,6 +27,7 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
     @IBOutlet weak var locationTextField: UITextField!
     var backendDate: String?
     var isFromGroup: Bool = false
+    var previousViewController: CreateGroup2ViewController?
     
     
     override func viewDidLoad() {
@@ -77,6 +80,12 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        if (isFromGroup == true) {
+            addFriendsButton.hidden = true
+        }
+        else {
+            continueButton.hidden = true
+        }
         self.registerForKeyboardNotifications()
     }
     
@@ -93,9 +102,10 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
     
     /* Send EventCreation object to next stage of event creation */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "eventCreationOnetoTwo" {
+        if segue.identifier == "eventCreationOneToTwo" {
+            PULog("In prepare for segue")
             let destinationVC = segue.destinationViewController as! CreateEvent2ViewController
-            destinationVC.createEvent = self.createEvent
+            destinationVC.createEvent = self.createEvent!
         }
     }
     
@@ -143,10 +153,47 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
         var eventLocation: NSString = locationTextField.text
         var eventDateTime: NSString = backendDate!
         
-        createEvent.eventFirstPage(eventTitle, location: eventLocation, dateTime: eventDateTime, eventPublic: isPublic)
+        createEvent!.eventFirstPage(eventTitle, location: eventLocation, dateTime: eventDateTime, eventPublic: isPublic)
     }
     
     
+    @IBAction func continueButtonPressed(sender: UIButton) {
+        PULog("Continue button pressed")
+        
+        // Ensure the form is valid
+        var validationError: NSString? = validateForm()
+        if (validationError != nil) {
+            PULog("Form is invalid: \(validationError!)")
+            displayAlert("Event creation failed", message: validationError!)
+            return
+        }
+        
+        var isPublic = "False"
+        if publicSwitch.on {
+            isPublic = "True"
+        }
+        
+        // Retrieve all necessary fields
+        var eventTitle: NSString = eventTitleTextField.text
+        var eventLocation: NSString = locationTextField.text
+        var eventDateTime: NSString = backendDate!
+        
+        createEvent!.eventFirstPage(eventTitle, location: eventLocation, dateTime: eventDateTime, eventPublic: isPublic)
+        createEvent!.eventSecondPage(createEvent!.getInviteEmails())
+    
+        
+        let (backendError: NSString?, eventID: NSString?) = createEvent!.eventSendToBackend()
+        /* Not sure if need this code because segue is already bound to the button */
+        if (backendError != nil)
+        {
+            displayAlert("Event creation Failed", message: backendError!)
+        }
+        
+        // PULog("\(eventID)")
+        createEvent!.updateNewlyCreatedEvents(eventID as NSString?)
+        previousViewController!.updateAddedEvents(true)
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     /*--------------------------------------------*
     * View helper methods

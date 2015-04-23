@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITableViewDataSource {
+class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate {
     
    /*--------------------------------------------*
     * Instance variables
@@ -21,6 +21,7 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
     * UI Components
     *--------------------------------------------*/
     
+    @IBOutlet weak var acceptInvitationButton: UIButton!
     @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var eventTitleLabel: UILabel!
     
@@ -31,6 +32,7 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var ageRestrictionsLabel: UILabel!
+    var isInvited: Bool = false  
     
     @IBOutlet weak var attendeeTable: PUDynamicTableView!
     
@@ -49,6 +51,13 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
         super.viewDidLoad()
         loadEventData()
         PULog("Displaying Event Info Page")
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if (isInvited == false) {
+            acceptInvitationButton.hidden = true
+        }
     }
     
     

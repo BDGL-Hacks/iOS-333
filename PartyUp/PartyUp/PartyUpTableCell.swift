@@ -52,6 +52,15 @@ class PartyUpTableCell: UITableViewCell {
         return data
     }
     
+    /* Methods to toggle the checkmark accessory */
+    func showCheckmark() {
+        self.accessoryType = UITableViewCellAccessoryType.Checkmark
+    }
+    
+    func hideCheckmark() {
+        self.accessoryType = UITableViewCellAccessoryType.None
+    }
+    
     
    /*--------------------------------------------*
     * UITableViewCell Required Methods

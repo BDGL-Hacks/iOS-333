@@ -28,13 +28,14 @@ class CreateModel {
     /* Group data */
     var eventIDs: [NSString] = [NSString]()
     var inviteIDs: [NSString] = [NSString]()
+    var inviteEmails: [NSString] = [NSString]()
     var groupName: NSString? = nil
     
     // MARK: Event methods
     
-    /*-------------------------------*
-     * Event Methods 
-     *-------------------------------*/
+    /*-------------------------------------*
+    * Event Methods
+    *-------------------------------------*/
     
     
     func eventFirstPage (title: NSString, location: NSString, dateTime: NSString, eventPublic: NSString) {
@@ -52,40 +53,46 @@ class CreateModel {
         friendsList = friends
     }
     
-    func eventSendToBackend() -> NSString? {
+    func eventSendToBackend() -> (NSString?, NSString?) {
       
         // Registration successful: Dismiss Registration view and attempt login
-        var backendError: NSString? = PartyUpBackend.instance.backendEventCreation(eventTitle!, location: eventLocation!, ageRestrictions: eventAgeRestrictions!, isPublic: eventPublic!, price: eventPrice!, inviteList: friendsList, dateTime: dateTime!)
-        if (backendError == nil)
-        {
-            return nil
+        let (backendError: NSString?, eventID: NSString?) = PartyUpBackend.instance.backendEventCreation(eventTitle!, location: eventLocation!, ageRestrictions: eventAgeRestrictions!, isPublic: eventPublic!, price: eventPrice!, inviteList: friendsList, dateTime: dateTime!)
+        if (backendError == nil) {
+            return (nil, eventID)
         }
         else {
-            return "Event creation failed"
+            return ("Event creation failed", nil)
         }
     }
     
+    /*-------------------------------------------*/
+    
     // MARK: Group methods
 
-    /*-------------------------------*
+    /*-------------------------------------*
      * Group Methods
-     *-------------------------------*/
+     *-------------------------------------*/
 
-    func groupFirstPage(inviteIDs: [NSString], groupName: NSString)
+    func groupFirstPage(inviteIDs: [NSString], groupName: NSString, inviteEmails: [NSString])
     {
         self.inviteIDs = inviteIDs
+        self.inviteEmails = inviteEmails
         self.groupName = groupName
     }
     
     func groupSecondPage(eventIDs: [NSString]) {
         self.eventIDs = eventIDs
     }
+    
+    func getInviteEmails() -> [NSString] {
+        return inviteEmails
+    }
 
 
     func groupSendToBackend() -> NSString?
     {
         // Registration successful: Dismiss Registration view and attempt login
-        var backendError: NSString? = PartyUpBackend.instance.backendGroupCreation(groupName!, eventIDs: eventIDs, inviteList: inviteIDs)
+        var backendError: NSString? = PartyUpBackend.instance.backendGroupCreation(groupName!, eventIDs: eventIDs, inviteList: inviteEmails)
         if (backendError == nil)
         {
             return nil
@@ -95,20 +102,22 @@ class CreateModel {
         }
     }
 
+    /*-------------------------------------------*/
 
+    // MARK: Users
+    
     /*--------------------------------------------*
-    * Instance variables and Declarations
-    *--------------------------------------------*/
+     * Users Instance variables and Declarations
+     *--------------------------------------------*/
     
     var batchUsersQueryResults: NSArray = NSArray()
     var searchUsersQueryResults: NSArray = NSArray()
     var selectedUsers: NSArray = NSArray()
     var inviteList: NSArray = NSArray()
-    var groupEvents: NSArray = NSArray()
     
     /*--------------------------------------------*
-    * Set methods
-    *--------------------------------------------*/
+     * Set methods
+     *--------------------------------------------*/
     
     /* Queries the backend and updates the model with new *
     * results. queryType specifies what to query for.    *
@@ -167,19 +176,18 @@ class CreateModel {
     }
 
     /*--------------------------------------------*
-    * Get methods
-    *--------------------------------------------*/
+     * Get methods
+     *--------------------------------------------*/
     
     func getSearchUsers() -> NSArray {
-        
         var usersToDisplay: NSMutableArray = NSMutableArray()
         for query in searchUsersQueryResults {
             let queryDict = query as! NSDictionary
-            var queryID: NSString = "\(DataManager.getUserID(queryDict))"
+            var queryID: NSString = CreateModel.getUserID(queryDict)
             var isInQueryList: Bool = false
             for invitee in inviteList {
                 let inviteeDict = invitee as! NSDictionary
-                var inviteeID: NSString = "\(DataManager.getUserID(inviteeDict))"
+                var inviteeID: NSString = CreateModel.getUserID(inviteeDict)
                 if queryID == inviteeID {
                     isInQueryList = true
                     PULog("ID's are equal")
@@ -209,11 +217,11 @@ class CreateModel {
         var usersToAdd: NSMutableArray = NSMutableArray()
         for selected in selectedUsers {
             let selectedDict = selected as! NSDictionary
-            var selectedID: NSString = "\(DataManager.getUserID(selectedDict))"
+            var selectedID: NSString = CreateModel.getUserID(selectedDict)
             var isInAddedList: Bool = false
             for invitee in inviteList {
                 let inviteeDict = invitee as! NSDictionary
-                var inviteeID: NSString = "\(DataManager.getUserID(inviteeDict))"
+                var inviteeID: NSString = CreateModel.getUserID(inviteeDict)
                 if selectedID == inviteeID {
                     isInAddedList = true
                     break
@@ -230,10 +238,148 @@ class CreateModel {
         return inviteList
     }
     
+    /*-------------------------------------------*/
     
-   /*--------------------------------------------*
-    * Group events methods
+    
+    // MARK: Events
+    
+    /*--------------------------------------------*
+    * Group instance variables and declarations
+    *--------------------------------------------*/
+    var groupEvents: NSArray = NSArray()
+    var ownedQueryResults: NSArray = NSArray()
+    var invitedQueryResults: NSArray = NSArray()
+    var attendingQueryResults: NSArray = NSArray()
+    var findQueryResults: NSArray = NSArray()
+    var selectedEvents: NSArray = NSArray()
+    var newlyCreatedEvents: NSArray = NSArray()
+    
+    /*--------------------------------------------*
+    * Set methods
+    *--------------------------------------------*/
+    func setGroupEvents(events: NSArray) {
+        groupEvents = events
+    }
+    
+    func setOwnedQueryResults(results: NSArray) {
+        ownedQueryResults = results
+    }
+    
+    func setInvitedQueryResults(results: NSArray) {
+        invitedQueryResults = results
+    }
+    
+    func setAttendingQueryResults(results: NSArray) {
+        attendingQueryResults = results
+    }
+    
+    func setFindQueryResults(results: NSArray) {
+        findQueryResults = results
+    }
+    
+    func setSelectedEvents(selected: NSArray) {
+        selectedEvents = selected
+    }
+    
+    func updateNewlyCreatedEvents(search: NSString?) -> NSString? {
+        PULog("Updating newly created events...")
+        let (errorMessage: NSString?, queryResult: NSDictionary?) =
+        PartyUpBackend.instance.queryEventSearchByID(search!)
+        if (errorMessage != nil) {
+            PULog("Update Failed: \(errorMessage!)")
+            return errorMessage!
+        } else {
+            PULog("Update Success!")
+            setNewlyCreatedEvents(queryResult!)
+            return nil
+        }
+    }
+    
+    func setNewlyCreatedEvents(newAddition: NSDictionary) {
+        var newEvents: NSMutableArray = NSMutableArray()
+        newEvents.addObject(newAddition)
+        newlyCreatedEvents = newEvents as NSArray
+    }
+    
+    
+    /*--------------------------------------------*
+    * Get methods
+    *--------------------------------------------*/
+
+    func getGroupEvents() -> NSArray {
+        return groupEvents
+    }
+    
+    func getOwnedQueryResults() -> NSArray {
+        return getEventsQueryResults(ownedQueryResults)
+    }
+    
+    func getInvitedQueryResults() -> NSArray {
+        return getEventsQueryResults(invitedQueryResults)
+    }
+    
+    func getAttendingQueryResults() -> NSArray {
+        return getEventsQueryResults(attendingQueryResults)
+    }
+    
+    func getFindQueryResults() -> NSArray {
+        return getEventsQueryResults(findQueryResults)
+    }
+    
+    /* Private helper function to cross-reference events to 
+     * display with events already added to the events list */
+    private func getEventsQueryResults(queryResults: NSArray) -> NSArray {
+        var eventsToDisplay: NSMutableArray = NSMutableArray()
+        for query in queryResults {
+            let queryDict = query as! NSDictionary
+            var queryID: NSInteger = DataManager.getEventID(queryDict)
+            var isInQueryList: Bool = false
+            for event in groupEvents {
+                let eventDict = event as! NSDictionary
+                var eventID: NSInteger = DataManager.getEventID(eventDict)
+                if queryID == eventID {
+                    isInQueryList = true
+                    PULog("ID's are equal")
+                    break
+                }
+            }
+            if !isInQueryList {
+                eventsToDisplay.addObject(query)
+            }
+        }
+        // fix this
+        return eventsToDisplay as NSArray
+    }
+    
+    func getSelectedEvents() -> NSArray {
+        return selectedEvents
+    }
+    
+    func getNewlyCreatedEvents() -> NSArray {
+        return newlyCreatedEvents
+    }
+    
+    
+    /*--------------------------------------------*
+    * Data extraction methods
     *--------------------------------------------*/
     
+    class func getUserID(user: NSDictionary) -> NSString {
+        var userID: AnyObject? = user["id"]
+        return "\(userID)"
+        
+        // return user["id"] as NSString
+    }
     
+    class func getUserFirstName(user: NSDictionary) -> NSString {
+        return user["first_name"] as! NSString
+    }
+    
+    class func getUserLastName(user: NSDictionary) -> NSString {
+        return user["last_name"] as! NSString
+    }
+    
+    class func getUserEmail(user: NSDictionary) -> NSString {
+        return user["username"] as! NSString // email?
+    }
 }

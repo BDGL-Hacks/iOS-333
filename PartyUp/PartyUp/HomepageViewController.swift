@@ -80,6 +80,8 @@ class HomepageViewController: PartyUpViewController
         self.performSegueWithIdentifier("homeToLogin", sender: self)
     }
     
+    
+    
     @IBAction func createButtonPressed(sender: UIBarButtonItem) {
         PULog("Create button pressed")
         if (activeView == eventsChildView) {
@@ -92,6 +94,7 @@ class HomepageViewController: PartyUpViewController
             self.performSegueWithIdentifier("homeToCreateGroup", sender: self)
         }
     }
+    
     
     @IBAction func navSegmentedControlChanged(sender: UISegmentedControl) {
         PULog("Navbar segment control changed")

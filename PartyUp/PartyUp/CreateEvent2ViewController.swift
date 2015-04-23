@@ -61,10 +61,8 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
         }
     }
     
-    
     /* User finalizes choices and creates event */
-    @IBAction func createEvent(sender: UIButton) {
-        
+    @IBAction func finalizeEvent(sender: UIButton) {
         PULog("Finalize event pressed")
         /* Iterate through friends list and send it to the backend */
         var friendEmails: [NSString] = [NSString]()
@@ -87,7 +85,9 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
         
         createEvent?.eventSecondPage(friendEmails)
         
-        var backendError: NSString? = createEvent?.eventSendToBackend()
+        let (backendError: NSString?, eventID: NSString?) = createEvent!.eventSendToBackend()
+        
+        /* Not sure if need this code because segue is already bound to the button */
         if (backendError == nil)
         {
             self.performSegueWithIdentifier("eventCreationTwoToHome", sender: self)
@@ -96,8 +96,8 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
             displayAlert("Event creation Failed", message: backendError!)
             self.performSegueWithIdentifier("eventCreationTwoToHome", sender: self)
         }
-    
     }
+    
     
     
     /*--------------------------------
@@ -149,7 +149,7 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("UserCell") as! AddFriendsTableViewCell;
+        let cell = tableView.dequeueReusableCellWithIdentifier("UserCell") as! AddFriendsTableViewCell
         
         var user: NSDictionary = NSDictionary()
         user = addedFriends![indexPath.row] as! NSDictionary

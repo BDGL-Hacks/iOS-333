@@ -20,12 +20,13 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
     
     // text that gets sent to search method on backend
     var searchText: String? = nil {
-        didSet{
+        didSet {
             searchTextField?.text = searchText
+            prevSearch = oldValue
             if (prevSearch != nil) {
+                PULog("Inside the if statement")
                 addFriends()
             }
-            prevSearch = oldValue
             refresh()
         }
     }

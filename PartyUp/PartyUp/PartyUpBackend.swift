@@ -169,11 +169,14 @@ class PartyUpBackend {
             let jsonData: NSDictionary = postData!
             let accepted: Bool = jsonData.valueForKey("accepted") as! Bool
             var errorMessage: NSString? = jsonData.valueForKey("error") as! NSString?
+            // not sure if event id returned as integer or as an NSString
+            var eventID: NSInteger? = jsonData.valueForKey("id") as! NSInteger?
             
             // Event creation successful on server side
             if (accepted) {
                 PULog("Event Creation Successful!")
-                return nil
+                PULog("\(eventID)")
+                return (nil, "\(eventID!)" as NSString?)
             }
                 
                 // Register was unsuccessful on server side
@@ -182,14 +185,14 @@ class PartyUpBackend {
                     errorMessage = "No error message received from server"
                 }
                 PULog("Event creation Failed: \(errorMessage!)")
-                return errorMessage
+                return (errorMessage, nil)
             }
         }
             
             // We did not receive JSON data back
         else {
             PULog("Event Creation Failed: No JSON data received")
-            return "Failed to connect to server"
+            return ("Failed to connect to server", nil)
         }
     }
     
@@ -231,7 +234,7 @@ class PartyUpBackend {
             
             // Event creation successful on server side
             if (accepted) {
-                PULog("Event Creation Successful!")
+                PULog("Group Creation Successful!")
                 return nil
             }
                 
@@ -240,7 +243,7 @@ class PartyUpBackend {
                 if (errorMessage == nil) {
                     errorMessage = "No error message received from server"
                 }
-                PULog("Event creation Failed: \(errorMessage!)")
+                PULog("Group creation Failed: \(errorMessage!)")
                 return errorMessage
             }
         }

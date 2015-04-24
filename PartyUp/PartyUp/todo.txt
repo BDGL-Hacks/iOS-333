@@ -50,6 +50,8 @@ Create Groups
     - update group events afterwards
  - Create a group from within an event
     - populate table to choose from with the event attendees
+ - Add an event to an already-existing group (no API call to do this yet - could destroy and recreate
+   group but would need all of the other events of that group)
 
 Events (General)
 ----------------

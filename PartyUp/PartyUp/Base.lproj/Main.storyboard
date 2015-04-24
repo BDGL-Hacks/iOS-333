@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SLw-45-19W">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SLw-45-19W">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
@@ -1792,6 +1792,15 @@ tapping the 'Find' tab on the bottom.</string>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="La2-mY-epG">
+                                                <rect key="frame" x="7" y="144" width="183" height="30"/>
+                                                <state key="normal" title="Create group for this event">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="gjq-jy-r54" kind="presentation" identifier="eventInfoToCreateGroup" id="ru4-Xo-5Xy"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -1841,8 +1850,10 @@ tapping the 'Find' tab on the bottom.</string>
                                             <constraint firstItem="lrq-kY-8Ca" firstAttribute="leading" secondItem="cOe-sm-SSP" secondAttribute="trailing" constant="8" symbolic="YES" id="oda-8g-cXo"/>
                                             <constraint firstItem="p7S-jm-7SI" firstAttribute="leading" secondItem="lrq-kY-8Ca" secondAttribute="trailing" constant="8" symbolic="YES" id="pve-oE-YIK"/>
                                             <constraint firstItem="4cJ-BQ-oz1" firstAttribute="leading" secondItem="O8w-i5-anV" secondAttribute="leading" id="ri6-1M-Ge5"/>
+                                            <constraint firstItem="La2-mY-epG" firstAttribute="top" secondItem="eL1-Iv-n4s" secondAttribute="bottom" constant="4" id="uN2-Ax-cKD"/>
                                             <constraint firstItem="eL1-Iv-n4s" firstAttribute="leading" secondItem="QOP-Lj-3rg" secondAttribute="leading" id="uUf-gW-l1c"/>
                                             <constraint firstItem="eL1-Iv-n4s" firstAttribute="top" secondItem="lZa-yQ-DgU" secondAttribute="bottom" constant="12" id="vxo-66-gwe"/>
+                                            <constraint firstItem="La2-mY-epG" firstAttribute="leading" secondItem="RQJ-zm-x96" secondAttribute="leading" constant="7" id="wn2-j1-obJ"/>
                                             <constraint firstItem="w6o-Ll-Ux0" firstAttribute="leading" secondItem="4cJ-BQ-oz1" secondAttribute="trailing" constant="8" symbolic="YES" id="xvb-MO-UZ7"/>
                                             <constraint firstItem="O8w-i5-anV" firstAttribute="top" secondItem="IXN-L4-SWE" secondAttribute="bottom" constant="18" id="y62-80-0Na"/>
                                             <constraint firstItem="lZa-yQ-DgU" firstAttribute="top" secondItem="mXI-05-696" secondAttribute="bottom" constant="8" symbolic="YES" id="yXi-bg-kfN"/>
@@ -1895,6 +1906,147 @@ tapping the 'Find' tab on the bottom.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dg2-r9-yMr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3874" y="2069"/>
+        </scene>
+        <!--Create Group From Event View Controller-->
+        <scene sceneID="tJK-zq-Agd">
+            <objects>
+                <viewController id="gjq-jy-r54" customClass="CreateGroupFromEventViewController" customModule="PartyUp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6uQ-AE-yd8"/>
+                        <viewControllerLayoutGuide type="bottom" id="hFb-Uy-OmY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KHY-wQ-8PV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jAc-ZB-BfO">
+                                <rect key="frame" x="0.0" y="201" width="320" height="367"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" id="r4W-fT-aND" customClass="AddFriendsTableViewCell" customModule="PartyUp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="r4W-fT-aND" id="0aX-Pc-Is4">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Firstname Lastname" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ybQ-nF-Ks5">
+                                                    <rect key="frame" x="8" y="11" width="304" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NVw-Zt-lHN">
+                                                    <rect key="frame" x="270" y="11" width="41" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ybQ-nF-Ks5" firstAttribute="trailing" secondItem="0aX-Pc-Is4" secondAttribute="trailingMargin" id="7dD-lN-Gcz"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="ybQ-nF-Ks5" secondAttribute="bottom" constant="3" id="Ae7-RX-evM"/>
+                                                <constraint firstItem="NVw-Zt-lHN" firstAttribute="top" secondItem="0aX-Pc-Is4" secondAttribute="topMargin" constant="3" id="Qgd-wv-Vlx"/>
+                                                <constraint firstItem="ybQ-nF-Ks5" firstAttribute="leading" secondItem="0aX-Pc-Is4" secondAttribute="leadingMargin" id="XMn-Xe-jee"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="NVw-Zt-lHN" secondAttribute="trailing" constant="1" id="fe0-VG-yLD"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="NVw-Zt-lHN" secondAttribute="bottom" constant="3" id="xyw-fX-viP"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="emailLabel" destination="NVw-Zt-lHN" id="LJc-AJ-L1U"/>
+                                            <outlet property="nameLabel" destination="ybQ-nF-Ks5" id="RMM-sD-fy2"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXB-n0-PKl">
+                                <rect key="frame" x="16" y="76" width="98" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select members from attendee list" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="prh-Le-tUb">
+                                <rect key="frame" x="16" y="172" width="263" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Best group ever" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AVq-wm-CWm">
+                                <rect key="frame" x="16" y="105" width="288" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5nT-qN-GeD">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <navigationItem id="YeE-mZ-qP4">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="Bsc-KD-kuV">
+                                            <connections>
+                                                <action selector="backButtonPressed:" destination="gjq-jy-r54" id="M1H-P9-yJj"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="✓" id="FT5-vr-VuK">
+                                            <connections>
+                                                <segue destination="SLw-45-19W" kind="show" identifier="eventGroupCreationToHome" id="Jvj-7x-MX8"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="665-wd-SIF">
+                                <rect key="frame" x="122" y="11" width="76" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="665-wd-SIF" firstAttribute="centerX" secondItem="5nT-qN-GeD" secondAttribute="centerX" id="1AI-z7-r5Q"/>
+                            <constraint firstItem="jAc-ZB-BfO" firstAttribute="bottom" secondItem="hFb-Uy-OmY" secondAttribute="top" id="3Um-Gf-DbD"/>
+                            <constraint firstItem="AVq-wm-CWm" firstAttribute="top" secondItem="665-wd-SIF" secondAttribute="bottom" constant="73" id="5RT-aX-et8"/>
+                            <constraint firstItem="665-wd-SIF" firstAttribute="centerX" secondItem="AVq-wm-CWm" secondAttribute="centerX" id="6ky-x9-TAw"/>
+                            <constraint firstItem="prh-Le-tUb" firstAttribute="leading" secondItem="KHY-wQ-8PV" secondAttribute="leadingMargin" id="8gQ-a1-Qik"/>
+                            <constraint firstItem="prh-Le-tUb" firstAttribute="top" secondItem="AVq-wm-CWm" secondAttribute="bottom" constant="37" id="Ad2-Q3-Hhe"/>
+                            <constraint firstItem="665-wd-SIF" firstAttribute="centerY" secondItem="5nT-qN-GeD" secondAttribute="centerY" id="FSP-mM-mmV"/>
+                            <constraint firstItem="5nT-qN-GeD" firstAttribute="leading" secondItem="jAc-ZB-BfO" secondAttribute="leading" id="R35-4h-00a"/>
+                            <constraint firstItem="jAc-ZB-BfO" firstAttribute="centerX" secondItem="AVq-wm-CWm" secondAttribute="centerX" id="RIP-fQ-FoK"/>
+                            <constraint firstItem="AVq-wm-CWm" firstAttribute="leading" secondItem="zXB-n0-PKl" secondAttribute="leading" id="Rz8-Jo-Ls5"/>
+                            <constraint firstItem="665-wd-SIF" firstAttribute="top" secondItem="6uQ-AE-yd8" secondAttribute="bottom" constant="11" id="VD1-tX-OQ7"/>
+                            <constraint firstItem="zXB-n0-PKl" firstAttribute="leading" secondItem="KHY-wQ-8PV" secondAttribute="leadingMargin" id="W7B-lI-Sqy"/>
+                            <constraint firstItem="665-wd-SIF" firstAttribute="centerX" secondItem="5nT-qN-GeD" secondAttribute="centerX" id="WjN-oZ-O0y"/>
+                            <constraint firstItem="665-wd-SIF" firstAttribute="centerX" secondItem="AVq-wm-CWm" secondAttribute="centerX" id="Yw9-hI-Ynf"/>
+                            <constraint firstItem="jAc-ZB-BfO" firstAttribute="top" secondItem="prh-Le-tUb" secondAttribute="bottom" constant="8" id="sE7-CW-iZc"/>
+                            <constraint firstItem="AVq-wm-CWm" firstAttribute="top" secondItem="zXB-n0-PKl" secondAttribute="bottom" constant="8" id="tGF-n2-MRC"/>
+                            <constraint firstItem="AVq-wm-CWm" firstAttribute="top" secondItem="665-wd-SIF" secondAttribute="bottom" constant="73" id="wDr-Nm-dlf"/>
+                            <constraint firstItem="jAc-ZB-BfO" firstAttribute="leading" secondItem="KHY-wQ-8PV" secondAttribute="leading" id="xld-Ln-UDc"/>
+                            <constraint firstItem="AVq-wm-CWm" firstAttribute="trailing" secondItem="KHY-wQ-8PV" secondAttribute="trailingMargin" id="zMH-32-U5M"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="wDr-Nm-dlf"/>
+                                <exclude reference="6ky-x9-TAw"/>
+                                <exclude reference="WjN-oZ-O0y"/>
+                            </mask>
+                        </variation>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="4k3-xw-S4k" appends="YES" id="Tcw-4b-W02"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="attendeeListTableView" destination="jAc-ZB-BfO" id="l0l-WS-MIN"/>
+                        <outlet property="eventTitleLabel" destination="665-wd-SIF" id="LCq-Ve-xIj"/>
+                        <outlet property="groupNameTextField" destination="AVq-wm-CWm" id="GtO-Sa-hD5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wak-ct-Ynh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer cancelsTouchesInView="NO" id="4k3-xw-S4k">
+                    <connections>
+                        <action selector="viewTapped:" destination="gjq-jy-r54" id="QgU-zL-YZ9"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="4557" y="2261"/>
         </scene>
         <!--Current Event View Controller-->
         <scene sceneID="A0k-ln-wGi">
@@ -1949,8 +2101,8 @@ tapping the 'Find' tab on the bottom.</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="in5-ko-7n1"/>
-        <segue reference="ijx-Cl-ZbZ"/>
+        <segue reference="Jvj-7x-MX8"/>
         <segue reference="zaS-UW-vp0"/>
-        <segue reference="4fK-gC-rRW"/>
+        <segue reference="NJp-kO-aCE"/>
     </inferredMetricsTieBreakers>
 </document>

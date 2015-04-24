@@ -10,7 +10,7 @@ import UIKit
 
 class AddFriendsTableViewCell: UITableViewCell {
 
-    
+  
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     var firstName: NSString?
@@ -26,6 +26,10 @@ class AddFriendsTableViewCell: UITableViewCell {
         self.lastName = lastName
         self.userID = userID
         self.usernameEmail = usernameEmail
+    }
+    
+    func setEmailHidden() {
+        emailLabel.hidden = true
     }
     
     override func awakeFromNib() {

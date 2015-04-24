@@ -47,6 +47,16 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "eventInfoToCreateGroup" {
+            PULog("Preparing for segue")
+            let destinationVC = segue.destinationViewController as! CreateGroupFromEventViewController
+            destinationVC.setEventData(event)
+            destinationVC.fillAttendeeList(DataManager.getEventAttendees(event))
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadEventData()

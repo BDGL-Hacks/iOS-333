@@ -67,9 +67,10 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
     }
     
     /* User goes back to the previous screen */
-    @IBAction func dismissModal(sender: UIButton) {
+    @IBAction func dismissView(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
     
     /* Tap anywhere outside text field dismisses keyboard */
     @IBAction func viewTapped(sender: AnyObject) {
@@ -104,6 +105,7 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "eventCreationOneToTwo" {
             PULog("In prepare for segue")
+            addFriends()
             let destinationVC = segue.destinationViewController as! CreateEvent2ViewController
             destinationVC.createEvent = self.createEvent!
         }
@@ -130,8 +132,8 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
     * View response methods
     *--------------------------------------------*/
     
-    
-    @IBAction func addFriendsPressed(sender: UIButton) {
+    /* Continue to next page. Send data to create model */
+    func addFriends() {
         
         PULog("Add friends button pressed")
         
@@ -156,7 +158,9 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
         createEvent!.eventFirstPage(eventTitle, location: eventLocation, dateTime: eventDateTime, eventPublic: isPublic)
     }
     
-    
+    /* Alternate button for group creation flow. Creates event
+       using emails of friends already added and information
+       from this page */
     @IBAction func continueButtonPressed(sender: UIButton) {
         PULog("Continue button pressed")
         
@@ -189,7 +193,8 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
             displayAlert("Event creation Failed", message: backendError!)
         }
         
-        // PULog("\(eventID)")
+        /* Update backend array and update the table of the
+           previous view controller */
         createEvent!.updateNewlyCreatedEvents(eventID as NSString?)
         previousViewController!.updateAddedEvents(true)
         self.dismissViewControllerAnimated(true, completion: nil)

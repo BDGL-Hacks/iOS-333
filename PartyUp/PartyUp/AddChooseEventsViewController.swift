@@ -16,8 +16,8 @@ class AddChooseEventsViewController: PartyUpViewController, UITableViewDelegate,
     let Attending = 1
     let Invited = 2
     
+    /* Table section names */
     var sectionsInTable = ["Owned", "Invited", "Attending"]
-    
     
     let searchEventsModel: SearchEventsModel = SearchEventsModel()
     var ownedQueryResults: NSArray? = NSArray()
@@ -46,6 +46,7 @@ class AddChooseEventsViewController: PartyUpViewController, UITableViewDelegate,
         // Do any additional setup after loading the view.
     }
     
+    // Acquire table data from create model
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         if (shouldPerformQueries && isLoggedIn()) {
@@ -71,9 +72,14 @@ class AddChooseEventsViewController: PartyUpViewController, UITableViewDelegate,
         PULog("Displaying search events page")
     }
     
-    
-    @IBAction func checkmarkPressed(sender: UIButton) {
+    // Add selected events and dismiss the view
+    @IBAction func checkmarkPressed(sender: UIBarButtonItem) {
         addEvents()
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    // Dismiss the view without adding events
+    @IBAction func xButtonPressed(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -81,11 +87,12 @@ class AddChooseEventsViewController: PartyUpViewController, UITableViewDelegate,
      * Table view methods                     *
      *----------------------------------------*/
     
+    /* Returns the number of sections in the table */
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 3
     }
     
-    /* Returns the number of cells in the table */
+    /* Returns the number of cells in each section of the table */
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == Owned {
             // PULog("Section: \(section) and NumEvents: \(searchEventsModel.getCreatedEvents().count)")
@@ -103,6 +110,8 @@ class AddChooseEventsViewController: PartyUpViewController, UITableViewDelegate,
         }
     }
     
+    /* Determines how to populate each cell in the table: *
+    * Loads the display and event data into each cell.   */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         // PULog("In tableView reload method")
@@ -127,6 +136,7 @@ class AddChooseEventsViewController: PartyUpViewController, UITableViewDelegate,
         
         cell.loadCell(dayText: dayText, dayNumber: dayNumber, mainText: mainText, subText: subText)
         cell.setCellData(event)
+        cell.hideCheckmark()
         return cell
     }
     

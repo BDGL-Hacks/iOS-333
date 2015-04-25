@@ -18,10 +18,12 @@ class CreateGroupFromEventViewController: PartyUpViewController, UITableViewData
     @IBOutlet weak var groupNameTextField: UITextField!
     @IBOutlet weak var attendeeListTableView: UITableView!
     
+    /* Called by previous view controller to initialize event */
     func setEventData(event: NSDictionary) {
         self.event = event
     }
     
+    /* Called by previous view conroller to initalize attendee list */
     func fillAttendeeList(attendeeList: NSArray) {
         self.attendeeList = attendeeList
     }
@@ -52,16 +54,17 @@ class CreateGroupFromEventViewController: PartyUpViewController, UITableViewData
         eventTitleLabel.text = eventTitle as String
     }
 
-    
+    /* Dismiss keyboard if user taps outside */
     @IBAction func viewTapped(sender: AnyObject) {
         groupNameTextField.resignFirstResponder()
     }
     
+    /* Dismiss the view controller */
     @IBAction func backButtonPressed(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    
+    /* Prepare for segue back to home page */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "eventGroupCreationToHome" {
             PULog("Preparing for segue")
@@ -71,15 +74,18 @@ class CreateGroupFromEventViewController: PartyUpViewController, UITableViewData
         }
     }
     
+    /* Return number of sections in the table */
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
-    
+    /* Return number of cells in the table */
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return attendeeList!.count
     }
     
+    /* Determines how to populate each cell in the table: *
+    * Loads the display into each cell.   */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("UserCell") as! AddFriendsTableViewCell;
@@ -93,7 +99,9 @@ class CreateGroupFromEventViewController: PartyUpViewController, UITableViewData
         var userID: NSString =  "\(DataManager.getUserID(user))"
         
         var fullName = (firstName as String) +  " " + (lastName as String)
-        cell.loadCell(fullName, firstName: firstName, lastName: lastName, userID: userID, usernameEmail: usernameEmail)
+        cell.loadCell(fullName, usernameEmail: usernameEmail)
+        cell.setCellData(user)
+        
         cell.setEmailHidden()
         cell.accessoryType = UITableViewCellAccessoryType.None
         return cell
@@ -121,6 +129,7 @@ class CreateGroupFromEventViewController: PartyUpViewController, UITableViewData
         }
     }
     
+    /* Iterate through selected friends and create a group for this event */
     func addFriends() {
         
         var friendIDs: [NSString] = [NSString]()
@@ -130,8 +139,12 @@ class CreateGroupFromEventViewController: PartyUpViewController, UITableViewData
                 var thisPath = indexPaths[i] as! NSIndexPath
                 var cell = attendeeListTableView.cellForRowAtIndexPath(thisPath)
                 if let cell = cell as? AddFriendsTableViewCell {
-                    friendIDs.append(cell.userID!)
-                    friendEmails.append(cell.usernameEmail!)
+                    var user = cell.getCellData()
+                    let userID = "\(DataManager.getUserID(user))"
+                    let usernameEmail = DataManager.getUserUsername(user)
+                    
+                    friendIDs.append(userID)
+                    friendEmails.append(usernameEmail)
                 }
             }
         }

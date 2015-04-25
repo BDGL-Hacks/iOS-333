@@ -15,7 +15,7 @@ class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UI
     @IBOutlet weak var groupNameTextField: UITextField!
     @IBOutlet weak var groupMembersTableView: UITableView!
     
-    
+    /* Set up table and fetch data from create model */
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -55,32 +55,38 @@ class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UI
         PULog("Displaying Create Group 1 page")
     }
     
+    /* Dismiss keyboard if view is tapped */
     @IBAction func viewTapped(sender: AnyObject) {
         groupNameTextField.resignFirstResponder()
     }
     
-    @IBAction func dismissView(sender: UIButton) {
+    /* Dismiss the view */
+    @IBAction func backButtonPressed(sender: UIBarButtonItem) {
         PULog("Going back to groups home page")
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    
+    /* Prepare for segues */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "CreateGroup1ToAddFriends" {
+        if segue.identifier == "createGroup1ToAddFriends" {
             PULog("Preparing for segue")
             let destinationVC = segue.destinationViewController as! AddFriendsViewController
             destinationVC.create = self.createGroup
             destinationVC.previousViewController = self
             destinationVC.isEvent = false
         }
-        else if segue.identifier == "CreateGroup1ToCreateGroup2" {
+        else if segue.identifier == "createGroup1ToCreateGroup2" {
             PULog("Preparing for segue")
+            addFriends()
             let destinationVC = segue.destinationViewController as! CreateGroup2ViewController
             destinationVC.createGroup = self.createGroup
         }
     }
     
-    
-    @IBAction func nextButtonPressed(sender: UIButton) {
+    /* Iterate through friends in table and send emails to create
+       group model object. */
+    func addFriends() {
         PULog("Next page group pressed")
         /* Iterate through friends list and send it to the backend */
         var friendIDs: [NSString] = [NSString]()
@@ -90,11 +96,15 @@ class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UI
                 
                 var indexPath: NSIndexPath = NSIndexPath(forRow: i, inSection: j)
                 var cell = groupMembersTableView.cellForRowAtIndexPath(indexPath) as? AddFriendsTableViewCell
+                let user = cell!.getCellData()
+                let userID = "\(DataManager.getUserID(user))"
+                let usernameEmail = DataManager.getUserUsername(user)
                 
-                friendIDs.append(cell!.userID!)
-                friendEmails.append(cell!.usernameEmail!)
+                friendIDs.append(userID)
+                friendEmails.append(usernameEmail)
             }
         }
+    
         
         /* Check that friends list was actually populated */
         /*for friend in friendIDs {
@@ -109,15 +119,18 @@ class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UI
     
     // MARK: Table methods
     
-    
+    /* Return number of sections in the table */
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
+    /* Return number of cells in the table */
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return groupMembers!.count
     }
     
+    /* Determines how to populate each cell in the table: *
+    * Loads the display into each cell.   */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("UserCell") as! AddFriendsTableViewCell;
         
@@ -130,13 +143,15 @@ class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UI
         var userID: NSString =  "\(DataManager.getUserID(user))"
         
         var fullName = (firstName as String) +  " " + (lastName as String)
-        cell.loadCell(fullName, firstName: firstName, lastName: lastName, userID: userID, usernameEmail: usernameEmail)
+        cell.loadCell(fullName, usernameEmail: usernameEmail)
+        cell.setCellData(user)
         
         cell.accessoryType = UITableViewCellAccessoryType.None
         return cell
     }
     
-    
+    /* Called by AddFriendsViewController in order to update
+       the table based on user additions */
     func updateAddedFriends() {
         var friendsToAdd: NSArray = createGroup.getSelectedUsers()
         groupMembers?.addObjectsFromArray(friendsToAdd as [AnyObject])

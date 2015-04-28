@@ -85,10 +85,18 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
         searchTextField.resignFirstResponder()
     }
     
-    @IBAction func dismissView(sender: UIButton) {
+    /* Dismiss view and add selected friends to invite list */
+    
+    @IBAction func checkmarkPressed(sender: UIBarButtonItem) {
         addFriends()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    /* Dimiss view without adding friends */
+    @IBAction func xButtonPressed(sender: UIBarButtonItem) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     
     // MARK: - Table view data source
     
@@ -104,7 +112,8 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
         return queryResults!.count
     }
     
-    /* Populate the table using the queryResults array */
+    /* Determines how to populate each cell in the table: *
+    * Loads the display and event data into each cell.   */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         
@@ -120,12 +129,10 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
         var lastName: NSString = DataManager.getUserLastName(user)
         var usernameEmail: NSString = DataManager.getUserUsername(user)
         var userID: NSString = "\(DataManager.getUserID(user))"
+        var fullName = DataManager.getUserFullName(user)
         
-        // concatenate the name for cell display
-        var fullName = (firstName as String) +  " " +  (lastName as String)
-        
-        cell.loadCell(fullName, firstName: firstName, lastName: lastName, userID: userID, usernameEmail: usernameEmail)
-        
+        cell.loadCell(fullName, usernameEmail: usernameEmail)
+        cell.setCellData(user)
         // set the checkmark accessory (default is no checkmark)
         cell.accessoryType = UITableViewCellAccessoryType.None
         
@@ -152,7 +159,8 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
         }
     }
     
-    
+    /* Iterate through selected cells and set selected users property
+       of create model */
     func addFriends() {
         var selectedUsers: NSMutableArray = NSMutableArray()
         if let indexPaths = queryTableView.indexPathsForSelectedRows() {
@@ -161,12 +169,15 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
                 var cell = queryTableView.cellForRowAtIndexPath(thisPath)
                 if let cell = cell as? AddFriendsTableViewCell {
                     
+                    /*
                     var userFirstName = cell.firstName!
                     var userLastName = cell.lastName!
                     var userEmail = cell.usernameEmail!
                     var userID = cell.userID!
-                    
                     var dict: [NSString : NSString] = ["username": userEmail, "id": userID, "first_name": userFirstName, "last_name": userLastName]
+                    */
+                    
+                    var dict = cell.getCellData()
                     
                     selectedUsers.addObject(dict)
                 }

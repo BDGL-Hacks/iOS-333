@@ -10,23 +10,41 @@ import UIKit
 
 class AddFriendsTableViewCell: UITableViewCell {
 
-    
+  
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
-    var firstName: NSString?
-    var lastName: NSString?
-    var userID: NSString?
-    var usernameEmail: NSString?
     
+    /*--------------------------------------------*
+    * Instance variables
+    *--------------------------------------------*/
     
-    func loadCell(fullName: NSString, firstName: NSString?, lastName: NSString, userID: NSString, usernameEmail: NSString) {
+    var data: NSDictionary = NSDictionary()
+    
+    /*--------------------------------------------*
+    * Instance methods
+    *--------------------------------------------*/
+    
+    /* Load the cell data */
+    func loadCell(fullName: NSString, usernameEmail: NSString) {
         self.nameLabel.text = fullName as String
         self.emailLabel.text = usernameEmail as String
-        self.firstName = firstName
-        self.lastName = lastName
-        self.userID = userID
-        self.usernameEmail = usernameEmail
     }
+    
+    /* Hide email label (for use in create group from event) */
+    func setEmailHidden() {
+        emailLabel.hidden = true
+    }
+    
+    /* Set the NSDictionary object associated with the cell */
+    func setCellData(data: NSDictionary) {
+        self.data = data
+    }
+    
+    /* Retrieve the NSDictionary object associated with the cell */
+    func getCellData() -> NSDictionary {
+        return data
+    }
+
     
     override func awakeFromNib() {
         super.awakeFromNib()

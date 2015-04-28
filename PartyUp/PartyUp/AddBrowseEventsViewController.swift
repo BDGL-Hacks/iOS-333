@@ -32,9 +32,11 @@ class AddBrowseEventsViewController: PartyUpViewController, UISearchResultsUpdat
         
         self.findEventsTableView.rowHeight = 60
         
+        // Register custon table cell
         var customTableCellNib: UINib = UINib(nibName: "PartyUpTableCell", bundle: nil)
         findEventsTableView.registerNib(customTableCellNib, forCellReuseIdentifier: "eventCellPrototype")
         
+        // Set up the search bar
         self.searchBarController = ({
             let controller = UISearchController(searchResultsController: nil)
             controller.searchResultsUpdater = self
@@ -50,6 +52,7 @@ class AddBrowseEventsViewController: PartyUpViewController, UISearchResultsUpdat
         // Do any additional setup after loading the view.
     }
     
+    // Acquire table data from create model
     override func viewWillAppear(animated: Bool) {
         if (shouldPerformQueries && isLoggedIn()) {
             searchEventsModel.update(SearchEventsModel.QueryType.Find)
@@ -67,8 +70,15 @@ class AddBrowseEventsViewController: PartyUpViewController, UISearchResultsUpdat
         PULog("Displaying search public events page for group creation")
     }
 
-    @IBAction func checkmarkPressed(sender: UIButton) {
+    // Add selected events and dismiss view controller
+    @IBAction func checkmarkPressed(sender: UIBarButtonItem) {
         addEvents()
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    // Dismiss view without adding events
+    
+    @IBAction func xButtonPressed(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -77,10 +87,12 @@ class AddBrowseEventsViewController: PartyUpViewController, UISearchResultsUpdat
     * Table view methods                     *
     *----------------------------------------*/
     
+    /* Returns the number of sections in the table */
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
+    /* Returns the number of cells in the table */
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (searchBarController.active) {
             return searchResults.count
@@ -89,9 +101,12 @@ class AddBrowseEventsViewController: PartyUpViewController, UISearchResultsUpdat
         }
     }
     
+    /* Determines how to populate each cell in the table: *
+    * Loads the display and event data into each cell.   */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: PartyUpTableCell = tableView.dequeueReusableCellWithIdentifier("eventCellPrototype") as! PartyUpTableCell
         
+        //
         var event: NSDictionary
         if (searchBarController.active) {
             event = searchResults[indexPath.row] as! NSDictionary
@@ -107,6 +122,7 @@ class AddBrowseEventsViewController: PartyUpViewController, UISearchResultsUpdat
         
         cell.loadCell(dayText: dayText, dayNumber: dayNumber, mainText: mainText, subText: subText)
         cell.setCellData(event)
+        cell.hideCheckmark()
         return cell
         
     }
@@ -136,6 +152,8 @@ class AddBrowseEventsViewController: PartyUpViewController, UISearchResultsUpdat
         }
     }
     
+    /* Iterate through selected events and update selectedEvents array
+       in the create model */
     func addEvents() {
         var selectedEvents: NSMutableArray = NSMutableArray()
         if let indexPaths = findEventsTableView.indexPathsForSelectedRows() {

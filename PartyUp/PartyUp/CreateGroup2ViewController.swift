@@ -14,7 +14,7 @@ class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, 
     var addedEvents: NSMutableArray? = NSMutableArray()
     @IBOutlet weak var addedEventsTableView: UITableView!
     
-    
+    /* Set up the table and fetch data from create model */
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,13 +44,16 @@ class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, 
         PULog("Displaying create group 2 page")
     }
 
-    @IBAction func backToGroup1(sender: UIButton) {
+    /* Store added events in create model and dismiss view */
+    
+    @IBAction func backToLastPage(sender: UIBarButtonItem) {
         PULog("Going back to first group creation page")
         var eventsList = addedEvents! as NSArray
         createGroup?.setGroupEvents(eventsList)
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    /* Prepare for segues */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "createGroup2ToCreateEvent" {
             let destinationVC = segue.destinationViewController as! CreateEvent1ViewController
@@ -68,15 +71,18 @@ class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, 
             destinationVC.createEvent = self.createGroup!
             destinationVC.previousViewController = self
         }
-        else if segue.identifier == "GroupCreation2ToHome" {
+        else if segue.identifier == "createGroup2ToHome" {
             PULog("Preparing for segue")
+            finalizeGroup()
             let destinationVC = segue.destinationViewController as! HomepageViewController
             destinationVC.setActiveView(HomepageViewController.NavView.Groups)
         }
     }
     
-    
-    @IBAction func finalizeGroup(sender: UIButton) {
+    /* Iterate through events and send event IDs to create model.
+       Call method to create the group and report an error if 
+       something went wrong */
+    func finalizeGroup() {
         PULog("Finalize event pressed")
         
         var eventIDs: [NSString] = [NSString]()
@@ -109,17 +115,14 @@ class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, 
         if (backendError != nil)
         {
             displayAlert("Group creation Failed", message: backendError!)
-            // self.performSegueWithIdentifier("GroupCreation2ToHome", sender: self)
+            
         }
-            /*
-        else {
-            // self.performSegueWithIdentifier("GroupCreation2ToHome", sender: self)
-        }
-        */
 
     }
     
     
+    /* Called by other views to update the table based 
+       on user additions */
     func updateAddedEvents(eventNewlyCreated: Bool) {
         
         var eventsToAdd: NSArray?
@@ -138,14 +141,18 @@ class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, 
     }
     
     
+    /* Return number of sections in the table */
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
+    /* Return number of cells in the table */
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return addedEvents!.count
     }
     
+    /* Determines how to populate each cell in the table: *
+    * Loads the display and event data into each cell.   */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("eventCellPrototype") as! PartyUpTableCell
         
@@ -163,7 +170,7 @@ class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, 
         return cell
     }
     
-    // Override to support editing the table view.
+    /* Allows user to swipe to delete added events */
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             addedEvents!.removeObjectAtIndex(indexPath.row)
@@ -173,6 +180,7 @@ class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, 
         }
     }
     
+    /* Determines what to do when user taps on a cell in the table */
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell: PartyUpTableCell = tableView.cellForRowAtIndexPath(indexPath) as! PartyUpTableCell
         tableView.deselectRowAtIndexPath(indexPath, animated: true)

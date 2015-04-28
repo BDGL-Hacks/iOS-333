@@ -15,9 +15,11 @@ class GroupChatModel
     *--------------------------------------------*/
     
     var groupID: NSInteger = -1
+    var groupTitle: NSString = ""
     var groupMessages: NSMutableArray = NSMutableArray()
     
     var earliestMessageID: NSInteger = -1
+    var latestMessageID: NSInteger = -1
     
     var incomingBubbleImage: JSQMessagesBubbleImage
     var outgoingBubbleImage: JSQMessagesBubbleImage
@@ -34,21 +36,20 @@ class GroupChatModel
     * Action Methods
     *--------------------------------------------*/
     
-    /* Queries the backend and updates the model with more  *
-     * messages. Returns an error message if update failed. */
-    func refreshMessages() -> NSString?
+    /* Queries the backend and updates the model with earlier *
+     * messages. Returns an error message if update failed.   */
+    func getEarlierMessages() -> NSString?
     {
         var (errorMessage: NSString?, queryResults: NSArray?) = (nil, nil)
         
         // First time querying messages: Get 10 most recent
         if (earliestMessageID == -1) {
-            PULog("Loading initial group messages")
-            (errorMessage, queryResults) = PartyUpBackend.instance.queryGroupMessages(groupID: groupID)
+            return getMostRecentMessages()
         }
         
         // Get 10 messages before the current earliest one
         else {
-            PULog("Updating group messages")
+            PULog("Fetching earlier group messages")
             (errorMessage, queryResults) = PartyUpBackend.instance.queryGroupMessages(groupID: groupID, messageID: earliestMessageID)
         }
         
@@ -69,9 +70,62 @@ class GroupChatModel
                 let jsqMessages: NSArray = convertToJSQMessages(queryResults!)
                 groupMessages.insertObjects(jsqMessages as! [AnyObject], atIndexes: NSIndexSet(indexesInRange: NSMakeRange(0, queryResults!.count)))
                 earliestMessageID = DataManager.getMessageID(queryResults![0] as! NSDictionary)
+                if (latestMessageID == -1) {
+                    latestMessageID = DataManager.getMessageID(queryResults![queryResults!.count - 1] as! NSDictionary)
+                }
                 return nil
             }
         }
+    }
+    
+    /* Queries backend and updates the model with most recent *
+     * messages. Returns an error message if update failed.   */
+    func getMostRecentMessages() -> NSString?
+    {
+        var (errorMessage: NSString?, queryResults: NSArray?) = (nil, nil)
+        
+        PULog("Loading most recent message(s)")
+        (errorMessage, queryResults) = PartyUpBackend.instance.queryGroupMessages(groupID: groupID)
+        
+        // Failed to refresh messages
+        if (errorMessage != nil) {
+            PULog("Failed to retrieve messages: \(errorMessage!)")
+            return errorMessage!
+        }
+            
+        // Messages refreshed successfully
+        else {
+            PULog("Messages loaded successfully!")
+            if (queryResults!.count == 0) {
+                PULog("Group has no more messages!")
+                return nil
+            }
+            else {
+                let jsqMessages: NSArray = convertToJSQMessages(queryResults!)
+                for i in 0 ... queryResults!.count - 1 {
+                    let message: NSDictionary = queryResults![i] as! NSDictionary
+                    if latestMessageID < DataManager.getMessageID(message) {
+                        groupMessages.addObject(jsqMessages[i])
+                    }
+                }
+                if (earliestMessageID == -1) {
+                    earliestMessageID = DataManager.getMessageID(queryResults![0] as! NSDictionary)
+                }
+                latestMessageID = DataManager.getMessageID(queryResults![queryResults!.count - 1] as! NSDictionary)
+                return nil
+            }
+        }
+    }
+    
+    /* Throws away previous message data, and re-queries backend for    *
+     * most recent messages. Returns an error message if update failed. */
+    func refreshMessages() -> NSString?
+    {
+        PULog("Refreshing Messages")
+        earliestMessageID = -1
+        latestMessageID = -1
+        groupMessages = NSMutableArray()
+        return getMostRecentMessages()
     }
     
     /* Sends a message to the backend. Returns an error *
@@ -83,6 +137,7 @@ class GroupChatModel
     
     func setGroupData(group: NSDictionary) {
         groupID = DataManager.getGroupID(group)
+        groupTitle = DataManager.getGroupTitle(group)
     }
     
     
@@ -97,11 +152,12 @@ class GroupChatModel
         var jsqMessages: NSMutableArray = NSMutableArray()
         for element in jsonMessages {
             let message: NSDictionary = element as! NSDictionary
-            let messageID: String = "\(DataManager.getMessageID(message))"
+            let senderID: String = "\(DataManager.getMessageOwnerID(message))"
             let messageSenderName: String = DataManager.getMessageOwnerFullName(message) as String
-            let messageDate: NSDate = NSDate(dateString: DataManager.getMessageDatetimeRaw(message) as String)
+            //let messageDate: NSDate = NSDate(dateString: DataManager.getMessageDatetimeRaw(message) as String)
+            let messageDate: NSDate = NSDate()
             let messageText: String = DataManager.getMessageText(message) as String
-            let jsqMessage: JSQMessage = JSQMessage(senderId: messageID, senderDisplayName: messageSenderName, date: messageDate, text: messageText)
+            let jsqMessage: JSQMessage = JSQMessage(senderId: senderID, senderDisplayName: messageSenderName, date: messageDate, text: messageText)
             jsqMessages.addObject(jsqMessage)
         }
         return jsqMessages as NSArray
@@ -111,6 +167,10 @@ class GroupChatModel
    /*--------------------------------------------*
     * Get Methods
     *--------------------------------------------*/
+    
+    func getGroupTitle() -> NSString {
+        return groupTitle
+    }
     
     func getGroupMessages() -> NSArray {
         return groupMessages as NSArray

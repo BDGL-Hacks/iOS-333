@@ -18,25 +18,45 @@ class GroupChatViewController: JSQMessagesViewController {
     
     
    /*--------------------------------------------*
+    * UI Components
+    *--------------------------------------------*/
+    
+    @IBOutlet weak var backButton: UIBarButtonItem!
+    @IBOutlet weak var groupTitleLabel: UILabel!
+    
+    
+   /*--------------------------------------------*
     * View response methods
     *--------------------------------------------*/
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Ba-BOMBS"
-        self.senderId = "HahaYouLose"
+        
+        self.title = groupChatModel.getGroupTitle() as String
+        
+        self.senderId = "10"
         self.senderDisplayName = "Lance Goodridge"
+        
+        self.navigationItem.title = groupChatModel.getGroupTitle() as String
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Plain, target: self, action: "backButtonPressed:")
         
         self.collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeZero;
         self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero;
         
-        self.collectionView.reloadData()
         automaticallyScrollsToMostRecentMessage = true
     }
-
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         groupChatModel.refreshMessages()
+        self.collectionView.reloadData()
+    }
+    
+    
+    @IBAction func backButtonPressed(sender: UIBarButtonItem!) {
+        PULog("Back button pressed")
+        PULog("Returning to previous screen")
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     
@@ -57,8 +77,9 @@ class GroupChatViewController: JSQMessagesViewController {
         PULog("Send button pressed")
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         groupChatModel.sendMessage(text)
-        groupChatModel.refreshMessages()
         finishSendingMessage()
+        groupChatModel.getMostRecentMessages()
+        self.collectionView.reloadData()
     }
     
     

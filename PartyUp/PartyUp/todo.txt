@@ -31,13 +31,11 @@ Groups Main Page
 
 Group Chat
 ----------
- ! Have messages automatically appear on login (and not have to send message first)
- ! Add Navigation bar that allows you to go back to the main app
- - Have message properly align / switch colors
+ - Investigate re-writing the message querying code
+ - Have message properly align / switch colors depending on whether or not the its the user's'
  - Test multiple person groups
  - Actually write 'was sent by user' method in group chat model (once backend implements way to check)
  - Get next 10 messages when user scrolls to top of the page
- - Figure out Photo Integration / AWS Pod
 
 Group Invite
 ------------
@@ -66,6 +64,7 @@ My Events
 
 Find Events
 -----------
+ - Add searching by time
  - Have live searching query the database for updated data each time
 
 Event Invite
@@ -105,7 +104,8 @@ Register
 Backend (Not us!)
 -----------------
  ! Groups: Should have a time field (of first event)
- ! Messages: Have a way to get the user id
+ ! Login: Return the user id, or at least have some way of querying it otherwise
  ! Messages: Should return 'results' array not 'messages' array
+!! Messages: Method that returns all messages after a certain message id
  - Events: Repopulate database with events that have non-null descriptions
  - Events: Also send back the group the user is going to the event with

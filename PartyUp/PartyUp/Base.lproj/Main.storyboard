@@ -902,7 +902,7 @@
                         <outlet property="myGroupsLabel" destination="dUK-Cw-JuV" id="oDi-I1-wFd"/>
                         <outlet property="myGroupsTableView" destination="IwZ-FH-Vzj" id="bbN-OH-8lI"/>
                         <outlet property="placeholderLabel" destination="VHQ-a7-kX0" id="Plj-xl-OIB"/>
-                        <segue destination="egG-s6-qeH" kind="show" identifier="mainGroupsToGroupChat" id="Bs2-Cw-dHb"/>
+                        <segue destination="KSX-Cx-bH6" kind="presentation" identifier="mainGroupsToGroupChat" id="Bs2-Cw-dHb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="baa-Nn-FSh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -918,14 +918,15 @@
                         <viewControllerLayoutGuide type="bottom" id="7Q2-Pp-kX9"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="oHv-We-5ZS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Avv-DR-iYN"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HbA-sq-xpo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3295" y="675"/>
+            <point key="canvasLocation" x="3827" y="675"/>
         </scene>
         <!--Create Group1 View Controller-->
         <scene sceneID="5CY-6c-eIw">
@@ -1089,7 +1090,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3874" y="334"/>
+            <point key="canvasLocation" x="4406" y="334"/>
         </scene>
         <!--Create Group2 View Controller-->
         <scene sceneID="NmQ-6d-bhp">
@@ -1268,7 +1269,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GfA-Kk-dNR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4428" y="334"/>
+            <point key="canvasLocation" x="4960" y="334"/>
         </scene>
         <!--Add Browse Events View Controller-->
         <scene sceneID="IL0-bm-N4t">
@@ -1426,7 +1427,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AhE-uI-Ef7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4947" y="658"/>
+            <point key="canvasLocation" x="5479" y="658"/>
         </scene>
         <!--My Events View Controller-->
         <scene sceneID="CCZ-uQ-tNn">
@@ -1943,14 +1944,32 @@ tapping the 'Find' tab on the bottom.</string>
             </objects>
             <point key="canvasLocation" x="2803" y="1375"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="27b-TW-0hg">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KSX-Cx-bH6" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ks1-my-meP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="egG-s6-qeH" kind="relationship" relationship="rootViewController" id="1cs-IV-geK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j30-QS-ZaZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3295" y="675"/>
+        </scene>
     </scenes>
     <resources>
         <image name="PartyUp_arrow_placeholder.png" width="999" height="999"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="in5-ko-7n1"/>
         <segue reference="ijx-Cl-ZbZ"/>
-        <segue reference="zaS-UW-vp0"/>
+        <segue reference="f1n-2s-Yq2"/>
         <segue reference="4fK-gC-rRW"/>
+        <segue reference="jc2-Pg-Y0b"/>
     </inferredMetricsTieBreakers>
 </document>

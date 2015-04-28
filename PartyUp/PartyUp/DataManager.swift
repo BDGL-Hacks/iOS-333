@@ -230,6 +230,10 @@ class DataManager {
         return message["owner"] as! NSDictionary
     }
     
+    class func getMessageOwnerID(message: NSDictionary) -> NSInteger {
+        return getUserID(getMessageOwner(message))
+    }
+    
     class func getMessageOwnerFullName(message: NSDictionary) -> NSString {
         return getUserFullName(getMessageOwner(message))
     }

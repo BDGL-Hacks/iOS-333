@@ -62,7 +62,8 @@ class MainGroupsViewController: PartyUpViewController, UITableViewDelegate, UITa
     /* If we are segueing to GroupChatVC, send the cell's group data beforehand */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "mainGroupsToGroupChat") {
-            let groupChatVC: GroupChatViewController = segue.destinationViewController as! GroupChatViewController
+            let navController: UINavigationController = segue.destinationViewController as! UINavigationController
+            let groupChatVC: GroupChatViewController = navController.viewControllers[0] as! GroupChatViewController
             groupChatVC.setGroupData(selectedCellGroupData)
         }
     }

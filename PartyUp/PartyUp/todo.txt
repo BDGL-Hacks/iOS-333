@@ -3,10 +3,11 @@ TODO
 
 General
 -------
- ! Fix 'User is not logged in' error when user is clearly logged in
+ - Change Storyboard to use a dropdown menu for Navigation instead of tab / nav bar
+ - Fix 'User is not logged in' error when user is clearly logged in
  - Have views display properly on bigger and smaller devices
  - Have loading wheel appear when logging in, registering, and backend things that may require waiting
- - Improve PULog method (code location maybe, perhaps have some debugging options in globals?)
+ - Make database calls asynchronous (you can still do stuff while its happenning)
  - Have PartyUpTableCell display '...' when any text is too long
  - Fix textShouldReturn
  - Buttons in names in the search bar
@@ -14,7 +15,6 @@ General
 Globals / DataManager
 ---------------------
  ! When backend has groups return time parameter, delete time check in getGroupDayText(), etc.
- ! Change id extractors back to just a direct cast to NSInteger
  - Actually implement specified data extraction and formatting methods in DataManager
  - Change getEventGroup in DataManager to actually get the group the user is going to the event with
 
@@ -23,27 +23,26 @@ Homepage
  - Find better way homepage not perform queries on startup if not logged in -> go straight to login
  - Logout confirmation popover so can't logout with one click
 
-Groups (General)
-----------------
-
 Groups Main Page
 ----------------
- ! Add segue to Group Chat page and add corresponding code to MainGroupsViewController
+
+Groups Advanced Page
+--------------------
+ ! Create it!
+
+Group Info Page
+---------------
+ ! Create it!
 
 Group Chat
 ----------
+ ! Fix Pusher new message notifications (it doesn't detect new messages on the channel)
  - Investigate re-writing the message querying code
- - Have message properly align / switch colors depending on whether or not the its the user's'
- - Test multiple person groups
- - Actually write 'was sent by user' method in group chat model (once backend implements way to check)
  - Get next 10 messages when user scrolls to top of the page
-
-Group Invite
-------------
- ! Create it
 
 Create Groups
 -------------
+ - Perform form validation: specifically, don't even query backend if a group hasn't been selected
  - Allow user to add an event to a group (takes to alternative event creation page)
     - update group events afterwards
  - Create a group from within an event
@@ -73,20 +72,12 @@ Find Events
  - Add searching by time
  - Have live searching query the database for updated data each time
 
-Event Invite
-------------
- ! Create it
-
 Event Info
 ----------
  - Improve attendee table aesthetics
  - Remove huge vertical space under attendee table
  - Display whether the event is public or private and invited list if private?
  - Toggle-able button to accept the invitation (only if it's an invited event)
-
-Current Event
--------------
- ! Start it (Message Board, Other Event Info)
 
 Create Event
 ------------
@@ -97,6 +88,10 @@ Create Event
  - reload query results when user scrolls
  - Put top buttons inside a Navigation Bar
  - don't display users that are already added (still broken)
+
+Alerts Page
+-----------
+ ! Create it!
 
 Login
 -----
@@ -110,8 +105,6 @@ Register
 Backend (Not us!)
 -----------------
  ! Groups: Should have a time field (of first event)
- ! Login: Return the user id, or at least have some way of querying it otherwise
- ! Messages: Should return 'results' array not 'messages' array
-!! Messages: Method that returns all messages after a certain message id
+ ! Messages: Method that returns all messages after a certain message id
  - Events: Repopulate database with events that have non-null descriptions
  - Events: Also send back the group the user is going to the event with

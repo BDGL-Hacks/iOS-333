@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // UIPageViewControllerDataSource, UIPageViewControllerDelegate
+class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource
 {
     
     var itemIndex: Int = 0
@@ -22,17 +22,29 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
     var createEvent: CreateModel? = CreateModel()
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var eventTitleTextField: UITextField!
-    @IBOutlet weak var selectedDate: UILabel!
-    @IBOutlet weak var myDatePicker: UIDatePicker!
+    //@IBOutlet weak var myDatePicker: UIDatePicker!
     @IBOutlet weak var locationTextField: UITextField!
     var backendDate: String?
     var isFromGroup: Bool = false
     var previousViewController: CreateGroup2ViewController?
     
+    /* Date picker table view properties */
+    @IBOutlet weak var datePickerTableView: UITableView!
+    var tableData :[Dictionary<String, AnyObject>]?
+    var dateFormatter :NSDateFormatter?
+    var selectedIndexPath :NSIndexPath?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // createPageViewController()
+        
+        datePickerTableView.delegate = self
+        datePickerTableView.dataSource = self
+        
+        tableData = [["title": "Start time", "type": "datepicker", "value": NSDate()]]
+        
+        dateFormatter = NSDateFormatter()
         
         // Do any additional setup after loading the view.
     }
@@ -52,6 +64,7 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
         }
     }
 
+    /*
     /* User changes the date in the date picker */
     @IBAction func datePickerChanged(sender: UIDatePicker) {
         
@@ -65,6 +78,7 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
         backendDate = backendStr
         
     }
+    */
     
     /* User goes back to the previous screen */
     @IBAction func dismissView(sender: UIBarButtonItem) {
@@ -204,6 +218,7 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
     * View helper methods
     *--------------------------------------------*/
     
+   
     /* Validates the form fields.         *
     * Returns an error message string    *
     * if form is invalid, nil otherwise. */
@@ -211,7 +226,7 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
     {
         var eventTitle: NSString = eventTitleTextField.text
         var eventLocation: NSString = locationTextField.text
-        var eventTime: NSString = selectedDate.text!
+        var eventTime: NSString = backendDate!
         
         if (eventTitle == "") {
             return "Event title is required."
@@ -273,7 +288,171 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate // 
     
     
     
+    /* DatePicker Table View Methods */
     
+    
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // #warning Potentially incomplete method implementation.
+        // Return the number of sections.
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete method implementation.
+        // Return the number of rows in the section.
+        var numberOfRows = tableData!.count
+        
+        if hasInlineTableViewCell() {
+            numberOfRows += 1
+        }
+        return numberOfRows
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        var dataRow = indexPath.row
+        
+        if selectedIndexPath != nil && selectedIndexPath!.section == indexPath.section && selectedIndexPath!.row < indexPath.row {
+            dataRow -= 1;
+        }
+        
+        // Configure the cell...
+        var rowData = tableData![dataRow]
+        let title = rowData["title"]! as! String
+        let type = rowData["type"]! as! String
+        if selectedIndexPath != nil && selectedIndexPath!.section == indexPath.section && selectedIndexPath!.row == indexPath.row - 1 {
+            
+                if type == "datepicker" {
+                    let datePickerCell = tableView.dequeueReusableCellWithIdentifier("DatePickerCell", forIndexPath: indexPath) as! DatePickerCell
+                
+                    datePickerCell.datePicker.addTarget(self, action:"handleDatePickerValueChanged:", forControlEvents: UIControlEvents.ValueChanged)
+                
+                    if title == "StartDate" {
+                        datePickerCell.datePicker.datePickerMode = .DateAndTime
+                    }
+                   
+                
+                    if let date :AnyObject = rowData["value"] {
+                        datePickerCell.datePicker.setDate(date as! NSDate, animated: true)
+                    }
+                
+                    return datePickerCell
+                
+                }
+            
+            
+        }
+        
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("NormalCell", forIndexPath: indexPath) as! UITableViewCell
+        
+        
+        cell.textLabel!.text = title
+        if let valueOfRow: AnyObject = rowData["value"] {
+            if title == "StartTime" {
+                dateFormatter!.dateStyle = .FullStyle
+                dateFormatter!.dateFormat = "hh:mm a"
+                cell.detailTextLabel!.text = dateFormatter!.stringFromDate(valueOfRow as! NSDate)
+                
+                /* Fill backend string */
+                dateFormatter!.dateFormat = "YYYYMMddhhmm"
+                var backendStr = dateFormatter!.stringFromDate(valueOfRow as! NSDate)
+                PULog(backendStr)
+                backendDate = backendStr
+            
+            }
+            else {
+                cell.detailTextLabel!.text = valueOfRow as? String
+            }
+        }
+        else {
+            cell.detailTextLabel!.text = "Any"
+        }
+        
+        return cell
+    }
+    
+        
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        var heightForRow :CGFloat = 44.0
+        if selectedIndexPath != nil && selectedIndexPath!.section == indexPath.section
+            && selectedIndexPath!.row == indexPath.row - 1 {
+                heightForRow = 216.0
+        }
+            
+        return heightForRow
+    }
+        
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+            
+        var dataRow = indexPath.row
+        if selectedIndexPath != nil && selectedIndexPath!.section == indexPath.section && selectedIndexPath!.row < indexPath.row {
+                dataRow -= 1
+        }
+            
+        var rowData = tableData![dataRow]
+        var type = rowData["type"]! as! String
+        if type != "normal" {
+            displayOrHideInlinePickerViewForIndexPath(indexPath)
+        }
+            
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
+    }
+        
+    func displayOrHideInlinePickerViewForIndexPath(indexPath: NSIndexPath!) {
+        
+        datePickerTableView.beginUpdates()
+            
+        if selectedIndexPath == nil {
+                
+            selectedIndexPath = indexPath
+            datePickerTableView.insertRowsAtIndexPaths([NSIndexPath(forRow: indexPath.row + 1, inSection: indexPath.section)], withRowAnimation: .Fade)
+                
+        } else if selectedIndexPath!.section == indexPath.section && selectedIndexPath!.row == indexPath.row {
+                
+            datePickerTableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: indexPath.row + 1, inSection: indexPath.section)], withRowAnimation: .Fade)
+            selectedIndexPath = nil
+                
+        } else if selectedIndexPath!.section != indexPath.section || selectedIndexPath!.row != indexPath.row {
+                
+            datePickerTableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: selectedIndexPath!.row + 1, inSection: selectedIndexPath!.section)], withRowAnimation: .Fade)
+                
+            // After the deletion operation the then indexPath of original table view changed to the resulting table view
+            if (selectedIndexPath!.section == indexPath.section && selectedIndexPath!.row < indexPath.row) {
+                    
+                datePickerTableView.insertRowsAtIndexPaths([NSIndexPath(forRow: indexPath.row, inSection: indexPath.section)], withRowAnimation: .Fade)
+                selectedIndexPath = NSIndexPath(forRow: indexPath.row - 1, inSection: indexPath.section)
+                    
+            } else {
+                    
+                datePickerTableView.insertRowsAtIndexPaths([NSIndexPath(forRow: indexPath.row + 1, inSection: indexPath.section)], withRowAnimation: .Fade)
+                selectedIndexPath = indexPath
+            }
+        }
+            
+        datePickerTableView.endUpdates()
+    }
+        
+    func hasInlineTableViewCell() -> Bool {
+            return !(self.selectedIndexPath == nil)
+    }
+        
+    func handleDatePickerValueChanged(datePicker: UIDatePicker!) {
+        var index = selectedIndexPath!.row
+        var rowData = tableData![index]
+        rowData["value"] = datePicker.date
+        if var tmpArray = tableData {
+            tmpArray[index] = rowData
+            tableData = tmpArray
+        }
+            
+        datePickerTableView.reloadRowsAtIndexPaths([selectedIndexPath!], withRowAnimation: .Fade)
+    }
+    
+    
+
     /*
     private func createPageViewController() {
     let pageController = self.storyboard!.instantiateViewControllerWithIdentifier("GroupController") as UIPageViewController

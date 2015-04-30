@@ -36,12 +36,12 @@ class PartyUpBackend {
     
     /* Performs user authentication on the backend.                    *
      * Returns an error message string if login failed, nil otherwise. */
-    func backendLogin(email: NSString, password: NSString) -> NSString?
+    func backendLogin(email: NSString, password: NSString, deviceID: String) -> NSString?
     {
         PULog("Attempting to authenticate user...")
         
         var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/users/login/"
-        var postParams: [String: String] = ["username": email as String, "password": password as String]
+        var postParams: [String: String] = ["username": email as String, "password": password as String, "deviceID": deviceID as String]
         
         var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
         
@@ -424,6 +424,97 @@ class PartyUpBackend {
             return ("Failed to connect to server", nil, nil)
         }
     }
+    
+    /* Queries backend for events and groups the user has   *
+     * been invited to. Returns a tuple: an error message   *
+     * string if somthing went wrong, group invite query    *
+     * results as an NSArray and event invite query results *
+     * as an NSArray if successful.                         */
+    func queryUserInvitations() -> (NSString?, NSArray?, NSArray?)
+    {
+        PULog("Querying for user's invitations...")
+        
+        var groupInvitationsArray: NSArray?
+        var eventInvitationsArray: NSArray?
+        
+        // Query for group invitations
+        PULog("Querying group invitations")
+        
+        var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/groups/get/"
+        var postParams: [String: String] = ["type": "invited"]
+        
+        var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
+        
+        // We received JSON data back: process it
+        if (postData != nil)
+        {
+            let jsonData: NSDictionary = postData!
+            let accepted: Bool = jsonData.valueForKey("accepted") as! Bool
+            var errorMessage: NSString? = jsonData.valueForKey("error") as! NSString?
+            
+            // Query successful: set group invitations array
+            if (accepted) {
+                PULog("Query Successful!")
+                groupInvitationsArray = jsonData.valueForKey("invited") as! NSArray?
+                PULog("Query data: \(groupInvitationsArray)")
+            }
+                
+            // Query failed: return error message
+            else {
+                if (errorMessage == nil) {
+                    errorMessage = "No error message received from server"
+                }
+                PULog("Query Failed: \(errorMessage!)")
+                return (errorMessage, nil, nil)
+            }
+        }
+            
+        // We did not receive JSON data back
+        else {
+            PULog("Query Failed: No JSON data received")
+            return ("Failed to connect to server", nil, nil)
+        }
+        
+        // Query for event invitations
+        PULog("Querying event invitations")
+        
+        postURL = "http://\(UBUNTU_SERVER_IP)/events/get/"
+        postParams = ["type": "invited"]
+        
+        postData = sendPostRequest(postParams, url: postURL)
+        
+        // We received JSON data back: process it
+        if (postData != nil)
+        {
+            let jsonData: NSDictionary = postData!
+            let accepted: Bool = jsonData.valueForKey("accepted") as! Bool
+            var errorMessage: NSString? = jsonData.valueForKey("error") as! NSString?
+            
+            // Query successful: set group invitations array
+            if (accepted) {
+                PULog("Query Successful!")
+                eventInvitationsArray = jsonData.valueForKey("invited") as! NSArray?
+                PULog("Query data: \(eventInvitationsArray)")
+                return (nil, groupInvitationsArray, eventInvitationsArray)
+            }
+                
+            // Query failed: return error message
+            else {
+                if (errorMessage == nil) {
+                    errorMessage = "No error message received from server"
+                }
+                PULog("Query Failed: \(errorMessage!)")
+                return (errorMessage, nil, nil)
+            }
+        }
+            
+        // We did not receive JSON data back
+        else {
+            PULog("Query Failed: No JSON data received")
+            return ("Failed to connect to server", nil, nil)
+        }
+    }
+    
     
     /* Queries backend for events the current user owns,     *
      * is attending, or has been invited to. Returns a       *

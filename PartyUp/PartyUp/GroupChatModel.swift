@@ -21,6 +21,9 @@ class GroupChatModel: NSObject, PTPusherDelegate
     * Instance variables and Declarations
     *--------------------------------------------*/
     
+    var client: PTPusher = PTPusher()
+    var channel: PTPusherChannel = PTPusherChannel()
+    
     var groupID: NSInteger = -1
     var groupTitle: NSString = ""
     var groupChannel: NSString = ""
@@ -49,13 +52,17 @@ class GroupChatModel: NSObject, PTPusherDelegate
     }
     
     func setupPusher() {
-        let client: PTPusher = PTPusher.pusherWithKey(PUSHER_API_KEY, delegate: self, encrypted: true) as! PTPusher
-        let channel: PTPusherChannel = client.subscribeToChannelNamed(groupChannel as String)
+        client = PTPusher.pusherWithKey(PUSHER_API_KEY, delegate: self, encrypted: true) as! PTPusher
+        client.connect()
+        channel = client.subscribeToChannelNamed(groupChannel as String)
         PULog("Listening on pusher channel: \(groupChannel)")
-        channel.bindToEventNamed("message", handleWithBlock: {(PTPusherEventBlockHandler) in
+        //channel.bindToEventNamed("message", handleWithBlock: {getEarlierMessages()})
+        
+        channel.bindToEventNamed("message", handleWithBlock: {eventData in
             PULog("Sending Pusher notification")
             NSNotificationCenter.defaultCenter().postNotificationName(self.groupChannel as String, object: self)
         })
+        
     }
     
     

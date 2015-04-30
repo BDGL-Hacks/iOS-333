@@ -35,9 +35,9 @@ func PULog(format: NSString, args: AnyObject...) {
 extension NSDate
 {
     convenience init(dateString:String) {
-        _dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        _dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         _dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-        let date = _dateFormatter.dateFromString(dateString)
-        self.init(timeInterval:0, sinceDate:date!)
+        let date: NSDate? = _dateFormatter.dateFromString(dateString)
+        self.init(timeInterval:0, sinceDate: date!)
     }
 }

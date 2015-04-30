@@ -48,9 +48,24 @@ class PartyUpViewController: UIViewController {
     /* Authenticate the user and save related values   *
      * in user default prefs. Returns an error message *
      * string if login failed, nil otherwise.          */
-    func authenticate(email: NSString, password: NSString) -> NSString? {
-        var backendError: NSString? = PartyUpBackend.instance.backendLogin(email, password: password)
-        if (backendError == nil) {
+    func authenticate(email: NSString, password: NSString) -> NSString?
+    {
+        var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        var deviceTokenData: NSData? = userDefaults.objectForKey("DEVICE_ID") as! NSData?
+        
+        var test = UIApplication.sharedApplication().isRegisteredForRemoteNotifications()
+        
+        if (deviceTokenData == nil) {
+            PULog("Device not registered... Using 'zero' device ID")
+            deviceTokenData = NSData()
+        }
+        
+        let deviceID: String = "\(deviceTokenData!)"
+        
+        var backendError: NSString? = PartyUpBackend.instance.backendLogin(email, password: password, deviceID: deviceID)
+        
+        if (backendError == nil)
+        {
             PULog("Login Success!")
             
             var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
@@ -73,9 +88,11 @@ class PartyUpViewController: UIViewController {
             
             userDefaults.synchronize()
         }
+            
         else {
             PULog("Login Failed.")
         }
+        
         return backendError
     }
     

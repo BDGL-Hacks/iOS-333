@@ -13,10 +13,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        PULog("Attempting to register for push notifications")
+        UIApplication.sharedApplication().registerForRemoteNotifications()
+        let settings = UIUserNotificationSettings(forTypes: .Alert, categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
         return true
+    }
+    
+    /* Handle registering for push notifications */
+    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+        PULog("User push notification settings registered: \(notificationSettings)")
+    }
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        PULog("Registered for push notifications with device token: \(deviceToken)")
+        var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        userDefaults.setObject(deviceToken, forKey: "DEVICE_ID")
+    }
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        PULog("Failed to register for push notifications: \(error)")
+        var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        userDefaults.setObject(NSData(), forKey: "DEVICE_ID")
     }
 
     func applicationWillResignActive(application: UIApplication) {

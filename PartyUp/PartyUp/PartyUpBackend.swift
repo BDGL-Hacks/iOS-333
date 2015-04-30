@@ -36,12 +36,12 @@ class PartyUpBackend {
     
     /* Performs user authentication on the backend.                    *
      * Returns an error message string if login failed, nil otherwise. */
-    func backendLogin(email: NSString, password: NSString) -> NSString?
+    func backendLogin(email: NSString, password: NSString, deviceID: String) -> NSString?
     {
         PULog("Attempting to authenticate user...")
         
         var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/users/login/"
-        var postParams: [String: String] = ["username": email as String, "password": password as String]
+        var postParams: [String: String] = ["username": email as String, "password": password as String, "deviceID": deviceID as String]
         
         var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
         
@@ -302,7 +302,7 @@ class PartyUpBackend {
     * Backend GET Methods
     *--------------------------------------------*/
     
-    /* Queries backend for groups the currnt user belongs or  *
+    /* Queries backend for groups the current user belongs or *
      * has been invited to. Returns a tuple: an error message *
      * if something went wrong, and query results as an       *
      * NSDictionary if successful.                            */
@@ -372,7 +372,7 @@ class PartyUpBackend {
      * previous messages are queried. Returns a tuple: an error  *
      * message string is something went wrong, and the JSON data *
      * as an NSArray if it was successful.                       */
-    func queryGroupMessages(#groupID: NSInteger, messageID: NSInteger? = nil) -> (NSString?, NSArray?)
+    func queryGroupMessages(#groupID: NSInteger, messageID: NSInteger? = nil) -> (NSString?, NSInteger?, NSArray?)
     {
         if (messageID == nil) {
             PULog("Querying for most recent group messages")
@@ -398,13 +398,14 @@ class PartyUpBackend {
             let jsonData: NSDictionary = postData!
             let accepted: Bool = jsonData.valueForKey("accepted") as! Bool
             var errorMessage: NSString? = jsonData.valueForKey("error") as! NSString?
-            var results: NSArray? = jsonData.valueForKey("messages") as! NSArray?
+            var userID: NSInteger? = jsonData.valueForKey("userID") as! NSInteger?
+            var results: NSArray? = jsonData.valueForKey("results") as! NSArray?
             
             // Query successful: return JSON data as an array
             if (accepted) {
                 PULog("Query Sucessful!")
                 PULog("Query Data: \(results!)")
-                return (nil, results!)
+                return (nil, userID!, results!)
             }
             
             // Query failed: return error message
@@ -412,17 +413,108 @@ class PartyUpBackend {
                 if (errorMessage == nil) {
                     errorMessage = "No error message received from server"
                 }
-                PULog("Query Failed: \(errorMessage!)")
-                return (errorMessage, nil)
+                PULog("Query Failed: (errorMessage!)")
+                return (errorMessage, nil, nil)
             }
         }
         
         // We did not receive JSON data back
         else {
             PULog("Query Failed: No JSON data received")
-            return ("Failed to connect to server", nil)
+            return ("Failed to connect to server", nil, nil)
         }
     }
+    
+    /* Queries backend for events and groups the user has   *
+     * been invited to. Returns a tuple: an error message   *
+     * string if somthing went wrong, group invite query    *
+     * results as an NSArray and event invite query results *
+     * as an NSArray if successful.                         */
+    func queryUserInvitations() -> (NSString?, NSArray?, NSArray?)
+    {
+        PULog("Querying for user's invitations...")
+        
+        var groupInvitationsArray: NSArray?
+        var eventInvitationsArray: NSArray?
+        
+        // Query for group invitations
+        PULog("Querying group invitations")
+        
+        var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/groups/get/"
+        var postParams: [String: String] = ["type": "invited"]
+        
+        var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
+        
+        // We received JSON data back: process it
+        if (postData != nil)
+        {
+            let jsonData: NSDictionary = postData!
+            let accepted: Bool = jsonData.valueForKey("accepted") as! Bool
+            var errorMessage: NSString? = jsonData.valueForKey("error") as! NSString?
+            
+            // Query successful: set group invitations array
+            if (accepted) {
+                PULog("Query Successful!")
+                groupInvitationsArray = jsonData.valueForKey("invited") as! NSArray?
+                PULog("Query data: \(groupInvitationsArray)")
+            }
+                
+            // Query failed: return error message
+            else {
+                if (errorMessage == nil) {
+                    errorMessage = "No error message received from server"
+                }
+                PULog("Query Failed: \(errorMessage!)")
+                return (errorMessage, nil, nil)
+            }
+        }
+            
+        // We did not receive JSON data back
+        else {
+            PULog("Query Failed: No JSON data received")
+            return ("Failed to connect to server", nil, nil)
+        }
+        
+        // Query for event invitations
+        PULog("Querying event invitations")
+        
+        postURL = "http://\(UBUNTU_SERVER_IP)/events/get/"
+        postParams = ["type": "invited"]
+        
+        postData = sendPostRequest(postParams, url: postURL)
+        
+        // We received JSON data back: process it
+        if (postData != nil)
+        {
+            let jsonData: NSDictionary = postData!
+            let accepted: Bool = jsonData.valueForKey("accepted") as! Bool
+            var errorMessage: NSString? = jsonData.valueForKey("error") as! NSString?
+            
+            // Query successful: set group invitations array
+            if (accepted) {
+                PULog("Query Successful!")
+                eventInvitationsArray = jsonData.valueForKey("invited") as! NSArray?
+                PULog("Query data: \(eventInvitationsArray)")
+                return (nil, groupInvitationsArray, eventInvitationsArray)
+            }
+                
+            // Query failed: return error message
+            else {
+                if (errorMessage == nil) {
+                    errorMessage = "No error message received from server"
+                }
+                PULog("Query Failed: \(errorMessage!)")
+                return (errorMessage, nil, nil)
+            }
+        }
+            
+        // We did not receive JSON data back
+        else {
+            PULog("Query Failed: No JSON data received")
+            return ("Failed to connect to server", nil, nil)
+        }
+    }
+    
     
     /* Queries backend for events the current user owns,     *
      * is attending, or has been invited to. Returns a       *
@@ -620,6 +712,59 @@ class PartyUpBackend {
         }
     }
     
+    /* Queries backend for the user's user object. Returns a *
+     * tuple: an error message if something went wrong, and  *
+     * the userID as an NSDictionary if successful.          */
+    func queryUserInfo() -> (NSString?, NSDictionary?)
+    {
+        PULog("Querying for user's information...")
+        
+        var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let username: NSString? = userDefaults.objectForKey("USERNAME") as! NSString?
+        
+        if (username == nil) {
+            PULog("Query Failed: User is not logged in")
+            return ("User is not logged in.", nil)
+        }
+        
+        var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/users/search/"
+        var postParams: [String: String] = [ "search": username! as String]
+        
+        var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
+        
+        // We received JSON data back: process it
+        if (postData != nil)
+        {
+            let jsonData: NSDictionary = postData!
+            let accepted: Bool = jsonData.valueForKey("accepted") as! Bool
+            var errorMessage: NSString? = jsonData.valueForKey("error") as! NSString?
+            let resultArray: NSArray? = jsonData.valueForKey("results") as! NSArray?
+            
+            // Query successful: return JSON data as dictionary
+            if (accepted) {
+                PULog("Query Successful!")
+                let results: NSDictionary = resultArray![0] as! NSDictionary
+                PULog("Query data: \(results)")
+                return (nil, results)
+            }
+                
+            // Query failed: return error message
+            else {
+                if (errorMessage == nil) {
+                    errorMessage = "No error message received from server"
+                }
+                PULog("Query Failed: \(errorMessage!)")
+                return (errorMessage, nil)
+            }
+        }
+            
+        // We did not receive JSON data back
+        else {
+            PULog("Query Failed: No JSON data received")
+            return ("Failed to connect to server", nil)
+        }
+    }
+    
     /* Queries backend for search users to populate table in *
      * add friend view controller. Returns a tuple: an       *
      * error message string if something went wrong, and     *
@@ -637,7 +782,7 @@ class PartyUpBackend {
         }
         
         /* users/get */
-        var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/users/search/" //verify with backend
+        var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/users/search/"
         var postParams: [String: String] = ["username": username! as String, "search": search as String]
         
         var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
@@ -658,7 +803,7 @@ class PartyUpBackend {
                 return (nil, results!)
             }
                 
-                // Query failed: return error message
+            // Query failed: return error message
             else {
                 if (errorMessage == nil) {
                     errorMessage = "No error message received from server"
@@ -668,7 +813,7 @@ class PartyUpBackend {
             }
         }
             
-            // We did not receive JSON data back
+        // We did not receive JSON data back
         else {
             PULog("Query Failed: No JSON data received")
             return ("Failed to connect to server", nil)

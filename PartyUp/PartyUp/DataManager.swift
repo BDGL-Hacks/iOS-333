@@ -145,6 +145,10 @@ class DataManager {
         return group["events"] as! NSArray
     }
     
+    class func getGroupChannel(group: NSDictionary) -> NSString {
+        return "GroupChat\(getGroupID(group))"
+    }
+    
     /* Returns the day of the group's events in text format (e.g. "Fri") */
     class func getGroupDayText(group: NSDictionary) -> NSString {
         if (group["time"] == nil) {
@@ -228,6 +232,10 @@ class DataManager {
     
     class func getMessageOwner(message: NSDictionary) -> NSDictionary {
         return message["owner"] as! NSDictionary
+    }
+    
+    class func getMessageOwnerID(message: NSDictionary) -> NSInteger {
+        return getUserID(getMessageOwner(message))
     }
     
     class func getMessageOwnerFullName(message: NSDictionary) -> NSString {

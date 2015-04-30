@@ -28,7 +28,7 @@ class PartyUpTableCell: UITableViewCell {
     
     
    /*--------------------------------------------*
-    * Custom Methods
+    * Set and Get Methods
     *--------------------------------------------*/
     
     /* Set the information to be displayed on the cell:  *

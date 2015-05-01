@@ -91,7 +91,8 @@ Create Event
 
 Alerts Page
 -----------
- ! Create it!
+ ! Handle check up alerts in AlertModel and PartyUpBackend
+ - Implement Group Info segues and TODOs in AlertViewController
 
 Login
 -----

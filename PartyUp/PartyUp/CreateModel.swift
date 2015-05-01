@@ -24,6 +24,7 @@ class CreateModel {
     var eventPrice: NSString? = nil
     var eventPublic: NSString? = nil
     var eventAgeRestrictions: NSString? = nil
+    var eventDescription: NSString? = nil
     
     /* Group data */
     var eventIDs: [NSString] = [NSString]()
@@ -38,13 +39,15 @@ class CreateModel {
     *-------------------------------------*/
     
     
-    func eventFirstPage (title: NSString, location: NSString, dateTime: NSString, eventPublic: NSString) {
+    func eventFirstPage (title: NSString, location: NSString, dateTime: NSString, eventPublic: NSString, eventDescription: NSString) {
         eventTitle = title
         eventLocation = location
         self.dateTime = dateTime
         eventPrice = "10000000"
         self.eventPublic = eventPublic
         eventAgeRestrictions = "0"
+        self.eventDescription = eventDescription
+        
     }
     
     func eventSecondPage(friends: [NSString]) {
@@ -56,7 +59,7 @@ class CreateModel {
     func eventSendToBackend() -> (NSString?, NSString?) {
       
         // Registration successful: Dismiss Registration view and attempt login
-        let (backendError: NSString?, eventID: NSString?) = PartyUpBackend.instance.backendEventCreation(eventTitle!, location: eventLocation!, ageRestrictions: eventAgeRestrictions!, isPublic: eventPublic!, price: eventPrice!, inviteList: friendsList, dateTime: dateTime!)
+        let (backendError: NSString?, eventID: NSString?) = PartyUpBackend.instance.backendEventCreation(eventTitle!, location: eventLocation!, ageRestrictions: eventAgeRestrictions!, isPublic: eventPublic!, price: eventPrice!, inviteList: friendsList, dateTime: dateTime!, description: eventDescription!)
         if (backendError == nil) {
             return (nil, eventID)
         }
@@ -84,8 +87,8 @@ class CreateModel {
         self.eventIDs = eventIDs
     }
     
-    func getInviteEmails() -> [NSString] {
-        return inviteEmails
+    func getInviteIDs() -> [NSString] {
+        return inviteIDs
     }
 
 
@@ -103,6 +106,17 @@ class CreateModel {
     }
 
     /*-------------------------------------------*/
+    
+    func addEventsToGroup(groupID: NSString, eventIDs: [NSString]) -> NSString?
+    {
+        var backendError: NSString? = PartyUpBackend.instance.backendUpdateGroup(groupID, eventIDs: eventIDs)
+        if (backendError == nil) {
+            return nil
+        }
+        else {
+            return "Group update failed"
+        }
+    }
 
     // MARK: Users
     

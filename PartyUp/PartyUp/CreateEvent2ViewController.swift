@@ -69,26 +69,26 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
     func finalizeEvent() {
         PULog("Finalize event pressed")
         /* Iterate through friends list and send it to the backend */
-        var friendEmails: [NSString] = [NSString]()
+        var friendIDs: [NSString] = [NSString]()
         for var j = 0; j < addedFriendsTableView.numberOfSections(); ++j {
             for var i = 0; i < addedFriendsTableView.numberOfRowsInSection(j); ++i {
                 
                 var indexPath: NSIndexPath = NSIndexPath(forRow: i, inSection: j)
                 var cell = addedFriendsTableView.cellForRowAtIndexPath(indexPath) as? AddFriendsTableViewCell
-                var usernameEmail = DataManager.getUserUsername(cell!.getCellData())
+                let userID = "\(DataManager.getUserID(cell!.getCellData()))"
                 
-                friendEmails.append(usernameEmail)
+                friendIDs.append(userID)
             }
         }
         
         /* Check that friends list was actually populated */
-        for friend in friendEmails {
+        for friend in friendIDs {
             PULog("\(friend)")
         }
         
         /* Send to backend */
         
-        createEvent?.eventSecondPage(friendEmails)
+        createEvent?.eventSecondPage(friendIDs)
         
         let (backendError: NSString?, eventID: NSString?) = createEvent!.eventSendToBackend()
         

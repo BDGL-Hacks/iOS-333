@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource
+class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate
 {
     
     var itemIndex: Int = 0
@@ -16,37 +16,25 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UI
     //private let numPages = 3
     
     
+    @IBOutlet weak var myDatePicker: UIDatePicker!
+    @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var addFriendsButton: UIButton!
     @IBOutlet weak var publicSwitch: UISwitch!
     var createEvent: CreateModel? = CreateModel()
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var eventTitleTextField: UITextField!
-    //@IBOutlet weak var myDatePicker: UIDatePicker!
     @IBOutlet weak var locationTextField: UITextField!
     var backendDate: String?
     var isFromGroup: Bool = false
     var previousViewController: CreateGroup2ViewController?
-    
-    /* Date picker table view properties */
-    @IBOutlet weak var datePickerTableView: UITableView!
-    var tableData :[Dictionary<String, AnyObject>]?
-    var dateFormatter :NSDateFormatter?
-    var selectedIndexPath :NSIndexPath?
-    
+    @IBOutlet weak var selectedDate: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // createPageViewController()
-        
-        datePickerTableView.delegate = self
-        datePickerTableView.dataSource = self
-        
-        tableData = [["title": "Start time", "type": "datepicker", "value": NSDate()]]
-        
-        dateFormatter = NSDateFormatter()
-        
         // Do any additional setup after loading the view.
+        scrollView.contentSize = scrollView.subviews[0].frame.size
     }
     
     var activeTextField: UITextField? {
@@ -57,17 +45,27 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UI
             else if (locationTextField.isFirstResponder()) {
                 return locationTextField
             }
+            else if (descriptionTextField.isFirstResponder()) {
+                return descriptionTextField
+            }
+            
             return nil
         }
         set {
             
         }
     }
-
-    /*
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     /* User changes the date in the date picker */
-    @IBAction func datePickerChanged(sender: UIDatePicker) {
+    
         
+  
+    @IBAction func datePickerChanged(sender: UIDatePicker) {
         var dateFormatter = NSDateFormatter()
         dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
         var dateStr = dateFormatter.stringFromDate(myDatePicker.date)
@@ -76,9 +74,7 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UI
         var backendStr = dateFormatter.stringFromDate(myDatePicker.date)
         PULog(backendStr)
         backendDate = backendStr
-        
     }
-    */
     
     /* User goes back to the previous screen */
     @IBAction func dismissView(sender: UIBarButtonItem) {
@@ -90,6 +86,7 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UI
     @IBAction func viewTapped(sender: AnyObject) {
         eventTitleTextField.resignFirstResponder()
         locationTextField.resignFirstResponder()
+        descriptionTextField.resignFirstResponder()
     }
     
     
@@ -109,11 +106,6 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UI
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
-    /* Dismisses keyboard if user returns */
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
     
     /* Send EventCreation object to next stage of event creation */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -168,8 +160,9 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UI
         var eventTitle: NSString = eventTitleTextField.text
         var eventLocation: NSString = locationTextField.text
         var eventDateTime: NSString = backendDate!
+        var eventDescription: NSString = descriptionTextField.text
         
-        createEvent!.eventFirstPage(eventTitle, location: eventLocation, dateTime: eventDateTime, eventPublic: isPublic)
+        createEvent!.eventFirstPage(eventTitle, location: eventLocation, dateTime: eventDateTime, eventPublic: isPublic, eventDescription: eventDescription)
     }
     
     /* Alternate button for group creation flow. Creates event
@@ -195,9 +188,10 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UI
         var eventTitle: NSString = eventTitleTextField.text
         var eventLocation: NSString = locationTextField.text
         var eventDateTime: NSString = backendDate!
+        var eventDescription: NSString = descriptionTextField.text
         
-        createEvent!.eventFirstPage(eventTitle, location: eventLocation, dateTime: eventDateTime, eventPublic: isPublic)
-        createEvent!.eventSecondPage(createEvent!.getInviteEmails())
+        createEvent!.eventFirstPage(eventTitle, location: eventLocation, dateTime: eventDateTime, eventPublic: isPublic, eventDescription: eventDescription)
+        createEvent!.eventSecondPage(createEvent!.getInviteIDs())
     
         
         let (backendError: NSString?, eventID: NSString?) = createEvent!.eventSendToBackend()
@@ -237,6 +231,7 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UI
         if (eventTime == "Date and Time") {
             return "Date and Time is required"
         }
+        
         return nil
     }
     
@@ -290,7 +285,7 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UI
     
     /* DatePicker Table View Methods */
     
-    
+    /*
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
@@ -317,6 +312,7 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UI
             dataRow -= 1;
         }
         
+        
         // Configure the cell...
         var rowData = tableData![dataRow]
         let title = rowData["title"]! as! String
@@ -338,10 +334,7 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UI
                     }
                 
                     return datePickerCell
-                
                 }
-            
-            
         }
         
         
@@ -385,7 +378,8 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UI
     }
         
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-            
+        
+        PULog("Cell selected")
         var dataRow = indexPath.row
         if selectedIndexPath != nil && selectedIndexPath!.section == indexPath.section && selectedIndexPath!.row < indexPath.row {
                 dataRow -= 1
@@ -406,32 +400,34 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UI
         datePickerTableView.beginUpdates()
             
         if selectedIndexPath == nil {
-                
+            
             selectedIndexPath = indexPath
             datePickerTableView.insertRowsAtIndexPaths([NSIndexPath(forRow: indexPath.row + 1, inSection: indexPath.section)], withRowAnimation: .Fade)
-                
+            
         } else if selectedIndexPath!.section == indexPath.section && selectedIndexPath!.row == indexPath.row {
-                
+            
             datePickerTableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: indexPath.row + 1, inSection: indexPath.section)], withRowAnimation: .Fade)
             selectedIndexPath = nil
-                
+            
         } else if selectedIndexPath!.section != indexPath.section || selectedIndexPath!.row != indexPath.row {
-                
+            
             datePickerTableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: selectedIndexPath!.row + 1, inSection: selectedIndexPath!.section)], withRowAnimation: .Fade)
-                
+            
             // After the deletion operation the then indexPath of original table view changed to the resulting table view
             if (selectedIndexPath!.section == indexPath.section && selectedIndexPath!.row < indexPath.row) {
-                    
+                
                 datePickerTableView.insertRowsAtIndexPaths([NSIndexPath(forRow: indexPath.row, inSection: indexPath.section)], withRowAnimation: .Fade)
                 selectedIndexPath = NSIndexPath(forRow: indexPath.row - 1, inSection: indexPath.section)
-                    
+                
             } else {
-                    
+                
                 datePickerTableView.insertRowsAtIndexPaths([NSIndexPath(forRow: indexPath.row + 1, inSection: indexPath.section)], withRowAnimation: .Fade)
                 selectedIndexPath = indexPath
             }
         }
-            
+        
+        
+        
         datePickerTableView.endUpdates()
     }
         
@@ -451,6 +447,7 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UI
         datePickerTableView.reloadRowsAtIndexPaths([selectedIndexPath!], withRowAnimation: .Fade)
     }
     
+    */
     
 
     /*

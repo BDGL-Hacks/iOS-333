@@ -44,6 +44,7 @@
 		8B4F21CF1AE1A4D700114381 /* CreateGroup1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4F21CE1AE1A4D700114381 /* CreateGroup1ViewController.swift */; };
 		8B4F21D31AE5DA8C00114381 /* CreateGroup2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4F21D21AE5DA8C00114381 /* CreateGroup2ViewController.swift */; };
 		8B6AD0F31AF2CD64005752DE /* DatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6AD0F21AF2CD64005752DE /* DatePickerCell.swift */; };
+		8B6AD0F51AF3E252005752DE /* BindEventToGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6AD0F41AF3E252005752DE /* BindEventToGroupViewController.swift */; };
 		8B77C2EE1AD987A500E6E8AE /* PartyUpUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B77C2EC1AD987A500E6E8AE /* PartyUpUserCell.swift */; };
 		8B77C2EF1AD987A500E6E8AE /* PartyUpUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B77C2ED1AD987A500E6E8AE /* PartyUpUserCell.xib */; };
 		8B77C2F91ADA297E00E6E8AE /* AddFriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B77C2F81ADA297E00E6E8AE /* AddFriendsTableViewCell.swift */; };
@@ -110,6 +111,7 @@
 		8B4F21CE1AE1A4D700114381 /* CreateGroup1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroup1ViewController.swift; sourceTree = "<group>"; };
 		8B4F21D21AE5DA8C00114381 /* CreateGroup2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroup2ViewController.swift; sourceTree = "<group>"; };
 		8B6AD0F21AF2CD64005752DE /* DatePickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerCell.swift; sourceTree = "<group>"; };
+		8B6AD0F41AF3E252005752DE /* BindEventToGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindEventToGroupViewController.swift; sourceTree = "<group>"; };
 		8B77C2EC1AD987A500E6E8AE /* PartyUpUserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyUpUserCell.swift; sourceTree = "<group>"; };
 		8B77C2ED1AD987A500E6E8AE /* PartyUpUserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PartyUpUserCell.xib; sourceTree = "<group>"; };
 		8B77C2F81ADA297E00E6E8AE /* AddFriendsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsTableViewCell.swift; sourceTree = "<group>"; };
@@ -220,12 +222,12 @@
 				8BB153F31AD38A5200B0371B /* CreateEvent2ViewController.swift */,
 				8B4F21CE1AE1A4D700114381 /* CreateGroup1ViewController.swift */,
 				8B4F21D21AE5DA8C00114381 /* CreateGroup2ViewController.swift */,
-				8BB4641E1AE9CD0100CA2A21 /* CreateGroupFromEventViewController.swift */,
 				7E1A6C301AF27E82006164A0 /* AlertsViewController.swift */,
 				7E706A161AC78CC500B991F2 /* LoginViewController.swift */,
 				8B9140211AC5DB1300205FA6 /* RegisterViewController.swift */,
 				8BB153EF1AD32A7600B0371B /* KeyboardViewController.swift */,
 				7EDD4ED81ABE727C00CEECD0 /* Main.storyboard */,
+				8B6AD0F41AF3E252005752DE /* BindEventToGroupViewController.swift */,
 				8B6AD0F21AF2CD64005752DE /* DatePickerCell.swift */,
 				8BB4641E1AE9CD0100CA2A21 /* CreateGroupFromEventViewController.swift */,
 				7EDD4EDB1ABE727C00CEECD0 /* Images.xcassets */,
@@ -422,6 +424,7 @@
 				8B9140221AC5DB1300205FA6 /* RegisterViewController.swift in Sources */,
 				7EA0DD041ACE260500FC3EC1 /* MyEventsViewController.swift in Sources */,
 				7E1A6C371AF28B7C006164A0 /* AlertsModel.swift in Sources */,
+				8B6AD0F51AF3E252005752DE /* BindEventToGroupViewController.swift in Sources */,
 				8B9140241AC86E0200205FA6 /* PartyUpBackend.swift in Sources */,
 				7E54DB5B1ACE6D0D002E43E3 /* FindEventsViewController.swift in Sources */,
 				7E60C3541AD1FBF1001DAA4B /* Globals.swift in Sources */,
@@ -578,7 +581,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0a31e685-22ec-4c39-964f-07def24058ce";
+				PROVISIONING_PROFILE = "4a5cfe40-cb12-43ed-9c27-a7466043ccd2";
 				SWIFT_OBJC_BRIDGING_HEADER = "PartyUp/PartyUp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -596,7 +599,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0a31e685-22ec-4c39-964f-07def24058ce";
+				PROVISIONING_PROFILE = "4a5cfe40-cb12-43ed-9c27-a7466043ccd2";
 				SWIFT_OBJC_BRIDGING_HEADER = "PartyUp/PartyUp-Bridging-Header.h";
 			};
 			name = Release;

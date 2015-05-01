@@ -29,6 +29,12 @@ class AlertsModel {
     var checkUpQueryResults: NSArray = NSArray()
     var groupInvites: NSArray = NSArray()
     var eventInvites: NSArray = NSArray()
+    
+    enum AlertType: NSString {
+        case CheckUp     = "Check up:"
+        case GroupInvite = "Group Invitation:"
+        case EventInvite = "Event Invitation:"
+    }
    
     
    /*--------------------------------------------*
@@ -53,18 +59,41 @@ class AlertsModel {
         }
     }
     
-    /* Responds to an alert cell 'accept' being pressed. *
-     * Updates the backend and removes cell from table.  */
-    func acceptButtonPressed(data: NSDictionary, type: PartyUpAlertCell.AlertType, index: NSInteger)
+    /* Responds to an alert cell accept / reject button being    *
+     * pressed. Updates the backend and removes cell from table. */
+    func responseButtonPressed(data: NSDictionary, type: AlertType, index: NSInteger, response: Bool)
     {
+        if (type == AlertType.CheckUp) {
+            // TODO
+            PULog("Checkup response button pressed")
+        }
         
-    }
-    
-    /* Responds to an alert cell 'reject' being pressed. *
-     * Updates the backend and removes cell from table.  */
-    func rejectButtonPressed(data: NSDictionary, type: PartyUpAlertCell.AlertType, index: NSInteger)
-    {
+        // Group Invite responded to: Update backend and delete from table
+        else if (type == AlertType.GroupInvite) {
+            let errorMsg: NSString? = PartyUpBackend.instance.respondToInvite(getInviteTypeString(type), inviteID: DataManager.getGroupID(data), response: response)
+            if (errorMsg == nil) {
+                let tempGroupInvitesArray: NSMutableArray = NSMutableArray(array: groupInvites)
+                tempGroupInvitesArray.removeObjectAtIndex(index)
+                groupInvites = tempGroupInvitesArray as NSArray
+            } else {
+                NSNotificationCenter.defaultCenter().postNotificationName(getErrorNotificationName() as String, object: self)
+            }
+        }
         
+        // Event Invite responded to: update backend and delet from table
+        else if (type == AlertType.EventInvite) {
+            let errorMsg: NSString? = PartyUpBackend.instance.respondToInvite(getInviteTypeString(type), inviteID: DataManager.getEventID(data), response: response)
+            if (errorMsg == nil) {
+                let tempEventInvitesArray: NSMutableArray = NSMutableArray(array: eventInvites)
+                tempEventInvitesArray.removeObjectAtIndex(index)
+                eventInvites = tempEventInvitesArray as NSArray
+            } else {
+                NSNotificationCenter.defaultCenter().postNotificationName(getErrorNotificationName() as String, object: self)
+            }
+        }
+        
+        // Post a notification so AlertsViewController knows to update its views
+        NSNotificationCenter.defaultCenter().postNotificationName(getUpdateNotificationName() as String, object: self)
     }
    
     
@@ -97,6 +126,26 @@ class AlertsModel {
     
     func getEventInvites() -> NSArray {
         return eventInvites
+    }
+    
+    func getUpdateNotificationName() -> NSString {
+        return "Alert Page Update"
+    }
+    
+    func getErrorNotificationName() -> NSString {
+        return "Alert Page Error"
+    }
+    
+    private func getInviteTypeString(type: AlertType) -> NSString {
+        if (type == AlertType.GroupInvite) {
+            return "group"
+        }
+        else if (type == AlertType.EventInvite) {
+            return "event"
+        }
+        else {
+            return "Invalid AlertType"
+        }
     }
     
 }

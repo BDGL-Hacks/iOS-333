@@ -42,10 +42,14 @@ class AlertsViewController: PartyUpViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         var customTableCellNib: UINib = UINib(nibName: "PartyUpAlertCell", bundle: nil)
         checkUpAlertsTableView.registerNib(customTableCellNib, forCellReuseIdentifier: "partyUpAlertCell")
         groupInvitesTableView.registerNib(customTableCellNib, forCellReuseIdentifier: "partyUpAlertCell")
         eventInvitesTableView.registerNib(customTableCellNib, forCellReuseIdentifier: "partyUpAlertCell")
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateViews", name: alertsModel.getUpdateNotificationName() as String, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "displayResponseFailedAlert", name: alertsModel.getErrorNotificationName() as String, object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -124,6 +128,11 @@ class AlertsViewController: PartyUpViewController, UITableViewDelegate, UITableV
         }
     }
     
+    /* Displays an alert for the user if invite / checkup response failed */
+    func displayResponseFailedAlert() {
+        displayAlert("Unable to send response", message: "Failed to connect to server")
+    }
+    
     
    /*--------------------------------------------*
     * TableView methods
@@ -158,23 +167,23 @@ class AlertsViewController: PartyUpViewController, UITableViewDelegate, UITableV
         var cell: PartyUpAlertCell = tableView.dequeueReusableCellWithIdentifier("partyUpAlertCell") as! PartyUpAlertCell
         
         var data: NSDictionary = NSDictionary()
-        var type: PartyUpAlertCell.AlertType = PartyUpAlertCell.AlertType.CheckUp
+        var type: AlertsModel.AlertType = AlertsModel.AlertType.CheckUp
         var contentText: NSString = ""
         var index: NSInteger = indexPath.row
         
         if (tableView == checkUpAlertsTableView) {
             data = alertsModel.getCheckUpAlerts()[indexPath.row] as! NSDictionary
-            type = PartyUpAlertCell.AlertType.CheckUp
+            type = AlertsModel.AlertType.CheckUp
             contentText = "TODO"
         }
         else if (tableView == groupInvitesTableView) {
             data = alertsModel.getGroupInvites()[indexPath.row] as! NSDictionary
-            type = PartyUpAlertCell.AlertType.GroupInvite
+            type = AlertsModel.AlertType.GroupInvite
             contentText = DataManager.getGroupTitle(data)
         }
         else if (tableView == eventInvitesTableView) {
             data = alertsModel.getEventInvites()[indexPath.row] as! NSDictionary
-            type = PartyUpAlertCell.AlertType.EventInvite
+            type = AlertsModel.AlertType.EventInvite
             contentText = DataManager.getEventTitle(data)
         }
         

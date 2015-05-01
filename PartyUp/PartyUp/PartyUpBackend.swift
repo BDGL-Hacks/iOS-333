@@ -255,6 +255,48 @@ class PartyUpBackend {
         }
     }
     
+    /* Respond to a group or event invite: *
+     * Returns an error message string if  *
+     * response failed, nil otherwise.     */
+    func respondToInvite(inviteType: NSString, inviteID: NSInteger, response: Bool) -> NSString?
+    {
+        PULog("Responding to invitation...")
+        
+        let postURL: NSString = "http://\(UBUNTU_SERVER_IP)/invites/respond"
+        let postParams: [String: String] = ["obj_type": inviteType as String, "obj_id": "\(inviteID)", "accept": "\(response)"]
+        
+        let postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
+        
+        // We received JSON data back: process it
+        if (postData != nil)
+        {
+            let jsonData: NSDictionary = postData!
+            let accepted: Bool = jsonData.valueForKey("accepted") as! Bool
+            var errorMessage: NSString? = jsonData.valueForKey("error") as! NSString?
+            
+            // Message was sent successfully
+            if (accepted) {
+                PULog("Response sent successfully!")
+                return nil
+            }
+            
+            // Message was not sent
+            else {
+                if (errorMessage == nil) {
+                    errorMessage = "No error message received"
+                }
+                PULog("Message failed to send: \(errorMessage!)")
+                return errorMessage
+            }
+        }
+        
+        // We did not receive JSON data back
+        else {
+            PULog("Authentication Failed: No JSON data received")
+            return "Failed to connect to server"
+        }
+    }
+    
     /* Posts a group chat message on the backend. *
      * Returns an error message string if message *
      * posting failed, nil otherwise.             */

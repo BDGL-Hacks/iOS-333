@@ -1538,7 +1538,7 @@ tapping the 'Find' tab on the bottom.</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="pEw-bW-g4Y">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="pEw-bW-g4Y">
                                 <rect key="frame" x="35" y="0.0" width="250" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -1709,7 +1709,7 @@ tapping the 'Find' tab on the bottom.</string>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="6qi-hZ-6wr" customClass="PUDynamicTableView" customModule="PartyUp" customModuleProvider="target">
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="6qi-hZ-6wr" customClass="PUDynamicTableView" customModule="PartyUp" customModuleProvider="target">
                                                 <rect key="frame" x="24" y="389" width="288" height="120"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -1987,10 +1987,10 @@ tapping the 'Find' tab on the bottom.</string>
             </objects>
             <point key="canvasLocation" x="4428" y="2069"/>
         </scene>
-        <!--Current Event View Controller-->
+        <!--Alerts View Controller-->
         <scene sceneID="A0k-ln-wGi">
             <objects>
-                <viewController id="6mf-Fd-v5z" customClass="CurrentEventViewController" customModule="PartyUp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="6mf-Fd-v5z" customClass="AlertsViewController" customModule="PartyUp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KAb-hQ-vbG"/>
                         <viewControllerLayoutGuide type="bottom" id="lga-P4-AXG"/>
@@ -1999,16 +1999,147 @@ tapping the 'Find' tab on the bottom.</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Yo, this is the Current Event Page!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ucl-k3-AdE">
-                                <rect key="frame" x="30" y="241" width="261" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nmj-fL-ps0">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Safety Alerts" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OmF-0c-Y8Q">
+                                        <rect key="frame" x="111" y="21" width="98" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Jzu-v6-SNf" customClass="PUDynamicTableView" customModule="PartyUp" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="50" width="304" height="80"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="304" id="6U9-HY-zSC"/>
+                                            <constraint firstAttribute="height" constant="80" placeholder="YES" id="hcO-U5-r1L"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" id="iUd-4D-ycV"/>
+                                        </constraints>
+                                        <prototypes>
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="safetyCellPrototype" id="bef-Nc-E9o" customClass="PartyUpAlertCell" customModule="PartyUp" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="304" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bef-Nc-E9o" id="R1M-MW-xhH">
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="6mf-Fd-v5z" id="VNP-nM-17J"/>
+                                            <outlet property="delegate" destination="6mf-Fd-v5z" id="ODb-LR-wN0"/>
+                                            <outlet property="dynamicHeightConstraint" destination="iUd-4D-ycV" id="KSr-GI-k94"/>
+                                        </connections>
+                                    </tableView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group Invitations" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oty-R0-Ihg">
+                                        <rect key="frame" x="95" y="172" width="131" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jLu-k4-eK2" customClass="PUDynamicTableView" customModule="PartyUp" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="201" width="304" height="80"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" id="3Su-wL-SHA"/>
+                                            <constraint firstAttribute="height" constant="80" placeholder="YES" id="upO-YG-YKA"/>
+                                        </constraints>
+                                        <prototypes>
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="groupCellPrototype" id="w9Y-t2-wsf" customClass="PartyUpAlertCell" customModule="PartyUp" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="304" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="w9Y-t2-wsf" id="BK1-aw-5Qq">
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="6mf-Fd-v5z" id="bxI-Ch-D6E"/>
+                                            <outlet property="delegate" destination="6mf-Fd-v5z" id="Uea-of-uYb"/>
+                                            <outlet property="dynamicHeightConstraint" destination="3Su-wL-SHA" id="8jX-8L-fdC"/>
+                                        </connections>
+                                    </tableView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Invitations" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WSo-ap-1c4">
+                                        <rect key="frame" x="97" y="323" width="127" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1Nx-Zl-kgz" customClass="PUDynamicTableView" customModule="PartyUp" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="352" width="304" height="80"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" placeholder="YES" id="qQt-Pp-6uv"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" id="vQk-cU-Wft"/>
+                                        </constraints>
+                                        <prototypes>
+                                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="eventCellPrototype" selectionStyle="default" indentationWidth="10" reuseIdentifier="eventCellPrototype" id="QQN-iR-Zek" customClass="PartyUpAlertCell" customModule="PartyUp" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="304" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QQN-iR-Zek" id="BUL-D3-9OO">
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="6mf-Fd-v5z" id="4mg-qi-3vj"/>
+                                            <outlet property="delegate" destination="6mf-Fd-v5z" id="k4B-8m-1Ax"/>
+                                            <outlet property="dynamicHeightConstraint" destination="vQk-cU-Wft" id="Yot-NP-1lM"/>
+                                        </connections>
+                                    </tableView>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have no alerts at this time." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XYC-Pq-ls1">
+                                        <rect key="frame" x="42" y="217" width="235" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="1Nx-Zl-kgz" firstAttribute="leading" secondItem="nmj-fL-ps0" secondAttribute="leading" constant="8" id="6aU-da-Yez"/>
+                                    <constraint firstItem="Oty-R0-Ihg" firstAttribute="top" secondItem="Jzu-v6-SNf" secondAttribute="bottom" constant="42" id="8C9-fT-5RD"/>
+                                    <constraint firstItem="WSo-ap-1c4" firstAttribute="top" secondItem="jLu-k4-eK2" secondAttribute="bottom" constant="42" id="9vK-fr-HJ6"/>
+                                    <constraint firstItem="jLu-k4-eK2" firstAttribute="width" secondItem="Jzu-v6-SNf" secondAttribute="width" id="B4h-mv-vxB"/>
+                                    <constraint firstItem="Jzu-v6-SNf" firstAttribute="top" secondItem="OmF-0c-Y8Q" secondAttribute="bottom" constant="8" id="DWu-PY-NqR"/>
+                                    <constraint firstAttribute="trailing" secondItem="OmF-0c-Y8Q" secondAttribute="trailing" constant="111" id="HEn-tJ-c1s"/>
+                                    <constraint firstAttribute="trailing" secondItem="1Nx-Zl-kgz" secondAttribute="trailing" constant="8" id="Ius-rm-q6f"/>
+                                    <constraint firstItem="Jzu-v6-SNf" firstAttribute="leading" secondItem="nmj-fL-ps0" secondAttribute="leading" constant="8" id="Njx-au-3Oa"/>
+                                    <constraint firstAttribute="trailing" secondItem="jLu-k4-eK2" secondAttribute="trailing" constant="8" id="SV5-mI-xgr"/>
+                                    <constraint firstItem="jLu-k4-eK2" firstAttribute="width" secondItem="1Nx-Zl-kgz" secondAttribute="width" id="TvJ-g8-p6U"/>
+                                    <constraint firstItem="jLu-k4-eK2" firstAttribute="leading" secondItem="nmj-fL-ps0" secondAttribute="leading" constant="8" id="U2l-Sm-VbK"/>
+                                    <constraint firstItem="WSo-ap-1c4" firstAttribute="leading" secondItem="nmj-fL-ps0" secondAttribute="leading" constant="97" id="WVq-Ut-t6q"/>
+                                    <constraint firstAttribute="centerY" secondItem="XYC-Pq-ls1" secondAttribute="centerY" id="ZT4-OK-0zg"/>
+                                    <constraint firstItem="Oty-R0-Ihg" firstAttribute="leading" secondItem="nmj-fL-ps0" secondAttribute="leading" constant="95" id="ccx-i6-pkq"/>
+                                    <constraint firstAttribute="centerX" secondItem="XYC-Pq-ls1" secondAttribute="centerX" constant="0.5" id="ey7-Ma-Q2y"/>
+                                    <constraint firstItem="1Nx-Zl-kgz" firstAttribute="top" secondItem="WSo-ap-1c4" secondAttribute="bottom" constant="8" id="gOC-wT-mJc"/>
+                                    <constraint firstAttribute="trailing" secondItem="Jzu-v6-SNf" secondAttribute="trailing" constant="8" id="ikW-HB-n7Q"/>
+                                    <constraint firstItem="OmF-0c-Y8Q" firstAttribute="leading" secondItem="nmj-fL-ps0" secondAttribute="leading" constant="111" id="jRR-e4-tYQ"/>
+                                    <constraint firstItem="jLu-k4-eK2" firstAttribute="top" secondItem="Oty-R0-Ihg" secondAttribute="bottom" constant="8" id="mhX-Th-MaL"/>
+                                    <constraint firstItem="OmF-0c-Y8Q" firstAttribute="top" secondItem="nmj-fL-ps0" secondAttribute="top" constant="21" id="tqh-Iy-DB7"/>
+                                    <constraint firstAttribute="trailing" secondItem="WSo-ap-1c4" secondAttribute="trailing" constant="96" id="wcg-Rv-gQ5"/>
+                                    <constraint firstAttribute="trailing" secondItem="Oty-R0-Ihg" secondAttribute="trailing" constant="94" id="y7m-29-tZU"/>
+                                    <constraint firstAttribute="bottom" secondItem="1Nx-Zl-kgz" secondAttribute="bottom" constant="23" id="z6b-xD-mYe"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="lga-P4-AXG" firstAttribute="top" secondItem="nmj-fL-ps0" secondAttribute="bottom" id="5Go-VM-WyK"/>
+                            <constraint firstItem="nmj-fL-ps0" firstAttribute="top" secondItem="KAb-hQ-vbG" secondAttribute="bottom" id="7c8-tY-qzF"/>
+                            <constraint firstItem="nmj-fL-ps0" firstAttribute="leading" secondItem="QT2-BW-akS" secondAttribute="leading" id="SC3-Cp-0sb"/>
+                            <constraint firstAttribute="trailing" secondItem="nmj-fL-ps0" secondAttribute="trailing" id="u4Y-tk-y0k"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="k0I-jS-cxU"/>
+                    <connections>
+                        <outlet property="checkUpAlertsLabel" destination="OmF-0c-Y8Q" id="zI3-rI-dJJ"/>
+                        <outlet property="checkUpAlertsTableView" destination="Jzu-v6-SNf" id="kA9-5D-zE4"/>
+                        <outlet property="eventInvitesLabel" destination="WSo-ap-1c4" id="qQa-ks-Erj"/>
+                        <outlet property="eventInvitesTableView" destination="1Nx-Zl-kgz" id="hNx-Sg-6un"/>
+                        <outlet property="groupInvitesLabel" destination="Oty-R0-Ihg" id="Uxm-XX-cro"/>
+                        <outlet property="groupInvitesTableView" destination="jLu-k4-eK2" id="Eox-lx-zpT"/>
+                        <outlet property="placeholderLabel" destination="XYC-Pq-ls1" id="pdh-eX-T64"/>
+                        <segue destination="kxU-B7-LE2" kind="presentation" identifier="alertsToEventInfo" id="Bug-U0-u0v"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n0A-Is-7ax" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2060,6 +2191,6 @@ tapping the 'Find' tab on the bottom.</string>
         <segue reference="1WL-h8-Hfv"/>
         <segue reference="in5-ko-7n1"/>
         <segue reference="4fK-gC-rRW"/>
-        <segue reference="zaS-UW-vp0"/>
+        <segue reference="Bug-U0-u0v"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -56,13 +56,28 @@ class GroupChatModel: NSObject, PTPusherDelegate
         client.connect()
         channel = client.subscribeToChannelNamed(groupChannel as String)
         PULog("Listening on pusher channel: \(groupChannel)")
-        //channel.bindToEventNamed("message", handleWithBlock: {getEarlierMessages()})
         
         channel.bindToEventNamed("message", handleWithBlock: {eventData in
             PULog("Sending Pusher notification")
-            NSNotificationCenter.defaultCenter().postNotificationName(self.groupChannel as String, object: self)
+            //NSNotificationCenter.defaultCenter().postNotificationName(self.groupChannel as String, object: self)
         })
         
+    }
+    
+    func pusher(pusher: PTPusher!, connectionDidConnect connection: PTPusherConnection!) {
+        PULog("Did connect \(connection)")
+    }
+    
+    func pusher(pusher: PTPusher!, connection: PTPusherConnection!, failedWithError error: NSError!) {
+        PULog("Failed to connect with error: \(error)")
+    }
+    
+    func pusher(pusher: PTPusher!, didSubscribeToChannel channel: PTPusherChannel!) {
+        PULog("Did subscribe to channel \(channel)")
+    }
+    
+    func pusher(pusher: PTPusher!, didFailToSubscribeToChannel channel: PTPusherChannel!, withError error: NSError!) {
+        PULog("Failed to subscribe to channel \(channel)")
     }
     
     

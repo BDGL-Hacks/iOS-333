@@ -32,7 +32,7 @@ class AlertsModel {
    
     
    /*--------------------------------------------*
-    * Set methods
+    * Action methods
     *--------------------------------------------*/
     
     /* Queries the backend and updates the model  *
@@ -53,6 +53,25 @@ class AlertsModel {
         }
     }
     
+    /* Responds to an alert cell 'accept' being pressed. *
+     * Updates the backend and removes cell from table.  */
+    func acceptButtonPressed(data: NSDictionary, type: PartyUpAlertCell.AlertType, index: NSInteger)
+    {
+        
+    }
+    
+    /* Responds to an alert cell 'reject' being pressed. *
+     * Updates the backend and removes cell from table.  */
+    func rejectButtonPressed(data: NSDictionary, type: PartyUpAlertCell.AlertType, index: NSInteger)
+    {
+        
+    }
+   
+    
+   /*--------------------------------------------*
+    * Set methods
+    *--------------------------------------------*/
+    
     func setGroupInvites(results: NSArray) {
         groupInvites = results
     }
@@ -65,6 +84,12 @@ class AlertsModel {
    /*--------------------------------------------*
     * Get methods
     *--------------------------------------------*/
+    
+    // ---  TODO  ---
+    func getCheckUpAlerts() -> NSArray {
+        return NSArray()
+    }
+    // ---        ---
     
     func getGroupInvites() -> NSArray {
         return groupInvites

@@ -91,7 +91,10 @@ Create Event
 
 Alerts Page
 -----------
- ! Create it!
+ ! Write backend query code to handle accepting / rejecting invitations
+   - Incorporate corresponding code in AlertsModel accept / rejectButtonPressed
+ ! Handle check up alerts in AlertModel and PartyUpBackend
+ - Implement Group Info segues and TODOs in AlertViewController
 
 Login
 -----

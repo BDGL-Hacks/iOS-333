@@ -27,6 +27,7 @@ class PartyUpAlertCell: UITableViewCell
     
     var data: NSDictionary = NSDictionary()
     var type: AlertType = AlertType.CheckUp
+    var index: NSInteger = -1
     
     enum AlertType: NSString {
         case CheckUp     = "Check up:"
@@ -36,14 +37,32 @@ class PartyUpAlertCell: UITableViewCell
     
     
    /*--------------------------------------------*
+    * View response methods
+    *--------------------------------------------*/
+    
+    /* Responds to the accept button being pressed.  *
+     * Sends the cell's information to alerts model. */
+    func acceptButtonPressed() {
+        AlertsModel.instance.acceptButtonPressed(data, type: type, index: index)
+    }
+    
+    /* Responds to the reject button being pressed.  *
+     * Sends the cell's information to alerts model. */
+    func rejectButtonPressed() {
+        AlertsModel.instance.rejectButtonPressed(data, type: type, index: index)
+    }
+    
+    
+   /*--------------------------------------------*
     * Set and Get Methods
     *--------------------------------------------*/
     
     /* Set the NSDictionary object and alert type associated with   *
      * the cell, along with the content label text to be displayed. */
-    func loadCell(data: NSDictionary, type: AlertType, contentText: NSString) {
+    func loadCell(data: NSDictionary, type: AlertType, contentText: NSString, index: NSInteger) {
         self.data = data
         self.type = type
+        self.index = index
         typeLabel.text = type.rawValue as String
         contentLabel.text = contentText as String
     }

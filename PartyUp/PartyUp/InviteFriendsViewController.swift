@@ -25,7 +25,9 @@ class InviteFriendsViewController: PartyUpViewController, UITableViewDataSource,
         
         invitedFriendsTableView.delegate = self
         invitedFriendsTableView.dataSource = self
-
+        
+        self.invitedFriendsTableView.rowHeight = 65
+        
         // Do any additional setup after loading the view.
     }
     
@@ -170,11 +172,6 @@ class InviteFriendsViewController: PartyUpViewController, UITableViewDataSource,
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
     }
-
-    
-
-    
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -150,6 +150,15 @@ class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UI
         return cell
     }
     
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
+        headerCell.backgroundColor = UIColorFromRGB(0xE6C973)
+        headerCell.headerTextLabel.text = "Added Friends (swipe to delete)";
+        
+        return headerCell
+    }
+
+    
     /* Called by AddFriendsViewController in order to update
        the table based on user additions */
     func updateAddedFriends() {

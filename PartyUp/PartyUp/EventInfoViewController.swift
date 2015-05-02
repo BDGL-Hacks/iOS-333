@@ -54,6 +54,11 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
             destinationVC.setEventData(event)
             destinationVC.fillAttendeeList(DataManager.getEventAttendees(event))
         }
+        else if segue.identifier == "eventInfoToBindGroup" {
+            PULog("Preparing for segue")
+            let destinationVC = segue.destinationViewController as! BindEventToGroupViewController
+            destinationVC.setEventData(event)
+        }
     }
     
     

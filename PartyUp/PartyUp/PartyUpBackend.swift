@@ -41,6 +41,7 @@ class PartyUpBackend {
         PULog("Attempting to authenticate user...")
         
         var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/users/login/"
+        //var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/api/users/login/"
         var postParams: [String: String] = ["username": email as String, "password": password as String, "deviceID": deviceID as String]
         
         var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
@@ -84,6 +85,7 @@ class PartyUpBackend {
         PULog("Attempting to register new user...")
         
         var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/users/register/"
+        //var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/api/users/register/"
         var postParams: [String: String] = ["email": email as String, "first_name": firstName as String, "last_name": lastName as String, "password": password as String]
         
         var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
@@ -129,6 +131,7 @@ class PartyUpBackend {
         let username: NSString = userDefaults.objectForKey("USERNAME") as! NSString
         
         var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/groups/create"
+        //var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/api/groups/create"
         var postParams: [String: String] = ["title": groupName as String]
         
         var stringOfUserIDs: String = ""
@@ -199,7 +202,8 @@ class PartyUpBackend {
         var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
         let username: NSString = userDefaults.objectForKey("USERNAME") as! NSString
         
-        var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/groups/update"
+        var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/groups/addevent"
+        //var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/api/groups/addevent"
         var postParams: [String: String] = ["id": groupID as String]
         
         var stringOfEventIDs: String = ""
@@ -244,7 +248,7 @@ class PartyUpBackend {
             
             // We did not receive JSON data back
         else {
-            PULog("Group Creation Failed: No JSON data received")
+            PULog("Group Update Failed: No JSON data received")
             return "Failed to connect to server"
         }
 
@@ -264,6 +268,7 @@ class PartyUpBackend {
         let username: NSString = userDefaults.objectForKey("USERNAME") as! NSString
         
         var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/events/create"
+        //var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/api/events/create"
         var postParams: [String: String] = ["title": title as String, "public": isPublic as String, "age_restrictions": ageRestrictions as String, "price": price as String, "location_name": location as String, "time": dateTime as String, "description": description as String]
         
         var stringOfFriendIDs: String = ""
@@ -322,6 +327,7 @@ class PartyUpBackend {
         PULog("Responding to invitation...")
         
         let postURL: NSString = "http://\(UBUNTU_SERVER_IP)/invites/respond"
+        //let postURL: NSString = "http://\(UBUNTU_SERVER_IP)/api/invites/respond"
         let postParams: [String: String] = ["obj_type": inviteType as String, "obj_id": "\(inviteID)", "accept": "\(response)"]
         
         let postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
@@ -364,6 +370,7 @@ class PartyUpBackend {
         PULog("Attempting to post group chat message...")
         
         let postURL: NSString = "http://\(UBUNTU_SERVER_IP)/groups/messages/post"
+        //let postURL: NSString = "http://\(UBUNTU_SERVER_IP)/api/groups/messages/post"
         let postParams: [String: String] = ["groupid": "\(groupID)", "message": message as String]
         
         let postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
@@ -424,6 +431,7 @@ class PartyUpBackend {
         }
         
         var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/groups/get"
+        //var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/api/groups/get"
         var postParams: [String: String] = ["username": username! as String, "type": types as String]
         
         var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
@@ -485,6 +493,7 @@ class PartyUpBackend {
         }
         
         let postURL: NSString = "http://\(UBUNTU_SERVER_IP)/groups/messages/get"
+        //let postURL: NSString = "http://\(UBUNTU_SERVER_IP)/api/groups/messages/get"
         
         var postParams: [String: String]
         if (messageID == nil) {
@@ -545,6 +554,7 @@ class PartyUpBackend {
         PULog("Querying group invitations")
         
         var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/groups/get/"
+        //var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/api/groups/get/"
         var postParams: [String: String] = ["type": "invited"]
         
         var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
@@ -638,6 +648,7 @@ class PartyUpBackend {
         }
         
         var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/events/get/"
+        //var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/api/events/get/"
         var postParams: [String: String] = ["username": username! as String, "type": types as String]
         
         var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
@@ -688,6 +699,7 @@ class PartyUpBackend {
         PULog("Querying for local events...")
         
         var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/events/search/"
+        //var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/api/events/search/"
         
         // Populate query parameter list with whatever arguments were provided
         var postParams: [String: String] = Dictionary<String, String>()
@@ -778,6 +790,7 @@ class PartyUpBackend {
         
         //verify with backend
         var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/events/getid/"
+        //var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/api/events/getid/"
         var postParams: [String: String] = ["event": eventID! as String]
         
         var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
@@ -832,6 +845,7 @@ class PartyUpBackend {
         }
         
         var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/users/search/"
+        //var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/api/users/search/"
         var postParams: [String: String] = [ "search": username! as String]
         
         var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
@@ -887,6 +901,7 @@ class PartyUpBackend {
         
         /* users/get */
         var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/users/search/"
+        //var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/api/users/search/"
         var postParams: [String: String] = ["username": username! as String, "search": search as String]
         
         var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
@@ -941,7 +956,8 @@ class PartyUpBackend {
         }
         
         /* users/get */
-        var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/users/batch/" //verify with backend
+        var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/users/batch/"
+        //var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/api/users/batch/" //verify with backend
         var postParams: [String: String] = ["username": username! as String]
         
         var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)

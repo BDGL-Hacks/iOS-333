@@ -34,8 +34,6 @@ class BindEventToGroupViewController: PartyUpViewController, UITableViewDelegate
         groupsTableView.delegate = self
         groupsTableView.dataSource = self
         
-        self.groupsTableView.rowHeight = 60
-        
         groupsTableView.allowsMultipleSelection = false
         
         var customTableCellNib: UINib = UINib(nibName: "PartyUpTableCell", bundle: nil)
@@ -171,15 +169,19 @@ class BindEventToGroupViewController: PartyUpViewController, UITableViewDelegate
         var backendError: NSString? =  updateGroup.addEventsToGroup(selectedGroupID, eventIDs: eventIDList)
     
         if (backendError != nil) {
-            displayAlert("Group Update Failed", message: backendError!)
+            displayAlert("Group creation Failed", message: backendError!)
         }
         
     }
+    
     
     func selectedGroupIsNil() -> Bool {
         return selectedGroupData == nil
     }
     
+    
+    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

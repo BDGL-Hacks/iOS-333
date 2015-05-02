@@ -1849,7 +1849,7 @@ tapping the 'Find' tab on the bottom.</string>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="5Nk-tB-w5l" kind="presentation" identifier="eventInfoToBindGroup" id="kDX-vo-Sen"/>
+                                                    <segue destination="5Nk-tB-w5l" kind="presentation" identifier="EventInfoToBindGroup" id="kDX-vo-Sen"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -2198,7 +2198,7 @@ tapping the 'Find' tab on the bottom.</string>
             </objects>
             <point key="canvasLocation" x="4428" y="2778"/>
         </scene>
-        <!--Alerts View Controller-->
+        <!--Current Event View Controller-->
         <scene sceneID="A0k-ln-wGi">
             <objects>
                 <viewController id="6mf-Fd-v5z" customClass="AlertsViewController" customModule="PartyUp" customModuleProvider="target" sceneMemberID="viewController">
@@ -2400,8 +2400,8 @@ tapping the 'Find' tab on the bottom.</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="bIb-fA-Nj2"/>
-        <segue reference="Bug-U0-u0v"/>
+        <segue reference="jc2-Pg-Y0b"/>
+        <segue reference="NJp-kO-aCE"/>
         <segue reference="in5-ko-7n1"/>
-        <segue reference="4fK-gC-rRW"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -14,7 +14,7 @@ class GroupChatModel: NSObject, PTPusherDelegate
     * Instance variables and Declarations
     *--------------------------------------------*/
     
-    let PUSHER_API_KEY: String = "todo"
+    let PUSHER_API_KEY: String = "2355973b5586034a6c48"
     
     
    /*--------------------------------------------*
@@ -59,9 +59,8 @@ class GroupChatModel: NSObject, PTPusherDelegate
         
         channel.bindToEventNamed("message", handleWithBlock: {eventData in
             PULog("Sending Pusher notification")
-            //NSNotificationCenter.defaultCenter().postNotificationName(self.groupChannel as String, object: self)
+            NSNotificationCenter.defaultCenter().postNotificationName(self.groupChannel as String, object: self)
         })
-        
     }
     
     func pusher(pusher: PTPusher!, connectionDidConnect connection: PTPusherConnection!) {

@@ -118,8 +118,6 @@ class GroupChatViewController: JSQMessagesViewController {
         if (errorMessage != nil) {
             displayAlert("Message failed to send.", message: errorMessage!)
         }
-        errorMessage = groupChatModel.getMostRecentMessages()
-        updateCollectionView(errorMessage: errorMessage)
         finishSendingMessage()
     }
     

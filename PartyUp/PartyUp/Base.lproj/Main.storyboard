@@ -287,7 +287,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="66" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7lY-Hm-DhW">
-                                <rect key="frame" x="0.0" y="122" width="324" height="447"/>
+                                <rect key="frame" x="0.0" y="126" width="320" height="442"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="FriendCell" rowHeight="65" id="m7d-7q-BXa" customClass="AddFriendsTableViewCell" customModule="PartyUp" customModuleProvider="target">
@@ -311,9 +311,9 @@
                                                     </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jLR-ph-ObF">
-                                                    <rect key="frame" x="8" y="38" width="270" height="21"/>
+                                                    <rect key="frame" x="8" y="42" width="270" height="14"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="XNq-hK-SiE"/>
+                                                        <constraint firstAttribute="height" constant="14" id="kTN-xh-8lk"/>
                                                         <constraint firstAttribute="width" constant="42" id="ovV-g9-o77"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -327,13 +327,25 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="jLR-ph-ObF" secondAttribute="bottom" constant="-3" id="TAN-t0-d0Q"/>
-                                                <constraint firstItem="hn6-sc-hDd" firstAttribute="leading" secondItem="jLR-ph-ObF" secondAttribute="leading" id="VIT-sA-voR"/>
-                                                <constraint firstItem="jLR-ph-ObF" firstAttribute="top" secondItem="hn6-sc-hDd" secondAttribute="bottom" constant="4" id="gfH-jM-Vcj"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="hn6-sc-hDd" secondAttribute="trailing" constant="-1" id="i8e-TO-c0o"/>
-                                                <constraint firstItem="hn6-sc-hDd" firstAttribute="leading" secondItem="eQi-SP-CNY" secondAttribute="leadingMargin" id="mhl-mf-rJO"/>
-                                                <constraint firstItem="hn6-sc-hDd" firstAttribute="trailing" secondItem="jLR-ph-ObF" secondAttribute="trailing" id="oWJ-YO-NOg"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="hn6-sc-hDd" secondAttribute="trailing" constant="-5" id="AVv-tv-Ofo"/>
+                                                <constraint firstItem="hn6-sc-hDd" firstAttribute="trailing" secondItem="jLR-ph-ObF" secondAttribute="trailing" id="Aud-u7-la9"/>
+                                                <constraint firstItem="jLR-ph-ObF" firstAttribute="leading" secondItem="eQi-SP-CNY" secondAttribute="leadingMargin" id="Bos-Yh-UBx"/>
+                                                <constraint firstItem="jLR-ph-ObF" firstAttribute="bottom" secondItem="eQi-SP-CNY" secondAttribute="bottomMargin" id="GwS-W2-41z"/>
+                                                <constraint firstItem="hn6-sc-hDd" firstAttribute="leading" secondItem="eQi-SP-CNY" secondAttribute="leadingMargin" id="MvC-D8-W1A"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="jLR-ph-ObF" secondAttribute="bottom" constant="-3" id="Odb-jt-wnh"/>
+                                                <constraint firstItem="hn6-sc-hDd" firstAttribute="trailing" secondItem="jLR-ph-ObF" secondAttribute="trailing" id="VCq-gl-BBh"/>
+                                                <constraint firstItem="jLR-ph-ObF" firstAttribute="leading" secondItem="eQi-SP-CNY" secondAttribute="leadingMargin" id="VrF-sr-lbr"/>
+                                                <constraint firstItem="jLR-ph-ObF" firstAttribute="trailing" secondItem="hn6-sc-hDd" secondAttribute="trailing" id="bwt-wr-rRi"/>
+                                                <constraint firstItem="hn6-sc-hDd" firstAttribute="top" secondItem="eQi-SP-CNY" secondAttribute="topMargin" constant="5" id="gJM-Vy-V8N"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="Aud-u7-la9"/>
+                                                    <exclude reference="VCq-gl-BBh"/>
+                                                    <exclude reference="Odb-jt-wnh"/>
+                                                    <exclude reference="VrF-sr-lbr"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="emailLabel" destination="jLR-ph-ObF" id="AFc-Lc-Sfc"/>
@@ -343,7 +355,7 @@
                                 </prototypes>
                             </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cIp-YJ-ZZ8">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <items>
                                     <navigationItem title="Add Friends" id="Ife-8q-SNn">
                                         <barButtonItem key="leftBarButtonItem" title="✕" id="XTi-YP-BUK">
@@ -360,7 +372,7 @@
                                 </items>
                             </navigationBar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Friends Search Query" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="YT4-oh-QmW">
-                                <rect key="frame" x="0.0" y="84" width="320" height="30"/>
+                                <rect key="frame" x="0.0" y="88" width="320" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="search"/>
                             </textField>
@@ -368,17 +380,34 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="7lY-Hm-DhW" secondAttribute="trailing" id="2Aq-kT-ttT"/>
                             <constraint firstItem="YT4-oh-QmW" firstAttribute="trailing" secondItem="cIp-YJ-ZZ8" secondAttribute="trailing" id="7N8-E3-qSr"/>
                             <constraint firstAttribute="bottomMargin" secondItem="7lY-Hm-DhW" secondAttribute="bottom" constant="-1" id="8sk-yK-cNh"/>
+                            <constraint firstItem="bzn-77-Yi6" firstAttribute="top" secondItem="7lY-Hm-DhW" secondAttribute="bottom" id="CaL-XL-Uoi"/>
                             <constraint firstItem="YT4-oh-QmW" firstAttribute="leading" secondItem="cIp-YJ-ZZ8" secondAttribute="leading" id="Hmz-Qj-Qsy"/>
+                            <constraint firstAttribute="trailing" secondItem="YT4-oh-QmW" secondAttribute="trailing" id="KNI-A9-c88"/>
                             <constraint firstItem="cIp-YJ-ZZ8" firstAttribute="leading" secondItem="GD2-KK-j7t" secondAttribute="leading" id="N6v-Zd-vF9"/>
+                            <constraint firstItem="YT4-oh-QmW" firstAttribute="leading" secondItem="GD2-KK-j7t" secondAttribute="leading" id="ZZQ-UW-qcG"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7lY-Hm-DhW" secondAttribute="trailing" constant="-20" id="cHf-VV-m8I"/>
+                            <constraint firstItem="7lY-Hm-DhW" firstAttribute="leading" secondItem="GD2-KK-j7t" secondAttribute="leading" id="ciO-59-V1d"/>
                             <constraint firstItem="cIp-YJ-ZZ8" firstAttribute="top" secondItem="SqE-WI-11I" secondAttribute="bottom" id="gth-Pz-Av8"/>
                             <constraint firstItem="7lY-Hm-DhW" firstAttribute="top" secondItem="YT4-oh-QmW" secondAttribute="bottom" constant="8" symbolic="YES" id="lxc-a2-Rwg"/>
+                            <constraint firstItem="7lY-Hm-DhW" firstAttribute="top" secondItem="YT4-oh-QmW" secondAttribute="bottom" constant="8" id="mr8-LM-Hk4"/>
                             <constraint firstItem="YT4-oh-QmW" firstAttribute="leading" secondItem="7lY-Hm-DhW" secondAttribute="leading" id="pLa-Sv-SUq"/>
+                            <constraint firstItem="YT4-oh-QmW" firstAttribute="top" secondItem="cIp-YJ-ZZ8" secondAttribute="bottom" constant="44" id="r9y-Tn-phF"/>
                             <constraint firstItem="YT4-oh-QmW" firstAttribute="top" secondItem="cIp-YJ-ZZ8" secondAttribute="bottom" constant="20" id="uIA-iW-YT7"/>
                             <constraint firstAttribute="trailing" secondItem="cIp-YJ-ZZ8" secondAttribute="trailing" id="x9s-z0-YW3"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="7N8-E3-qSr"/>
+                                <exclude reference="pLa-Sv-SUq"/>
+                                <exclude reference="uIA-iW-YT7"/>
+                                <exclude reference="8sk-yK-cNh"/>
+                                <exclude reference="cHf-VV-m8I"/>
+                                <exclude reference="lxc-a2-Rwg"/>
+                            </mask>
+                        </variation>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="8c0-yr-WvO" appends="YES" id="Wcj-Gu-uJ0"/>
                         </connections>
@@ -1852,6 +1881,15 @@ tapping the 'Find' tab on the bottom.</string>
                                                     <segue destination="5Nk-tB-w5l" kind="presentation" identifier="eventInfoToBindGroup" id="kDX-vo-Sen"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fJ4-w3-Jaa">
+                                                <rect key="frame" x="109" y="356" width="127" height="30"/>
+                                                <state key="normal" title="Invite more people">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="jVX-jg-yhr" kind="presentation" identifier="eventInfoToInviteFriends" id="Yz2-7w-QAN"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -1876,6 +1914,7 @@ tapping the 'Find' tab on the bottom.</string>
                                             <constraint firstItem="c47-4H-JqF" firstAttribute="baseline" secondItem="eL1-Iv-n4s" secondAttribute="baseline" id="QRW-9L-Mka"/>
                                             <constraint firstItem="9Go-06-f3e" firstAttribute="leading" secondItem="RQJ-zm-x96" secondAttribute="leading" constant="35" id="Qqk-ei-jJz"/>
                                             <constraint firstItem="tUx-7f-sNR" firstAttribute="trailing" secondItem="6qi-hZ-6wr" secondAttribute="trailing" id="QwW-Fe-rR8"/>
+                                            <constraint firstItem="fJ4-w3-Jaa" firstAttribute="leading" secondItem="QOP-Lj-3rg" secondAttribute="trailing" constant="16" id="RRw-Q5-HqS"/>
                                             <constraint firstItem="tUx-7f-sNR" firstAttribute="baseline" secondItem="KBn-KB-y3m" secondAttribute="baseline" id="SZ7-tx-n9g"/>
                                             <constraint firstItem="w6o-Ll-Ux0" firstAttribute="centerY" secondItem="4cJ-BQ-oz1" secondAttribute="centerY" id="TEQ-zF-YuL"/>
                                             <constraint firstItem="p7S-jm-7SI" firstAttribute="baseline" secondItem="lrq-kY-8Ca" secondAttribute="baseline" id="TK4-Tz-0Av"/>
@@ -1884,6 +1923,7 @@ tapping the 'Find' tab on the bottom.</string>
                                             <constraint firstItem="U7i-2U-03m" firstAttribute="leading" secondItem="RQJ-zm-x96" secondAttribute="leading" constant="24" id="VcP-Jh-YVr"/>
                                             <constraint firstItem="KBn-KB-y3m" firstAttribute="leading" secondItem="U7i-2U-03m" secondAttribute="leading" id="Vwe-Fh-T3W"/>
                                             <constraint firstItem="U7i-2U-03m" firstAttribute="baseline" secondItem="9Go-06-f3e" secondAttribute="baseline" id="XsT-BP-d6l"/>
+                                            <constraint firstItem="QOP-Lj-3rg" firstAttribute="centerY" secondItem="fJ4-w3-Jaa" secondAttribute="centerY" constant="-0.5" id="Z3S-f8-0as"/>
                                             <constraint firstItem="xIT-tU-9EX" firstAttribute="top" secondItem="w6o-Ll-Ux0" secondAttribute="bottom" constant="9" id="Z9G-G9-FPm"/>
                                             <constraint firstItem="tUx-7f-sNR" firstAttribute="leading" secondItem="9Go-06-f3e" secondAttribute="leading" id="Zjq-po-9CZ"/>
                                             <constraint firstItem="U7i-2U-03m" firstAttribute="top" secondItem="xIT-tU-9EX" secondAttribute="bottom" constant="8" symbolic="YES" id="acw-dY-xtV"/>
@@ -1951,6 +1991,7 @@ tapping the 'Find' tab on the bottom.</string>
                         <outlet property="descriptionLabel" destination="w6o-Ll-Ux0" id="9GP-1l-wUC"/>
                         <outlet property="eventTitleLabel" destination="49o-eV-80V" id="bpC-Mr-eIg"/>
                         <outlet property="groupLabel" destination="c47-4H-JqF" id="gEo-39-WN3"/>
+                        <outlet property="invitePeople" destination="fJ4-w3-Jaa" id="9l2-cm-8u7"/>
                         <outlet property="locationLabel" destination="lZa-yQ-DgU" id="U7M-so-RcI"/>
                         <outlet property="priceLabel" destination="9Go-06-f3e" id="5bg-OH-pYi"/>
                         <outlet property="timeLabel" destination="mXI-05-696" id="pwd-04-YXB"/>
@@ -2100,6 +2141,109 @@ tapping the 'Find' tab on the bottom.</string>
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="4428" y="2069"/>
+        </scene>
+        <!--Invite Friends View Controller-->
+        <scene sceneID="YOe-jt-CVG">
+            <objects>
+                <viewController id="jVX-jg-yhr" customClass="InviteFriendsViewController" customModule="PartyUp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Uat-MV-8jh"/>
+                        <viewControllerLayoutGuide type="bottom" id="mOu-dJ-s32"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="71G-xu-0IQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="61" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Y5U-6f-kWE">
+                                <rect key="frame" x="0.0" y="175" width="320" height="393"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCell" rowHeight="61" id="B3I-zT-pyI" customClass="AddFriendsTableViewCell" customModule="PartyUp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="B3I-zT-pyI" id="ZDy-m7-BEB">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Firstname Lastname" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LCU-sE-fff">
+                                                    <rect key="frame" x="8" y="8" width="304" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o25-6T-oSb">
+                                                    <rect key="frame" x="8" y="35" width="304" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="LCU-sE-fff" firstAttribute="trailing" secondItem="ZDy-m7-BEB" secondAttribute="trailingMargin" id="4BU-BW-Jhv"/>
+                                                <constraint firstItem="o25-6T-oSb" firstAttribute="bottom" secondItem="ZDy-m7-BEB" secondAttribute="bottomMargin" id="9YU-tC-YQm"/>
+                                                <constraint firstItem="LCU-sE-fff" firstAttribute="leading" secondItem="o25-6T-oSb" secondAttribute="leading" id="9nH-ZI-sPj"/>
+                                                <constraint firstItem="LCU-sE-fff" firstAttribute="top" secondItem="ZDy-m7-BEB" secondAttribute="topMargin" id="Fk9-9T-URj"/>
+                                                <constraint firstItem="LCU-sE-fff" firstAttribute="trailing" secondItem="o25-6T-oSb" secondAttribute="trailing" id="G5K-te-JGK"/>
+                                                <constraint firstItem="LCU-sE-fff" firstAttribute="leading" secondItem="ZDy-m7-BEB" secondAttribute="leadingMargin" id="psh-i3-oNY"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="emailLabel" destination="o25-6T-oSb" id="m7Y-8X-o9C"/>
+                                            <outlet property="nameLabel" destination="LCU-sE-fff" id="CtD-u3-Bfm"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zEz-eU-YAq">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Invite Friends" id="vjh-IN-gqh">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="QYl-ZT-7dW"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Invite" id="kCe-oU-avT">
+                                            <connections>
+                                                <segue destination="SLw-45-19W" kind="show" id="abd-oF-V01"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friends to invite (swipe to delete)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPp-2W-cVw">
+                                <rect key="frame" x="16" y="146" width="253" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4jF-cT-PGz">
+                                <rect key="frame" x="16" y="87" width="182" height="30"/>
+                                <state key="normal" title="Search friends to invite 🔎">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="90y-nF-zQ8" kind="presentation" identifier="inviteFriendsToAddFriends" id="Cdc-xi-cBr"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Y5U-6f-kWE" firstAttribute="leading" secondItem="71G-xu-0IQ" secondAttribute="leading" id="0fC-pK-A0f"/>
+                            <constraint firstItem="zEz-eU-YAq" firstAttribute="top" secondItem="Uat-MV-8jh" secondAttribute="bottom" id="HOD-UA-cEE"/>
+                            <constraint firstItem="4jF-cT-PGz" firstAttribute="leading" secondItem="gPp-2W-cVw" secondAttribute="leading" id="J7I-Va-C6V"/>
+                            <constraint firstAttribute="trailing" secondItem="Y5U-6f-kWE" secondAttribute="trailing" id="PZe-wA-pNX"/>
+                            <constraint firstAttribute="trailing" secondItem="zEz-eU-YAq" secondAttribute="trailing" id="Qq1-Cv-Ce7"/>
+                            <constraint firstItem="4jF-cT-PGz" firstAttribute="top" secondItem="zEz-eU-YAq" secondAttribute="bottom" constant="43" id="V4k-eh-MDB"/>
+                            <constraint firstItem="zEz-eU-YAq" firstAttribute="leading" secondItem="71G-xu-0IQ" secondAttribute="leading" id="cOw-4q-ReV"/>
+                            <constraint firstItem="mOu-dJ-s32" firstAttribute="top" secondItem="Y5U-6f-kWE" secondAttribute="bottom" id="lai-dD-cho"/>
+                            <constraint firstItem="gPp-2W-cVw" firstAttribute="top" secondItem="4jF-cT-PGz" secondAttribute="bottom" constant="29" id="oWy-8x-vLo"/>
+                            <constraint firstItem="4jF-cT-PGz" firstAttribute="leading" secondItem="71G-xu-0IQ" secondAttribute="leadingMargin" id="wpJ-dB-wzw"/>
+                            <constraint firstItem="Y5U-6f-kWE" firstAttribute="top" secondItem="gPp-2W-cVw" secondAttribute="bottom" constant="8" id="zfs-n4-vW7"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="invitedFriendsTableView" destination="Y5U-6f-kWE" id="eRM-Lx-ZOy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="inc-hW-LQh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3901" y="2940"/>
         </scene>
         <!--Bind Event To Group View Controller-->
         <scene sceneID="E7r-Jk-0mj">
@@ -2399,9 +2543,9 @@ tapping the 'Find' tab on the bottom.</string>
         <image name="PartyUp_arrow_placeholder.png" width="999" height="999"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bIb-fA-Nj2"/>
+        <segue reference="abd-oF-V01"/>
         <segue reference="Bug-U0-u0v"/>
+        <segue reference="Cdc-xi-cBr"/>
         <segue reference="in5-ko-7n1"/>
-        <segue reference="4fK-gC-rRW"/>
     </inferredMetricsTieBreakers>
 </document>

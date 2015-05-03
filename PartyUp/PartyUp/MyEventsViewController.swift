@@ -19,6 +19,7 @@ class MyEventsViewController: PartyUpViewController, UITableViewDelegate, UITabl
     
     var shouldPerformQueries: Bool = true
     var selectedCellEventData: NSDictionary = NSDictionary()
+    var isCreatedEvent = false
     
     
    /*--------------------------------------------*
@@ -68,6 +69,8 @@ class MyEventsViewController: PartyUpViewController, UITableViewDelegate, UITabl
             let eventInfoVC: EventInfoViewController = segue.destinationViewController
                 as! EventInfoViewController
             eventInfoVC.setEventData(selectedCellEventData)
+            eventInfoVC.setIsCreatedEvent(isCreatedEvent)
+            isCreatedEvent = false
         }
     }
     
@@ -186,6 +189,9 @@ class MyEventsViewController: PartyUpViewController, UITableViewDelegate, UITabl
         PULog("Event Cell Pressed.\nCell Row: \(indexPath.row), Event Name: \(eventName)")
         PULog("Transitioning to Event Info screen")
         selectedCellEventData = cell.getCellData()
+        if tableView == createdEventsTableView {
+            isCreatedEvent = true
+        }
         self.performSegueWithIdentifier("myEventsToEventInfo", sender: self)
     }
     

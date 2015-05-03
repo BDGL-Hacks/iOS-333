@@ -25,6 +25,7 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
     @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var eventTitleLabel: UILabel!
     
+    @IBOutlet weak var invitePeople: UIButton!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
@@ -32,7 +33,8 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var ageRestrictionsLabel: UILabel!
-    var isInvited: Bool = false  
+    var isInvited: Bool = false
+    var isEventOwner: Bool = false
     
     @IBOutlet weak var attendeeTable: PUDynamicTableView!
     
@@ -59,6 +61,12 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
             let destinationVC = segue.destinationViewController as! BindEventToGroupViewController
             destinationVC.setEventData(event)
         }
+        else if segue.identifier == "eventInfoToInviteFriends" {
+            PULog("Preparing for segue")
+            let destinationVC = segue.destinationViewController as! InviteFriendsViewController
+            destinationVC.setEventData(event)
+            destinationVC.setGroupOrEvent(true)
+        }
     }
     
     
@@ -72,6 +80,9 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
         super.viewWillAppear(animated)
         if (isInvited == false) {
             acceptInvitationButton.hidden = true
+        }
+        if (!isEventOwner || !(DataManager.getEventPublic(event))) {
+            invitePeople.hidden = true
         }
     }
     
@@ -121,6 +132,9 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
         self.event = event
     }
     
+    func setIsCreatedEvent(isCreated: Bool) {
+        self.isEventOwner = isCreated
+    }
     
    /*--------------------------------------------*
     * TableView methods

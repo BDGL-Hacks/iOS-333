@@ -100,6 +100,15 @@ class DataManager {
         return event["attending_list"] as! NSArray
     }
     
+    class func getEventPublic(event: NSDictionary) -> Bool {
+        let publicTitle = event["public"] as! NSString
+        if (publicTitle == "true")
+        {
+            return true
+        }
+        return false
+    }
+    
     // TODO: ACTUALLY WRITE THESE METHODS!!!
     //---------------------------------------------------------------
     

@@ -118,6 +118,69 @@ class PartyUpBackend {
         }
     }
     
+    /* Performs backend event creation.      *
+    * Returns an error message string if    *
+    * event creation failed, nil otherwise. */
+    func backendEventCreation(title: NSString, location: NSString, ageRestrictions: NSString,
+        isPublic: NSString, price: NSString, inviteList: [NSString], dateTime: NSString, description: NSString) -> (NSString?, NSString?)
+    {
+        PULog("Attempting to create an event...")
+        
+        var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let username: NSString = userDefaults.objectForKey("USERNAME") as! NSString
+        
+        //var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/api/events/create"
+        var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/api/events/create/"
+        var postParams: [String: String] = ["title": title as String, "public": isPublic as String, "age_restrictions": ageRestrictions as String, "price": price as String, "location_name": location as String, "time": dateTime as String, "description": description as String]
+        
+        var stringOfFriendIDs: String = ""
+        var i: Int = 0
+        for friend in inviteList {
+            if i == 0 {
+                stringOfFriendIDs += (friend as String)
+            }
+            else {
+                stringOfFriendIDs += "," + (friend as String)
+            }
+            i += 1
+        }
+        postParams["invite_list"] = stringOfFriendIDs
+        
+        var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
+        
+        // We received JSON data back: process it
+        if (postData != nil)
+        {
+            let jsonData: NSDictionary = postData!
+            let accepted: Bool = jsonData.valueForKey("accepted") as! Bool
+            var errorMessage: NSString? = jsonData.valueForKey("error") as! NSString?
+            // not sure if event id returned as integer or as an NSString
+            var eventID: NSInteger? = jsonData.valueForKey("id") as! NSInteger?
+            
+            // Event creation successful on server side
+            if (accepted) {
+                PULog("Event Creation Successful!")
+                PULog("\(eventID)")
+                return (nil, "\(eventID!)" as NSString?)
+            }
+                
+                // Register was unsuccessful on server side
+            else {
+                if (errorMessage == nil) {
+                    errorMessage = "No error message received from server"
+                }
+                PULog("Event creation Failed: \(errorMessage!)")
+                return (errorMessage, nil)
+            }
+        }
+            
+            // We did not receive JSON data back
+        else {
+            PULog("Event Creation Failed: No JSON data received")
+            return ("Failed to connect to server", nil)
+        }
+    }
+    
     /* Performs backend group creation.      *
      * Returns an error message string if    *
      * event creation failed, nil otherwise. */
@@ -193,6 +256,13 @@ class PartyUpBackend {
         }
     }
     
+    /*------------------------------------------
+    * Methods for updating groups and events
+    *------------------------------------------*/
+    
+    /* Adds events to a preexisting group.  *
+    * Returns an error message string if    *
+    * group update failed, nil otherwise.   */
     func backendUpdateGroup(groupID: NSString, eventIDs: [NSString]) -> NSString? {
         PULog("Attemping to update a group")
         
@@ -215,7 +285,7 @@ class PartyUpBackend {
             i += 1
         }
         
-        postParams["event_ids"] = stringOfEventIDs
+        postParams["eventIDs"] = stringOfEventIDs
         
         var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
         
@@ -250,15 +320,12 @@ class PartyUpBackend {
 
         
     }
-
     
-    /* Performs backend event creation.      *
-     * Returns an error message string if    *
-     * event creation failed, nil otherwise. */
-    func backendEventCreation(title: NSString, location: NSString, ageRestrictions: NSString,
-        isPublic: NSString, price: NSString, inviteList: [NSString], dateTime: NSString, description: NSString) -> (NSString?, NSString?)
-    {
-        PULog("Attempting to create an event...")
+    /* Invite friends to a preexisting event. *
+    * Returns an error message string if       *
+    * invite update failed, nil otherwise.     */
+    func backendEventAddFriends(eventID: NSString, userIDs: [NSString]) -> NSString? {
+        PULog("Attemping to add friends to an event")
         
         var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
         let username: NSString = userDefaults.objectForKey("USERNAME") as! NSString
@@ -266,18 +333,20 @@ class PartyUpBackend {
         var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/api/events/create"
         var postParams: [String: String] = ["title": title as String, "public": isPublic as String, "age_restrictions": ageRestrictions as String, "price": price as String, "location_name": location as String, "time": dateTime as String, "description": description as String]
         
-        var stringOfFriendIDs: String = ""
+        var stringOfUserIDs: String = ""
         var i: Int = 0
-        for friend in inviteList {
+        
+        for user in userIDs {
             if i == 0 {
-                stringOfFriendIDs += (friend as String)
+                stringOfUserIDs += (user as String)
             }
             else {
-                stringOfFriendIDs += "," + (friend as String)
+                stringOfUserIDs += "," + (user as String)
             }
             i += 1
         }
-        postParams["invite_list"] = stringOfFriendIDs
+        
+        postParams["userIDs"] = stringOfUserIDs
         
         var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
         
@@ -287,14 +356,11 @@ class PartyUpBackend {
             let jsonData: NSDictionary = postData!
             let accepted: Bool = jsonData.valueForKey("accepted") as! Bool
             var errorMessage: NSString? = jsonData.valueForKey("error") as! NSString?
-            // not sure if event id returned as integer or as an NSString
-            var eventID: NSInteger? = jsonData.valueForKey("id") as! NSInteger?
             
             // Event creation successful on server side
             if (accepted) {
-                PULog("Event Creation Successful!")
-                PULog("\(eventID)")
-                return (nil, "\(eventID!)" as NSString?)
+                PULog("Event add friends successful!")
+                return nil
             }
                 
                 // Register was unsuccessful on server side
@@ -302,17 +368,83 @@ class PartyUpBackend {
                 if (errorMessage == nil) {
                     errorMessage = "No error message received from server"
                 }
-                PULog("Event creation Failed: \(errorMessage!)")
-                return (errorMessage, nil)
+                PULog("Event add friends Failed: \(errorMessage!)")
+                return errorMessage
             }
         }
             
             // We did not receive JSON data back
         else {
-            PULog("Event Creation Failed: No JSON data received")
-            return ("Failed to connect to server", nil)
+            PULog("Event add friends failed: No JSON data received")
+            return "Failed to connect to server"
         }
     }
+    
+    /* Invite friends to a preexisting group.  *
+    * Returns an error message string if       *
+    * invite update failed, nil otherwise.     */
+    func backendGroupAddFriends(groupID: NSString, userIDs: [NSString]) -> NSString? {
+        PULog("Attemping to add friends to a group")
+        
+        var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let username: NSString = userDefaults.objectForKey("USERNAME") as! NSString
+        
+        /* Check API call */
+        //var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/api/groups/invite"
+        var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/api/groups/invite/"
+        var postParams: [String: String] = ["group": groupID as String]
+        
+        var stringOfUserIDs: String = ""
+        var i: Int = 0
+        
+        for user in userIDs {
+            if i == 0 {
+                stringOfUserIDs += (user as String)
+            }
+            else {
+                stringOfUserIDs += "," + (user as String)
+            }
+            i += 1
+        }
+        
+        postParams["userIDs"] = stringOfUserIDs
+        
+        var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
+        
+        // We received JSON data back: process it
+        if (postData != nil)
+        {
+            let jsonData: NSDictionary = postData!
+            let accepted: Bool = jsonData.valueForKey("accepted") as! Bool
+            var errorMessage: NSString? = jsonData.valueForKey("error") as! NSString?
+            
+            // Event creation successful on server side
+            if (accepted) {
+                PULog("Group add friends successful!")
+                return nil
+            }
+                
+                // Register was unsuccessful on server side
+            else {
+                if (errorMessage == nil) {
+                    errorMessage = "No error message received from server"
+                }
+                PULog("Group add friends Failed: \(errorMessage!)")
+                return errorMessage
+            }
+        }
+            
+            // We did not receive JSON data back
+        else {
+            PULog("Group add friends failed: No JSON data received")
+            return "Failed to connect to server"
+        }
+        
+    }
+
+    
+    /*---------------------------------------------*/
+   
     
     /* Respond to a group or event invite: *
      * Returns an error message string if  *
@@ -355,6 +487,8 @@ class PartyUpBackend {
             return "Failed to connect to server"
         }
     }
+    
+    /*---------------------------------------------*/
     
     /* Posts a group chat message on the backend. *
      * Returns an error message string if message *
@@ -582,7 +716,8 @@ class PartyUpBackend {
         // Query for event invitations
         PULog("Querying event invitations")
         
-        postURL = "http://\(UBUNTU_SERVER_IP)/events/get/"
+        //postURL = "http://\(UBUNTU_SERVER_IP)/events/get/"
+        postURL = "http://\(UBUNTU_SERVER_IP)/api/events/get/"
         postParams = ["type": "invited"]
         
         postData = sendPostRequest(postParams, url: postURL)

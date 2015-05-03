@@ -107,6 +107,7 @@ class CreateModel {
 
     /*-------------------------------------------*/
     
+    /* Call backend function to update group with newly added events */
     func addEventsToGroup(groupID: NSString, eventIDs: [NSString]) -> NSString?
     {
         var backendError: NSString? = PartyUpBackend.instance.backendUpdateGroup(groupID, eventIDs: eventIDs)
@@ -117,6 +118,28 @@ class CreateModel {
             return "Group update failed"
         }
     }
+    
+    
+    func inviteFriendsToEvent(eventID: NSString, userIDs: [NSString]) -> NSString? {
+        var backendError: NSString? = PartyUpBackend.instance.backendEventAddFriends(eventID, userIDs: userIDs)
+        if backendError == nil {
+            return nil
+        }
+        else {
+            return "Add friends to event failed"
+        }
+    }
+    
+    func inviteFriendsToGroup(groupID: NSString, userIDs: [NSString]) -> NSString? {
+        var backendError: NSString? = PartyUpBackend.instance.backendGroupAddFriends(groupID, userIDs: userIDs)
+        if backendError == nil {
+            return nil
+        }
+        else {
+            return "Add friends to group failed"
+        }
+    }
+    
 
     // MARK: Users
     

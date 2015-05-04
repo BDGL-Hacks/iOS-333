@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>PartyUp</title>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+            <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css"/>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+                <link href='http://fonts.googleapis.com/css?family=Rancho|Roboto+Slab' rel='stylesheet' type='text/css'>
+                    <script src="api.js"></script>
+                    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+                    
+                    
+                    <link rel="stylesheet" type="text/css" href="group-home.css">
+                        <script src="group-home.js"></script>
+                        
+                        <link rel="stylesheet" type="text/css" href="base.css"/>
+                        </head>
+    <body>
+        
+        
+        <div class=shade onclick="$('.dropdown').hide('slide', {
+            direction : 'right'
+            }, 500); $('.shade').fadeOut();"></div>
+        <div class="dropdown" onclick="$(this).hide('slide', {
+            direction : 'right'
+            }, 500); $('.shade').fadeOut();">
+            <div class="dropdown-option">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                Search Users
+            </div>
+            <div class="dropdown-option">
+                <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
+                Notifications
+            </div>
+            <div class="dropdown-option">
+                <span class="glyphicon glyphicon-sunglasses"  aria-hidden="true"></span>
+                View Groups
+            </div>
+            <div class="dropdown-option">
+                <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                View Events
+            </div>
+            <div class="dropdown-option"
+                style="border-top: solid;
+                border-bottom: none;
+                position: absolute;
+                bottom: 0px;
+                width: 100%;">
+                <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+                Logout
+            </div>
+        </div>
+        
+        
+        
+        <div class="logo">
+            PartyUp
+            <span class="glyphicon glyphicon-th-list dropdown-icon" aria-hidden="true" onclick="$('.dropdown').show('slide', { direction: 'right'}, 500); $('.shade').fadeIn()"></span>
+        </div>
+        
+        
+        
+        <div id="group-carousel" class="carousel slide" data-ride="carousel" data-interval="false">
+            
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+                <div class="item active">
+                    <div class="group-name">
+                        Cos 333 Group
+                    </div>
+                    <div class="event-curr">
+                        Current Event <span class="glyphicon glyphicon-cog"
+                            aria-hidden="true"
+                            style="top: 10; left: 20;"></span>
+                    </div>
+                    
+                    <div class="event-info">
+                        <div class="event-name">
+                            Demo Day
+                        </div>
+                        <div class="event-time" style="font-size:50px;">
+                            10:30 am Thursday, May 30
+                        </div>
+                        <div class="event-location">
+                            The ClassRoom
+                        </div>
+                        
+                    </div>
+                    <div class="chat-button">
+                        Chat
+                    </div>
+                    <div class="ping-button">
+                        Ping Group
+                    </div>
+                    <div class="edit-button">
+                        Edit Group
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="group-name">
+                        Cos 444 Group
+                    </div>
+                    <div class="event-curr">
+                        Current Event <span class="glyphicon glyphicon-cog"
+                            aria-hidden="true"
+                            style="top: 10; left: 20;"></span>
+                    </div>
+                    
+                    <div class="event-info">
+                        <div class="event-name">
+                            Demo Day
+                        </div>
+                        <div class="event-time" style="font-size:50px;">
+                            10:30 am Thursday, May 30
+                        </div>
+                        <div class="event-location">
+                            The ClassRoom
+                        </div>
+                        
+                    </div>
+                    <div class="chat-button">
+                        Chat
+                    </div>
+                    <div class="ping-button">
+                        Ping Group
+                    </div>
+                    <div class="edit-button">
+                        Edit Group
+                    </div>
+                </div>
+            </div>
+            
+        </div> <!-- Carousel -->
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#group-carousel" data-slide-to="0" class="active-indicator" onclick="carouselClick($(this))"></li>
+            <li data-target="#group-carousel" data-slide-to="1"onclick="carouselClick($(this))"></li>
+        </ol>
+        
+        <!--
+         <script type="text/javascript">
+         // Initialize the API
+         $(document).ready(function() {
+         set_server("http://localhost:8000");
+         });
+         </script>
+         --->
+        
+    </body>
+</html>

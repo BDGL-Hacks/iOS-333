@@ -53,9 +53,9 @@ class AddChooseEventsViewController: PartyUpViewController, UITableViewDelegate,
             searchEventsModel.update(SearchEventsModel.QueryType.User)
             
             /* Set all model arrays */
-            createEvent?.setOwnedQueryResults(searchEventsModel.getCreatedEvents())
+            //createEvent?.setOwnedQueryResults(searchEventsModel.getCreatedEvents())
             createEvent?.setAttendingQueryResults(searchEventsModel.getAttendingEvents())
-            createEvent?.setInvitedQueryResults(searchEventsModel.getInvitedEvents())
+            //createEvent?.setInvitedQueryResults(searchEventsModel.getInvitedEvents())
             
             ownedQueryResults = createEvent?.getOwnedQueryResults()
             attendingQueryResults = createEvent?.getAttendingQueryResults()

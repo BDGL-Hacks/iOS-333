@@ -14,7 +14,7 @@ enum SlideOutState {
     case Expanded
 }
 
-class MasterViewController: PartyUpViewController, HomepageViewControllerDelegate, SideMenuViewControllerDelegate, UIGestureRecognizerDelegate {
+class MasterViewController: PartyUpViewController, HomepageViewControllerDelegate, UIGestureRecognizerDelegate {
     
    /*--------------------------------------------*
     * Variables and Declarations
@@ -97,7 +97,7 @@ class MasterViewController: PartyUpViewController, HomepageViewControllerDelegat
     }
     
     func addChildSideMenuController(sideMenuController: SideMenuViewController) {
-        sideMenuController.delegate = self
+        sideMenuController.delegate = homepageViewController
         view.insertSubview(sideMenuController.view, atIndex: 0)
         self.addChildViewController(sideMenuController)
         sideMenuController.didMoveToParentViewController(self)
@@ -109,15 +109,17 @@ class MasterViewController: PartyUpViewController, HomepageViewControllerDelegat
     *--------------------------------------------*/
     
     func animateSideMenu(#shouldExpand: Bool) {
-        if (shouldExpand) {
-            currentState = .Expanded
-            animateCenterPanelXPosition(targetPosition: -CGRectGetWidth(homepageViewController.view.frame) + sideMenuExpandedOffset)
-        }
-        else {
-            animateCenterPanelXPosition(targetPosition: 0) { _ in
-                self.currentState = .Collapsed
-                self.sideMenuViewController!.view.removeFromSuperview()
-                self.sideMenuViewController = nil;
+        if (sideMenuViewController != nil) {
+            if (shouldExpand) {
+                currentState = .Expanded
+                animateCenterPanelXPosition(targetPosition: -CGRectGetWidth(homepageViewController.view.frame) + sideMenuExpandedOffset)
+            }
+            else {
+                animateCenterPanelXPosition(targetPosition: 0) { _ in
+                    self.currentState = .Collapsed
+                    self.sideMenuViewController!.view.removeFromSuperview()
+                    self.sideMenuViewController = nil;
+                }
             }
         }
     }

@@ -75,7 +75,7 @@ class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, 
             PULog("Preparing for segue")
             finalizeGroup()
             let destinationVC = segue.destinationViewController as! HomepageViewController
-            destinationVC.setActiveView(HomepageViewController.NavView.Groups)
+            destinationVC.setActiveView(.GroupsList)
         }
     }
     

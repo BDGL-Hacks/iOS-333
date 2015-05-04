@@ -61,7 +61,7 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
             PULog("Preparing for segue")
             finalizeEvent()
             let destinationVC = segue.destinationViewController as! HomepageViewController
-            destinationVC.setActiveView(HomepageViewController.NavView.Events)
+            destinationVC.setActiveView(.MyEvents)
         }
     }
     

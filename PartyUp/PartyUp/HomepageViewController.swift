@@ -8,33 +8,38 @@
 
 import UIKit
 
-@objc
 protocol HomepageViewControllerDelegate {
     func showSideMenu()
     func hideSideMenu()
     func toggleSideMenu()
 }
 
-class HomepageViewController: PartyUpViewController
+enum NavView: String {
+    case GroupsList   = "Groups List Page"
+    case GroupsDetail = "Groups Detail Page"
+    case MyEvents     = "My Events Page"
+    case SearchEvents = "Search Events Page"
+    case Alerts       = "Alerts Page"
+}
+
+class HomepageViewController: PartyUpViewController, SideMenuViewControllerDelegate
 {
    /*--------------------------------------------*
     * Instance variables and Declarations
     *--------------------------------------------*/
     
     var delegate: HomepageViewControllerDelegate?
-    
-    enum NavView {
-        case Groups
-        case Events
-    }
 
 
    /*--------------------------------------------*
     * UI Components
     *--------------------------------------------*/
     
-    @IBOutlet var groupsChildView: UIView!
-    @IBOutlet var eventsChildView: UIView!
+    @IBOutlet var groupsListChildView: UIView!
+    @IBOutlet var groupsDetailChildView: UIView!
+    @IBOutlet var myEventsChildView: UIView!
+    @IBOutlet var searchEventsChildView: UIView!
+    @IBOutlet var alertsChildView: UIView!
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var sideMenuButton: UIButton!
@@ -44,53 +49,23 @@ class HomepageViewController: PartyUpViewController
     * Computed Properties
     *--------------------------------------------*/
     
-    //var activeView: UIView! = self.groups
-    //var inactiveView: UIView! = eventsChildView
+    var activeView: UIView = UIView()
     
     
    /*--------------------------------------------*
     * View response methods
     *--------------------------------------------*/
     
-    @IBAction func logout(sender: UIButton) {
-        PULog("Logout button pressed")
-        PULog("Deleting cookies...")
-        var cookieStorage: NSHTTPCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
-        for cookie in cookieStorage.cookies! {
-            cookieStorage.deleteCookie(cookie as! NSHTTPCookie)
-        }
-        PULog("Deleting app preferences...")
-        var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        let appDomain: String = NSBundle.mainBundle().bundleIdentifier!
-        userDefaults.removePersistentDomainForName(appDomain)
-        userDefaults.synchronize()
-        PULog("Transitioning to Login screen")
-        self.performSegueWithIdentifier("homeToLogin", sender: self)
-    }
-    
-    @IBAction func sideMenuButtonPressed(sender: UIBarButtonItem) {
-        PULog("Side menu button pressed")
-        delegate!.toggleSideMenu()
-        
-        /*
-        if (activeView == eventsChildView) {
-            PULog("Transitioning to Create Event Screen")
-            self.performSegueWithIdentifier("homeToCreateEvent", sender: self)
-        }
-        else if (activeView == groupsChildView)
-        {
-            PULog("Transitioning to Create Group Screen")
-            self.performSegueWithIdentifier("homeToCreateGroup", sender: self)
-        }
-        */
-    }
-
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
+        // Display the groups detail page at the start, hid everything else
+        groupsListChildView.hidden = true
+        groupsDetailChildView.hidden = true
+        myEventsChildView.hidden = true
+        searchEventsChildView.hidden = true
+        alertsChildView.hidden = true
+        setActiveView(.GroupsList)
         
         // If the user is not logged in, delete cookies and go to login screen
         if (!isLoggedIn()) {
@@ -115,6 +90,11 @@ class HomepageViewController: PartyUpViewController
             PULog("User is logged in. Displaying homepage.")
         }
     }
+    
+    @IBAction func sideMenuButtonPressed(sender: UIBarButtonItem) {
+        PULog("Side menu button pressed")
+        delegate!.toggleSideMenu()
+    }
 
 
    /*--------------------------------------------*
@@ -123,7 +103,42 @@ class HomepageViewController: PartyUpViewController
     
     /* Sets the active view to either Groups or Events */
     func setActiveView(newActiveView: NavView) {
-        PULog("Ha!, this does nothing")
+        PULog("Setting active view: \(newActiveView.rawValue)")
+        delegate!.hideSideMenu()
+        activeView.hidden = true
+        switch newActiveView {
+            case .GroupsList:
+                activeView = groupsListChildView
+            case .GroupsDetail:
+                activeView = groupsDetailChildView
+            case .MyEvents:
+                activeView = myEventsChildView
+            case .SearchEvents:
+                activeView = searchEventsChildView
+            case .Alerts:
+                activeView = alertsChildView
+            default:
+                break
+        }
+        activeView.hidden = false
+    }
+    
+    /* Logs the user out */
+    func logout() {
+        PULog("Logout button pressed")
+        PULog("Deleting cookies...")
+        var cookieStorage: NSHTTPCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+        for cookie in cookieStorage.cookies! {
+            cookieStorage.deleteCookie(cookie as! NSHTTPCookie)
+        }
+        PULog("Deleting app preferences...")
+        var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let appDomain: String = NSBundle.mainBundle().bundleIdentifier!
+        userDefaults.removePersistentDomainForName(appDomain)
+        userDefaults.synchronize()
+        PULog("Transitioning to Login screen")
+        delegate!.hideSideMenu()
+        self.performSegueWithIdentifier("homeToLogin", sender: self)
     }
 
 }

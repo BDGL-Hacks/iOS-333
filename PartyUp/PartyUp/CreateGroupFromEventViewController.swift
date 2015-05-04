@@ -70,7 +70,7 @@ class CreateGroupFromEventViewController: PartyUpViewController, UITableViewData
             PULog("Preparing for segue")
             addFriends()
             let destinationVC = segue.destinationViewController as! HomepageViewController
-            destinationVC.setActiveView(HomepageViewController.NavView.Groups)
+            destinationVC.setActiveView(.GroupsList)
         }
     }
     

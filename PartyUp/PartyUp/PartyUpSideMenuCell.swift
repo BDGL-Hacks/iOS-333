@@ -17,4 +17,8 @@ class PartyUpSideMenuCell: UITableViewCell
         self.cellImageView = UIImageView(image: UIImage(named: imageName as String))
         self.cellLabel.text = labelText as String
     }
+    
+    func getLabelText() -> NSString {
+        return cellLabel.text! as NSString
+    }
 }

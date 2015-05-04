@@ -30,6 +30,8 @@
 		7E7ED50D1AD463CE000C2775 /* SearchEventsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7ED50C1AD463CE000C2775 /* SearchEventsModel.swift */; };
 		7E8E6EB91AE94DD3008294C2 /* AddBrowseEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B86CC091AE7E2B9008F8882 /* AddBrowseEventsViewController.swift */; };
 		7E8E6EBB1AE952DF008294C2 /* AddFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8E6EBA1AE952DF008294C2 /* AddFriendsViewController.swift */; };
+		7E99E7761AF7D1A600066C17 /* RobotoSlab-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E99E7751AF7D1A600066C17 /* RobotoSlab-Regular.ttf */; };
+		7E99E7781AF7D1C700066C17 /* Rancho-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E99E7771AF7D1C700066C17 /* Rancho-Regular.ttf */; };
 		7EA0DD021ACE25E900FC3EC1 /* MainGroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA0DD011ACE25E900FC3EC1 /* MainGroupsViewController.swift */; };
 		7EA0DD041ACE260500FC3EC1 /* MyEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA0DD031ACE260500FC3EC1 /* MyEventsViewController.swift */; };
 		7ECBC7951ACE4A50005329B5 /* HomepageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECBC7941ACE4A50005329B5 /* HomepageViewController.swift */; };
@@ -51,8 +53,6 @@
 		8B6AD0F51AF3E252005752DE /* BindEventToGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6AD0F41AF3E252005752DE /* BindEventToGroupViewController.swift */; };
 		8B6AD0F71AF53705005752DE /* InviteFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6AD0F61AF53705005752DE /* InviteFriendsViewController.swift */; };
 		8B6AD0F91AF55CF7005752DE /* GroupInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6AD0F81AF55CF7005752DE /* GroupInfoViewController.swift */; };
-		8B6AD0FB1AF56520005752DE /* Rancho-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B6AD0FA1AF56520005752DE /* Rancho-Regular.ttf */; };
-		8B6AD1011AF56940005752DE /* RobotoSlab-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B6AD1001AF56940005752DE /* RobotoSlab-Regular.ttf */; };
 		8B6AD1031AF5737E005752DE /* CustomHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6AD1021AF5737E005752DE /* CustomHeaderTableViewCell.swift */; };
 		8B77C2EE1AD987A500E6E8AE /* PartyUpUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B77C2EC1AD987A500E6E8AE /* PartyUpUserCell.swift */; };
 		8B77C2EF1AD987A500E6E8AE /* PartyUpUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B77C2ED1AD987A500E6E8AE /* PartyUpUserCell.xib */; };
@@ -102,6 +102,8 @@
 		7E7ED50C1AD463CE000C2775 /* SearchEventsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchEventsModel.swift; sourceTree = "<group>"; };
 		7E8E6EB71AE94DAE008294C2 /* PartyUp-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PartyUp-Bridging-Header.h"; sourceTree = "<group>"; };
 		7E8E6EBA1AE952DF008294C2 /* AddFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsViewController.swift; sourceTree = "<group>"; };
+		7E99E7751AF7D1A600066C17 /* RobotoSlab-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoSlab-Regular.ttf"; sourceTree = "<group>"; };
+		7E99E7771AF7D1C700066C17 /* Rancho-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rancho-Regular.ttf"; sourceTree = "<group>"; };
 		7EA0DD011ACE25E900FC3EC1 /* MainGroupsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainGroupsViewController.swift; sourceTree = "<group>"; };
 		7EA0DD031ACE260500FC3EC1 /* MyEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyEventsViewController.swift; sourceTree = "<group>"; };
 		7ECBC7941ACE4A50005329B5 /* HomepageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomepageViewController.swift; sourceTree = "<group>"; };
@@ -127,8 +129,6 @@
 		8B6AD0F41AF3E252005752DE /* BindEventToGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindEventToGroupViewController.swift; sourceTree = "<group>"; };
 		8B6AD0F61AF53705005752DE /* InviteFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteFriendsViewController.swift; sourceTree = "<group>"; };
 		8B6AD0F81AF55CF7005752DE /* GroupInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupInfoViewController.swift; sourceTree = "<group>"; };
-		8B6AD0FA1AF56520005752DE /* Rancho-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rancho-Regular.ttf"; path = "../../../../Downloads/rancho/Rancho-Regular.ttf"; sourceTree = "<group>"; };
-		8B6AD1001AF56940005752DE /* RobotoSlab-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "RobotoSlab-Regular.ttf"; path = "../../../../Downloads/roboto-slab 2/RobotoSlab-Regular.ttf"; sourceTree = "<group>"; };
 		8B6AD1021AF5737E005752DE /* CustomHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		8B77C2EC1AD987A500E6E8AE /* PartyUpUserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyUpUserCell.swift; sourceTree = "<group>"; };
 		8B77C2ED1AD987A500E6E8AE /* PartyUpUserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PartyUpUserCell.xib; sourceTree = "<group>"; };
@@ -184,8 +184,8 @@
 			isa = PBXGroup;
 			children = (
 				7EDC76D21AC7C46000252753 /* PartyUp_icon_2x_placeholder.png */,
-				8B6AD0FA1AF56520005752DE /* Rancho-Regular.ttf */,
-				8B6AD1001AF56940005752DE /* RobotoSlab-Regular.ttf */,
+				7E99E7771AF7D1C700066C17 /* Rancho-Regular.ttf */,
+				7E99E7751AF7D1A600066C17 /* RobotoSlab-Regular.ttf */,
 				7EDC76D31AC7C46000252753 /* PartyUp_icon_3x_placeholder.png */,
 				7E12883C1ABF3E2400922622 /* PartyUp_arrow_placeholder.png */,
 			);
@@ -382,18 +382,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B6AD1011AF56940005752DE /* RobotoSlab-Regular.ttf in Resources */,
 				7EDC76D41AC7C46000252753 /* PartyUp_icon_2x_placeholder.png in Resources */,
 				7EDD4EDA1ABE727C00CEECD0 /* Main.storyboard in Resources */,
 				7E12FFDF1AD750610066D0DC /* PartyUpTableCell.xib in Resources */,
+				7E99E7761AF7D1A600066C17 /* RobotoSlab-Regular.ttf in Resources */,
 				7E12883D1ABF3E2400922622 /* PartyUp_arrow_placeholder.png in Resources */,
 				7EDD4EDF1ABE727C00CEECD0 /* LaunchScreen.xib in Resources */,
 				7EDD4EDC1ABE727C00CEECD0 /* Images.xcassets in Resources */,
 				7E1A6C351AF28781006164A0 /* PartyUpAlertCell.xib in Resources */,
-				8B6AD0FB1AF56520005752DE /* Rancho-Regular.ttf in Resources */,
 				7EDC76D51AC7C46000252753 /* PartyUp_icon_3x_placeholder.png in Resources */,
 				7EDC76D71AC7C83A00252753 /* todo.txt in Resources */,
 				8B77C2EF1AD987A500E6E8AE /* PartyUpUserCell.xib in Resources */,
+				7E99E7781AF7D1C700066C17 /* Rancho-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -617,7 +617,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4a5cfe40-cb12-43ed-9c27-a7466043ccd2";
+				PROVISIONING_PROFILE = "0a31e685-22ec-4c39-964f-07def24058ce";
 				SWIFT_OBJC_BRIDGING_HEADER = "PartyUp/PartyUp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -635,7 +635,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4a5cfe40-cb12-43ed-9c27-a7466043ccd2";
+				PROVISIONING_PROFILE = "0a31e685-22ec-4c39-964f-07def24058ce";
 				SWIFT_OBJC_BRIDGING_HEADER = "PartyUp/PartyUp-Bridging-Header.h";
 			};
 			name = Release;

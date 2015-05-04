@@ -72,7 +72,7 @@ class FindEventsViewController: PartyUpViewController, UISearchResultsUpdating
         if (segue.identifier == "findEventsToEventInfo") {
             let eventInfoVC: EventInfoViewController = segue.destinationViewController
                 as! EventInfoViewController
-            eventInfoVC.setEventData(selectedCellEventData)
+            eventInfoVC.setEventData(event: selectedCellEventData)
         }
     }
     

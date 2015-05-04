@@ -1088,10 +1088,16 @@
                             <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ELA-1i-6Oy">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="496"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="delegate" destination="62g-El-AAk" id="u1c-vj-E8g"/>
+                                </connections>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="webView" destination="ELA-1i-6Oy" id="vHg-Zb-LhN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i9E-cq-Nuk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -8,14 +8,22 @@
 
 import UIKit
 
+@objc
+protocol HomepageViewControllerDelegate {
+    func showSideMenu()
+    func hideSideMenu()
+    func toggleSideMenu()
+}
+
 class HomepageViewController: PartyUpViewController
 {
    /*--------------------------------------------*
     * Instance variables and Declarations
     *--------------------------------------------*/
     
+    var delegate: HomepageViewControllerDelegate?
+    
     var navView: NavView = NavView.Groups
-
     enum NavView: Int {
         case Groups = 0
         case Events = 1
@@ -84,6 +92,9 @@ class HomepageViewController: PartyUpViewController
     
     @IBAction func createButtonPressed(sender: UIBarButtonItem) {
         PULog("Create button pressed")
+        delegate!.toggleSideMenu()
+        
+        /*
         if (activeView == eventsChildView) {
             PULog("Transitioning to Create Event Screen")
             self.performSegueWithIdentifier("homeToCreateEvent", sender: self)
@@ -93,6 +104,7 @@ class HomepageViewController: PartyUpViewController
             PULog("Transitioning to Create Group Screen")
             self.performSegueWithIdentifier("homeToCreateGroup", sender: self)
         }
+        */
     }
     
     

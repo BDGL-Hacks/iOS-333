@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SLw-45-19W">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SLw-45-19W">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -676,7 +676,7 @@
         <!--Homepage View Controller-->
         <scene sceneID="N1O-BG-eMS">
             <objects>
-                <viewController id="SLw-45-19W" customClass="HomepageViewController" customModule="PartyUp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomepageViewController" id="SLw-45-19W" customClass="HomepageViewController" customModule="PartyUp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Df0-EH-pWk"/>
                         <viewControllerLayoutGuide type="bottom" id="2q9-0M-ngP"/>
@@ -741,6 +741,7 @@
                         <segue destination="lbU-PQ-Vkh" kind="show" identifier="homeToLogin" id="JkK-RB-7NF"/>
                         <segue destination="pJ6-rL-ZN6" kind="presentation" identifier="homeToCreateGroup" id="31j-Ig-WEP"/>
                         <segue destination="iDH-9r-U2n" kind="presentation" identifier="homeToCreateEvent" id="f1n-2s-Yq2"/>
+                        <segue destination="8Yo-w7-WN8" kind="show" identifier="fakeSegue" id="c16-FK-cGE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aGq-Lm-GeE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -878,6 +879,60 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2317" y="2421"/>
+        </scene>
+        <!--Side Menu View Controller-->
+        <scene sceneID="r92-Z5-fvz">
+            <objects>
+                <viewController storyboardIdentifier="SideMenuViewController" id="8Yo-w7-WN8" customClass="SideMenuViewController" customModule="PartyUp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VhG-xL-jB6"/>
+                        <viewControllerLayoutGuide type="bottom" id="hnP-5J-pIB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bQF-HP-vAO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="3va-5N-aHQ">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <color key="backgroundColor" red="0.20000000000000001" green="0.18431372549019609" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="sideMenuCell" rowHeight="55" id="a1z-vU-QWj" customClass="PartyUpSideMenuCell" customModule="PartyUp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a1z-vU-QWj" id="qaj-Do-Ijf">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rr2-Qx-Xd2">
+                                                    <rect key="frame" x="8" y="0.0" width="54" height="54"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Text" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z4B-dL-SbL">
+                                                    <rect key="frame" x="93" y="0.0" width="227" height="54"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                    <color key="textColor" red="0.50196078431372548" green="0.78431372549019607" blue="0.70980392156862748" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.20000000000000001" green="0.18431372549019609" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="cellImageView" destination="rr2-Qx-Xd2" id="zyt-9X-45U"/>
+                                            <outlet property="cellLabel" destination="z4B-dL-SbL" id="z4T-Ok-KVW"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="8Yo-w7-WN8" id="Mmb-K1-in4"/>
+                                    <outlet property="delegate" destination="8Yo-w7-WN8" id="ZPO-l6-jL4"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sSM-4r-9Qn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2317" y="286"/>
         </scene>
         <!--Main Groups View Controller-->
         <scene sceneID="07y-sZ-Vnj">
@@ -2546,6 +2601,6 @@ tapping the 'Find' tab on the bottom.</string>
         <segue reference="abd-oF-V01"/>
         <segue reference="Bug-U0-u0v"/>
         <segue reference="Cdc-xi-cBr"/>
-        <segue reference="in5-ko-7n1"/>
+        <segue reference="f1n-2s-Yq2"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -12,7 +12,7 @@ class MainGroupsViewController: PartyUpViewController, UITableViewDelegate, UITa
 {
     
    /*--------------------------------------------*
-    * Model and instance variable
+    * Model and instance variables
     *--------------------------------------------*/
     
     let searchGroupsModel: SearchGroupsModel = SearchGroupsModel()

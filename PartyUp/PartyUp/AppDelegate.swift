@@ -13,12 +13,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
+    {
+        // Register for Push Notifications
         PULog("Attempting to register for push notifications")
         UIApplication.sharedApplication().registerForRemoteNotifications()
         let settings = UIUserNotificationSettings(forTypes: .Alert, categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+        
+        // Handle master container view
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        let masterViewController = MasterViewController()
+        window!.rootViewController = masterViewController
+        window!.makeKeyAndVisible()
+        
         return true
     }
     

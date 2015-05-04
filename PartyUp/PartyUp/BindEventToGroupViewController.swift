@@ -88,7 +88,7 @@ class BindEventToGroupViewController: PartyUpViewController, UITableViewDelegate
             PULog("Preparing for segue")
             addEventToGroup()
             let destinationVC = segue.destinationViewController as! HomepageViewController
-            destinationVC.setActiveView(HomepageViewController.NavView.Groups)
+            //destinationVC.setActiveView(.GroupsList)
         }
     }
     

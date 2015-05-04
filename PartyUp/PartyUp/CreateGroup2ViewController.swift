@@ -99,7 +99,7 @@ class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, 
         else if segue.identifier == "createGroup2ToHome" {
             finalizeGroup()
             let destinationVC = segue.destinationViewController as! HomepageViewController
-            destinationVC.setActiveView(HomepageViewController.NavView.Groups)
+            //destinationVC.setActiveView(.GroupsList)
         }
         else if segue.identifier == "createGroup2ToGroupInfo" {
             PULog("Preparing for segue")

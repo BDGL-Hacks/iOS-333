@@ -20,17 +20,19 @@ Globals / DataManager
 
 Homepage
 --------
+ ! Figure out what we want the side menu buttons to be
  - Find better way homepage not perform queries on startup if not logged in -> go straight to login
  - Logout confirmation popover so can't logout with one click
+ - When closing the side menu, the user can "overswipe" left and see the menu background, make this not happen
 
 Groups Main Page
 ----------------
 
-Groups Advanced Page
+Groups Details Page
 --------------------
- ! Create it!
+ ! Have UIWebView ready to display the html page
 
-Group Info Page
+Group Edit Page
 ---------------
  ! Create it!
 
@@ -42,6 +44,7 @@ Group Chat
 
 Create Groups
 -------------
+ ! Investigate create group "failing" when it seems to create the group sucessfully
  - Perform form validation: specifically, don't even query backend if a group hasn't been selected
  - Allow user to add an event to a group (takes to alternative event creation page)
     - update group events afterwards
@@ -92,6 +95,7 @@ Create Event
 Alerts Page
 -----------
  ! Handle check up alerts in AlertModel and PartyUpBackend
+ - Improve Alert Cell aesthetics (possibly solid background on white text for buttons)
  - Implement Group Info segues and TODOs in AlertViewController
 
 Login

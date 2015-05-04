@@ -165,8 +165,17 @@ class AddChooseEventsViewController: PartyUpViewController, UITableViewDelegate,
         }
     }
     
+    /*
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sectionsInTable[section]
+    }
+    */
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
+        headerCell.backgroundColor = UIColorFromRGB(0xE6C973)
+        headerCell.headerTextLabel.text = sectionsInTable[section]
+        return headerCell
     }
     
     /* Adds selected events to table of added events in previous view controller */

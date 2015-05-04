@@ -9,11 +9,14 @@
 import UIKit
 
 class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, UITableViewDelegate {
-
+    
     var createGroup: CreateModel?
+    var group: NSDictionary?
     var addedEvents: NSMutableArray? = NSMutableArray()
     @IBOutlet weak var addedEventsTableView: UITableView!
+    var fromGroupInfo = false
     
+        
     /* Set up the table and fetch data from create model */
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,13 +46,35 @@ class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, 
         super.viewDidAppear(animated)
         PULog("Displaying create group 2 page")
     }
+    
+    func setGroupData(group: NSDictionary) {
+        self.group = group
+        createGroup = CreateModel()
+    }
+    
+    func setIsFromGroupInfo(fromGroupInfo: Bool) {
+        self.fromGroupInfo = fromGroupInfo
+    }
 
     /* Store added events in create model and dismiss view */
     
+    /* User presses checkmark and execute segue */
+    @IBAction func checkmarkPressed(sender: UIBarButtonItem) {
+        if (fromGroupInfo) {
+            self.performSegueWithIdentifier("createGroup2ToGroupInfo", sender: self)
+        }
+        else {
+            self.performSegueWithIdentifier("createGroup2ToHome", sender: self)
+        }
+    }
+    
+    
     @IBAction func backToLastPage(sender: UIBarButtonItem) {
         PULog("Going back to first group creation page")
-        var eventsList = addedEvents! as NSArray
-        createGroup?.setGroupEvents(eventsList)
+        if (!fromGroupInfo) {
+            var eventsList = addedEvents! as NSArray
+            createGroup?.setGroupEvents(eventsList)
+        }
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -72,10 +97,16 @@ class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, 
             destinationVC.previousViewController = self
         }
         else if segue.identifier == "createGroup2ToHome" {
-            PULog("Preparing for segue")
             finalizeGroup()
             let destinationVC = segue.destinationViewController as! HomepageViewController
             //destinationVC.setActiveView(.GroupsList)
+        }
+        else if segue.identifier == "createGroup2ToGroupInfo" {
+            PULog("Preparing for segue")
+            finalizeGroup()
+            let destinationVC = segue.destinationViewController as! GroupInfoViewController
+            var groupID = "\(DataManager.getGroupID(group!))"
+            destinationVC.setGroupData(groupID: groupID)
         }
     }
     
@@ -100,22 +131,34 @@ class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, 
             }
         }
         
-        /* Check that friends list was actually populated */
+        /* Check that friends list was actually populated
         for event in eventIDs {
             PULog(event)
         }
+        */
+        
+        
         
         /* Send to backend */
-        
-        createGroup?.groupSecondPage(eventIDs)
-        
-        var backendError: NSString? = createGroup?.groupSendToBackend()
-        
-        /* Not sure if need this code because segue is already bound to the button */
-        if (backendError != nil)
-        {
-            displayAlert("Group creation Failed", message: backendError!)
+        if (fromGroupInfo) {
+            var groupID: NSString = "\(DataManager.getGroupID(group!))"
+            var backendError: NSString? = createGroup!.addEventsToGroup(groupID, eventIDs: eventIDs)
+            if (backendError != nil) {
+                displayAlert("Group Update Failed", message: backendError!)
+            }
+        }
             
+        else {
+            createGroup?.groupSecondPage(eventIDs)
+        
+            var backendError: NSString? = createGroup?.groupSendToBackend()
+        
+            /* Not sure if need this code because segue is already bound to the button */
+            if (backendError != nil)
+            {
+                displayAlert("Group creation Failed", message: backendError!)
+            
+            }
         }
 
     }
@@ -168,6 +211,14 @@ class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, 
         cell.setCellData(event)
         cell.accessoryType = UITableViewCellAccessoryType.None
         return cell
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
+        headerCell.backgroundColor = UIColorFromRGB(0xE6C973)
+        headerCell.headerTextLabel.text = "Added Events (swipe to delete)";
+     
+        return headerCell
     }
     
     /* Allows user to swipe to delete added events */

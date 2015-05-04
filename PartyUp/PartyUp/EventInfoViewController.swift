@@ -21,7 +21,6 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
     * UI Components
     *--------------------------------------------*/
     
-    @IBOutlet weak var acceptInvitationButton: UIButton!
     @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var eventTitleLabel: UILabel!
     
@@ -33,9 +32,11 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var ageRestrictionsLabel: UILabel!
-    var isInvited: Bool = false
     var isEventOwner: Bool = false
+    var isFromGroupInfo: Bool = false
     
+    @IBOutlet weak var bindEventToGroupButton: UIButton!
+    @IBOutlet weak var createGroupButton: UIButton!
     @IBOutlet weak var attendeeTable: PUDynamicTableView!
     
     
@@ -66,6 +67,7 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
             let destinationVC = segue.destinationViewController as! InviteFriendsViewController
             destinationVC.setEventData(event)
             destinationVC.setGroupOrEvent(true)
+            destinationVC.setCreatedEvent(isEventOwner)
         }
     }
     
@@ -78,11 +80,13 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        if (isInvited == false) {
-            acceptInvitationButton.hidden = true
-        }
         if (!isEventOwner || !(DataManager.getEventPublic(event))) {
             invitePeople.hidden = true
+        }
+        if (isFromGroupInfo) {
+            invitePeople.hidden = true
+            createGroupButton.hidden = true
+            bindEventToGroupButton.hidden = true
         }
     }
     
@@ -128,12 +132,27 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
         }
     }
     
-    func setEventData(event: NSDictionary) {
+    func setEventData(#event: NSDictionary) {
         self.event = event
+    }
+    
+    func setEventData(#eventID: NSString) {
+        let (errorMessage: NSString?, queryResult: NSDictionary?) =
+        PartyUpBackend.instance.queryEventSearchByID(eventID)
+        if (errorMessage != nil) {
+            PULog("Get event by ID failed: \(errorMessage!)")
+        } else {
+            PULog("Update Success!")
+        }
+        self.event = queryResult!
     }
     
     func setIsCreatedEvent(isCreated: Bool) {
         self.isEventOwner = isCreated
+    }
+    
+    func setFromGroupInfo(isFromGroupInfo: Bool) {
+        self.isFromGroupInfo = isFromGroupInfo
     }
     
    /*--------------------------------------------*

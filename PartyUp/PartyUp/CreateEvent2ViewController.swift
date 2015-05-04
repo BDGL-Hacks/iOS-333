@@ -55,7 +55,7 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
             let destinationVC = segue.destinationViewController as! AddFriendsViewController
             destinationVC.create = self.createEvent
             destinationVC.previousViewController = self
-            destinationVC.isEvent = true
+            destinationVC.setPrev(AddFriendsViewController.PrevType.CreateEvent2)
         }
         else if segue.identifier == "eventCreationTwoToHome" {
             PULog("Preparing for segue")
@@ -170,6 +170,13 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
         
         cell.accessoryType = UITableViewCellAccessoryType.None
         return cell
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
+        headerCell.backgroundColor = UIColorFromRGB(0xE6C973)
+        headerCell.headerTextLabel.text = "Added Friends (swipe to delete)";
+        return headerCell
     }
     
     /* Called by next page to update the table based on 

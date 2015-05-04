@@ -74,7 +74,7 @@ class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UI
             let destinationVC = segue.destinationViewController as! AddFriendsViewController
             destinationVC.create = self.createGroup
             destinationVC.previousViewController = self
-            destinationVC.isEvent = false
+            destinationVC.setPrev(AddFriendsViewController.PrevType.CreateGroup1)
         }
         else if segue.identifier == "createGroup1ToCreateGroup2" {
             PULog("Preparing for segue")
@@ -149,6 +149,15 @@ class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UI
         cell.accessoryType = UITableViewCellAccessoryType.None
         return cell
     }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
+        headerCell.backgroundColor = UIColorFromRGB(0xE6C973)
+        headerCell.headerTextLabel.text = "Added Friends (swipe to delete)";
+        
+        return headerCell
+    }
+
     
     /* Called by AddFriendsViewController in order to update
        the table based on user additions */

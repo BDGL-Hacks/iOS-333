@@ -10,13 +10,27 @@ import UIKit
 
 class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     
+    enum PrevType {
+        case CreateGroup1
+        case CreateEvent2
+        case InviteFriends
+    }
+    var prevType = PrevType.CreateGroup1
     
     @IBOutlet weak var queryTableView: UITableView!
     var previousViewController: AnyObject?
     var queryResults: NSArray? = NSArray()
     var create: CreateModel?
     var prevSearch: String? = nil
-    var isEvent: Bool = true
+    /*
+    var isFromEvent: Bool = false
+    var isFromInviteFriends: Bool = false
+    var isFromGroup: Bool = false
+    */
+    
+    func setPrev(typeOfPrev: PrevType) {
+        self.prevType = typeOfPrev
+    }
     
     // text that gets sent to search method on backend
     var searchText: String? = nil {
@@ -186,11 +200,14 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
         
         create?.setSelectedUsers(selectedUsers as NSArray)
         
-        if (isEvent == true) {
+        switch prevType {
+        case .InviteFriends:
+            let prevInviteFriends = previousViewController as! InviteFriendsViewController
+            prevInviteFriends.updateAddedFriends()
+        case .CreateEvent2:
             let prevEventCreation2 = previousViewController as! CreateEvent2ViewController
             prevEventCreation2.updateAddedFriends()
-        }
-        else {
+        case .CreateGroup1:
             let prevGroupCreation1 = previousViewController as! CreateGroup1ViewController
             prevGroupCreation1.updateAddedFriends()
         }

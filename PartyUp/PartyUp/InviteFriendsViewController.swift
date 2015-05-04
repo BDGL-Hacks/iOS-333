@@ -11,30 +11,39 @@ import UIKit
 class InviteFriendsViewController: PartyUpViewController, UITableViewDataSource, UITableViewDelegate {
 
     
-    
     @IBOutlet weak var invitedFriendsTableView: UITableView!
-    var updateEvent: CreateModel = CreateModel()
+    var update: CreateModel = CreateModel()
     var invitedFriends: NSMutableArray? = NSMutableArray()
     var event: NSDictionary?
     var group: NSDictionary?
     var isEvent: Bool = false
-    var isEventOwner: Bool = false
+    var isCreatedEvent: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         invitedFriendsTableView.delegate = self
         invitedFriendsTableView.dataSource = self
-
+        
+        self.invitedFriendsTableView.rowHeight = 65
+        
         // Do any additional setup after loading the view.
     }
     
     func setEventData(event: NSDictionary) {
         self.event = event
     }
+    
+    func setGroupData(group: NSDictionary) {
+        self.group = group
+    }
    
     func setGroupOrEvent(isEvent: Bool) {
         self.isEvent = isEvent
+    }
+    
+    func setCreatedEvent(isCreatedEvent: Bool) {
+        self.isCreatedEvent = isCreatedEvent
     }
     
     
@@ -50,6 +59,22 @@ class InviteFriendsViewController: PartyUpViewController, UITableViewDataSource,
         PULog("Displaying invite friends to group or event page")
     }
     
+    
+    @IBAction func checkmarkPressed(sender: UIBarButtonItem) {
+        if isEvent {
+            self.performSegueWithIdentifier("inviteFriendsToEventInfo", sender: self)
+        }
+        else {
+            self.performSegueWithIdentifier("inviteFriendsToGroupInfo", sender: self)
+        }
+    }
+    
+    /*
+    checkmarkPressed
+    if event -> perform inviteToEventInfo (setEventData with ID)
+    else perform inviteToGroupInfo (setGroupDataWithID
+    */
+    
     /* Button to return to fist event creation page */
     @IBAction func backToFirst(sender: UIBarButtonItem) {
         PULog("Going back to group or event info page")
@@ -58,35 +83,35 @@ class InviteFriendsViewController: PartyUpViewController, UITableViewDataSource,
     
     /* Prepare for segues */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "inviteFriendsToAddFriends" {
+        if (segue.identifier == "inviteFriendsToAddFriends") {
             PULog("Preparing for segue")
             let destinationVC = segue.destinationViewController as! AddFriendsViewController
-            destinationVC.create = self.updateEvent
+            destinationVC.create = self.update
             destinationVC.previousViewController = self
-            destinationVC.isEvent = true
+            destinationVC.setPrev(AddFriendsViewController.PrevType.InviteFriends)
         }
-        else if segue.identifier == "inviteFriendsToHome" {
+        else if segue.identifier == "inviteFriendsToEventInfo" {
             PULog("Preparing for segue")
             finalizeInvites()
-            let destinationVC = segue.destinationViewController as! HomepageViewController
-            
-            /*
-            if isEvent {
-                destinationVC.setActiveView(.MyEvents)
-            }
-            else {
-                destinationVC.setActiveView(.GroupsList)
-            }
-            */
-            
+            let destinationVC = segue.destinationViewController as! EventInfoViewController
+            var eventID = "\(DataManager.getEventID(event!))"
+            destinationVC.setEventData(eventID: eventID)
+            destinationVC.setIsCreatedEvent(isCreatedEvent)
         }
+        else if segue.identifier == "inviteFriendsToGroupInfo" {
+            PULog("Preparing for segue")
+            finalizeInvites()
+            let destinationVC = segue.destinationViewController as! GroupInfoViewController
+            var groupID = "\(DataManager.getGroupID(group!))"
+            destinationVC.setGroupData(groupID: groupID)
+        }
+
     }
     
     /* User finalizes choices and creates event */
     func finalizeInvites() {
         PULog("Invite people pressed")
         /* Iterate through friends list and send it to the backend */
-        var eventID = "\(DataManager.getEventID(event!))"
         var friendIDs: [NSString] = [NSString]()
         for var j = 0; j < invitedFriendsTableView.numberOfSections(); ++j {
             for var i = 0; i < invitedFriendsTableView.numberOfRowsInSection(j); ++i {
@@ -103,22 +128,22 @@ class InviteFriendsViewController: PartyUpViewController, UITableViewDataSource,
         /* Send to backend */
         
         if isEvent {
-            var backendError: NSString? =  updateEvent.inviteFriendsToEvent(eventID, userIDs: friendIDs)
+            var eventID = "\(DataManager.getEventID(event!))"
+            var backendError: NSString? =  update.inviteFriendsToEvent(eventID, userIDs: friendIDs)
         
             if (backendError != nil) {
                 displayAlert("Event Update Failed", message: backendError!)
             }
         }
-            /*
         else {
+            var groupID = "\(DataManager.getGroupID(group!))"
             var backendError: NSString? = update.inviteFriendsToGroup(groupID, userIDs: friendIDs)
             
             if (backendError != nil) {
                 displayAlert("Group Update Failed", message: backendError!)
             }
-            
         }
-        */
+        
         
     }
 
@@ -154,12 +179,19 @@ class InviteFriendsViewController: PartyUpViewController, UITableViewDataSource,
         return cell
     }
     
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
+        headerCell.backgroundColor = UIColorFromRGB(0xE6C973)
+        headerCell.headerTextLabel.text = "Friends to invite (swipe to delete)"
+        return headerCell
+    }
+    
     /* Called by next page to update the table based on
     user additions */
     func updateAddedFriends() {
-        var friendsToAdd: NSArray = updateEvent.getSelectedUsers()
+        var friendsToAdd: NSArray = update.getSelectedUsers()
         invitedFriends!.addObjectsFromArray(friendsToAdd as [AnyObject])
-        updateEvent.setInviteList(invitedFriends! as NSArray)
+        update.setInviteList(invitedFriends! as NSArray)
         invitedFriendsTableView.reloadData()
     }
     
@@ -172,11 +204,6 @@ class InviteFriendsViewController: PartyUpViewController, UITableViewDataSource,
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
     }
-
-    
-
-    
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

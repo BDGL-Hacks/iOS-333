@@ -35,6 +35,7 @@ class BindEventToGroupViewController: PartyUpViewController, UITableViewDelegate
         groupsTableView.dataSource = self
         
         self.groupsTableView.rowHeight = 60
+        self.groupsTableView.sectionHeaderHeight = 53
         
         groupsTableView.allowsMultipleSelection = false
         

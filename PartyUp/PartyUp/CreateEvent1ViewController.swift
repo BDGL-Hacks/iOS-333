@@ -111,7 +111,6 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "eventCreationOneToTwo" {
             PULog("In prepare for segue")
-            addFriends()
             let destinationVC = segue.destinationViewController as! CreateEvent2ViewController
             destinationVC.createEvent = self.createEvent!
         }
@@ -137,10 +136,7 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate
     /*--------------------------------------------*
     * View response methods
     *--------------------------------------------*/
-    
-    /* Continue to next page. Send data to create model */
-    func addFriends() {
-        
+    @IBAction func addFriendsPressed(sender: UIButton) {
         PULog("Add friends button pressed")
         
         // Ensure the form is valid
@@ -163,6 +159,13 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate
         var eventDescription: NSString = descriptionTextField.text
         
         createEvent!.eventFirstPage(eventTitle, location: eventLocation, dateTime: eventDateTime, eventPublic: isPublic, eventDescription: eventDescription)
+        self.performSegueWithIdentifier("eventCreationOneToTwo", sender: self)
+    }
+    
+    /* Continue to next page. Send data to create model */
+    func addFriends() {
+        
+        
     }
     
     /* Alternate button for group creation flow. Creates event
@@ -175,7 +178,7 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate
         var validationError: NSString? = validateForm()
         if (validationError != nil) {
             PULog("Form is invalid: \(validationError!)")
-            displayAlert("Event creation failed", message: validationError!)
+            displayAlert("Some required fields left blank", message: validationError!)
             return
         }
         

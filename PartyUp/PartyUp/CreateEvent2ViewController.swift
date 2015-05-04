@@ -22,6 +22,8 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
         addedFriendsTableView.delegate = self
         addedFriendsTableView.dataSource = self
         
+        self.addedFriendsTableView.sectionHeaderHeight = 53
+        
         addedFriends?.addObjectsFromArray(createEvent!.getInvitedList() as [AnyObject])
 
         // Do any additional setup after loading the view.
@@ -174,9 +176,9 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
-        headerCell.backgroundColor = UIColorFromRGB(0xE6C973)
+        headerCell.contentView.backgroundColor = UIColorFromRGB(0xE6C973)
         headerCell.headerTextLabel.text = "Added Friends (swipe to delete)";
-        return headerCell
+        return headerCell.contentView
     }
     
     /* Called by next page to update the table based on 

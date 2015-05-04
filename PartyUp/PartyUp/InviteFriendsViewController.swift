@@ -26,6 +26,7 @@ class InviteFriendsViewController: PartyUpViewController, UITableViewDataSource,
         invitedFriendsTableView.dataSource = self
         
         self.invitedFriendsTableView.rowHeight = 65
+        self.invitedFriendsTableView.sectionHeaderHeight = 53
         
         // Do any additional setup after loading the view.
     }
@@ -181,9 +182,9 @@ class InviteFriendsViewController: PartyUpViewController, UITableViewDataSource,
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
-        headerCell.backgroundColor = UIColorFromRGB(0xE6C973)
+        headerCell.contentView.backgroundColor = UIColorFromRGB(0xE6C973)
         headerCell.headerTextLabel.text = "Friends to invite (swipe to delete)"
-        return headerCell
+        return headerCell.contentView
     }
     
     /* Called by next page to update the table based on

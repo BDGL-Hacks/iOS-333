@@ -95,7 +95,7 @@ class CreateModel {
     func groupSendToBackend() -> NSString?
     {
         // Registration successful: Dismiss Registration view and attempt login
-        var backendError: NSString? = PartyUpBackend.instance.backendGroupCreation(groupName!, eventIDs: eventIDs, inviteList: inviteEmails)
+        var backendError: NSString? = PartyUpBackend.instance.backendGroupCreation(groupName!, eventIDs: eventIDs, inviteList: inviteIDs)
         if (backendError == nil)
         {
             return nil

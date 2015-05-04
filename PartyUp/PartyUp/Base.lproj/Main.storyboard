@@ -809,51 +809,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K2d-Ma-1eX" userLabel="Groups List Child View">
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K2d-Ma-1eX" userLabel="Groups List Child View">
                                 <rect key="frame" x="0.0" y="72" width="320" height="496"/>
                                 <connections>
                                     <segue destination="TyQ-WJ-xK7" kind="embed" id="WWs-Q3-mf4"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cVb-JL-mv3" userLabel="Groups Detail Child View">
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cVb-JL-mv3" userLabel="Groups Detail Child View">
                                 <rect key="frame" x="0.0" y="72" width="320" height="496"/>
                                 <connections>
                                     <segue destination="62g-El-AAk" kind="embed" id="22q-pp-LQg"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zZF-Qk-p9f" userLabel="My Events Child View">
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zZF-Qk-p9f" userLabel="My Events Child View">
                                 <rect key="frame" x="0.0" y="72" width="320" height="496"/>
                                 <connections>
                                     <segue destination="1gF-7V-kWr" kind="embed" id="Wig-I2-yHP"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mhL-7f-KNs" userLabel="Search Events Child View">
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mhL-7f-KNs" userLabel="Search Events Child View">
                                 <rect key="frame" x="0.0" y="72" width="320" height="496"/>
                                 <connections>
                                     <segue destination="aDp-fu-7fs" kind="embed" id="ezk-Dj-5CU"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HqH-ae-Dzf" userLabel="Alerts Child View">
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HqH-ae-Dzf" userLabel="Alerts Child View">
                                 <rect key="frame" x="0.0" y="72" width="320" height="496"/>
                                 <connections>
                                     <segue destination="6mf-Fd-v5z" kind="embed" id="b8J-UE-zJB"/>
                                 </connections>
                             </containerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PartyUp" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1LY-CR-2oY">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PartyUp" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1LY-CR-2oY">
                                 <rect key="frame" x="16" y="20" width="225" height="50"/>
                                 <fontDescription key="fontDescription" name="Symbol" family="Symbol" pointSize="40"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="18S-Nc-SPq">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="18S-Nc-SPq">
                                 <rect key="frame" x="0.0" y="72" width="320" height="3"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egY-hy-d6S">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egY-hy-d6S">
                                 <rect key="frame" x="260" y="20" width="44" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="44" id="Jwa-R0-h7u"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <state key="normal" title="||||">
                                     <color key="titleColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -865,40 +862,6 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.50196078430000002" green="0.7843137255" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="K2d-Ma-1eX" firstAttribute="top" secondItem="mhL-7f-KNs" secondAttribute="top" id="0aQ-EI-Arh"/>
-                            <constraint firstItem="K2d-Ma-1eX" firstAttribute="top" secondItem="1LY-CR-2oY" secondAttribute="bottom" constant="2" id="1fe-k1-9jG"/>
-                            <constraint firstItem="K2d-Ma-1eX" firstAttribute="top" secondItem="aVO-ew-a0i" secondAttribute="top" constant="72" id="CSa-JI-d1Y"/>
-                            <constraint firstAttribute="bottom" secondItem="K2d-Ma-1eX" secondAttribute="bottom" id="FWM-Uo-qMB"/>
-                            <constraint firstItem="K2d-Ma-1eX" firstAttribute="width" secondItem="aVO-ew-a0i" secondAttribute="width" id="FrN-xj-lVj"/>
-                            <constraint firstItem="K2d-Ma-1eX" firstAttribute="leading" secondItem="mhL-7f-KNs" secondAttribute="leading" id="GQ3-ea-fjQ"/>
-                            <constraint firstAttribute="width" secondItem="18S-Nc-SPq" secondAttribute="width" id="HpJ-NM-WCj"/>
-                            <constraint firstAttribute="width" secondItem="zZF-Qk-p9f" secondAttribute="width" id="ISG-EP-wY2"/>
-                            <constraint firstItem="K2d-Ma-1eX" firstAttribute="bottom" secondItem="cVb-JL-mv3" secondAttribute="bottom" id="IsF-T8-wf7"/>
-                            <constraint firstItem="K2d-Ma-1eX" firstAttribute="bottom" secondItem="HqH-ae-Dzf" secondAttribute="bottom" id="JMx-ii-6ZD"/>
-                            <constraint firstItem="K2d-Ma-1eX" firstAttribute="bottom" secondItem="mhL-7f-KNs" secondAttribute="bottom" id="LX0-e0-SSr"/>
-                            <constraint firstItem="K2d-Ma-1eX" firstAttribute="trailing" secondItem="18S-Nc-SPq" secondAttribute="trailing" id="Ohx-nX-mrq"/>
-                            <constraint firstItem="K2d-Ma-1eX" firstAttribute="top" secondItem="zZF-Qk-p9f" secondAttribute="top" id="U2B-1H-wIM"/>
-                            <constraint firstItem="1LY-CR-2oY" firstAttribute="top" secondItem="aVO-ew-a0i" secondAttribute="top" constant="20" symbolic="YES" id="UFF-u7-alh"/>
-                            <constraint firstItem="K2d-Ma-1eX" firstAttribute="leading" secondItem="aVO-ew-a0i" secondAttribute="leading" id="VKb-kz-OnN"/>
-                            <constraint firstItem="K2d-Ma-1eX" firstAttribute="bottom" secondItem="zZF-Qk-p9f" secondAttribute="bottom" id="VYu-p2-Of1"/>
-                            <constraint firstItem="K2d-Ma-1eX" firstAttribute="leading" secondItem="18S-Nc-SPq" secondAttribute="leading" id="WLA-NT-pG3"/>
-                            <constraint firstItem="egY-hy-d6S" firstAttribute="top" secondItem="1LY-CR-2oY" secondAttribute="top" id="WOQ-wA-KA8"/>
-                            <constraint firstItem="K2d-Ma-1eX" firstAttribute="leading" secondItem="zZF-Qk-p9f" secondAttribute="leading" id="Xzo-7u-nWC"/>
-                            <constraint firstItem="K2d-Ma-1eX" firstAttribute="leading" secondItem="cVb-JL-mv3" secondAttribute="leading" id="awU-f1-NRp"/>
-                            <constraint firstItem="1LY-CR-2oY" firstAttribute="leading" secondItem="aVO-ew-a0i" secondAttribute="leadingMargin" id="bRc-Rr-cO2"/>
-                            <constraint firstItem="K2d-Ma-1eX" firstAttribute="top" secondItem="18S-Nc-SPq" secondAttribute="top" id="dUp-vp-MUF"/>
-                            <constraint firstItem="K2d-Ma-1eX" firstAttribute="leading" secondItem="HqH-ae-Dzf" secondAttribute="leading" id="hUa-pb-PVZ"/>
-                            <constraint firstItem="HqH-ae-Dzf" firstAttribute="width" secondItem="aVO-ew-a0i" secondAttribute="width" id="jYf-Iy-kfP"/>
-                            <constraint firstItem="mhL-7f-KNs" firstAttribute="width" secondItem="aVO-ew-a0i" secondAttribute="width" id="kKH-ir-NpI"/>
-                            <constraint firstItem="2q9-0M-ngP" firstAttribute="top" secondItem="18S-Nc-SPq" secondAttribute="bottom" constant="449" id="ltQ-7f-FdF"/>
-                            <constraint firstItem="egY-hy-d6S" firstAttribute="leading" secondItem="1LY-CR-2oY" secondAttribute="trailing" constant="19" id="n9b-gp-iqN"/>
-                            <constraint firstItem="cVb-JL-mv3" firstAttribute="width" secondItem="aVO-ew-a0i" secondAttribute="width" id="r4b-M0-Jvw"/>
-                            <constraint firstItem="K2d-Ma-1eX" firstAttribute="top" secondItem="HqH-ae-Dzf" secondAttribute="top" id="s1u-GW-ctB"/>
-                            <constraint firstItem="K2d-Ma-1eX" firstAttribute="top" secondItem="cVb-JL-mv3" secondAttribute="top" id="uHG-y0-sJD"/>
-                            <constraint firstItem="egY-hy-d6S" firstAttribute="trailing" secondItem="aVO-ew-a0i" secondAttribute="trailingMargin" id="yDt-cd-r8C"/>
-                            <constraint firstItem="K2d-Ma-1eX" firstAttribute="top" secondItem="egY-hy-d6S" secondAttribute="bottom" constant="8" symbolic="YES" id="zUq-Ss-488"/>
-                        </constraints>
                     </view>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -3157,12 +3120,12 @@ tapping the 'Find' tab on the bottom.</string>
         <image name="PartyUp_arrow_placeholder.png" width="999" height="999"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VSP-cM-gCU"/>
-        <segue reference="ha1-OE-NBO"/>
         <segue reference="bIb-fA-Nj2"/>
         <segue reference="d1i-1v-4PY"/>
+        <segue reference="ha1-OE-NBO"/>
+        <segue reference="VSP-cM-gCU"/>
+        <segue reference="Yz2-7w-QAN"/>
         <segue reference="f1n-2s-Yq2"/>
         <segue reference="NJp-kO-aCE"/>
-        <segue reference="zR6-5U-mw3"/>
     </inferredMetricsTieBreakers>
 </document>

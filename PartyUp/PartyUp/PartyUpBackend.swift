@@ -681,7 +681,7 @@ class PartyUpBackend {
             if (accepted) {
                 PULog("Query Successful!")
                 groupInvitationsArray = jsonData.valueForKey("invited") as! NSArray?
-                PULog("Query data: \(groupInvitationsArray)")
+                PULog("Query data: \(groupInvitationsArray!)")
             }
                 
             // Query failed: return error message
@@ -719,7 +719,7 @@ class PartyUpBackend {
             if (accepted) {
                 PULog("Query Successful!")
                 eventInvitationsArray = jsonData.valueForKey("invited") as! NSArray?
-                PULog("Query data: \(eventInvitationsArray)")
+                PULog("Query data: \(eventInvitationsArray!)")
                 return (nil, groupInvitationsArray, eventInvitationsArray)
             }
                 

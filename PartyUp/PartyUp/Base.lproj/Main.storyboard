@@ -1025,6 +1025,9 @@
                                     <navigationItem id="25a-fg-WyT">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="f82-Ze-3WO">
                                             <color key="tintColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <action selector="backButtonPressed:" destination="ves-xh-wWo" id="agf-KL-JyX"/>
+                                            </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Chat" id="GB9-hS-h3w">
                                             <color key="tintColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

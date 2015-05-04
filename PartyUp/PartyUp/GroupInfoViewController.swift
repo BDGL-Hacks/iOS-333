@@ -67,6 +67,11 @@ class GroupInfoViewController: UIViewController, UITableViewDelegate, UITableVie
         PULog("Displaying group info page")
     }
     
+    @IBAction func backButtonPressed(sender: UIBarButtonItem) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
     /* Set the group data */
     func setGroupData(#group: NSDictionary) {
         self.group = group
@@ -125,7 +130,7 @@ class GroupInfoViewController: UIViewController, UITableViewDelegate, UITableVie
             cell.hideCheckmark()
             return cell
         }
-        else if (tableView == groupMembersTableView) {
+        else {
             var cell = tableView.dequeueReusableCellWithIdentifier("userCell") as! AddFriendsTableViewCell
             
             var user: NSDictionary = NSDictionary()
@@ -143,6 +148,7 @@ class GroupInfoViewController: UIViewController, UITableViewDelegate, UITableVie
             cell.accessoryType = UITableViewCellAccessoryType.None
             return cell
         }
+        
     }
     
     /* Populate the section headers of each table */
@@ -154,7 +160,7 @@ class GroupInfoViewController: UIViewController, UITableViewDelegate, UITableVie
             headerCell.headerTextLabel.text = "Events";
             return headerCell
         }
-        else if (tableView == groupMembersTableView) {
+        else {
             let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
             headerCell.backgroundColor = UIColorFromRGB(0xE6C973)
             headerCell.headerTextLabel.text = "Members";

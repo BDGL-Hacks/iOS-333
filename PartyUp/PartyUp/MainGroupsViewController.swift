@@ -26,12 +26,7 @@ class MainGroupsViewController: PartyUpViewController, UITableViewDelegate, UITa
     *--------------------------------------------*/
     
     @IBOutlet weak var placeholderLabel: UILabel!
-    
-    @IBOutlet weak var invitedGroupsLabel: UILabel!
-    @IBOutlet weak var myGroupsLabel: UILabel!
-    
-    @IBOutlet weak var invitedGroupsTableView: PUDynamicTableView!
-    @IBOutlet weak var myGroupsTableView: PUDynamicTableView!
+    @IBOutlet weak var groupsTableView: PUDynamicTableView!
     
     
    /*--------------------------------------------*
@@ -41,8 +36,7 @@ class MainGroupsViewController: PartyUpViewController, UITableViewDelegate, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         var customTableCellNib: UINib = UINib(nibName: "PartyUpTableCell", bundle: nil)
-        invitedGroupsTableView.registerNib(customTableCellNib, forCellReuseIdentifier: "partyUpTableCell")
-        myGroupsTableView.registerNib(customTableCellNib, forCellReuseIdentifier: "partyUpTableCell")
+        groupsTableView.registerNib(customTableCellNib, forCellReuseIdentifier: "partyUpTableCell")
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -75,33 +69,14 @@ class MainGroupsViewController: PartyUpViewController, UITableViewDelegate, UITa
     /* Updates the views for the tables and their labels */
     func updateViews()
     {
-        invitedGroupsTableView.reloadData()
-        myGroupsTableView.reloadData()
+        groupsTableView.reloadData()
         
-        var isInvitedGroupsTableEmpty: Bool = false
-        var isMyGroupsTableEmpty: Bool = false
-        
-        if (invitedGroupsTableView.numberOfRowsInSection(0) == 0) {
-            isInvitedGroupsTableEmpty = true
-            invitedGroupsTableView.hideView()
-        } else {
-            invitedGroupsTableView.showView()
-        }
-        
-        if (myGroupsTableView.numberOfRowsInSection(0) == 0) {
-            isMyGroupsTableEmpty = true
-            myGroupsTableView.hideView()
-        } else {
-            myGroupsTableView.showView()
-        }
-        
-        if (isInvitedGroupsTableEmpty && isMyGroupsTableEmpty) {
-            invitedGroupsLabel.hidden = true
-            myGroupsLabel.hidden = true
+        if (groupsTableView.numberOfRowsInSection(0) == 0) {
+            groupsTableView.hideView()
             placeholderLabel.hidden = false
-        } else {
-            invitedGroupsLabel.hidden = false
-            myGroupsLabel.hidden = false
+        }
+        else {
+            groupsTableView.showView()
             placeholderLabel.hidden = true
         }
     }
@@ -113,16 +88,7 @@ class MainGroupsViewController: PartyUpViewController, UITableViewDelegate, UITa
     
     /* Returns the number of cells in the table */
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (tableView == invitedGroupsTableView) {
-            return searchGroupsModel.getInvitedGroups().count
-        }
-        else if (tableView == myGroupsTableView) {
-            return searchGroupsModel.getAttendingGroups().count
-        }
-        else {
-            PULog("Table view specified was not recognized")
-            return 0
-        }
+        return searchGroupsModel.getAttendingGroups().count
     }
     
     /* Determines how to populate each cell in the table: *
@@ -131,13 +97,7 @@ class MainGroupsViewController: PartyUpViewController, UITableViewDelegate, UITa
     {
         var cell: PartyUpTableCell = tableView.dequeueReusableCellWithIdentifier("partyUpTableCell") as! PartyUpTableCell
         
-        var group: NSDictionary = NSDictionary()
-        if (tableView == invitedGroupsTableView) {
-            group = searchGroupsModel.getInvitedGroups()[indexPath.row] as! NSDictionary
-        }
-        else if (tableView == myGroupsTableView) {
-            group = searchGroupsModel.getAttendingGroups()[indexPath.row] as! NSDictionary
-        }
+        var group: NSDictionary = searchGroupsModel.getAttendingGroups()[indexPath.row] as! NSDictionary
         
         var dayText: NSString = DataManager.getGroupDayText(group)
         var dayNumber: NSString = DataManager.getGroupDayNumber(group)

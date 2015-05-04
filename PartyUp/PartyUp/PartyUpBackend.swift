@@ -530,14 +530,14 @@ class PartyUpBackend {
     /* Queries backend for groups the current user belongs or *
      * has been invited to. Returns a tuple: an error message *
      * if something went wrong, and query results as an       *
-     * NSDictionary if successful.                            */
-    func queryUserGroups() -> (NSString?, NSDictionary?)
+     * NSArray if successful.                                 */
+    func queryUserGroups() -> (NSString?, NSArray?)
     {
         PULog("Querying for user's groups...")
         
         var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
         let username: NSString? = userDefaults.objectForKey("USERNAME") as! NSString?
-        let types: NSString = "attending||invited"
+        let types: NSString = "attending"
         
         if (username == nil) {
             PULog("Query Failed: User is not logged in")
@@ -555,23 +555,13 @@ class PartyUpBackend {
             let jsonData: NSDictionary = postData!
             let accepted: Bool = jsonData.valueForKey("accepted") as! Bool
             var errorMessage: NSString? = jsonData.valueForKey("error") as! NSString?
-            var results: NSMutableDictionary = NSMutableDictionary()
             
             // Query successful: return JSON data as dictionary
             if (accepted) {
                 PULog("Query Successful!")
-                var attendingArray: NSArray? = jsonData.valueForKey("attending") as! NSArray?
-                var invitedArray: NSArray? = jsonData.valueForKey("invited") as! NSArray?
-                if (attendingArray == nil) {
-                    attendingArray = NSArray()
-                }
-                if (invitedArray == nil) {
-                    invitedArray = NSArray()
-                }
-                results["attending"] = attendingArray!
-                results["invited"] = invitedArray!
-                PULog("Query data: \(results)")
-                return (nil, results as NSDictionary)
+                let results: NSArray? = jsonData.valueForKey("attending") as! NSArray?
+                PULog("Query data: \(results!)")
+                return (nil, results!)
             }
                 
             // Query failed: return error message
@@ -740,17 +730,17 @@ class PartyUpBackend {
         }
     }
     
-    /* Queries backend for events the current user owns,     *
-     * is attending, or has been invited to. Returns a       *
-     * tuple: an error message string if something went      *
-     * wrong, and query results as dictionary if successful. */
-    func queryUserEvents() -> (NSString?, NSDictionary?)
+    /* Queries backend for events the current user owns,  *
+     * or is attending. Returns a tuple: an error message *
+     * string if something went      *
+     * wrong, and query results as an NSArray if successful. */
+    func queryUserEvents() -> (NSString?, NSArray?)
     {
         PULog("Querying for user's events...")
         
         var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
         let username: NSString? = userDefaults.objectForKey("USERNAME") as! NSString?
-        let types: NSString = "created||invited||attending"
+        let types: NSString = "attending"
         
         if (username == nil) {
             PULog("Query Failed: User is not logged in")
@@ -768,16 +758,13 @@ class PartyUpBackend {
             let jsonData: NSDictionary = postData!
             let accepted: Bool = jsonData.valueForKey("accepted") as! Bool
             var errorMessage: NSString? = jsonData.valueForKey("error") as! NSString?
-            var results: NSMutableDictionary = NSMutableDictionary()
             
             // Query successful: return JSON data as dictionary
             if (accepted) {
                 PULog("Query Successful!")
-                results["created"] = jsonData.valueForKey("created") as! NSArray?
-                results["attending"] = jsonData.valueForKey("attending") as! NSArray?
-                results["invited"] = jsonData.valueForKey("invited") as! NSArray?
-                PULog("Query data: \(results)")
-                return (nil, results as NSDictionary)
+                let results: NSArray? = jsonData.valueForKey("attending") as! NSArray?
+                PULog("Query data: \(results!)")
+                return (nil, results!)
             }
                 
             // Query failed: return error message

@@ -60,6 +60,17 @@ class DataManager {
         return event["location_name"] as! NSString
     }
     
+    /* Returns whether the current user is an admin of the event */
+    class func getEventIsAdmin(event: NSDictionary) -> Bool {
+        let userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let userID: NSInteger? = userDefaults.integerForKey("USER_ID")
+        if (userID == nil) {
+            return false
+        } else {
+            return (DataManager.getUserID(event["admin"] as! NSDictionary) == userID!)
+        }
+    }
+    
     /* Returns event's date in format: YYYY-MM-DD */
     class func getEventDate(event: NSDictionary) -> NSString {
         let dateTimeRaw: NSString = event["time"] as! NSString

@@ -14,7 +14,7 @@ class SearchEventsModel
     * Instance variables and Declarations
     *--------------------------------------------*/
     
-    var userEventsQueryResults: NSDictionary = NSDictionary()
+    var userEventsQueryResults: NSArray = NSArray()
     var findEventsQueryResults: NSArray = NSArray()
     
     enum QueryType {
@@ -35,7 +35,7 @@ class SearchEventsModel
     {
         if (queryType == QueryType.User) {
             PULog("Updating User Events...")
-            let (errorMessage: NSString?, queryResults: NSDictionary?) =
+            let (errorMessage: NSString?, queryResults: NSArray?) =
                 PartyUpBackend.instance.queryUserEvents()
             if (errorMessage != nil) {
                 PULog("Update Failed: \(errorMessage!)")
@@ -64,7 +64,7 @@ class SearchEventsModel
         }
     }
     
-    func setUserEventsQueryResults(results: NSDictionary) {
+    func setUserEventsQueryResults(results: NSArray) {
         userEventsQueryResults = results
     }
     
@@ -77,106 +77,8 @@ class SearchEventsModel
     * Get methods
     *--------------------------------------------*/
     
-    func getCreatedEvents() -> NSArray {
-        let resultArray: NSArray? = userEventsQueryResults["created"] as! NSArray?
-        if (resultArray == nil) {
-            return NSArray()
-        }
-        else {
-            return resultArray!
-        }
-    }
-    
     func getAttendingEvents() -> NSArray {
-        
-        // TODO: Delete this, fake data
-        var fakeArray: [NSDictionary] = [
-            ["title": "Fake Event", "location_name": "I don't know", "time": "2015-04-12 09:00:00",
-                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": [],
-                "attending_list": [], "id": 100] ,
-            ["title": "Look, Another Event!", "location_name": "Still don't.", "time": "2015-04-12 09:00:00",
-                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": [],
-                "attending_list": [], "id": 101],
-            ["title": "GAAAGH!", "location_name": "URGH", "time": "2015-04-12 09:00:00",
-                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": [],
-                "attending_list": [], "id": 102],
-            ["title": "Derping", "location_name": "derpy-perp", "time": "2015-04-12 09:00:00",
-                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": [],
-                "attending_list": [], "id": 103],
-            ["title": "Derping", "location_name": "derpy-perp", "time": "2015-04-12 09:00:00",
-                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": [],
-                "attending_list": [], "id": 104],
-            ["title": "Derping", "location_name": "derpy-perp", "time": "2015-04-12 09:00:00",
-                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": [],
-                "attending_list": [], "id": 105],
-            ["title": "Derping", "location_name": "derpy-perp", "time": "2015-04-12 09:00:00",
-                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": [],
-                "attending_list": [], "id": 106],
-            ["title": "Derping", "location_name": "derpy-perp", "time": "2015-04-12 09:00:00",
-                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": [],
-                "attending_list": [], "id": 107],
-            ["title": "Derping", "location_name": "derpy-perp", "time": "2015-04-12 09:00:00",
-                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": [],
-                "attending_list": [], "id": 108],
-            ["title": "Derping", "location_name": "derpy-perp", "time": "2015-04-12 09:00:00",
-                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": [],
-                "attending_list": [], "id": 109],
-            ["title": "Fake Data", "location_name": "Insert location here", "time": "2015-04-12 09:00:00",
-                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": [],
-                "attending_list": [], "id": 110]
-        ]
-        return NSArray(array: fakeArray)
-        
-        /*
-        let resultArray: NSArray? = userEventsQueryResults["attending"] as NSArray?
-        if (resultArray == nil) {
-            return NSArray()
-        }
-        else {
-            return resultArray!
-        }
-        */
-    }
-    
-    func getInvitedEvents() -> NSArray {
-        
-        // TODO: Delete this, fake data
-        var fakeArray: [NSDictionary] = [
-            ["title": "Fake Event", "location_name": "I don't know", "time": "2015-04-12 09:00:00",
-                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": [],
-                "attending_list": [], "id": 100],
-            ["title": "Look, Another Event!", "location_name": "Still don't.", "time": "2015-04-12 09:00:00",
-                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": [],
-                "attending_list": [], "id": 101],
-            ["title": "GAAAGH!", "location_name": "URGH", "time": "2015-04-12 09:00:00",
-                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list": [],
-                "attending_list": [], "id": 102],
-            ["title": "Fake Data", "location_name": "Insert location here", "time": "2015-04-12 09:00:00",
-                "description": "A bad description", "location_name": "Princeton, NJ", "invite_list":
-                [
-                    ["username": "username", "first_name": "First", "last_name": "Last", "id": 2],
-                    ["username": "username", "first_name": "First", "last_name": "Last", "id": 2],
-                    ["username": "username", "first_name": "First", "last_name": "Last", "id": 2],
-                    ["username": "username", "first_name": "First", "last_name": "Last", "id": 2],
-                    ["username": "username", "first_name": "First", "last_name": "Last", "id": 2],
-                    ["username": "username", "first_name": "First", "last_name": "Last", "id": 2],
-                    ["username": "username", "first_name": "First", "last_name": "Last", "id": 2],
-                    ["username": "username", "first_name": "First", "last_name": "Last", "id": 2]
-                ],
-                "attending_list": [], "id": 103
-            ]
-        ]
-        return NSArray(array: fakeArray)
-        
-        /*
-        let resultArray: NSArray? = userEventsQueryResults["invited"] as NSArray?
-        if (resultArray == nil) {
-            return NSArray()
-        }
-        else {
-            return resultArray!
-        }
-        */
+        return userEventsQueryResults
     }
     
     func getNearbyEvents() -> NSArray {

@@ -1084,6 +1084,12 @@
                     <view key="view" contentMode="scaleToFill" id="IU5-QD-CU7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="496"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ELA-1i-6Oy">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="496"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
@@ -1354,22 +1360,16 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Agy-TB-L7y">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="496"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Groups I'm Invited To" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nOZ-wl-Sly">
-                                        <rect key="frame" x="78" y="21" width="165" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7Lk-Ne-k6p" customClass="PUDynamicTableView" customModule="PartyUp" customModuleProvider="target">
-                                        <rect key="frame" x="35" y="50" width="250" height="160"/>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7Lk-Ne-k6p" customClass="PUDynamicTableView" customModule="PartyUp" customModuleProvider="target">
+                                        <rect key="frame" x="35" y="25" width="250" height="448"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="250" id="0Ld-oS-QNG"/>
-                                            <constraint firstAttribute="height" constant="160" placeholder="YES" id="Trv-vH-ZK3"/>
+                                            <constraint firstAttribute="height" constant="448" placeholder="YES" id="Trv-vH-ZK3"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" id="lxS-Ov-6BD"/>
                                         </constraints>
                                         <prototypes>
-                                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="invitedCellPrototype" rowHeight="60" id="CGp-KA-FnB" customClass="PartyUpTableCell" customModule="PartyUp" customModuleProvider="target">
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="groupCellPrototype" rowHeight="60" id="CGp-KA-FnB" customClass="PartyUpTableCell" customModule="PartyUp" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="250" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CGp-KA-FnB" id="6Qg-fQ-XfJ">
@@ -1381,35 +1381,6 @@
                                             <outlet property="dataSource" destination="TyQ-WJ-xK7" id="Q6v-Yi-RAE"/>
                                             <outlet property="delegate" destination="TyQ-WJ-xK7" id="BQI-oz-lck"/>
                                             <outlet property="dynamicHeightConstraint" destination="lxS-Ov-6BD" id="ncI-6R-fFc"/>
-                                        </connections>
-                                    </tableView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Groups" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUK-Cw-JuV">
-                                        <rect key="frame" x="118" y="250" width="85" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="IwZ-FH-Vzj" customClass="PUDynamicTableView" customModule="PartyUp" customModuleProvider="target">
-                                        <rect key="frame" x="35" y="279" width="250" height="200"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="200" placeholder="YES" id="Nie-Fv-lEB"/>
-                                            <constraint firstAttribute="width" constant="250" id="Wwf-vo-eUZ"/>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" id="eG0-2b-CeW"/>
-                                        </constraints>
-                                        <prototypes>
-                                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="myGroupsCellPrototype" rowHeight="60" id="P3V-Qh-UGz" customClass="PartyUpTableCell" customModule="PartyUp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="250" height="44"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="P3V-Qh-UGz" id="h72-uq-yG9">
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </tableViewCellContentView>
-                                            </tableViewCell>
-                                        </prototypes>
-                                        <connections>
-                                            <outlet property="dataSource" destination="TyQ-WJ-xK7" id="LQ7-A3-WWE"/>
-                                            <outlet property="delegate" destination="TyQ-WJ-xK7" id="BOG-5e-Fnw"/>
-                                            <outlet property="dynamicHeightConstraint" destination="eG0-2b-CeW" id="6t9-OU-53g"/>
                                         </connections>
                                     </tableView>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You don't have any groups yet! You can create a group by tapping the '+' icon." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VHQ-a7-kX0">
@@ -1424,23 +1395,13 @@
                                     </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="dUK-Cw-JuV" firstAttribute="top" secondItem="7Lk-Ne-k6p" secondAttribute="bottom" constant="40" id="45B-Av-Brb"/>
-                                    <constraint firstAttribute="bottom" secondItem="IwZ-FH-Vzj" secondAttribute="bottom" constant="25" id="7io-SY-ilw"/>
-                                    <constraint firstItem="IwZ-FH-Vzj" firstAttribute="top" secondItem="dUK-Cw-JuV" secondAttribute="bottom" constant="8" id="8Nl-Mj-myR"/>
+                                    <constraint firstItem="7Lk-Ne-k6p" firstAttribute="top" secondItem="Agy-TB-L7y" secondAttribute="top" constant="25" id="6WU-4p-o5b"/>
                                     <constraint firstItem="VHQ-a7-kX0" firstAttribute="top" secondItem="Agy-TB-L7y" secondAttribute="top" constant="212" id="H9e-jg-ogS"/>
                                     <constraint firstItem="VHQ-a7-kX0" firstAttribute="leading" secondItem="Agy-TB-L7y" secondAttribute="leading" constant="35" id="Lh9-AG-psy"/>
+                                    <constraint firstAttribute="bottom" secondItem="7Lk-Ne-k6p" secondAttribute="bottom" constant="25" id="QIN-AX-gUe"/>
                                     <constraint firstItem="7Lk-Ne-k6p" firstAttribute="leading" secondItem="Agy-TB-L7y" secondAttribute="leading" constant="35" id="Tii-UB-vYI"/>
-                                    <constraint firstItem="nOZ-wl-Sly" firstAttribute="leading" secondItem="Agy-TB-L7y" secondAttribute="leading" constant="78" id="Ufo-mA-rHs"/>
-                                    <constraint firstItem="IwZ-FH-Vzj" firstAttribute="leading" secondItem="Agy-TB-L7y" secondAttribute="leading" constant="35" id="Wo2-dF-q2U"/>
-                                    <constraint firstAttribute="trailing" secondItem="IwZ-FH-Vzj" secondAttribute="trailing" constant="35" id="iPr-f4-u1G"/>
-                                    <constraint firstItem="dUK-Cw-JuV" firstAttribute="leading" secondItem="Agy-TB-L7y" secondAttribute="leading" constant="118" id="kLa-Ri-LFQ"/>
                                     <constraint firstAttribute="trailing" secondItem="VHQ-a7-kX0" secondAttribute="trailing" constant="35" id="o9D-Gq-T9y"/>
-                                    <constraint firstAttribute="trailing" secondItem="nOZ-wl-Sly" secondAttribute="trailing" constant="77" id="qnl-Jp-L5B"/>
-                                    <constraint firstItem="IwZ-FH-Vzj" firstAttribute="width" secondItem="7Lk-Ne-k6p" secondAttribute="width" id="uIH-M7-pen"/>
-                                    <constraint firstItem="nOZ-wl-Sly" firstAttribute="top" secondItem="Agy-TB-L7y" secondAttribute="top" constant="21" id="vy6-Ge-cqn"/>
-                                    <constraint firstItem="7Lk-Ne-k6p" firstAttribute="top" secondItem="nOZ-wl-Sly" secondAttribute="bottom" constant="8" id="w8b-ka-u39"/>
                                     <constraint firstAttribute="trailing" secondItem="7Lk-Ne-k6p" secondAttribute="trailing" constant="35" id="xrM-hm-H8P"/>
-                                    <constraint firstAttribute="trailing" secondItem="dUK-Cw-JuV" secondAttribute="trailing" constant="117" id="xvS-En-KMn"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -1454,10 +1415,7 @@
                     </view>
                     <toolbarItems/>
                     <connections>
-                        <outlet property="invitedGroupsLabel" destination="nOZ-wl-Sly" id="rfg-8T-m5G"/>
-                        <outlet property="invitedGroupsTableView" destination="7Lk-Ne-k6p" id="Wye-vW-AJ0"/>
-                        <outlet property="myGroupsLabel" destination="dUK-Cw-JuV" id="oDi-I1-wFd"/>
-                        <outlet property="myGroupsTableView" destination="IwZ-FH-Vzj" id="bbN-OH-8lI"/>
+                        <outlet property="groupsTableView" destination="7Lk-Ne-k6p" id="axz-0J-0HL"/>
                         <outlet property="placeholderLabel" destination="VHQ-a7-kX0" id="Plj-xl-OIB"/>
                         <segue destination="KSX-Cx-bH6" kind="presentation" identifier="mainGroupsToGroupChat" id="Bs2-Cw-dHb"/>
                         <segue destination="ves-xh-wWo" kind="presentation" identifier="mainGroupsToGroupInfo" id="ha1-OE-NBO"/>
@@ -2051,17 +2009,22 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1pf-wd-W0L">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="496"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Events I Own" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xTK-wv-J5h">
-                                        <rect key="frame" x="109" y="21" width="102" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pEI-N3-cET">
+                                        <rect key="frame" x="35" y="201" width="250" height="80"/>
+                                        <string key="text">You don't have any events yet!
+You can create an event by tapping the
+'+' icon, or search nearby events by
+tapping the 'Find' tab on the bottom.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2Cb-F1-mBw" customClass="PUDynamicTableView" customModule="PartyUp" customModuleProvider="target">
-                                        <rect key="frame" x="35" y="50" width="250" height="80"/>
+                                        <rect key="frame" x="35" y="25" width="250" height="442"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="80" placeholder="YES" id="ZNS-9Y-bw6"/>
+                                            <constraint firstAttribute="width" constant="250" id="0Lr-WG-82O"/>
+                                            <constraint firstAttribute="height" constant="442" placeholder="YES" id="ZNS-9Y-bw6"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" id="dAO-uK-vSJ"/>
                                         </constraints>
                                         <prototypes>
@@ -2079,94 +2042,13 @@
                                             <outlet property="dynamicHeightConstraint" destination="dAO-uK-vSJ" id="WTS-pb-z0Z"/>
                                         </connections>
                                     </tableView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Events I'm Attending" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y8F-Dj-WQk">
-                                        <rect key="frame" x="80" y="172" width="160" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="EyU-ar-VRD" customClass="PUDynamicTableView" customModule="PartyUp" customModuleProvider="target">
-                                        <rect key="frame" x="35" y="201" width="250" height="80"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="80" placeholder="YES" id="TCp-Wx-2nz"/>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" id="i9h-MG-h6S"/>
-                                        </constraints>
-                                        <prototypes>
-                                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="attendingCellPrototype" rowHeight="60" id="efF-Mr-hIK" customClass="PartyUpTableCell" customModule="PartyUp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="250" height="44"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="efF-Mr-hIK" id="HGZ-eZ-xnu">
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </tableViewCellContentView>
-                                            </tableViewCell>
-                                        </prototypes>
-                                        <connections>
-                                            <outlet property="dataSource" destination="1gF-7V-kWr" id="ail-Aa-m4p"/>
-                                            <outlet property="delegate" destination="1gF-7V-kWr" id="xOz-84-87N"/>
-                                            <outlet property="dynamicHeightConstraint" destination="i9h-MG-h6S" id="9Ju-Hs-6iq"/>
-                                        </connections>
-                                    </tableView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Events I'm Invited To" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UlI-gd-Kej">
-                                        <rect key="frame" x="81" y="323" width="159" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="dC5-Py-e9M" customClass="PUDynamicTableView" customModule="PartyUp" customModuleProvider="target">
-                                        <rect key="frame" x="35" y="352" width="250" height="80"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" id="3op-3O-QG5"/>
-                                            <constraint firstAttribute="height" constant="80" placeholder="YES" id="CPC-Yy-RxD"/>
-                                        </constraints>
-                                        <prototypes>
-                                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="invitedCellPrototype" rowHeight="60" id="YGA-2N-A6y" customClass="PartyUpTableCell" customModule="PartyUp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="250" height="44"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YGA-2N-A6y" id="De5-b7-5AZ">
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </tableViewCellContentView>
-                                            </tableViewCell>
-                                        </prototypes>
-                                        <connections>
-                                            <outlet property="dataSource" destination="1gF-7V-kWr" id="MFZ-rG-2h0"/>
-                                            <outlet property="delegate" destination="1gF-7V-kWr" id="nYY-GQ-bm4"/>
-                                            <outlet property="dynamicHeightConstraint" destination="3op-3O-QG5" id="KGO-mO-mWe"/>
-                                        </connections>
-                                    </tableView>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pEI-N3-cET">
-                                        <rect key="frame" x="35" y="201" width="250" height="80"/>
-                                        <string key="text">You don't have any events yet!
-You can create an event by tapping the
-'+' icon, or search nearby events by
-tapping the 'Find' tab on the bottom.</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="UlI-gd-Kej" secondAttribute="trailing" constant="80" id="7B1-Nx-Mu8"/>
+                                    <constraint firstItem="2Cb-F1-mBw" firstAttribute="top" secondItem="1pf-wd-W0L" secondAttribute="top" constant="25" id="2rw-FC-bgh"/>
                                     <constraint firstItem="2Cb-F1-mBw" firstAttribute="leading" secondItem="1pf-wd-W0L" secondAttribute="leading" constant="35" id="GaM-fl-aW9"/>
-                                    <constraint firstItem="y8F-Dj-WQk" firstAttribute="leading" secondItem="1pf-wd-W0L" secondAttribute="leading" constant="80" id="JFm-cw-mF2"/>
                                     <constraint firstAttribute="trailing" secondItem="2Cb-F1-mBw" secondAttribute="trailing" constant="35" id="KW9-GK-0fk"/>
-                                    <constraint firstAttribute="trailing" secondItem="xTK-wv-J5h" secondAttribute="trailing" constant="109" id="Lab-iT-CBq"/>
-                                    <constraint firstItem="dC5-Py-e9M" firstAttribute="width" secondItem="2Cb-F1-mBw" secondAttribute="width" id="MD5-e6-nkT"/>
-                                    <constraint firstItem="dC5-Py-e9M" firstAttribute="leading" secondItem="1pf-wd-W0L" secondAttribute="leading" constant="35" id="P2L-9F-tA1"/>
-                                    <constraint firstAttribute="trailing" secondItem="y8F-Dj-WQk" secondAttribute="trailing" constant="80" id="Pst-8n-Tne"/>
-                                    <constraint firstItem="EyU-ar-VRD" firstAttribute="top" secondItem="y8F-Dj-WQk" secondAttribute="bottom" constant="8" id="UPG-yQ-QgL"/>
-                                    <constraint firstItem="UlI-gd-Kej" firstAttribute="leading" secondItem="1pf-wd-W0L" secondAttribute="leading" constant="81" id="Uc0-ek-AhY"/>
-                                    <constraint firstItem="2Cb-F1-mBw" firstAttribute="top" secondItem="xTK-wv-J5h" secondAttribute="bottom" constant="8" id="Ybo-WS-wW5"/>
-                                    <constraint firstItem="dC5-Py-e9M" firstAttribute="top" secondItem="UlI-gd-Kej" secondAttribute="bottom" constant="8" id="dFP-3V-Zdl"/>
-                                    <constraint firstItem="EyU-ar-VRD" firstAttribute="leading" secondItem="1pf-wd-W0L" secondAttribute="leading" constant="35" id="dQt-WA-J4x"/>
-                                    <constraint firstItem="y8F-Dj-WQk" firstAttribute="top" secondItem="2Cb-F1-mBw" secondAttribute="bottom" constant="42" id="kwI-Q5-f8F"/>
-                                    <constraint firstItem="2Cb-F1-mBw" firstAttribute="width" secondItem="EyU-ar-VRD" secondAttribute="width" id="ohg-BI-SoA"/>
-                                    <constraint firstItem="UlI-gd-Kej" firstAttribute="top" secondItem="EyU-ar-VRD" secondAttribute="bottom" constant="42" id="qu5-O4-z0j"/>
                                     <constraint firstAttribute="width" constant="320" id="rVX-PV-NTl"/>
-                                    <constraint firstItem="xTK-wv-J5h" firstAttribute="top" secondItem="1pf-wd-W0L" secondAttribute="top" constant="21" id="u9u-bh-Imt"/>
-                                    <constraint firstAttribute="bottom" secondItem="dC5-Py-e9M" secondAttribute="bottom" constant="23" id="wBg-eR-ATP"/>
-                                    <constraint firstItem="xTK-wv-J5h" firstAttribute="leading" secondItem="1pf-wd-W0L" secondAttribute="leading" constant="109" id="zwh-7V-Uy2"/>
+                                    <constraint firstAttribute="bottom" secondItem="2Cb-F1-mBw" secondAttribute="bottom" constant="25" id="zVg-NN-Zvy"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -2181,13 +2063,8 @@ tapping the 'Find' tab on the bottom.</string>
                     <tabBarItem key="tabBarItem" title="" systemItem="contacts" id="tAb-RS-504"/>
                     <toolbarItems/>
                     <connections>
-                        <outlet property="attendingEventsLabel" destination="y8F-Dj-WQk" id="7px-wT-dLd"/>
-                        <outlet property="attendingEventsTableView" destination="EyU-ar-VRD" id="cJP-90-ega"/>
-                        <outlet property="createdEventsLabel" destination="xTK-wv-J5h" id="bde-Mm-OXN"/>
-                        <outlet property="createdEventsTableView" destination="2Cb-F1-mBw" id="Wo7-VG-1nI"/>
-                        <outlet property="invitedEventsLabel" destination="UlI-gd-Kej" id="w0C-Fy-6oB"/>
-                        <outlet property="invitedEventsTableView" destination="dC5-Py-e9M" id="N1g-8K-53S"/>
                         <outlet property="placeholderLabel" destination="pEI-N3-cET" id="p8i-sb-EMV"/>
+                        <outlet property="userEventsTableView" destination="2Cb-F1-mBw" id="b41-2U-YsU"/>
                         <segue destination="kxU-B7-LE2" kind="presentation" identifier="myEventsToEventInfo" id="jc2-Pg-Y0b"/>
                     </connections>
                 </viewController>
@@ -3121,11 +2998,11 @@ tapping the 'Find' tab on the bottom.</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="bIb-fA-Nj2"/>
-        <segue reference="d1i-1v-4PY"/>
-        <segue reference="ha1-OE-NBO"/>
-        <segue reference="VSP-cM-gCU"/>
+        <segue reference="jc2-Pg-Y0b"/>
         <segue reference="Yz2-7w-QAN"/>
         <segue reference="f1n-2s-Yq2"/>
         <segue reference="NJp-kO-aCE"/>
+        <segue reference="ha1-OE-NBO"/>
+        <segue reference="VSP-cM-gCU"/>
     </inferredMetricsTieBreakers>
 </document>

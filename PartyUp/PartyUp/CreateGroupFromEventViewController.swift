@@ -109,6 +109,13 @@ class CreateGroupFromEventViewController: PartyUpViewController, UITableViewData
         
     }
     
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
+        headerCell.backgroundColor = UIColorFromRGB(0xE6C973)
+        headerCell.headerTextLabel.text = "Added Friends (swipe to delete)";
+        return headerCell
+    }
+    
     /* Called when user selects a cell in the table *
     Sets a checkmark to indiciate selection      */
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

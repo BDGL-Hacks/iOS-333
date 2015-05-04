@@ -50,7 +50,7 @@
                     </label>
                 </subviews>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
             <connections>
                 <outlet property="dayNumberLabel" destination="5Me-gY-MlJ" id="xax-8m-Smf"/>
                 <outlet property="dayTextLabel" destination="Mf3-3I-fNm" id="8G3-Sg-QSO"/>

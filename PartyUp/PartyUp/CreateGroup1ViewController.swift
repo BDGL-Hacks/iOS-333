@@ -74,7 +74,7 @@ class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UI
             let destinationVC = segue.destinationViewController as! AddFriendsViewController
             destinationVC.create = self.createGroup
             destinationVC.previousViewController = self
-            destinationVC.isFromGroup = false
+            destinationVC.setPrev(AddFriendsViewController.PrevType.CreateGroup1)
         }
         else if segue.identifier == "createGroup1ToCreateGroup2" {
             PULog("Preparing for segue")

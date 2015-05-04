@@ -55,7 +55,7 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
             let destinationVC = segue.destinationViewController as! AddFriendsViewController
             destinationVC.create = self.createEvent
             destinationVC.previousViewController = self
-            destinationVC.isFromEvent = true
+            destinationVC.setPrev(AddFriendsViewController.PrevType.CreateEvent2)
         }
         else if segue.identifier == "eventCreationTwoToHome" {
             PULog("Preparing for segue")

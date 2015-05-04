@@ -9,13 +9,14 @@
 import UIKit
 
 class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, UITableViewDelegate {
-
+    
     var createGroup: CreateModel?
     var group: NSDictionary?
     var addedEvents: NSMutableArray? = NSMutableArray()
     @IBOutlet weak var addedEventsTableView: UITableView!
     var fromGroupInfo = false
     
+        
     /* Set up the table and fetch data from create model */
     override func viewDidLoad() {
         super.viewDidLoad()

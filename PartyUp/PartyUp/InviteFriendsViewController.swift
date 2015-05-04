@@ -88,7 +88,7 @@ class InviteFriendsViewController: PartyUpViewController, UITableViewDataSource,
             let destinationVC = segue.destinationViewController as! AddFriendsViewController
             destinationVC.create = self.update
             destinationVC.previousViewController = self
-            destinationVC.isFromInviteFriends = true
+            destinationVC.setPrev(AddFriendsViewController.PrevType.InviteFriends)
         }
         else if segue.identifier == "inviteFriendsToEventInfo" {
             PULog("Preparing for segue")

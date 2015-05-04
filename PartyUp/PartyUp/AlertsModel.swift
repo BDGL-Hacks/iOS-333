@@ -79,16 +79,22 @@ class AlertsModel {
                 NSNotificationCenter.defaultCenter().postNotificationName(getErrorNotificationName() as String, object: self)
             }
         }
-        
-        // Event Invite responded to: update backend and delet from table
+
+        // Event Invite responded to: update backend and delete from table
         else if (type == AlertType.EventInvite) {
-            let errorMsg: NSString? = PartyUpBackend.instance.respondToInvite(getInviteTypeString(type), inviteID: DataManager.getEventID(data), response: response)
-            if (errorMsg == nil) {
-                let tempEventInvitesArray: NSMutableArray = NSMutableArray(array: eventInvites)
-                tempEventInvitesArray.removeObjectAtIndex(index)
-                eventInvites = tempEventInvitesArray as NSArray
-            } else {
-                NSNotificationCenter.defaultCenter().postNotificationName(getErrorNotificationName() as String, object: self)
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                PULog("ASYNC Request")
+                let errorMsg: NSString? = PartyUpBackend.instance.respondToInvite(self.getInviteTypeString(type), inviteID: DataManager.getEventID(data), response: response)
+                dispatch_async(dispatch_get_main_queue()) {
+                    PULog("ASYNC UI Update")
+                    if (errorMsg == nil) {
+                        let tempEventInvitesArray: NSMutableArray = NSMutableArray(array: self.eventInvites)
+                        tempEventInvitesArray.removeObjectAtIndex(index)
+                        self.eventInvites = tempEventInvitesArray as NSArray
+                    } else {
+                        NSNotificationCenter.defaultCenter().postNotificationName(self.getErrorNotificationName() as String, object: self)
+                    }
+                }
             }
         }
         

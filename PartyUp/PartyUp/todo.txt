@@ -3,6 +3,7 @@ TODO
 
 General
 -------
+ - Find out 
  - Change Storyboard to use a dropdown menu for Navigation instead of tab / nav bar
  - Fix 'User is not logged in' error when user is clearly logged in
  - Have views display properly on bigger and smaller devices

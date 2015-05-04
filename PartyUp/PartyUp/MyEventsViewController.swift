@@ -26,14 +26,7 @@ class MyEventsViewController: PartyUpViewController, UITableViewDelegate, UITabl
     *--------------------------------------------*/
     
     @IBOutlet weak var placeholderLabel: UILabel!
-    
-    @IBOutlet weak var createdEventsLabel: UILabel!
-    @IBOutlet weak var attendingEventsLabel: UILabel!
-    @IBOutlet weak var invitedEventsLabel: UILabel!
-    
-    @IBOutlet weak var createdEventsTableView: PUDynamicTableView!
-    @IBOutlet weak var attendingEventsTableView: PUDynamicTableView!
-    @IBOutlet weak var invitedEventsTableView: PUDynamicTableView!
+    @IBOutlet weak var userEventsTableView: PUDynamicTableView!
     
     
    /*--------------------------------------------*
@@ -43,9 +36,7 @@ class MyEventsViewController: PartyUpViewController, UITableViewDelegate, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         var customTableCellNib: UINib = UINib(nibName: "PartyUpTableCell", bundle: nil)
-        createdEventsTableView.registerNib(customTableCellNib, forCellReuseIdentifier: "partyUpTableCell")
-        attendingEventsTableView.registerNib(customTableCellNib, forCellReuseIdentifier: "partyUpTableCell")
-        invitedEventsTableView.registerNib(customTableCellNib, forCellReuseIdentifier: "partyUpTableCell")
+        userEventsTableView.registerNib(customTableCellNib, forCellReuseIdentifier: "partyUpTableCell")
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -79,44 +70,14 @@ class MyEventsViewController: PartyUpViewController, UITableViewDelegate, UITabl
     /* Updates the views for the tables and their labels */
     func updateViews()
     {
-        createdEventsTableView.reloadData()
-        attendingEventsTableView.reloadData()
-        invitedEventsTableView.reloadData()
+        userEventsTableView.reloadData()
         
-        var isCreatedEventsTableEmpty: Bool = false
-        var isAttendingEventsTableEmpty: Bool = false
-        var isInvitedEventsTableEmpty: Bool = false
-        
-        if (createdEventsTableView.numberOfRowsInSection(0) == 0) {
-            isCreatedEventsTableEmpty = true
-            createdEventsTableView.hideView()
-        } else {
-            createdEventsTableView.showView()
-        }
-        
-        if (attendingEventsTableView.numberOfRowsInSection(0) == 0) {
-            isAttendingEventsTableEmpty = true
-            attendingEventsTableView.hideView()
-        } else {
-            attendingEventsTableView.showView()
-        }
-        
-        if (invitedEventsTableView.numberOfRowsInSection(0) == 0) {
-            isInvitedEventsTableEmpty = true
-            invitedEventsTableView.hideView()
-        } else {
-            invitedEventsTableView.showView()
-        }
-        
-        if (isCreatedEventsTableEmpty && isAttendingEventsTableEmpty && isInvitedEventsTableEmpty) {
-            createdEventsLabel.hidden = true
-            attendingEventsLabel.hidden = true
-            invitedEventsLabel.hidden = true
+        if (userEventsTableView.numberOfRowsInSection(0) == 0) {
+            userEventsTableView.hideView()
             placeholderLabel.hidden = false
-        } else {
-            createdEventsLabel.hidden = false
-            attendingEventsLabel.hidden = false
-            invitedEventsLabel.hidden = false
+        }
+        else {
+            userEventsTableView.showView()
             placeholderLabel.hidden = true
         }
     }
@@ -128,19 +89,7 @@ class MyEventsViewController: PartyUpViewController, UITableViewDelegate, UITabl
     
     /* Returns the number of cells in the table */
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (tableView == createdEventsTableView) {
-            return searchEventsModel.getCreatedEvents().count
-        }
-        else if (tableView == attendingEventsTableView) {
-            return searchEventsModel.getAttendingEvents().count
-        }
-        else if (tableView == invitedEventsTableView) {
-            return searchEventsModel.getInvitedEvents().count
-        }
-        else {
-            PULog("Table view specified was not recognized")
-            return 0
-        }
+        return searchEventsModel.getAttendingEvents().count
     }
     
     /* Determines how to populate each cell in the table: *
@@ -149,29 +98,12 @@ class MyEventsViewController: PartyUpViewController, UITableViewDelegate, UITabl
     {
         var cell: PartyUpTableCell = tableView.dequeueReusableCellWithIdentifier("partyUpTableCell") as! PartyUpTableCell
         
-        var event: NSDictionary = NSDictionary()
-        if (tableView == createdEventsTableView) {
-            event = searchEventsModel.getCreatedEvents()[indexPath.row] as! NSDictionary
-        }
-        else if (tableView == attendingEventsTableView) {
-            event = searchEventsModel.getAttendingEvents()[indexPath.row] as! NSDictionary
-        }
-        else if (tableView == invitedEventsTableView) {
-            event = searchEventsModel.getInvitedEvents()[indexPath.row] as! NSDictionary
-        }
+        var event: NSDictionary = searchEventsModel.getAttendingEvents()[indexPath.row] as! NSDictionary
         
         var dayText: NSString = DataManager.getEventDayText(event)
         var dayNumber: NSString = DataManager.getEventDayNumber(event)
         var mainText: NSString = DataManager.getEventTitle(event)
-        
-        var subText: NSString = ""
-        if (tableView == createdEventsTableView || tableView == invitedEventsTableView) {
-            subText = DataManager.getEventLocationName(event)
-        }
-        // TODO: Should actually be group you are going with
-        else if (tableView == attendingEventsTableView) {
-            subText = DataManager.getEventLocationName(event)
-        }
+        var subText: NSString = DataManager.getEventLocationName(event)
         
         cell.loadCell(dayText: dayText, dayNumber: dayNumber, mainText: mainText, subText: subText)
         cell.setCellData(event)

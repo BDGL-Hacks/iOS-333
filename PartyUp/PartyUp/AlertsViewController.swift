@@ -71,7 +71,7 @@ class AlertsViewController: PartyUpViewController, UITableViewDelegate, UITableV
         if (segue.identifier == "alertsToEventInfo") {
             let eventInfoVC: EventInfoViewController = segue.destinationViewController
                 as! EventInfoViewController
-            eventInfoVC.setEventData(selectedCellData)
+            eventInfoVC.setEventData(event: selectedCellData)
         }
         else if (segue.identifier == "alertsToGroupInfo") {
             // TODO

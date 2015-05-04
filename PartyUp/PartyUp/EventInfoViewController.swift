@@ -24,7 +24,7 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
     @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var eventTitleLabel: UILabel!
     
-    @IBOutlet weak var invitePeople: UIButton!
+    @IBOutlet weak var tapGestureRecognizer: UITapGestureRecognizer!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
@@ -76,19 +76,26 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
         super.viewDidLoad()
         loadEventData()
         PULog("Displaying Event Info Page")
+        attendeeTable.sectionHeaderHeight = 53
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         if (!isEventOwner || !(DataManager.getEventPublic(event))) {
-            invitePeople.hidden = true
+            tapGestureRecognizer.enabled = false
         }
         if (isFromGroupInfo) {
-            invitePeople.hidden = true
+            tapGestureRecognizer.enabled = false
             createGroupButton.hidden = true
             bindEventToGroupButton.hidden = true
         }
     }
+    
+    /* User taps cell to add people to the event */
+    @IBAction func inviteFriendsPressed(sender: UITapGestureRecognizer) {
+        self.performSegueWithIdentifier("eventInfoToInviteFriends", sender: self)
+    }
+    
     
     
    /*--------------------------------------------*
@@ -134,6 +141,7 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
     
     func setEventData(#event: NSDictionary) {
         self.event = event
+        isEventOwner = DataManager.getEventIsAdmin(event)
     }
     
     func setEventData(#eventID: NSString) {
@@ -145,11 +153,11 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
             PULog("Update Success!")
         }
         self.event = queryResult!
+        /* if DataManager.eventGetOwner(event) {
+        isEventOwner = true
+        } */
     }
     
-    func setIsCreatedEvent(isCreated: Bool) {
-        self.isEventOwner = isCreated
-    }
     
     func setFromGroupInfo(isFromGroupInfo: Bool) {
         self.isFromGroupInfo = isFromGroupInfo
@@ -172,6 +180,15 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
         cell.textLabel!.text = DataManager.getUserFullName(user) as String
         return cell
     }
+    
+    /* Populate the section headers of each table */
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
+        headerCell.backgroundColor = UIColorFromRGB(0xE6C973)
+        headerCell.headerTextLabel.text = "Attendees";
+        return headerCell
+    }
+
     
     /* Determines what to do when a table cell is selected */
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

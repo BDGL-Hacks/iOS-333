@@ -12,17 +12,21 @@ class AddChooseEventsViewController: PartyUpViewController, UITableViewDelegate,
 
     
     /* Constants for section numbers */
+    /*
     let Owned = 0
     let Attending = 1
     let Invited = 2
+    */
     
     /* Table section names */
+    /*
     var sectionsInTable = ["Owned", "Invited", "Attending"]
+    */
     
     let searchEventsModel: SearchEventsModel = SearchEventsModel()
-    var ownedQueryResults: NSArray? = NSArray()
+    //var ownedQueryResults: NSArray? = NSArray()
     var attendingQueryResults: NSArray? = NSArray()
-    var invitedQueryResults: NSArray? = NSArray()
+    //var invitedQueryResults: NSArray? = NSArray()
     
     var shouldPerformQueries: Bool = true
     var selectedCellEventData: NSDictionary = NSDictionary()
@@ -39,6 +43,7 @@ class AddChooseEventsViewController: PartyUpViewController, UITableViewDelegate,
         eventsTableView.dataSource = self
 
         self.eventsTableView.rowHeight = 60
+        self.eventsTableView.sectionHeaderHeight = 53
         
 
         var customTableCellNib: UINib = UINib(nibName: "PartyUpTableCell", bundle: nil)
@@ -53,13 +58,13 @@ class AddChooseEventsViewController: PartyUpViewController, UITableViewDelegate,
             searchEventsModel.update(SearchEventsModel.QueryType.User)
             
             /* Set all model arrays */
-            createEvent?.setOwnedQueryResults(searchEventsModel.getCreatedEvents())
+            //createEvent?.setOwnedQueryResults(searchEventsModel.getCreatedEvents())
             createEvent?.setAttendingQueryResults(searchEventsModel.getAttendingEvents())
-            createEvent?.setInvitedQueryResults(searchEventsModel.getInvitedEvents())
+            //createEvent?.setInvitedQueryResults(searchEventsModel.getInvitedEvents())
             
-            ownedQueryResults = createEvent?.getOwnedQueryResults()
+            //ownedQueryResults = createEvent?.getOwnedQueryResults()
             attendingQueryResults = createEvent?.getAttendingQueryResults()
-            invitedQueryResults = createEvent?.getInvitedQueryResults()
+            //invitedQueryResults = createEvent?.getInvitedQueryResults()
             
             shouldPerformQueries = false
             PULog("About to reload data")
@@ -94,20 +99,7 @@ class AddChooseEventsViewController: PartyUpViewController, UITableViewDelegate,
     
     /* Returns the number of cells in each section of the table */
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == Owned {
-            // PULog("Section: \(section) and NumEvents: \(searchEventsModel.getCreatedEvents().count)")
-            return ownedQueryResults!.count
-        }
-        else if section == Attending {
-            return attendingQueryResults!.count
-        }
-        else if section == Invited {
-            return invitedQueryResults!.count
-        }
-        else {
-            PULog("Table view specified was not recognized")
-            return 0
-        }
+        return attendingQueryResults!.count
     }
     
     /* Determines how to populate each cell in the table: *
@@ -118,15 +110,7 @@ class AddChooseEventsViewController: PartyUpViewController, UITableViewDelegate,
         var cell: PartyUpTableCell = tableView.dequeueReusableCellWithIdentifier("eventCellPrototype") as! PartyUpTableCell
         
         var event: NSDictionary = NSDictionary()
-        if (indexPath.section == Owned) {
-            event = ownedQueryResults![indexPath.row] as! NSDictionary
-        }
-        else if (indexPath.section == Attending) {
-            event = attendingQueryResults![indexPath.row] as! NSDictionary
-        }
-        else if (indexPath.section == Invited) {
-            event = invitedQueryResults![indexPath.row] as! NSDictionary
-        }
+        event = attendingQueryResults![indexPath.row] as! NSDictionary
         
         var dayText: NSString = DataManager.getEventDayText(event)
         var dayNumber: NSString = DataManager.getEventDayNumber(event)
@@ -173,9 +157,9 @@ class AddChooseEventsViewController: PartyUpViewController, UITableViewDelegate,
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
-        headerCell.backgroundColor = UIColorFromRGB(0xE6C973)
-        headerCell.headerTextLabel.text = sectionsInTable[section]
-        return headerCell
+        headerCell.contentView.backgroundColor = UIColorFromRGB(0xE6C973)
+        headerCell.headerTextLabel.text = "Events"
+        return headerCell.contentView
     }
     
     /* Adds selected events to table of added events in previous view controller */

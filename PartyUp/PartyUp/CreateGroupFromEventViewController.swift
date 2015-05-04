@@ -36,6 +36,7 @@ class CreateGroupFromEventViewController: PartyUpViewController, UITableViewData
         attendeeListTableView.dataSource = self
         
         self.attendeeListTableView.rowHeight = 45
+        self.attendeeListTableView.sectionHeaderHeight = 53
         attendeeListTableView.allowsMultipleSelection = true
         
         loadEventData()

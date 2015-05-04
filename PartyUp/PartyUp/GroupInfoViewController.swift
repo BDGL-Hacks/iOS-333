@@ -46,7 +46,6 @@ class GroupInfoViewController: UIViewController, UITableViewDelegate, UITableVie
             let eventInfoVC: EventInfoViewController = segue.destinationViewController
                 as! EventInfoViewController
             eventInfoVC.setEventData(event: selectedCellEventData)
-            eventInfoVC.setIsCreatedEvent(false)
             eventInfoVC.setFromGroupInfo(true)
         }
         else if (segue.identifier == "groupInfoToAddEvents") {

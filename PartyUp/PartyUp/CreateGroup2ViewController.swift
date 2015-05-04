@@ -25,6 +25,7 @@ class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, 
         addedEventsTableView.dataSource = self
         
         self.addedEventsTableView.rowHeight = 60
+        self.addedEventsTableView.sectionHeaderHeight = 44
         
         addedEvents?.addObjectsFromArray(createGroup!.getGroupEvents() as [AnyObject])
         
@@ -215,10 +216,9 @@ class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, 
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
-        headerCell.backgroundColor = UIColorFromRGB(0xE6C973)
+        headerCell.contentView.backgroundColor = UIColorFromRGB(0xE6C973)
         headerCell.headerTextLabel.text = "Added Events (swipe to delete)";
-     
-        return headerCell
+        return headerCell.contentView
     }
     
     /* Allows user to swipe to delete added events */

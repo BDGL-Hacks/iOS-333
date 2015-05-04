@@ -22,6 +22,8 @@ class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UI
         groupMembersTableView.delegate = self
         groupMembersTableView.dataSource = self
         
+        self.groupMembersTableView.sectionHeaderHeight = 53
+        
         // possibly take out (using so that names remain when go back to this page)
         groupMembers?.addObjectsFromArray(createGroup.getInvitedList() as [AnyObject])
 
@@ -152,10 +154,9 @@ class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UI
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
-        headerCell.backgroundColor = UIColorFromRGB(0xE6C973)
+        headerCell.contentView.backgroundColor = UIColorFromRGB(0xE6C973)
         headerCell.headerTextLabel.text = "Added Friends (swipe to delete)";
-        
-        return headerCell
+        return headerCell.contentView
     }
 
     

@@ -16,7 +16,9 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
     var queryResults: NSArray? = NSArray()
     var create: CreateModel?
     var prevSearch: String? = nil
-    var isEvent: Bool = true
+    var isFromEvent: Bool = false
+    var isFromInviteFriends: Bool = false
+    var isFromGroup: Bool = false
     
     // text that gets sent to search method on backend
     var searchText: String? = nil {
@@ -186,11 +188,16 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
         
         create?.setSelectedUsers(selectedUsers as NSArray)
         
-        if (isEvent == true) {
+        if (isFromInviteFriends == true)
+        {
+            let prevInviteFriends = previousViewController as! InviteFriendsViewController
+            prevInviteFriends.updateAddedFriends()
+        }
+        else if (isFromEvent == true) {
             let prevEventCreation2 = previousViewController as! CreateEvent2ViewController
             prevEventCreation2.updateAddedFriends()
         }
-        else {
+        else if (isFromGroup == true) {
             let prevGroupCreation1 = previousViewController as! CreateGroup1ViewController
             prevGroupCreation1.updateAddedFriends()
         }

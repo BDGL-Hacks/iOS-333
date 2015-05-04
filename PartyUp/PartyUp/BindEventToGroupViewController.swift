@@ -71,7 +71,6 @@ class BindEventToGroupViewController: PartyUpViewController, UITableViewDelegate
             displayAlert("Error", message: "Must select a group")
         }
         else {
-            addEventToGroup()
             self.performSegueWithIdentifier("bindGroupToHome", sender: self)
         }
     }
@@ -129,10 +128,15 @@ class BindEventToGroupViewController: PartyUpViewController, UITableViewDelegate
         
         cell.loadCell(dayText: dayText, dayNumber: dayNumber, mainText: mainText, subText: subText)
         cell.setCellData(group)
-
-        
         cell.hideCheckmark()
         return cell
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
+        headerCell.backgroundColor = UIColorFromRGB(0xE6C973)
+        headerCell.headerTextLabel.text = "Select one of your existing groups";
+        return headerCell
     }
 
     

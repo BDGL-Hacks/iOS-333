@@ -68,7 +68,7 @@ class MyEventsViewController: PartyUpViewController, UITableViewDelegate, UITabl
         if (segue.identifier == "myEventsToEventInfo") {
             let eventInfoVC: EventInfoViewController = segue.destinationViewController
                 as! EventInfoViewController
-            eventInfoVC.setEventData(selectedCellEventData)
+            eventInfoVC.setEventData(event: selectedCellEventData)
             eventInfoVC.setIsCreatedEvent(isCreatedEvent)
             isCreatedEvent = false
         }

@@ -112,7 +112,7 @@ class CreateGroupFromEventViewController: PartyUpViewController, UITableViewData
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
         headerCell.backgroundColor = UIColorFromRGB(0xE6C973)
-        headerCell.headerTextLabel.text = "Added Friends (swipe to delete)";
+        headerCell.headerTextLabel.text = "Select members from attendee list";
         return headerCell
     }
     

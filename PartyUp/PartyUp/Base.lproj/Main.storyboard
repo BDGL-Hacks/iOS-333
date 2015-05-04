@@ -686,58 +686,49 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K2d-Ma-1eX" userLabel="Groups Child View">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="72" width="320" height="496"/>
                                 <connections>
                                     <segue destination="TyQ-WJ-xK7" kind="embed" id="WWs-Q3-mf4"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zZF-Qk-p9f" userLabel="Events Child View">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="72" width="320" height="496"/>
                                 <connections>
                                     <segue destination="Lbl-aD-Scn" kind="embed" id="Ocd-Ni-5kD"/>
                                 </connections>
                             </containerView>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gdx-Ee-7qp">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                                <items>
-                                    <navigationItem id="Kop-B9-B6g">
-                                        <nil key="title"/>
-                                        <barButtonItem key="leftBarButtonItem" title="Logout" id="ZFt-6X-AEf">
-                                            <connections>
-                                                <action selector="logout:" destination="SLw-45-19W" id="fAi-TD-Zkm"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="R79-zw-A6K">
-                                            <rect key="frame" x="96" y="7" width="128" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <segments>
-                                                <segment title="Groups"/>
-                                                <segment title="Events"/>
-                                            </segments>
-                                            <connections>
-                                                <action selector="navSegmentedControlChanged:" destination="SLw-45-19W" eventType="valueChanged" id="NXL-Fd-ZlV"/>
-                                            </connections>
-                                        </segmentedControl>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="oPv-jF-gac">
-                                            <connections>
-                                                <action selector="createButtonPressed:" destination="SLw-45-19W" id="bne-jc-rVg"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PartyUp" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1LY-CR-2oY">
+                                <rect key="frame" x="16" y="20" width="225" height="50"/>
+                                <fontDescription key="fontDescription" name="Symbol" family="Symbol" pointSize="40"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="18S-Nc-SPq">
+                                <rect key="frame" x="0.0" y="72" width="320" height="3"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egY-hy-d6S">
+                                <rect key="frame" x="260" y="20" width="44" height="44"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <state key="normal" title="||||">
+                                    <color key="titleColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="sideMenuButtonPressed:" destination="SLw-45-19W" eventType="touchUpInside" id="9s7-DN-w9K"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.50196078430000002" green="0.7843137255" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="createButton" destination="oPv-jF-gac" id="HcA-oT-FUo"/>
                         <outlet property="eventsChildView" destination="zZF-Qk-p9f" id="lmu-tS-QRW"/>
                         <outlet property="groupsChildView" destination="K2d-Ma-1eX" id="MnI-SG-qzI"/>
-                        <outlet property="logoutButton" destination="ZFt-6X-AEf" id="4Gp-pJ-ii8"/>
-                        <outlet property="navSegmentedControl" destination="R79-zw-A6K" id="Lft-jR-kLk"/>
+                        <outlet property="sideMenuButton" destination="egY-hy-d6S" id="odP-wt-XU5"/>
+                        <outlet property="titleLabel" destination="1LY-CR-2oY" id="fhI-MP-ZMp"/>
                         <segue destination="lbU-PQ-Vkh" kind="show" identifier="homeToLogin" id="JkK-RB-7NF"/>
                         <segue destination="pJ6-rL-ZN6" kind="presentation" identifier="homeToCreateGroup" id="31j-Ig-WEP"/>
                         <segue destination="iDH-9r-U2n" kind="presentation" identifier="homeToCreateEvent" id="f1n-2s-Yq2"/>
@@ -943,11 +934,11 @@
                         <viewControllerLayoutGuide type="bottom" id="kAD-Xa-tI8"/>
                     </layoutGuides>
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="2QD-C9-J4G">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="496"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Agy-TB-L7y">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="496"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Groups I'm Invited To" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nOZ-wl-Sly">
                                         <rect key="frame" x="78" y="21" width="165" height="21"/>
@@ -1563,11 +1554,11 @@
                         <viewControllerLayoutGuide type="bottom" id="mMj-5J-XgS"/>
                     </layoutGuides>
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="7Lb-YQ-f93">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="496"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1pf-wd-W0L">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="447"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Events I Own" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xTK-wv-J5h">
                                         <rect key="frame" x="109" y="21" width="102" height="21"/>
@@ -1722,7 +1713,7 @@ tapping the 'Find' tab on the bottom.</string>
                         <viewControllerLayoutGuide type="bottom" id="TnA-4L-jQ0"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="BJS-Qt-f5e">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="496"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="pEw-bW-g4Y">
@@ -2406,11 +2397,11 @@ tapping the 'Find' tab on the bottom.</string>
                         <viewControllerLayoutGuide type="bottom" id="lga-P4-AXG"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="QT2-BW-akS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="496"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nmj-fL-ps0">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="447"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Safety Alerts" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OmF-0c-Y8Q">
                                         <rect key="frame" x="111" y="21" width="98" height="21"/>
@@ -2498,7 +2489,7 @@ tapping the 'Find' tab on the bottom.</string>
                                         </connections>
                                     </tableView>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have no alerts at this time." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XYC-Pq-ls1">
-                                        <rect key="frame" x="42" y="217" width="235" height="21"/>
+                                        <rect key="frame" x="42" y="213" width="235" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>

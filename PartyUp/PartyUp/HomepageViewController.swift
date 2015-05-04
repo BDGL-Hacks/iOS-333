@@ -23,10 +23,9 @@ class HomepageViewController: PartyUpViewController
     
     var delegate: HomepageViewControllerDelegate?
     
-    var navView: NavView = NavView.Groups
-    enum NavView: Int {
-        case Groups = 0
-        case Events = 1
+    enum NavView {
+        case Groups
+        case Events
     }
 
 
@@ -36,36 +35,17 @@ class HomepageViewController: PartyUpViewController
     
     @IBOutlet var groupsChildView: UIView!
     @IBOutlet var eventsChildView: UIView!
-    
-    @IBOutlet weak var createButton: UIBarButtonItem!
-    @IBOutlet weak var logoutButton: UIBarButtonItem!
-    @IBOutlet weak var navSegmentedControl: UISegmentedControl!
+
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var sideMenuButton: UIButton!
     
     
    /*--------------------------------------------*
     * Computed Properties
     *--------------------------------------------*/
     
-    var activeView: UIView!
-    {
-        get {
-            if (navSegmentedControl.selectedSegmentIndex == 0) {
-                return groupsChildView
-            } else {
-                return eventsChildView
-            }
-        }
-    }
-    
-    var inactiveView: UIView! {
-        get {
-            if (navSegmentedControl.selectedSegmentIndex == 0) {
-                return eventsChildView
-            } else {
-                return groupsChildView
-            }
-        }
-    }
+    //var activeView: UIView! = self.groups
+    //var inactiveView: UIView! = eventsChildView
     
     
    /*--------------------------------------------*
@@ -88,10 +68,8 @@ class HomepageViewController: PartyUpViewController
         self.performSegueWithIdentifier("homeToLogin", sender: self)
     }
     
-    
-    
-    @IBAction func createButtonPressed(sender: UIBarButtonItem) {
-        PULog("Create button pressed")
+    @IBAction func sideMenuButtonPressed(sender: UIBarButtonItem) {
+        PULog("Side menu button pressed")
         delegate!.toggleSideMenu()
         
         /*
@@ -106,24 +84,9 @@ class HomepageViewController: PartyUpViewController
         }
         */
     }
-    
-    
-    @IBAction func navSegmentedControlChanged(sender: UISegmentedControl) {
-        PULog("Navbar segment control changed")
-        if (activeView == groupsChildView) {
-            PULog("Displaying Groups child view")
-            navView = NavView.Groups
-        } else {
-            PULog("Displaying Events child view")
-            navView = NavView.Events
-        }
-        activeView.hidden = false
-        inactiveView.hidden = true
-    }
 
     override func viewWillAppear(animated: Bool) {
-        navSegmentedControl.selectedSegmentIndex = navView.rawValue
-        navSegmentedControlChanged(navSegmentedControl)
+        super.viewWillAppear(animated)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -160,7 +123,7 @@ class HomepageViewController: PartyUpViewController
     
     /* Sets the active view to either Groups or Events */
     func setActiveView(newActiveView: NavView) {
-        navView = newActiveView
+        PULog("Ha!, this does nothing")
     }
 
 }

@@ -104,7 +104,7 @@ class HomepageViewController: PartyUpViewController, SideMenuViewControllerDeleg
     /* Sets the active view to either Groups or Events */
     func setActiveView(newActiveView: NavView) {
         PULog("Setting active view: \(newActiveView.rawValue)")
-        delegate!.hideSideMenu()
+        delegate?.hideSideMenu()
         activeView.hidden = true
         switch newActiveView {
             case .GroupsList:
@@ -140,5 +140,18 @@ class HomepageViewController: PartyUpViewController, SideMenuViewControllerDeleg
         delegate!.hideSideMenu()
         self.performSegueWithIdentifier("homeToLogin", sender: self)
     }
-
+    
+    /* Segues to Create Group view */
+    func segueToCreateGroup() {
+        PULog("Transitioning to Create Group Page")
+        delegate!.hideSideMenu()
+        self.performSegueWithIdentifier("homeToCreateGroup", sender: self)
+    }
+    
+    /* Segues to Create Event view */
+    func segueToCreateEvent() {
+        PULog("Transitioning to Create Event Page")
+        delegate!.hideSideMenu()
+        self.performSegueWithIdentifier("homeToCreateEvent", sender: self)
+    }
 }

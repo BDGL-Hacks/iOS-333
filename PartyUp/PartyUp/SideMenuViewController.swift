@@ -11,6 +11,8 @@ import UIKit
 protocol SideMenuViewControllerDelegate {
     func setActiveView(newActiveView: NavView)
     func logout()
+    func segueToCreateGroup()
+    func segueToCreateEvent()
 }
 
 class SideMenuViewController: PartyUpViewController, UITableViewDelegate, UITableViewDataSource {
@@ -85,7 +87,7 @@ class SideMenuViewController: PartyUpViewController, UITableViewDelegate, UITabl
             delegate!.setActiveView(.GroupsDetail)
         }
         else if (labelText == "Create Group") {
-            
+            delegate!.segueToCreateGroup()
         }
         else if (labelText == "My Events") {
             delegate!.setActiveView(.MyEvents)
@@ -94,7 +96,7 @@ class SideMenuViewController: PartyUpViewController, UITableViewDelegate, UITabl
             delegate!.setActiveView(.SearchEvents)
         }
         else if (labelText == "Create Event") {
-            
+            delegate!.segueToCreateEvent()
         }
         else if (labelText == "Notifications") {
             delegate!.setActiveView(.Alerts)

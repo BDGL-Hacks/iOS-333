@@ -70,12 +70,14 @@ class InviteFriendsViewController: PartyUpViewController, UITableViewDataSource,
             finalizeInvites()
             let destinationVC = segue.destinationViewController as! HomepageViewController
             
+            /*
             if isEvent {
                 destinationVC.setActiveView(.MyEvents)
             }
             else {
                 destinationVC.setActiveView(.GroupsList)
             }
+            */
             
         }
     }

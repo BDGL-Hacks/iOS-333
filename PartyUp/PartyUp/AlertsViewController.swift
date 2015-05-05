@@ -97,23 +97,14 @@ class AlertsViewController: PartyUpViewController, UITableViewDelegate, UITableV
         
         if (checkUpAlertsTableView.numberOfRowsInSection(0) == 0) {
             isCheckUpAlertsTableEmpty = true
-            checkUpAlertsTableView.hideView()
-        } else {
-            checkUpAlertsTableView.showView()
         }
         
         if (groupInvitesTableView.numberOfRowsInSection(0) == 0) {
             isGroupInvitesTableEmpty = true
-            groupInvitesTableView.hideView()
-        } else {
-            groupInvitesTableView.showView()
         }
         
         if (eventInvitesTableView.numberOfRowsInSection(0) == 0) {
             isEventInvitesTableEmpty = true
-            eventInvitesTableView.hideView()
-        } else {
-            eventInvitesTableView.showView()
         }
         
         if (isCheckUpAlertsTableEmpty && isGroupInvitesTableEmpty && isEventInvitesTableEmpty) {

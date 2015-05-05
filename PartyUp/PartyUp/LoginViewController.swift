@@ -22,6 +22,16 @@ class LoginViewController: PartyUpViewController, UITextFieldDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     
     
+    /*--------------------------------------------*
+    * Configure the View
+    *--------------------------------------------*/
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+    }
+
+    
    /*--------------------------------------------*
     * View response methods
     *--------------------------------------------*/
@@ -60,6 +70,11 @@ class LoginViewController: PartyUpViewController, UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        let newLength = count(textField.text) + count(string) - range.length
+        return newLength <= 50 // Bool
     }
     
     

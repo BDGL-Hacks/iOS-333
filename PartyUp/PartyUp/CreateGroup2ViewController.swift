@@ -25,6 +25,7 @@ class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, 
         addedEventsTableView.delegate = self
         addedEventsTableView.dataSource = self
         
+        
         self.addedEventsTableView.rowHeight = 60
         self.addedEventsTableView.sectionHeaderHeight = 44
         

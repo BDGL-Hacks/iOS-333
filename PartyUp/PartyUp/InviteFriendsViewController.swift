@@ -77,7 +77,7 @@ class InviteFriendsViewController: PartyUpViewController, UITableViewDataSource,
     */
     
     /* Button to return to fist event creation page */
-    @IBAction func backToFirst(sender: UIBarButtonItem) {
+    @IBAction func backButtonPressed(sender: UIBarButtonItem) {
         PULog("Going back to group or event info page")
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -97,7 +97,6 @@ class InviteFriendsViewController: PartyUpViewController, UITableViewDataSource,
             let destinationVC = segue.destinationViewController as! EventInfoViewController
             var eventID = "\(DataManager.getEventID(event!))"
             destinationVC.setEventData(eventID: eventID)
-            destinationVC.setIsCreatedEvent(isCreatedEvent)
         }
         else if segue.identifier == "inviteFriendsToGroupInfo" {
             PULog("Preparing for segue")
@@ -162,7 +161,7 @@ class InviteFriendsViewController: PartyUpViewController, UITableViewDataSource,
     /* Determines how to populate each cell in the table: *
     * Loads the display into each cell.   */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("UserCell") as! AddFriendsTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("userCell") as! AddFriendsTableViewCell
         
         var user: NSDictionary = NSDictionary()
         user = invitedFriends![indexPath.row] as! NSDictionary

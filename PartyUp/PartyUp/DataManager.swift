@@ -112,8 +112,8 @@ class DataManager {
     }
     
     class func getEventPublic(event: NSDictionary) -> Bool {
-        let publicTitle = event["public"] as! NSString
-        if (publicTitle == "true")
+        let publicTitle = event["public"] as! NSInteger
+        if (publicTitle == 1)
         {
             return true
         }

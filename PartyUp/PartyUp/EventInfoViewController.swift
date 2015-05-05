@@ -47,6 +47,7 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
     @IBAction func backButtonPressed(sender: UIBarButtonItem) {
         PULog("Back button pressed")
         PULog("Returning to previous screen")
+        //self.performSegueWithIdentifier("eventInfoToHome", sender: self)
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -92,11 +93,11 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
     }
     
     /* User taps cell to add people to the event */
+    
     @IBAction func inviteFriendsPressed(sender: UITapGestureRecognizer) {
+        PULog("Invite button pressed")
         self.performSegueWithIdentifier("eventInfoToInviteFriends", sender: self)
     }
-    
-    
     
    /*--------------------------------------------*
     * Helper methods
@@ -153,9 +154,7 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
             PULog("Update Success!")
         }
         self.event = queryResult!
-        /* if DataManager.eventGetOwner(event) {
-        isEventOwner = true
-        } */
+        isEventOwner = DataManager.getEventIsAdmin(event)
     }
     
     

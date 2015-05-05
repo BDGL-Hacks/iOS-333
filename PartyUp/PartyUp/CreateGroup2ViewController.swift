@@ -65,6 +65,7 @@ class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, 
     /* Store added events in create model and dismiss view */
     
     /* User presses checkmark and execute segue */
+    
     @IBAction func checkmarkPressed(sender: UIBarButtonItem) {
         if (fromGroupInfo) {
             self.performSegueWithIdentifier("createGroup2ToGroupInfo", sender: self)
@@ -75,6 +76,7 @@ class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, 
     }
     
     
+    
     @IBAction func backToLastPage(sender: UIBarButtonItem) {
         PULog("Going back to first group creation page")
         if (!fromGroupInfo) {
@@ -83,6 +85,9 @@ class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, 
         }
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    
+    
     
     /* Prepare for segues */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

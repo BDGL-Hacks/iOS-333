@@ -72,6 +72,11 @@ class CreateGroupFromEventViewController: PartyUpViewController, UITableViewData
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    @IBAction func checkmarkPressed(sender: UIBarButtonItem) {
+        self.performSegueWithIdentifier("eventGroupCreationToHome", sender: self)
+    }
+    
+    
     /* Prepare for segue back to home page */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "eventGroupCreationToHome" {

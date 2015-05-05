@@ -26,7 +26,7 @@ class AlertsModel {
     * Instance variables and Declarations
     *--------------------------------------------*/
     
-    var checkUpQueryResults: NSArray = NSArray()
+    var pingResults: NSArray = NSArray()
     var groupInvites: NSArray = NSArray()
     var eventInvites: NSArray = NSArray()
     
@@ -46,13 +46,23 @@ class AlertsModel {
      * string if update failed.                   */
     func update() -> NSString?
     {
-        PULog("Updating alerts...")
+        PULog("Updating pings...")
+        let (errMessage: NSString?, pingQueryResults: NSArray?) = PartyUpBackend.instance.queryUserPings()
+        if (errMessage != nil) {
+            PULog("Ping Update Failed: \(errMessage!)")
+            return errMessage!
+        } else {
+            PULog("Ping Update Success!")
+            pingResults = pingQueryResults!
+        }
+        
+        PULog("Updating invites...")
         let (errorMessage: NSString?, groupInviteResults: NSArray?, eventInviteResults: NSArray?) = PartyUpBackend.instance.queryUserInvitations()
         if (errorMessage != nil) {
-            PULog("Update Failed: \(errorMessage!)")
+            PULog("Invite Update Failed: \(errorMessage!)")
             return errorMessage!
         } else {
-            PULog("Update Success!")
+            PULog("Invite Update Success!")
             groupInvites = groupInviteResults!
             eventInvites = eventInviteResults!
             return nil
@@ -63,38 +73,45 @@ class AlertsModel {
      * pressed. Updates the backend and removes cell from table. */
     func responseButtonPressed(data: NSDictionary, type: AlertType, index: NSInteger, response: Bool)
     {
+        // Ping responded to: Update backend and delete from table
         if (type == AlertType.CheckUp) {
-            // TODO
-            PULog("Checkup response button pressed")
+            PULog("Ping response button pressed")
+            let errorMsg: NSString? = PartyUpBackend.instance.respondToPing(DataManager.getGroupID(DataManager.getPingGroup(data)), response: response)
+            if (errorMsg == nil) {
+                let tempPingsArray: NSMutableArray = NSMutableArray(array: self.pingResults)
+                tempPingsArray.removeObjectAtIndex(index)
+                self.pingResults = tempPingsArray as NSArray
+            } else {
+                NSNotificationCenter.defaultCenter().postNotificationName(
+                    getErrorNotificationName() as String, object: self)
+            }
         }
         
         // Group Invite responded to: Update backend and delete from table
         else if (type == AlertType.GroupInvite) {
-            let errorMsg: NSString? = PartyUpBackend.instance.respondToInvite(getInviteTypeString(type), inviteID: DataManager.getGroupID(data), response: response)
+            PULog("Responding to Group Invite")
+            let errorMsg: NSString? = PartyUpBackend.instance.respondToInvite(self.getInviteTypeString(type), inviteID: DataManager.getEventID(data), response: response)
             if (errorMsg == nil) {
-                let tempGroupInvitesArray: NSMutableArray = NSMutableArray(array: groupInvites)
+                let tempGroupInvitesArray: NSMutableArray = NSMutableArray(array: self.groupInvites)
                 tempGroupInvitesArray.removeObjectAtIndex(index)
-                groupInvites = tempGroupInvitesArray as NSArray
+                self.groupInvites = tempGroupInvitesArray as NSArray
             } else {
-                NSNotificationCenter.defaultCenter().postNotificationName(getErrorNotificationName() as String, object: self)
+                NSNotificationCenter.defaultCenter().postNotificationName(
+                    getErrorNotificationName() as String, object: self)
             }
         }
 
         // Event Invite responded to: update backend and delete from table
         else if (type == AlertType.EventInvite) {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-                NSLog("ASYNC Request")
-                let errorMsg: NSString? = PartyUpBackend.instance.respondToInvite(self.getInviteTypeString(type), inviteID: DataManager.getEventID(data), response: response)
-                dispatch_async(dispatch_get_main_queue()) {
-                    NSLog("ASYNC UI Update")
-                    if (errorMsg == nil) {
-                        let tempEventInvitesArray: NSMutableArray = NSMutableArray(array: self.eventInvites)
-                        tempEventInvitesArray.removeObjectAtIndex(index)
-                        self.eventInvites = tempEventInvitesArray as NSArray
-                    } else {
-                        NSNotificationCenter.defaultCenter().postNotificationName(self.getErrorNotificationName() as String, object: self)
-                    }
-                }
+            PULog("Responding to Event Invite")
+            let errorMsg: NSString? = PartyUpBackend.instance.respondToInvite(self.getInviteTypeString(type), inviteID: DataManager.getEventID(data), response: response)
+            if (errorMsg == nil) {
+                let tempEventInvitesArray: NSMutableArray = NSMutableArray(array: self.eventInvites)
+                tempEventInvitesArray.removeObjectAtIndex(index)
+                self.eventInvites = tempEventInvitesArray as NSArray
+            } else {
+                NSNotificationCenter.defaultCenter().postNotificationName(
+                    self.getErrorNotificationName() as String, object: self)
             }
         }
         
@@ -106,6 +123,10 @@ class AlertsModel {
    /*--------------------------------------------*
     * Set methods
     *--------------------------------------------*/
+    
+    func setPingResults(results: NSArray) {
+        pingResults = results
+    }
     
     func setGroupInvites(results: NSArray) {
         groupInvites = results
@@ -120,11 +141,9 @@ class AlertsModel {
     * Get methods
     *--------------------------------------------*/
     
-    // ---  TODO  ---
-    func getCheckUpAlerts() -> NSArray {
-        return NSArray()
+    func getPingResults() -> NSArray {
+        return pingResults
     }
-    // ---        ---
     
     func getGroupInvites() -> NSArray {
         return groupInvites

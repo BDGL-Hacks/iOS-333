@@ -146,7 +146,7 @@ class AlertsViewController: PartyUpViewController, UITableViewDelegate, UITableV
     /* Returns the number of cells in the table */
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (tableView == checkUpAlertsTableView) {
-            return alertsModel.getCheckUpAlerts().count
+            return alertsModel.getPingResults().count
         }
         else if (tableView == groupInvitesTableView) {
             return alertsModel.getGroupInvites().count
@@ -172,9 +172,9 @@ class AlertsViewController: PartyUpViewController, UITableViewDelegate, UITableV
         var index: NSInteger = indexPath.row
         
         if (tableView == checkUpAlertsTableView) {
-            data = alertsModel.getCheckUpAlerts()[indexPath.row] as! NSDictionary
+            data = alertsModel.getPingResults()[indexPath.row] as! NSDictionary
             type = AlertsModel.AlertType.CheckUp
-            contentText = "TODO"
+            contentText = "Are you okay?"
         }
         else if (tableView == groupInvitesTableView) {
             data = alertsModel.getGroupInvites()[indexPath.row] as! NSDictionary

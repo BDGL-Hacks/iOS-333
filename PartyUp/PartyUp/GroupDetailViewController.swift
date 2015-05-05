@@ -11,10 +11,14 @@ import UIKit
 class GroupDetailViewController: PartyUpViewController, UIWebViewDelegate {
     
    /*--------------------------------------------*
-    * Variables
+    * Variables and Constants
     *--------------------------------------------*/
     
     var groupData: NSDictionary = NSDictionary()
+    
+    let homeURL: String = "http://52.4.3.6/web/groups/home"
+    let pingURL: String = "http://52.4.3.6/web/groups/ping"
+    var shouldUsePingURL: Bool = false
     
     
    /*--------------------------------------------*
@@ -40,7 +44,13 @@ class GroupDetailViewController: PartyUpViewController, UIWebViewDelegate {
         webView.loadRequest(NSURLRequest(URL: url))
         */
         
-        let url: NSURL = NSURL(string: "http://52.4.3.6/web/groups/home")!
+        let loadURL: String = homeURL
+        if (shouldUsePingURL) {
+            let loadURL: String = pingURL
+            shouldUsePingURL = false
+        }
+        
+        let url: NSURL = NSURL(string: loadURL)!
         webView.loadRequest(NSURLRequest(URL: url))
     }
     
@@ -56,7 +66,16 @@ class GroupDetailViewController: PartyUpViewController, UIWebViewDelegate {
             groupEditVC.setGroupData(group: groupData)
         }
     }
-   
+    
+    
+   /*--------------------------------------------*
+    * View response Methods
+    *--------------------------------------------*/
+    
+    func usePingURL() {
+        self.shouldUsePingURL = true
+    }
+    
     
    /*--------------------------------------------*
     * UIWebViewDelegate Methods

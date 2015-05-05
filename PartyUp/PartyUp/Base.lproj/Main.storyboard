@@ -3429,12 +3429,12 @@ tapping the 'Find' tab on the bottom.</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="f1n-2s-Yq2"/>
+        <segue reference="Bug-U0-u0v"/>
+        <segue reference="M2a-sX-iMI"/>
         <segue reference="DGP-Di-hMi"/>
         <segue reference="bG2-fK-XHR"/>
         <segue reference="VSP-cM-gCU"/>
         <segue reference="zR6-5U-mw3"/>
         <segue reference="Cdc-xi-cBr"/>
-        <segue reference="zaS-UW-vp0"/>
-        <segue reference="M2a-sX-iMI"/>
     </inferredMetricsTieBreakers>
 </document>

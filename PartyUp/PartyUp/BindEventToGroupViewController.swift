@@ -95,8 +95,6 @@ class BindEventToGroupViewController: PartyUpViewController, UITableViewDelegate
         if segue.identifier == "bindGroupToHome" {
             PULog("Preparing for segue")
             addEventToGroup()
-            let destinationVC = segue.destinationViewController as! HomepageViewController
-            //destinationVC.setActiveView(.GroupsList)
         }
     }
     

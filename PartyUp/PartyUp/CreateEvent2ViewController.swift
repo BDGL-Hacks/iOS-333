@@ -68,8 +68,6 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
         else if segue.identifier == "eventCreationTwoToHome" {
             PULog("Preparing for segue")
             finalizeEvent()
-            let destinationVC = segue.destinationViewController as! HomepageViewController
-            //destinationVC.setActiveView(.MyEvents)
         }
     }
     

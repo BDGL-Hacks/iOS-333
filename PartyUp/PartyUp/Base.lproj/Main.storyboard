@@ -385,11 +385,11 @@
                         <viewControllerLayoutGuide type="bottom" id="bzn-77-Yi6"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="GD2-KK-j7t">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="66" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7lY-Hm-DhW">
-                                <rect key="frame" x="0.0" y="124" width="600" height="476"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="66" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7lY-Hm-DhW">
+                                <rect key="frame" x="0.0" y="124" width="320" height="476"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="FriendCell" rowHeight="65" id="m7d-7q-BXa" customClass="AddFriendsTableViewCell" customModule="PartyUp" customModuleProvider="target">
@@ -398,7 +398,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m7d-7q-BXa" id="eQi-SP-CNY">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Firstname Lastnameg" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hn6-sc-hDd">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Firstname Lastnameg" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hn6-sc-hDd">
                                                     <rect key="frame" x="8" y="13" width="270" height="23"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="jTR-P2-BHu"/>
@@ -412,7 +412,7 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Emailg" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jLR-ph-ObF">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Emailg" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jLR-ph-ObF">
                                                     <rect key="frame" x="8" y="37" width="270" height="19"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="42" id="ovV-g9-o77"/>
@@ -463,8 +463,8 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cIp-YJ-ZZ8">
-                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                            <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cIp-YJ-ZZ8">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <color key="barTintColor" red="0.50196078430000002" green="0.7843137255" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
                                     <navigationItem id="Ife-8q-SNn">
@@ -483,14 +483,14 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Friends" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mvL-jC-0mH">
-                                <rect key="frame" x="248" y="30" width="105" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Add Friends" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mvL-jC-0mH">
+                                <rect key="frame" x="108" y="30" width="105" height="24"/>
                                 <fontDescription key="fontDescription" name="RobotoSlab-Regular" family="Roboto Slab" pointSize="18"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Friends Search Query" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="YT4-oh-QmW">
-                                <rect key="frame" x="0.0" y="86" width="600" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Friends Search Query" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="YT4-oh-QmW">
+                                <rect key="frame" x="0.0" y="86" width="320" height="30"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="RobotoSlab-Regular" family="Roboto Slab" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="search"/>
@@ -559,7 +559,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="67" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jQO-Io-zuG">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="67" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jQO-Io-zuG">
                                 <rect key="frame" x="0.0" y="123" width="320" height="445"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -625,7 +625,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7y5-m4-GQe">
+                            <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7y5-m4-GQe">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <color key="barTintColor" red="0.50196078430000002" green="0.7843137255" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
@@ -645,7 +645,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWS-g7-k6f">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWS-g7-k6f">
                                 <rect key="frame" x="16" y="76" width="82" height="39"/>
                                 <fontDescription key="fontDescription" name="Rancho" family="Rancho" pointSize="22"/>
                                 <state key="normal" title="Search 🔎 ">
@@ -731,7 +731,7 @@
                                             <constraint firstAttribute="height" constant="45" id="pWQ-xF-cg8"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="RobotoSlab-Regular" family="Roboto Slab" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="LU2-Ad-HdW"/>
@@ -745,7 +745,7 @@
                                             <constraint firstAttribute="height" constant="30" id="uo1-Df-xN8"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="RobotoSlab-Regular" family="Roboto Slab" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="uo1-Df-xN8"/>
@@ -950,7 +950,7 @@
                                 <rect key="frame" x="-4" y="0.0" width="328" height="568"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z8c-GZ-9BH">
-                                        <rect key="frame" x="39" y="342" width="250" height="32"/>
+                                        <rect key="frame" x="39" y="402" width="250" height="32"/>
                                         <color key="backgroundColor" red="0.50196078430000002" green="0.7843137255" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="RobotoSlab-Regular" family="Roboto Slab" pointSize="15"/>
                                         <state key="normal" title="Register">
@@ -960,38 +960,31 @@
                                             <action selector="register:" destination="c3G-Vh-7oU" eventType="touchUpInside" id="UqZ-HI-Rtn"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xzq-ie-79o">
-                                        <rect key="frame" x="39" y="194" width="250" height="30"/>
-                                        <fontDescription key="fontDescription" name="RobotoSlab-Regular" family="Roboto Slab" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VhL-Cq-Kn7">
-                                        <rect key="frame" x="39" y="232" width="250" height="30"/>
+                                        <rect key="frame" x="39" y="282" width="250" height="30"/>
+                                        <color key="textColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="RobotoSlab-Regular" family="Roboto Slab" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3ZX-lo-5NT">
-                                        <rect key="frame" x="39" y="156" width="250" height="30"/>
+                                        <rect key="frame" x="39" y="206" width="250" height="30"/>
+                                        <color key="textColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="RobotoSlab-Regular" family="Roboto Slab" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Re-Type Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rmi-PV-Ddu">
-                                        <rect key="frame" x="39" y="270" width="250" height="30"/>
-                                        <fontDescription key="fontDescription" name="RobotoSlab-Regular" family="Roboto Slab" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hAk-gR-2sU">
-                                        <rect key="frame" x="39" y="118" width="250" height="30"/>
+                                        <rect key="frame" x="39" y="168" width="250" height="30"/>
+                                        <color key="textColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="RobotoSlab-Regular" family="Roboto Slab" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Register for PartyUp!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zea-RI-L6J">
-                                        <rect key="frame" x="20" y="54" width="288" height="30"/>
+                                        <rect key="frame" x="20" y="86" width="288" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="YC5-sK-lJ3"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="RobotoSlab-Regular" family="Roboto Slab" pointSize="24"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0O0-rw-Zae">
@@ -1005,35 +998,72 @@
                                             <action selector="backToLogin" destination="c3G-Vh-7oU" eventType="touchUpInside" id="p33-0T-B5X"/>
                                         </connections>
                                     </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Re-Type Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rmi-PV-Ddu">
+                                        <rect key="frame" x="39" y="320" width="250" height="30"/>
+                                        <fontDescription key="fontDescription" name="RobotoSlab-Regular" family="Roboto Slab" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xzq-ie-79o">
+                                        <rect key="frame" x="39" y="244" width="250" height="30"/>
+                                        <color key="textColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="RobotoSlab-Regular" family="Roboto Slab" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                    </textField>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="Rmi-PV-Ddu" firstAttribute="trailing" secondItem="VhL-Cq-Kn7" secondAttribute="trailing" id="372-kZ-Ux6"/>
-                                    <constraint firstItem="z8c-GZ-9BH" firstAttribute="trailing" secondItem="Rmi-PV-Ddu" secondAttribute="trailing" id="6cm-87-0yF"/>
+                                    <constraint firstItem="z8c-GZ-9BH" firstAttribute="top" secondItem="Rmi-PV-Ddu" secondAttribute="bottom" constant="52" id="0Ru-eQ-3Xh"/>
+                                    <constraint firstItem="hAk-gR-2sU" firstAttribute="top" secondItem="zea-RI-L6J" secondAttribute="bottom" constant="52" id="1LK-GI-zZd"/>
                                     <constraint firstItem="hAk-gR-2sU" firstAttribute="centerX" secondItem="zea-RI-L6J" secondAttribute="centerX" id="FHn-3s-G2y"/>
                                     <constraint firstItem="zea-RI-L6J" firstAttribute="top" secondItem="pE7-BG-ydJ" secondAttribute="top" constant="54" id="FVD-AJ-cTQ"/>
-                                    <constraint firstItem="Rmi-PV-Ddu" firstAttribute="leading" secondItem="z8c-GZ-9BH" secondAttribute="leading" id="Hg0-jD-6pT"/>
-                                    <constraint firstItem="0O0-rw-Zae" firstAttribute="leading" secondItem="zea-RI-L6J" secondAttribute="leading" id="O5c-gt-2fA"/>
+                                    <constraint firstItem="0O0-rw-Zae" firstAttribute="leading" secondItem="zea-RI-L6J" secondAttribute="leading" id="Fyu-yR-13V"/>
+                                    <constraint firstItem="3ZX-lo-5NT" firstAttribute="trailing" secondItem="hAk-gR-2sU" secondAttribute="trailing" id="H3C-uZ-Mm1"/>
+                                    <constraint firstItem="0O0-rw-Zae" firstAttribute="centerX" secondItem="z8c-GZ-9BH" secondAttribute="centerX" id="JCi-Xe-wm3"/>
+                                    <constraint firstItem="Rmi-PV-Ddu" firstAttribute="leading" secondItem="z8c-GZ-9BH" secondAttribute="leading" id="MVt-38-e9E"/>
+                                    <constraint firstAttribute="bottom" secondItem="0O0-rw-Zae" secondAttribute="bottom" constant="37" id="NxF-ex-lQZ"/>
+                                    <constraint firstItem="3ZX-lo-5NT" firstAttribute="trailing" secondItem="xzq-ie-79o" secondAttribute="trailing" id="QNn-wm-Zbv"/>
                                     <constraint firstItem="VhL-Cq-Kn7" firstAttribute="trailing" secondItem="xzq-ie-79o" secondAttribute="trailing" id="Qdi-Mr-BE5"/>
                                     <constraint firstItem="3ZX-lo-5NT" firstAttribute="trailing" secondItem="hAk-gR-2sU" secondAttribute="trailing" id="SCp-7c-pUA"/>
-                                    <constraint firstAttribute="bottom" secondItem="0O0-rw-Zae" secondAttribute="bottom" constant="39" id="UpT-2U-i8m"/>
+                                    <constraint firstItem="3ZX-lo-5NT" firstAttribute="leading" secondItem="hAk-gR-2sU" secondAttribute="leading" id="ThJ-CS-HkO"/>
+                                    <constraint firstItem="Rmi-PV-Ddu" firstAttribute="top" secondItem="VhL-Cq-Kn7" secondAttribute="bottom" constant="8" symbolic="YES" id="Unp-dw-wNj"/>
                                     <constraint firstItem="VhL-Cq-Kn7" firstAttribute="top" secondItem="xzq-ie-79o" secondAttribute="bottom" constant="8" symbolic="YES" id="Ux4-6T-Fu6"/>
-                                    <constraint firstItem="VhL-Cq-Kn7" firstAttribute="leading" secondItem="Rmi-PV-Ddu" secondAttribute="leading" id="VfV-Ax-za7"/>
-                                    <constraint firstItem="0O0-rw-Zae" firstAttribute="trailing" secondItem="zea-RI-L6J" secondAttribute="trailing" id="X6w-RM-81X"/>
+                                    <constraint firstItem="0O0-rw-Zae" firstAttribute="top" secondItem="z8c-GZ-9BH" secondAttribute="bottom" constant="65" id="Z5q-r7-xY7"/>
+                                    <constraint firstItem="VhL-Cq-Kn7" firstAttribute="trailing" secondItem="xzq-ie-79o" secondAttribute="trailing" id="ZRB-DM-4cs"/>
                                     <constraint firstItem="hAk-gR-2sU" firstAttribute="leading" secondItem="pE7-BG-ydJ" secondAttribute="leading" constant="39" id="cWo-E5-l2d"/>
+                                    <constraint firstItem="0O0-rw-Zae" firstAttribute="trailing" secondItem="zea-RI-L6J" secondAttribute="trailing" id="ccJ-ha-qM5"/>
                                     <constraint firstItem="3ZX-lo-5NT" firstAttribute="leading" secondItem="hAk-gR-2sU" secondAttribute="leading" id="cg6-Vu-s4P"/>
                                     <constraint firstAttribute="trailing" secondItem="zea-RI-L6J" secondAttribute="trailing" constant="20" id="d11-GS-nx3"/>
                                     <constraint firstItem="3ZX-lo-5NT" firstAttribute="leading" secondItem="xzq-ie-79o" secondAttribute="leading" id="dH8-RD-gID"/>
-                                    <constraint firstItem="z8c-GZ-9BH" firstAttribute="top" secondItem="Rmi-PV-Ddu" secondAttribute="bottom" constant="42" id="ghr-js-NfK"/>
-                                    <constraint firstItem="Rmi-PV-Ddu" firstAttribute="top" secondItem="VhL-Cq-Kn7" secondAttribute="bottom" constant="8" symbolic="YES" id="jEf-Cb-PqM"/>
+                                    <constraint firstItem="VhL-Cq-Kn7" firstAttribute="leading" secondItem="xzq-ie-79o" secondAttribute="leading" id="h5u-x8-b7F"/>
+                                    <constraint firstItem="3ZX-lo-5NT" firstAttribute="leading" secondItem="xzq-ie-79o" secondAttribute="leading" id="q06-rR-7Eq"/>
                                     <constraint firstItem="xzq-ie-79o" firstAttribute="top" secondItem="3ZX-lo-5NT" secondAttribute="bottom" constant="8" symbolic="YES" id="q78-11-eKb"/>
                                     <constraint firstItem="zea-RI-L6J" firstAttribute="leading" secondItem="pE7-BG-ydJ" secondAttribute="leading" constant="20" id="rCg-XH-GeX"/>
-                                    <constraint firstItem="0O0-rw-Zae" firstAttribute="top" secondItem="pE7-BG-ydJ" secondAttribute="top" constant="499" id="rJK-Vv-LpK"/>
+                                    <constraint firstItem="Rmi-PV-Ddu" firstAttribute="trailing" secondItem="VhL-Cq-Kn7" secondAttribute="trailing" id="rJX-Oj-kfq"/>
                                     <constraint firstItem="3ZX-lo-5NT" firstAttribute="trailing" secondItem="xzq-ie-79o" secondAttribute="trailing" id="rsf-a7-HZH"/>
+                                    <constraint firstAttribute="trailing" secondItem="hAk-gR-2sU" secondAttribute="trailing" constant="39" id="t9g-jk-KPY"/>
+                                    <constraint firstItem="hAk-gR-2sU" firstAttribute="top" secondItem="zea-RI-L6J" secondAttribute="bottom" constant="45" id="uW7-SB-tso"/>
                                     <constraint firstItem="hAk-gR-2sU" firstAttribute="top" secondItem="zea-RI-L6J" secondAttribute="bottom" constant="34" id="vGQ-s4-JCS"/>
+                                    <constraint firstItem="zea-RI-L6J" firstAttribute="top" secondItem="pE7-BG-ydJ" secondAttribute="top" constant="86" id="vHl-5h-ajJ"/>
                                     <constraint firstItem="z8c-GZ-9BH" firstAttribute="centerX" secondItem="pE7-BG-ydJ" secondAttribute="centerX" id="vck-DT-eWd"/>
                                     <constraint firstItem="3ZX-lo-5NT" firstAttribute="top" secondItem="hAk-gR-2sU" secondAttribute="bottom" constant="8" symbolic="YES" id="vfU-da-rAR"/>
                                     <constraint firstItem="VhL-Cq-Kn7" firstAttribute="leading" secondItem="xzq-ie-79o" secondAttribute="leading" id="vvh-ew-efG"/>
+                                    <constraint firstItem="z8c-GZ-9BH" firstAttribute="top" secondItem="Rmi-PV-Ddu" secondAttribute="bottom" constant="52" id="ySj-76-izV"/>
+                                    <constraint firstItem="Rmi-PV-Ddu" firstAttribute="leading" secondItem="VhL-Cq-Kn7" secondAttribute="leading" id="zQX-aQ-bbD"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="FVD-AJ-cTQ"/>
+                                        <exclude reference="FHn-3s-G2y"/>
+                                        <exclude reference="uW7-SB-tso"/>
+                                        <exclude reference="vGQ-s4-JCS"/>
+                                        <exclude reference="SCp-7c-pUA"/>
+                                        <exclude reference="cg6-Vu-s4P"/>
+                                        <exclude reference="dH8-RD-gID"/>
+                                        <exclude reference="rsf-a7-HZH"/>
+                                        <exclude reference="Qdi-Mr-BE5"/>
+                                        <exclude reference="vvh-ew-efG"/>
+                                        <exclude reference="0Ru-eQ-3Xh"/>
+                                    </mask>
+                                </variation>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1159,7 +1189,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8WO-Np-s5m">
+                            <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8WO-Np-s5m">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <color key="barTintColor" red="0.50196078430000002" green="0.7843137255" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
@@ -1176,13 +1206,13 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7aD-H1-M1R">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Group Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7aD-H1-M1R">
                                 <rect key="frame" x="110" y="30" width="101" height="23"/>
                                 <fontDescription key="fontDescription" name="RobotoSlab-Regular" family="Roboto Slab" pointSize="17"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F4h-Ox-jcb">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F4h-Ox-jcb">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="rwo-ZZ-Opp" customClass="PUDynamicTableView" customModule="PartyUp" customModuleProvider="target">
@@ -1710,7 +1740,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="TEE-0o-2Cy">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="TEE-0o-2Cy">
                                 <rect key="frame" x="0.0" y="163" width="320" height="405"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -1742,7 +1772,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NP7-Ly-Iya">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NP7-Ly-Iya">
                                 <rect key="frame" x="23" y="119" width="55" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="46" id="vJU-AN-YDV"/>
@@ -1761,7 +1791,7 @@
                                     <segue destination="iDH-9r-U2n" kind="presentation" identifier="createGroup2ToCreateEvent" id="in5-ko-7n1"/>
                                 </connections>
                             </button>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rw6-vx-BvS">
+                            <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rw6-vx-BvS">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="barTintColor" red="0.50196078430000002" green="0.7843137255" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1782,7 +1812,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a new event, choose from existing events, or browse public events" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pa8-Ml-MCZ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Create a new event, choose from existing events, or browse public events" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pa8-Ml-MCZ">
                                 <rect key="frame" x="16" y="64" width="283" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="oqm-ak-iuV"/>
@@ -1796,7 +1826,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hyt-86-g2y">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hyt-86-g2y">
                                 <rect key="frame" x="127" y="118" width="66" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="53" id="hcA-Wv-Y2G"/>
@@ -1815,7 +1845,7 @@
                                     <segue destination="eek-mW-1nM" kind="presentation" identifier="createGroup2ToSearchEvents" id="snm-DT-fsS"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HOz-7i-mDc">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HOz-7i-mDc">
                                 <rect key="frame" x="231" y="118" width="67" height="38"/>
                                 <fontDescription key="fontDescription" name="RobotoSlab-Regular" family="Roboto Slab" pointSize="19"/>
                                 <state key="normal" title="Browse">
@@ -1893,7 +1923,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="QEe-sn-aiG">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="QEe-sn-aiG">
                                 <rect key="frame" x="0.0" y="109" width="320" height="459"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -1906,7 +1936,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7XB-Qh-ITb">
+                            <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7XB-Qh-ITb">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <color key="barTintColor" red="0.50196078430000002" green="0.7843137255" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
@@ -1926,7 +1956,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search public events" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lpv-m7-1vp">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Search public events" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lpv-m7-1vp">
                                 <rect key="frame" x="16" y="80" width="288" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="8tW-sS-PDT"/>
@@ -1941,7 +1971,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Browse Events" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HWB-pp-USm">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Browse Events" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HWB-pp-USm">
                                 <rect key="frame" x="98" y="30" width="126" height="24"/>
                                 <fontDescription key="fontDescription" name="RobotoSlab-Regular" family="Roboto Slab" pointSize="18"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1999,7 +2029,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RuV-YH-cjw">
+                            <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RuV-YH-cjw">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <color key="barTintColor" red="0.50196078430000002" green="0.7843137255" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
@@ -2060,7 +2090,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Events" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dx1-Cd-tYO">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Choose Events" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dx1-Cd-tYO">
                                 <rect key="frame" x="95" y="30" width="130" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="130" id="ydJ-Xb-uAh"/>
@@ -2836,9 +2866,9 @@ tapping the 'Find' tab on the bottom.</string>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="wDr-Nm-dlf"/>
                                 <exclude reference="6ky-x9-TAw"/>
                                 <exclude reference="WjN-oZ-O0y"/>
+                                <exclude reference="wDr-Nm-dlf"/>
                             </mask>
                         </variation>
                         <connections>
@@ -3302,10 +3332,10 @@ tapping the 'Find' tab on the bottom.</string>
     <inferredMetricsTieBreakers>
         <segue reference="bIb-fA-Nj2"/>
         <segue reference="Bug-U0-u0v"/>
-        <segue reference="VSP-cM-gCU"/>
+        <segue reference="2aX-yK-MH8"/>
         <segue reference="lY5-SE-ddG"/>
-        <segue reference="zR6-5U-mw3"/>
         <segue reference="Cdc-xi-cBr"/>
+        <segue reference="VSP-cM-gCU"/>
         <segue reference="in5-ko-7n1"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -168,12 +168,6 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UI
         self.performSegueWithIdentifier("eventCreationOneToTwo", sender: self)
     }
     
-    /* Continue to next page. Send data to create model */
-    func addFriends() {
-        
-        
-    }
-    
     /* Alternate button for group creation flow. Creates event
        using emails of friends already added and information
        from this page */
@@ -208,13 +202,16 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UI
         if (backendError != nil)
         {
             displayAlert("Event creation Failed", message: backendError!)
+            self.dismissViewControllerAnimated(true, completion: nil)
         }
         
-        /* Update backend array and update the table of the
+        else {
+            /* Update backend array and update the table of the
            previous view controller */
-        createEvent!.updateNewlyCreatedEvents(eventID as NSString?)
-        previousViewController!.updateAddedEvents(true)
-        self.dismissViewControllerAnimated(true, completion: nil)
+            createEvent!.updateNewlyCreatedEvents(eventID as NSString?)
+            previousViewController!.updateAddedEvents(true)
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
     }
     
     /*--------------------------------------------*

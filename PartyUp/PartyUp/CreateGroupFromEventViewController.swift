@@ -77,8 +77,6 @@ class CreateGroupFromEventViewController: PartyUpViewController, UITableViewData
         if segue.identifier == "eventGroupCreationToHome" {
             PULog("Preparing for segue")
             addFriends()
-            let destinationVC = segue.destinationViewController as! HomepageViewController
-            destinationVC.setActiveView(.GroupsList)
         }
     }
     

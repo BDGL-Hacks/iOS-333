@@ -42,6 +42,7 @@ class HomepageViewController: PartyUpViewController, SideMenuViewControllerDeleg
     @IBOutlet var alertsChildView: UIView!
 
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var createButton: UIButton!
     @IBOutlet weak var sideMenuButton: UIButton!
     
     
@@ -56,8 +57,8 @@ class HomepageViewController: PartyUpViewController, SideMenuViewControllerDeleg
     * View response methods
     *--------------------------------------------*/
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
         // Display the groups detail page at the start, hid everything else
         groupsListChildView.hidden = true
@@ -65,7 +66,11 @@ class HomepageViewController: PartyUpViewController, SideMenuViewControllerDeleg
         myEventsChildView.hidden = true
         searchEventsChildView.hidden = true
         alertsChildView.hidden = true
-        setActiveView(.GroupsList)
+        setActiveView(.GroupsDetail)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
         // If the user is not logged in, delete cookies and go to login screen
         if (!isLoggedIn()) {
@@ -91,9 +96,32 @@ class HomepageViewController: PartyUpViewController, SideMenuViewControllerDeleg
         }
     }
     
-    @IBAction func sideMenuButtonPressed(sender: UIBarButtonItem) {
+    @IBAction func sideMenuButtonPressed(sender: UIButton) {
         PULog("Side menu button pressed")
         delegate!.toggleSideMenu()
+    }
+    
+    @IBAction func createButtonPressed(sender: UIButton) {
+        PULog("Create button pressed")
+        switch activeView {
+            case groupsListChildView:
+                PULog("Segueing to Create Group")
+                segueToCreateGroup()
+            case groupsDetailChildView:
+                PULog("Segueing to Create Group")
+                segueToCreateGroup()
+            case myEventsChildView:
+                PULog("Segueing to Create Event")
+                segueToCreateEvent()
+            case searchEventsChildView:
+                PULog("Segueing to Create Event")
+                segueToCreateEvent()
+            case alertsChildView:
+                PULog("User should not have been able press create button...")
+                break
+            default:
+                break
+        }
     }
 
 
@@ -109,14 +137,19 @@ class HomepageViewController: PartyUpViewController, SideMenuViewControllerDeleg
         switch newActiveView {
             case .GroupsList:
                 activeView = groupsListChildView
+                createButton.hidden = false
             case .GroupsDetail:
                 activeView = groupsDetailChildView
+                createButton.hidden = false
             case .MyEvents:
                 activeView = myEventsChildView
+                createButton.hidden = false
             case .SearchEvents:
                 activeView = searchEventsChildView
+                createButton.hidden = false
             case .Alerts:
                 activeView = alertsChildView
+                createButton.hidden = true
             default:
                 break
         }

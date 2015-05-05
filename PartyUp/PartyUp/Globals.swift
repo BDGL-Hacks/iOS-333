@@ -28,7 +28,6 @@ func PULog(format: NSString, args: AnyObject...) {
 }
 
 /* Convert a color in hex to a UIColor */
-
 func UIColorFromRGB(rgbValue: UInt) -> UIColor {
     return UIColor(
         red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
@@ -37,6 +36,7 @@ func UIColorFromRGB(rgbValue: UInt) -> UIColor {
         alpha: CGFloat(1.0)
     )
 }
+
 
 /*--------------------------------------------*
  * EXTENSIONS

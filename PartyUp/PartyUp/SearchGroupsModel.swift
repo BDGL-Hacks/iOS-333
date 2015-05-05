@@ -26,8 +26,7 @@ class SearchGroupsModel
     func update() -> NSString?
     {
         PULog("Updating User Groups...")
-        let (errorMessage: NSString?, queryResults: NSArray?) =
-            PartyUpBackend.instance.queryUserGroups()
+        let (errorMessage: NSString?, queryResults: NSArray?) = PartyUpBackend.instance.queryUserGroups()
         if (errorMessage != nil) {
             PULog("Updated Failed: \(errorMessage!)")
             return errorMessage!

@@ -276,6 +276,32 @@ class DataManager {
         let dateTimeRaw: NSString = message["time"] as! NSString
         return extractDatetime(dateTimeRaw)
     }
+   
+    
+   /*--------------------------------------------*
+    * Ping data extraction methods
+    *--------------------------------------------*/
+    
+    /*
+    Ping JSON Object:
+    {
+        user <User>
+        group <group>
+        response <Bool>
+    }
+    */
+    
+    class func getPingTarget(ping: NSDictionary) -> NSDictionary {
+        return ping["user"] as! NSDictionary
+    }
+    
+    class func getPingGroup(ping: NSDictionary) -> NSDictionary {
+        return ping["group"] as! NSDictionary
+    }
+    
+    class func getPingResponse(ping: NSDictionary) -> Bool {
+        return (ping["response"] as! NSString) == "True"
+    }
     
     
    /*--------------------------------------------*

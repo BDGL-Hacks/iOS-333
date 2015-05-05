@@ -40,7 +40,7 @@ class SideMenuViewController: PartyUpViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 8
+        return 5
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
@@ -50,20 +50,14 @@ class SideMenuViewController: PartyUpViewController, UITableViewDelegate, UITabl
         
         switch cellNumber {
             case 0:
-                cell.loadCell("PartyUp_icon_2x_placeholder.png", labelText: "My Groups")
-            case 1:
                 cell.loadCell("PartyUp_icon_2x_placeholder.png", labelText: "Groups Detail")
-            case 2:
-                cell.loadCell("PartyUp_icon_2x_placeholder.png", labelText: "Create Group")
-            case 3:
+            case 1:
                 cell.loadCell("PartyUp_icon_2x_placeholder.png", labelText: "My Events")
-            case 4:
+            case 2:
                 cell.loadCell("PartyUp_icon_2x_placeholder.png", labelText: "Search Events")
-            case 5:
-                cell.loadCell("PartyUp_icon_2x_placeholder.png", labelText: "Create Event")
-            case 6:
+            case 3:
                 cell.loadCell("PartyUp_icon_2x_placeholder.png", labelText: "Notifications")
-            case 7:
+            case 4:
                 cell.loadCell("PartyUp_icon_2x_placeholder.png", labelText: "Logout")
             default:
                 PULog("Table Error: Index outside expected range")
@@ -86,17 +80,11 @@ class SideMenuViewController: PartyUpViewController, UITableViewDelegate, UITabl
         else if (labelText == "Groups Detail") {
             delegate!.setActiveView(.GroupsDetail)
         }
-        else if (labelText == "Create Group") {
-            delegate!.segueToCreateGroup()
-        }
         else if (labelText == "My Events") {
             delegate!.setActiveView(.MyEvents)
         }
         else if (labelText == "Search Events") {
             delegate!.setActiveView(.SearchEvents)
-        }
-        else if (labelText == "Create Event") {
-            delegate!.segueToCreateEvent()
         }
         else if (labelText == "Notifications") {
             delegate!.setActiveView(.Alerts)

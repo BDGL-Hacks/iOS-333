@@ -118,8 +118,14 @@ class AlertsViewController: PartyUpViewController, UITableViewDelegate, UITableV
         
         if (isCheckUpAlertsTableEmpty && isGroupInvitesTableEmpty && isEventInvitesTableEmpty) {
             placeholderLabel.hidden = false
+            checkUpAlertsTableView.hideView()
+            groupInvitesTableView.hideView()
+            eventInvitesTableView.hideView()
         } else {
             placeholderLabel.hidden = true
+            checkUpAlertsTableView.showView()
+            groupInvitesTableView.showView()
+            eventInvitesTableView.showView()
         }
     }
     

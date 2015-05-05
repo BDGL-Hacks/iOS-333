@@ -11,11 +11,16 @@ import UIKit
 class CustomHeaderTableViewCell: UITableViewCell {
 
     
+    @IBOutlet weak var addFriendsButton: UIButton!
     @IBOutlet weak var headerTextLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+    
+    func hideButton() {
+        addFriendsButton.hidden = true
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

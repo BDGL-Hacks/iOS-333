@@ -38,12 +38,6 @@ class GroupDetailViewController: PartyUpViewController, UIWebViewDelegate {
         webView.scalesPageToFit = true
         webView.contentMode = UIViewContentMode.ScaleAspectFit
         
-        /*
-        let url: NSURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("test", ofType: "html")!, isDirectory: false)!
-        PULog("URL: \(url.absoluteString!)")
-        webView.loadRequest(NSURLRequest(URL: url))
-        */
-        
         let loadURL: String = homeURL
         if (shouldUsePingURL) {
             let loadURL: String = pingURL
@@ -64,6 +58,11 @@ class GroupDetailViewController: PartyUpViewController, UIWebViewDelegate {
         else if (segue.identifier == "groupsDetailToGroupEdit") {
             let groupEditVC: GroupInfoViewController = segue.destinationViewController as! GroupInfoViewController
             groupEditVC.setGroupData(group: groupData)
+        }
+        else if (segue.identifier == "groupsDetailToInviteFriends") {
+            let inviteFriendsVC: InviteFriendsViewController = segue.destinationViewController as! InviteFriendsViewController
+            inviteFriendsVC.setGroupData(groupData)
+            inviteFriendsVC.setGroupOrEvent(false)
         }
     }
     
@@ -86,7 +85,7 @@ class GroupDetailViewController: PartyUpViewController, UIWebViewDelegate {
         let url: NSURL = request.URL!
         let urlString: NSString = url.absoluteString! as NSString
         
-        PULog("WebView Load Request Detected: \(urlString)")
+        PULog("Web View Load Request Detected: \(urlString)")
         
         var urlStringArray: [NSString] = urlString.componentsSeparatedByString("//") as! [NSString]
         if (urlStringArray.count != 2) {
@@ -132,6 +131,20 @@ class GroupDetailViewController: PartyUpViewController, UIWebViewDelegate {
             
             groupData = group!
             self.performSegueWithIdentifier("groupsDetailToGroupEdit", sender: self)
+            return false
+        }
+        else if (type == "groups-invite")
+        {
+            PULog("Transition to Invite Friends. Group ID: \(groupID)")
+            
+            let (errorMessage: NSString?, group: NSDictionary?) = PartyUpBackend.instance.queryGroupSearchByID(groupID)
+            if (errorMessage != nil) {
+                displayAlert("Failed to get group.", message: errorMessage!)
+                return false
+            }
+            
+            groupData = group!
+            self.performSegueWithIdentifier("groupsDetailToInviteFriends", sender: self)
             return false
         }
         else {

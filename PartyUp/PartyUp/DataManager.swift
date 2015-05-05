@@ -112,6 +112,9 @@ class DataManager {
     }
     
     class func getEventPublic(event: NSDictionary) -> Bool {
+        if (event["public"] == nil) {
+            return false
+        }
         let publicTitle = event["public"] as! NSInteger
         if (publicTitle == 1)
         {
@@ -120,7 +123,7 @@ class DataManager {
         return false
     }
     
-    // TODO: ACTUALLY WRITE THESE METHODS!!!
+    // Implement this method (if we eventually choose to)!!!
     //---------------------------------------------------------------
     
     /* Returns the name of the group the user is attending the event with */
@@ -308,33 +311,45 @@ class DataManager {
     * Private formatting methods
     *--------------------------------------------*/
     
-    // TODO: ACTUALLY WRITE THESE METHODS!!!
-    //---------------------------------------------------------------
-    
     /* Accepts a raw datetime string and returns the date (ex: July 4th, 2012) */
     private class func extractDate(dateTimeRaw: NSString) -> NSString {
-        return dateTimeRaw.substringToIndex(10)
+        let date: NSDate = NSDate(dateString: extractDatetime(dateTimeRaw) as String)
+        return getFormattedDateString(date, formatString: "MMMM d, y")
     }
     
     /* Accepts a raw datetime string and returns the day text (ex: "Fri") */
     private class func extractDayText(dateTimeRaw: NSString) -> NSString {
-        return "Fri"
+        let date: NSDate = NSDate(dateString: extractDatetime(dateTimeRaw) as String)
+        return getFormattedDateString(date, formatString: "EEE")
     }
     
     /* Accepts a raw datetime string and returns the day text (ex: "01") */
     private class func extractDayNumber(dateTimeRaw: NSString) -> NSString {
-        return "00"
+        let date: NSDate = NSDate(dateString: extractDatetime(dateTimeRaw) as String)
+        return getFormattedDateString(date, formatString: "dd")
     }
     
     /* Accepts a raw datetime string and returns the time (ex: 9:05 pm) */
     private class func extractTime(dateTimeRaw: NSString) -> NSString {
-        return dateTimeRaw.substringWithRange(NSRange(11...15))
+        let date: NSDate = NSDate(dateString: extractDatetime(dateTimeRaw) as String)
+        return getFormattedDateString(date, formatString: "h:mm a")
     }
+    
+    
+   /*--------------------------------------------*
+    * Private formatting helper methods
+    *--------------------------------------------*/
     
     /* Accepts a raw datetime string and returns a formatted datetime string */
     private class func extractDatetime(dateTimeRaw: NSString) -> NSString {
         return dateTimeRaw.substringToIndex(10) + " " + dateTimeRaw.substringWithRange(NSRange(11...18))
     }
-    //---------------------------------------------------------------
+    
+    /* Accepts a date and a format string returns the pretty print output */
+    private class func getFormattedDateString(date: NSDate, formatString: String) -> NSString {
+        let dateFormatter: NSDateFormatter = getDateFormatter()
+        dateFormatter.dateFormat = formatString
+        return dateFormatter.stringFromDate(date)
+    }
     
 }

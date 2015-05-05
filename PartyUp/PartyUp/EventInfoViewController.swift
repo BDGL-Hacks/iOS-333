@@ -25,7 +25,8 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
     @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var eventTitleLabel: UILabel!
     
-    @IBOutlet weak var tapGestureRecognizer: UITapGestureRecognizer!
+    
+    
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
@@ -83,22 +84,20 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        if (!isEventOwner || !(DataManager.getEventPublic(event))) {
-            tapGestureRecognizer.enabled = false
-        }
         if (isFromGroupInfo) {
-            tapGestureRecognizer.enabled = false
-            createGroupButton.hidden = true
-            bindEventToGroupButton.hidden = true
+            createGroupButton.enabled = false
+            bindEventToGroupButton.enabled = false
         }
     }
     
     /* User taps cell to add people to the event */
     
-    @IBAction func inviteFriendsPressed(sender: UITapGestureRecognizer) {
+    
+    @IBAction func addFriendsButtonPressed(sender: UIButton) {
         PULog("Invite button pressed")
         self.performSegueWithIdentifier("eventInfoToInviteFriends", sender: self)
     }
+    
     
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
         return UIBarPosition.TopAttached
@@ -184,6 +183,13 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
         headerCell.backgroundColor = UIColorFromRGB(0xE6C973)
         headerCell.headerTextLabel.text = "Attendees"
+        if (!isEventOwner || !(DataManager.getEventPublic(event))) {
+            headerCell.hideButton()
+        }
+        
+        if (isFromGroupInfo) {
+            headerCell.hideButton()
+        }
         return headerCell
     }
 

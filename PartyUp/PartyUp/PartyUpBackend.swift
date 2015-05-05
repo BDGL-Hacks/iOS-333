@@ -1077,7 +1077,7 @@ class PartyUpBackend {
             let jsonData: NSDictionary = postData!
             let accepted: Bool = jsonData.valueForKey("accepted") as! Bool
             var errorMessage: NSString? = jsonData.valueForKey("error") as! NSString?
-            let results: NSArray? = jsonData.valueForKey("results") as! NSArray?
+            let results: NSArray? = jsonData.valueForKey("pings") as! NSArray?
             
             // Query successful: return JSON data as dictionary
             if (accepted) {

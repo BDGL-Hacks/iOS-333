@@ -13,7 +13,15 @@ import Foundation
  * OBJECTS
  *--------------------------------------------*/
 
-private let _dateFormatter = NSDateFormatter()
+private let DEBUG_MODE: Bool = true
+
+
+/*--------------------------------------------*
+ * OBJECTS
+ *--------------------------------------------*/
+
+private let _dateFormatter: NSDateFormatter = NSDateFormatter()
+private let _calendarInstance: NSCalendar = NSCalendar.currentCalendar()
 
 
 /*--------------------------------------------*
@@ -24,7 +32,19 @@ private let _dateFormatter = NSDateFormatter()
  * While string formatting is supported, this method *
  * performs more predictably using the \() version.  */
 func PULog(format: NSString, args: AnyObject...) {
-    println(NSString(format: format, args))
+    if (DEBUG_MODE) {
+        println(NSString(format: format, args))
+    }
+}
+
+/* Returns the date formatter */
+func getDateFormatter() -> NSDateFormatter {
+    return _dateFormatter
+}
+
+/* Returns the current calendar */
+func getCalendar() -> NSCalendar {
+    return _calendarInstance
 }
 
 /* Convert a color in hex to a UIColor */

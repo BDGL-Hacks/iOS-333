@@ -8,11 +8,10 @@
 
 import UIKit
 
-class GroupInfoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationBarDelegate
+class GroupInfoViewController: PartyUpViewController, UITableViewDelegate, UITableViewDataSource, UINavigationBarDelegate
  {
-
-    @IBOutlet weak var groupEventsTableView: PUDynamicTableView!
-    @IBOutlet weak var groupMembersTableView: PUDynamicTableView!
+    @IBOutlet weak var groupEventsTableView: UITableView!
+    @IBOutlet weak var groupMembersTableView: UITableView!
     @IBOutlet weak var groupNameLabel: UILabel!
     
     @IBOutlet weak var navBar: UINavigationBar!
@@ -29,8 +28,14 @@ class GroupInfoViewController: UIViewController, UITableViewDelegate, UITableVie
         var customTableCellNib: UINib = UINib(nibName: "PartyUpTableCell", bundle: nil)
         groupEventsTableView.registerNib(customTableCellNib, forCellReuseIdentifier: "eventCellPrototype")
         groupMembersTableView.rowHeight = 45
+        groupEventsTableView.rowHeight = 65
         groupMembersTableView.sectionHeaderHeight = 65
         groupEventsTableView.sectionHeaderHeight = 65
+        
+        groupEventsTableView.delegate = self
+        groupEventsTableView.dataSource = self
+        groupMembersTableView.delegate = self
+        groupMembersTableView.dataSource = self
         
         navBar.delegate = self
         // Do any additional setup after loading the view.
@@ -38,13 +43,14 @@ class GroupInfoViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        groupEventsTableView.reloadData()
-        groupMembersTableView.reloadData()
-        groupEvents = DataManager.getGroupMembers(group)
+        groupMembers = DataManager.getGroupMembers(group)
         groupEvents = DataManager.getGroupSparseEvents(group)
        
         let groupName: NSString = DataManager.getGroupTitle(group)
         groupNameLabel.text = groupName as String
+        
+        groupEventsTableView.reloadData()
+        groupMembersTableView.reloadData()
     }
     
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
@@ -84,6 +90,7 @@ class GroupInfoViewController: UIViewController, UITableViewDelegate, UITableVie
     /* Set the group data */
     func setGroupData(#group: NSDictionary) {
         self.group = group
+        PULog("Group Id: " + "\(DataManager.getGroupID(group))")
     }
     
     func setGroupData(#groupID: NSString) {
@@ -137,6 +144,7 @@ class GroupInfoViewController: UIViewController, UITableViewDelegate, UITableVie
             cell.loadCell(dayText: dayText, dayNumber: dayNumber, mainText: mainText, subText: subText)
             cell.setCellData(event)
             cell.hideCheckmark()
+            PULog("\(event)")
             return cell
         }
         else {
@@ -183,11 +191,19 @@ class GroupInfoViewController: UIViewController, UITableViewDelegate, UITableVie
         if (tableView == groupEventsTableView) {
             let cell = tableView.cellForRowAtIndexPath(indexPath) as! PartyUpTableCell
                 tableView.deselectRowAtIndexPath(indexPath, animated: true)
-                let eventName: NSString = DataManager.getEventTitle(cell.getCellData())
-                PULog("Event Cell Pressed.\nCell Row: \(indexPath.row), Event Name: \(eventName)")
-                PULog("Transitioning to Event Info screen")
-                selectedCellEventData = cell.getCellData()
-                self.performSegueWithIdentifier("groupInfoToEventInfo", sender: self)
+            let eventName: NSString = DataManager.getEventTitle(cell.getCellData())
+            let eventID: NSInteger = DataManager.getEventID(cell.getCellData())
+            PULog("Event Cell Pressed.\nCell Row: \(indexPath.row), Event Name: \(eventName)")
+            PULog("Querying for cell's event")
+            let (errorMessage: NSString?, result: NSDictionary?) = PartyUpBackend.instance.queryEventSearchByID("\(eventID)")
+            if (errorMessage != nil) {
+                displayAlert("Failed to load event", message: errorMessage!)
+                return
+            }
+            let event: NSDictionary = result!
+            selectedCellEventData = event
+            PULog("Transitioning to Event Info screen")
+            self.performSegueWithIdentifier("groupInfoToEventInfo", sender: self)
         }
         else if (tableView == groupEventsTableView) {
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -195,14 +211,24 @@ class GroupInfoViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     /* Segue to add events page if user presses header of event table */
-    @IBAction func addEventPressed(sender: UITapGestureRecognizer) {
+    
+    @IBAction func addEventsPressed(sender: UIButton) {
+    
         self.performSegueWithIdentifier("groupInfoToAddEvents", sender: self)
     }
     
+    
+    
+    
     /* Segue to invite friends page if user presses header of members table */
-    @IBAction func addMemberPressed(sender: UITapGestureRecognizer) {
+    
+    @IBAction func addMembersPressed(sender: UIButton) {
         self.performSegueWithIdentifier("groupInfoToInviteFriends", sender: self)
     }
+    
+    
+    
+    
 
 
     override func didReceiveMemoryWarning() {

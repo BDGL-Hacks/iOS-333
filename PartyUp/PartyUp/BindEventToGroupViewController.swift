@@ -144,7 +144,7 @@ class BindEventToGroupViewController: PartyUpViewController, UITableViewDelegate
         headerCell.headerTextLabel.text = "Select one of your existing groups"
         /*
         headerCell.contentView.layer.borderColor = UIColorFromRGB(0x332F3E).CGColor
-        headerCell.contentView.layer.borderWidth = 3.0
+        headerCell.contentView.layer.borderWidth = 2.0
         */
         return headerCell
     }

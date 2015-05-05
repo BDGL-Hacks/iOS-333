@@ -113,8 +113,11 @@ class MyEventsViewController: PartyUpViewController, UITableViewDelegate, UITabl
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
-        headerCell.contentView.backgroundColor = UIColorFromRGB(0xE6C973)
         headerCell.headerTextLabel.text = "My Events"
+        headerCell.backgroundColor = UIColorFromRGB(0xFFFFFF)
+        headerCell.headerTextLabel.textColor = UIColorFromRGB(0x80C8B5)
+        headerCell.contentView.layer.borderColor = UIColorFromRGB(0x80C8B5).CGColor
+        headerCell.contentView.layer.borderWidth = 2.0
         return headerCell.contentView
     }
     

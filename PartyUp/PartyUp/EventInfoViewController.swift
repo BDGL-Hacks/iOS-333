@@ -181,7 +181,6 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
     /* Populate the section headers of each table */
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
-        headerCell.backgroundColor = UIColorFromRGB(0xE6C973)
         headerCell.headerTextLabel.text = "Attendees"
         if (!isEventOwner || !(DataManager.getEventPublic(event))) {
             headerCell.hideButton()

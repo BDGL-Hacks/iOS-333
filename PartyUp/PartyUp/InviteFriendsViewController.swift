@@ -8,9 +8,10 @@
 
 import UIKit
 
-class InviteFriendsViewController: PartyUpViewController, UITableViewDataSource, UITableViewDelegate {
+class InviteFriendsViewController: PartyUpViewController, UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate {
 
     
+    @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var invitedFriendsTableView: UITableView!
     var update: CreateModel = CreateModel()
     var invitedFriends: NSMutableArray? = NSMutableArray()
@@ -24,6 +25,8 @@ class InviteFriendsViewController: PartyUpViewController, UITableViewDataSource,
         
         invitedFriendsTableView.delegate = self
         invitedFriendsTableView.dataSource = self
+        
+        navBar.delegate = self
         
         self.invitedFriendsTableView.rowHeight = 65
         self.invitedFriendsTableView.sectionHeaderHeight = 53
@@ -58,6 +61,10 @@ class InviteFriendsViewController: PartyUpViewController, UITableViewDataSource,
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         PULog("Displaying invite friends to group or event page")
+    }
+    
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+        return UIBarPosition.TopAttached
     }
     
     

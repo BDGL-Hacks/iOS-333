@@ -37,6 +37,7 @@ class MainGroupsViewController: PartyUpViewController, UITableViewDelegate, UITa
         super.viewDidLoad()
         var customTableCellNib: UINib = UINib(nibName: "PartyUpTableCell", bundle: nil)
         groupsTableView.registerNib(customTableCellNib, forCellReuseIdentifier: "partyUpTableCell")
+        self.groupsTableView.sectionHeaderHeight = 53
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -115,6 +116,13 @@ class MainGroupsViewController: PartyUpViewController, UITableViewDelegate, UITa
         cell.loadCell(dayText: dayText, dayNumber: dayNumber, mainText: mainText, subText: subText)
         cell.setCellData(group)
         return cell
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
+        headerCell.contentView.backgroundColor = UIColorFromRGB(0xE6C973)
+        headerCell.headerTextLabel.text = "My Groups"
+        return headerCell.contentView
     }
     
     /* Determines what to do when a table cell is selected */

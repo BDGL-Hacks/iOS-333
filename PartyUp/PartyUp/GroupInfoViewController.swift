@@ -8,12 +8,14 @@
 
 import UIKit
 
-class GroupInfoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
+class GroupInfoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationBarDelegate
  {
 
     @IBOutlet weak var groupEventsTableView: PUDynamicTableView!
     @IBOutlet weak var groupMembersTableView: PUDynamicTableView!
     @IBOutlet weak var groupNameLabel: UILabel!
+    
+    @IBOutlet weak var navBar: UINavigationBar!
     
     var groupEvents: NSArray = NSArray()
     var groupMembers: NSArray = NSArray()
@@ -27,6 +29,8 @@ class GroupInfoViewController: UIViewController, UITableViewDelegate, UITableVie
         var customTableCellNib: UINib = UINib(nibName: "PartyUpTableCell", bundle: nil)
         groupEventsTableView.registerNib(customTableCellNib, forCellReuseIdentifier: "eventCellPrototype")
         groupMembersTableView.rowHeight = 45
+        
+        navBar.delegate = self
         // Do any additional setup after loading the view.
     }
     
@@ -39,6 +43,10 @@ class GroupInfoViewController: UIViewController, UITableViewDelegate, UITableVie
        
         let groupName: NSString = DataManager.getGroupTitle(group)
         groupNameLabel.text = groupName as String
+    }
+    
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+        return UIBarPosition.TopAttached
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

@@ -8,10 +8,11 @@
 
 import UIKit
 
-class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, UITableViewDelegate  {
+class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate  {
 
     var createEvent: CreateModel?
     
+    @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var addedFriendsTableView: UITableView!
     var addedFriends: NSMutableArray? = NSMutableArray()
     
@@ -21,6 +22,7 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
         
         addedFriendsTableView.delegate = self
         addedFriendsTableView.dataSource = self
+        navBar.delegate = self
         
         self.addedFriendsTableView.sectionHeaderHeight = 53
         
@@ -39,6 +41,10 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         PULog("Displaying create event 2 page")
+    }
+    
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+        return UIBarPosition.TopAttached
     }
 
     /* Button to return to fist event creation page */

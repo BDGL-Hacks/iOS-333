@@ -8,9 +8,10 @@
 
 import UIKit
 
-class BindEventToGroupViewController: PartyUpViewController, UITableViewDelegate, UITableViewDataSource {
+class BindEventToGroupViewController: PartyUpViewController, UITableViewDelegate, UITableViewDataSource, UINavigationBarDelegate {
 
     
+    @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var eventTitleLabel: UILabel!
     var searchGroupsModel: SearchGroupsModel = SearchGroupsModel()
     var attendingQueryResults: NSArray? = NSArray()
@@ -33,6 +34,8 @@ class BindEventToGroupViewController: PartyUpViewController, UITableViewDelegate
         super.viewDidLoad()
         groupsTableView.delegate = self
         groupsTableView.dataSource = self
+        
+        navBar.delegate = self
         
         self.groupsTableView.rowHeight = 60
         self.groupsTableView.sectionHeaderHeight = 53
@@ -58,6 +61,10 @@ class BindEventToGroupViewController: PartyUpViewController, UITableViewDelegate
             groupsTableView.reloadData()
         
         }
+    }
+    
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+        return UIBarPosition.TopAttached
     }
     
     /* Loads the event data into the views */

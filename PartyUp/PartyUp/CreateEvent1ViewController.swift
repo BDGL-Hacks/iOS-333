@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate
+class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UINavigationBarDelegate
 {
     
     var itemIndex: Int = 0
@@ -29,11 +29,13 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate
     var isFromGroup: Bool = false
     var previousViewController: CreateGroup2ViewController?
     @IBOutlet weak var selectedDate: UILabel!
+    @IBOutlet weak var navBar: UINavigationBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // createPageViewController()
         // Do any additional setup after loading the view.
+        navBar.delegate = self
         scrollView.contentSize = scrollView.subviews[0].frame.size
     }
     
@@ -54,6 +56,10 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate
         set {
             
         }
+    }
+    
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+        return UIBarPosition.TopAttached
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {

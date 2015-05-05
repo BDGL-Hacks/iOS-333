@@ -83,10 +83,10 @@ class AlertsModel {
         // Event Invite responded to: update backend and delete from table
         else if (type == AlertType.EventInvite) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-                PULog("ASYNC Request")
+                NSLog("ASYNC Request")
                 let errorMsg: NSString? = PartyUpBackend.instance.respondToInvite(self.getInviteTypeString(type), inviteID: DataManager.getEventID(data), response: response)
                 dispatch_async(dispatch_get_main_queue()) {
-                    PULog("ASYNC UI Update")
+                    NSLog("ASYNC UI Update")
                     if (errorMsg == nil) {
                         let tempEventInvitesArray: NSMutableArray = NSMutableArray(array: self.eventInvites)
                         tempEventInvitesArray.removeObjectAtIndex(index)

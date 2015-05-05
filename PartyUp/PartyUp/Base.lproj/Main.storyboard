@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SLw-45-19W">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SLw-45-19W">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -508,7 +508,7 @@
                             <constraint firstItem="cIp-YJ-ZZ8" firstAttribute="leading" secondItem="GD2-KK-j7t" secondAttribute="leading" id="N6v-Zd-vF9"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7lY-Hm-DhW" secondAttribute="trailing" constant="-20" id="cHf-VV-m8I"/>
                             <constraint firstItem="YT4-oh-QmW" firstAttribute="top" secondItem="cIp-YJ-ZZ8" secondAttribute="bottom" constant="22" id="dJ0-jT-VyI"/>
-                            <constraint firstItem="cIp-YJ-ZZ8" firstAttribute="top" secondItem="SqE-WI-11I" secondAttribute="bottom" id="gth-Pz-Av8"/>
+                            <constraint firstItem="cIp-YJ-ZZ8" firstAttribute="top" secondItem="SqE-WI-11I" secondAttribute="bottom" constant="20" id="gth-Pz-Av8"/>
                             <constraint firstItem="7lY-Hm-DhW" firstAttribute="trailing" secondItem="YT4-oh-QmW" secondAttribute="trailing" id="iJd-qj-AFd"/>
                             <constraint firstItem="7lY-Hm-DhW" firstAttribute="bottom" secondItem="bzn-77-Yi6" secondAttribute="top" id="l3R-cx-lf1"/>
                             <constraint firstItem="7lY-Hm-DhW" firstAttribute="top" secondItem="YT4-oh-QmW" secondAttribute="bottom" constant="8" symbolic="YES" id="lxc-a2-Rwg"/>
@@ -919,6 +919,17 @@
                                 <rect key="frame" x="0.0" y="72" width="320" height="3"/>
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dsF-Fy-3xE">
+                                <rect key="frame" x="197" y="20" width="44" height="44"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="46"/>
+                                <state key="normal" title="+">
+                                    <color key="titleColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="createButtonPressed:" destination="SLw-45-19W" eventType="touchUpInside" id="anB-Kq-fhD"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egY-hy-d6S">
                                 <rect key="frame" x="260" y="20" width="44" height="44"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
@@ -938,6 +949,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="alertsChildView" destination="HqH-ae-Dzf" id="GaS-7d-tqI"/>
+                        <outlet property="createButton" destination="dsF-Fy-3xE" id="a5a-5S-fjj"/>
                         <outlet property="groupsDetailChildView" destination="cVb-JL-mv3" id="M4l-oy-pTp"/>
                         <outlet property="groupsListChildView" destination="K2d-Ma-1eX" id="cef-ag-f9A"/>
                         <outlet property="myEventsChildView" destination="zZF-Qk-p9f" id="n8q-sg-I8N"/>
@@ -1384,7 +1396,7 @@
                                     <constraint firstAttribute="trailing" secondItem="rwo-ZZ-Opp" secondAttribute="trailing" id="I0m-Sh-Gn2"/>
                                     <constraint firstItem="rwo-ZZ-Opp" firstAttribute="leading" secondItem="F4h-Ox-jcb" secondAttribute="leading" id="NaH-RC-PIM"/>
                                     <constraint firstAttribute="trailing" secondItem="rwo-ZZ-Opp" secondAttribute="trailing" id="Nqn-xP-yoG"/>
-                                    <constraint firstAttribute="bottom" secondItem="lcs-Y8-AU7" secondAttribute="bottom" constant="36" id="RxO-f3-7n1"/>
+                                    <constraint firstAttribute="bottom" secondItem="lcs-Y8-AU7" secondAttribute="bottom" constant="16" id="RxO-f3-7n1"/>
                                     <constraint firstItem="rwo-ZZ-Opp" firstAttribute="leading" secondItem="F4h-Ox-jcb" secondAttribute="leading" id="VYM-iI-FqO"/>
                                     <constraint firstAttribute="trailing" secondItem="lcs-Y8-AU7" secondAttribute="trailing" id="Yrd-vm-yAc"/>
                                     <constraint firstItem="lcs-Y8-AU7" firstAttribute="leading" secondItem="F4h-Ox-jcb" secondAttribute="leading" id="YxD-gm-Yao"/>
@@ -1422,7 +1434,7 @@
                             <constraint firstItem="jWc-9l-osb" firstAttribute="top" secondItem="F4h-Ox-jcb" secondAttribute="bottom" id="Boq-md-RYi"/>
                             <constraint firstItem="7aD-H1-M1R" firstAttribute="centerX" secondItem="8WO-Np-s5m" secondAttribute="centerX" id="GpR-wQ-Dzg"/>
                             <constraint firstAttribute="width" secondItem="lcs-Y8-AU7" secondAttribute="width" id="NJs-ja-aSb"/>
-                            <constraint firstItem="8WO-Np-s5m" firstAttribute="top" secondItem="78z-mU-mv1" secondAttribute="bottom" id="SyN-Ig-GR0"/>
+                            <constraint firstItem="8WO-Np-s5m" firstAttribute="top" secondItem="78z-mU-mv1" secondAttribute="bottom" constant="20" id="SyN-Ig-GR0"/>
                             <constraint firstAttribute="trailing" secondItem="8WO-Np-s5m" secondAttribute="trailing" id="VJZ-oQ-3R3"/>
                             <constraint firstAttribute="trailing" secondItem="F4h-Ox-jcb" secondAttribute="trailing" id="arB-Bz-gqB"/>
                             <constraint firstItem="F4h-Ox-jcb" firstAttribute="leading" secondItem="dYi-Dp-Ngv" secondAttribute="leading" id="wGz-uP-IeZ"/>
@@ -2743,7 +2755,7 @@ tapping the 'Find' tab on the bottom.</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="RQJ-zm-x96" firstAttribute="width" secondItem="ujy-PB-YbQ" secondAttribute="width" id="7gN-b7-c6D"/>
-                            <constraint firstItem="kC7-Rx-TQO" firstAttribute="top" secondItem="uWB-iJ-1rV" secondAttribute="bottom" constant="-20" id="7im-Pf-kMo"/>
+                            <constraint firstItem="kC7-Rx-TQO" firstAttribute="top" secondItem="uWB-iJ-1rV" secondAttribute="bottom" id="7im-Pf-kMo"/>
                             <constraint firstItem="kC7-Rx-TQO" firstAttribute="leading" secondItem="ujy-PB-YbQ" secondAttribute="leading" id="GuG-as-fgB"/>
                             <constraint firstItem="tAu-rf-qID" firstAttribute="top" secondItem="kC7-Rx-TQO" secondAttribute="bottom" id="Itu-RM-Kfg"/>
                             <constraint firstItem="kC7-Rx-TQO" firstAttribute="leading" secondItem="tAu-rf-qID" secondAttribute="leading" id="L5O-64-sZD"/>
@@ -2920,12 +2932,12 @@ tapping the 'Find' tab on the bottom.</string>
                             <constraint firstItem="AVq-wm-CWm" firstAttribute="top" secondItem="665-wd-SIF" secondAttribute="bottom" constant="62" id="5RT-aX-et8"/>
                             <constraint firstItem="665-wd-SIF" firstAttribute="centerX" secondItem="AVq-wm-CWm" secondAttribute="centerX" id="6ky-x9-TAw"/>
                             <constraint firstItem="665-wd-SIF" firstAttribute="centerY" secondItem="5nT-qN-GeD" secondAttribute="centerY" id="FSP-mM-mmV"/>
-                            <constraint firstItem="5nT-qN-GeD" firstAttribute="top" secondItem="6uQ-AE-yd8" secondAttribute="bottom" constant="-20" id="NwM-2s-QqN"/>
+                            <constraint firstItem="5nT-qN-GeD" firstAttribute="top" secondItem="6uQ-AE-yd8" secondAttribute="bottom" id="NwM-2s-QqN"/>
                             <constraint firstItem="5nT-qN-GeD" firstAttribute="leading" secondItem="jAc-ZB-BfO" secondAttribute="leading" id="R35-4h-00a"/>
                             <constraint firstItem="jAc-ZB-BfO" firstAttribute="centerX" secondItem="AVq-wm-CWm" secondAttribute="centerX" id="RIP-fQ-FoK"/>
                             <constraint firstItem="AVq-wm-CWm" firstAttribute="leading" secondItem="zXB-n0-PKl" secondAttribute="leading" id="Rz8-Jo-Ls5"/>
                             <constraint firstItem="zXB-n0-PKl" firstAttribute="top" secondItem="5nT-qN-GeD" secondAttribute="bottom" constant="19" id="SVc-tq-zNU"/>
-                            <constraint firstItem="665-wd-SIF" firstAttribute="top" secondItem="6uQ-AE-yd8" secondAttribute="bottom" constant="-9" id="VD1-tX-OQ7"/>
+                            <constraint firstItem="665-wd-SIF" firstAttribute="top" secondItem="6uQ-AE-yd8" secondAttribute="bottom" constant="11" id="VD1-tX-OQ7"/>
                             <constraint firstItem="zXB-n0-PKl" firstAttribute="leading" secondItem="KHY-wQ-8PV" secondAttribute="leadingMargin" id="W7B-lI-Sqy"/>
                             <constraint firstItem="665-wd-SIF" firstAttribute="centerX" secondItem="5nT-qN-GeD" secondAttribute="centerX" id="WjN-oZ-O0y"/>
                             <constraint firstItem="665-wd-SIF" firstAttribute="centerX" secondItem="AVq-wm-CWm" secondAttribute="centerX" id="Yw9-hI-Ynf"/>
@@ -3090,7 +3102,7 @@ tapping the 'Find' tab on the bottom.</string>
                             <constraint firstItem="Y5U-6f-kWE" firstAttribute="leading" secondItem="71G-xu-0IQ" secondAttribute="leading" id="0fC-pK-A0f"/>
                             <constraint firstItem="Y5U-6f-kWE" firstAttribute="top" secondItem="4jF-cT-PGz" secondAttribute="bottom" constant="8" symbolic="YES" id="1V0-Uv-HQJ"/>
                             <constraint firstItem="4jF-cT-PGz" firstAttribute="leading" secondItem="71G-xu-0IQ" secondAttribute="leadingMargin" id="FER-Qc-bkl"/>
-                            <constraint firstItem="zEz-eU-YAq" firstAttribute="top" secondItem="Uat-MV-8jh" secondAttribute="bottom" id="HOD-UA-cEE"/>
+                            <constraint firstItem="zEz-eU-YAq" firstAttribute="top" secondItem="Uat-MV-8jh" secondAttribute="bottom" constant="20" id="HOD-UA-cEE"/>
                             <constraint firstAttribute="trailing" secondItem="Y5U-6f-kWE" secondAttribute="trailing" id="PZe-wA-pNX"/>
                             <constraint firstAttribute="trailing" secondItem="zEz-eU-YAq" secondAttribute="trailing" id="Qq1-Cv-Ce7"/>
                             <constraint firstItem="4jF-cT-PGz" firstAttribute="top" secondItem="zEz-eU-YAq" secondAttribute="bottom" constant="23" id="UpK-Wr-iw2"/>
@@ -3403,12 +3415,12 @@ tapping the 'Find' tab on the bottom.</string>
         <image name="PartyUp_arrow_placeholder.png" width="999" height="999"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Cdc-xi-cBr"/>
-        <segue reference="2aX-yK-MH8"/>
-        <segue reference="GqP-Zs-IDl"/>
-        <segue reference="NQQ-JQ-Jp9"/>
+        <segue reference="f1n-2s-Yq2"/>
+        <segue reference="zR6-5U-mw3"/>
         <segue reference="lY5-SE-ddG"/>
-        <segue reference="nSo-E4-9JN"/>
-        <segue reference="in5-ko-7n1"/>
+        <segue reference="VSP-cM-gCU"/>
+        <segue reference="d1i-1v-4PY"/>
+        <segue reference="M2a-sX-iMI"/>
+        <segue reference="Cdc-xi-cBr"/>
     </inferredMetricsTieBreakers>
 </document>

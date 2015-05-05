@@ -25,7 +25,9 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
         addedFriendsTableView.dataSource = self
         navBar.delegate = self
         
-        self.addedFriendsTableView.sectionHeaderHeight = 53
+        self.addedFriendsTableView.sectionHeaderHeight = 65
+        self.addedFriendsTableView.rowHeight = 65
+        
         
         addedFriends?.addObjectsFromArray(createEvent!.getInvitedList() as [AnyObject])
 

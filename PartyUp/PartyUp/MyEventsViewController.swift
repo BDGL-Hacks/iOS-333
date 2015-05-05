@@ -37,7 +37,7 @@ class MyEventsViewController: PartyUpViewController, UITableViewDelegate, UITabl
         super.viewDidLoad()
         var customTableCellNib: UINib = UINib(nibName: "PartyUpTableCell", bundle: nil)
         userEventsTableView.registerNib(customTableCellNib, forCellReuseIdentifier: "partyUpTableCell")
-        self.userEventsTableView.sectionHeaderHeight = 53
+        self.userEventsTableView.sectionHeaderHeight = 65
     }
     
     override func viewWillAppear(animated: Bool) {

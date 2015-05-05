@@ -29,7 +29,7 @@ class InviteFriendsViewController: PartyUpViewController, UITableViewDataSource,
         navBar.delegate = self
         
         self.invitedFriendsTableView.rowHeight = 65
-        self.invitedFriendsTableView.sectionHeaderHeight = 53
+        self.invitedFriendsTableView.sectionHeaderHeight = 65
         
         // Do any additional setup after loading the view.
     }

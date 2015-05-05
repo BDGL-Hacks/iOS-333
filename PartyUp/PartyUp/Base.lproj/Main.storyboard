@@ -505,7 +505,7 @@
                             <constraint firstItem="cIp-YJ-ZZ8" firstAttribute="leading" secondItem="GD2-KK-j7t" secondAttribute="leading" id="N6v-Zd-vF9"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7lY-Hm-DhW" secondAttribute="trailing" constant="-20" id="cHf-VV-m8I"/>
                             <constraint firstItem="YT4-oh-QmW" firstAttribute="top" secondItem="cIp-YJ-ZZ8" secondAttribute="bottom" constant="22" id="dJ0-jT-VyI"/>
-                            <constraint firstItem="cIp-YJ-ZZ8" firstAttribute="top" secondItem="SqE-WI-11I" secondAttribute="bottom" constant="20" id="gth-Pz-Av8"/>
+                            <constraint firstItem="cIp-YJ-ZZ8" firstAttribute="top" secondItem="SqE-WI-11I" secondAttribute="bottom" id="gth-Pz-Av8"/>
                             <constraint firstItem="7lY-Hm-DhW" firstAttribute="trailing" secondItem="YT4-oh-QmW" secondAttribute="trailing" id="iJd-qj-AFd"/>
                             <constraint firstItem="7lY-Hm-DhW" firstAttribute="bottom" secondItem="bzn-77-Yi6" secondAttribute="top" id="l3R-cx-lf1"/>
                             <constraint firstItem="7lY-Hm-DhW" firstAttribute="top" secondItem="YT4-oh-QmW" secondAttribute="bottom" constant="8" symbolic="YES" id="lxc-a2-Rwg"/>
@@ -556,7 +556,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="67" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jQO-Io-zuG">
-                                <rect key="frame" x="0.0" y="123" width="320" height="477"/>
+                                <rect key="frame" x="0.0" y="123" width="320" height="478"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HeaderCell" rowHeight="53" id="IRA-Ab-PCU" customClass="CustomHeaderTableViewCell" customModule="PartyUp" customModuleProvider="target">
@@ -634,9 +634,6 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Finish" id="do7-cI-nY1">
                                             <color key="tintColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <connections>
-                                                <segue destination="SLw-45-19W" kind="show" identifier="eventCreationTwoToHome" id="1WL-h8-Hfv"/>
-                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -668,7 +665,7 @@
                             <constraint firstAttribute="trailing" secondItem="jQO-Io-zuG" secondAttribute="trailing" id="mAS-hq-gpZ"/>
                             <constraint firstItem="DWS-g7-k6f" firstAttribute="top" secondItem="7y5-m4-GQe" secondAttribute="bottom" constant="12" id="vsS-AK-0ZG"/>
                             <constraint firstAttribute="trailing" secondItem="7y5-m4-GQe" secondAttribute="trailing" id="woS-E6-y1a"/>
-                            <constraint firstItem="7y5-m4-GQe" firstAttribute="top" secondItem="Yro-Aj-W5F" secondAttribute="bottom" constant="20" id="yrd-8b-qOk"/>
+                            <constraint firstItem="7y5-m4-GQe" firstAttribute="top" secondItem="Yro-Aj-W5F" secondAttribute="bottom" id="yrd-8b-qOk"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -683,6 +680,7 @@
                     </view>
                     <connections>
                         <outlet property="addedFriendsTableView" destination="jQO-Io-zuG" id="ghT-ze-1UX"/>
+                        <segue destination="eJd-at-5kc" kind="show" identifier="eventCreation2ToHome" id="QIP-VG-rgs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="stw-EP-rdz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -841,6 +839,25 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2317" y="1727"/>
+        </scene>
+        <!--Master View Controller-->
+        <scene sceneID="nbf-ho-fD0">
+            <objects>
+                <viewController id="eJd-at-5kc" customClass="MasterViewController" customModule="PartyUp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZbP-hd-nRn"/>
+                        <viewControllerLayoutGuide type="bottom" id="MJG-wu-HvI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JBo-C6-d1M">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hmX-ES-43s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1753" y="1019"/>
         </scene>
         <!--Homepage View Controller-->
         <scene sceneID="N1O-BG-eMS">
@@ -1052,7 +1069,7 @@
                         <outlet property="registerButton" destination="z8c-GZ-9BH" id="wjG-DM-p5B"/>
                         <outlet property="retypePasswordTextField" destination="Rmi-PV-Ddu" id="wrV-p4-z8I"/>
                         <outlet property="scrollView" destination="pE7-BG-ydJ" id="2J1-Q3-Tks"/>
-                        <segue destination="SLw-45-19W" kind="show" identifier="registerToHome" id="L1k-YG-Jgb"/>
+                        <segue destination="eJd-at-5kc" kind="show" identifier="registerToHome" id="nUC-Zk-813"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nJf-uA-Q2c" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1367,7 +1384,7 @@
                             <constraint firstItem="jWc-9l-osb" firstAttribute="top" secondItem="F4h-Ox-jcb" secondAttribute="bottom" id="Boq-md-RYi"/>
                             <constraint firstItem="7aD-H1-M1R" firstAttribute="centerX" secondItem="8WO-Np-s5m" secondAttribute="centerX" id="GpR-wQ-Dzg"/>
                             <constraint firstAttribute="width" secondItem="lcs-Y8-AU7" secondAttribute="width" id="NJs-ja-aSb"/>
-                            <constraint firstItem="8WO-Np-s5m" firstAttribute="top" secondItem="78z-mU-mv1" secondAttribute="bottom" constant="20" id="SyN-Ig-GR0"/>
+                            <constraint firstItem="8WO-Np-s5m" firstAttribute="top" secondItem="78z-mU-mv1" secondAttribute="bottom" id="SyN-Ig-GR0"/>
                             <constraint firstAttribute="trailing" secondItem="8WO-Np-s5m" secondAttribute="trailing" id="VJZ-oQ-3R3"/>
                             <constraint firstAttribute="trailing" secondItem="F4h-Ox-jcb" secondAttribute="trailing" id="arB-Bz-gqB"/>
                             <constraint firstItem="F4h-Ox-jcb" firstAttribute="leading" secondItem="dYi-Dp-Ngv" secondAttribute="leading" id="wGz-uP-IeZ"/>
@@ -1790,7 +1807,7 @@
                         <constraints>
                             <constraint firstItem="HOz-7i-mDc" firstAttribute="top" secondItem="Pa8-Ml-MCZ" secondAttribute="bottom" constant="2" id="08p-zt-uZC"/>
                             <constraint firstItem="rw6-vx-BvS" firstAttribute="leading" secondItem="TEE-0o-2Cy" secondAttribute="leading" id="2ya-ad-x00"/>
-                            <constraint firstItem="rw6-vx-BvS" firstAttribute="top" secondItem="Kda-G0-bIV" secondAttribute="bottom" constant="20" id="3gY-rB-Tdr"/>
+                            <constraint firstItem="rw6-vx-BvS" firstAttribute="top" secondItem="Kda-G0-bIV" secondAttribute="bottom" id="3gY-rB-Tdr"/>
                             <constraint firstItem="NP7-Ly-Iya" firstAttribute="baseline" secondItem="Hyt-86-g2y" secondAttribute="baseline" id="6c8-z1-8Ol"/>
                             <constraint firstItem="Hyt-86-g2y" firstAttribute="leading" secondItem="NP7-Ly-Iya" secondAttribute="trailing" constant="70" id="9Pd-j6-vwu"/>
                             <constraint firstItem="Hyt-86-g2y" firstAttribute="leading" secondItem="NP7-Ly-Iya" secondAttribute="trailing" constant="49" id="AIO-dG-itt"/>
@@ -1831,13 +1848,13 @@
                     </view>
                     <connections>
                         <outlet property="addedEventsTableView" destination="TEE-0o-2Cy" id="Gii-fk-oR3"/>
-                        <segue destination="SLw-45-19W" kind="show" identifier="createGroup2ToHome" id="4db-O3-PUr"/>
                         <segue destination="ves-xh-wWo" kind="show" identifier="createGroup2ToGroupInfo" id="rs0-CJ-HVU"/>
+                        <segue destination="eJd-at-5kc" kind="show" identifier="createGroup2ToHome" id="cHW-lo-zWR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GfA-Kk-dNR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4947" y="675"/>
+            <point key="canvasLocation" x="4938" y="675"/>
         </scene>
         <!--Add Browse Events View Controller-->
         <scene sceneID="IL0-bm-N4t">
@@ -1919,7 +1936,7 @@
                             <constraint firstItem="lpv-m7-1vp" firstAttribute="top" secondItem="iP0-sK-vgU" secondAttribute="bottom" constant="8" id="byn-UE-Lrp"/>
                             <constraint firstItem="lpv-m7-1vp" firstAttribute="leading" secondItem="jwM-4b-nLR" secondAttribute="leadingMargin" id="cl2-Oe-8Hy"/>
                             <constraint firstItem="7XB-Qh-ITb" firstAttribute="centerX" secondItem="HWB-pp-USm" secondAttribute="centerX" constant="-0.5" id="ejY-QU-MQd"/>
-                            <constraint firstItem="7XB-Qh-ITb" firstAttribute="top" secondItem="iP0-sK-vgU" secondAttribute="bottom" constant="20" id="qcT-3w-2mc"/>
+                            <constraint firstItem="7XB-Qh-ITb" firstAttribute="top" secondItem="iP0-sK-vgU" secondAttribute="bottom" id="qcT-3w-2mc"/>
                             <constraint firstItem="QEe-sn-aiG" firstAttribute="centerX" secondItem="lpv-m7-1vp" secondAttribute="centerX" id="uvE-Vq-3yr"/>
                             <constraint firstItem="QEe-sn-aiG" firstAttribute="top" secondItem="lpv-m7-1vp" secondAttribute="bottom" constant="60" id="vUu-JS-yi6"/>
                             <constraint firstItem="QEe-sn-aiG" firstAttribute="bottom" secondItem="9oE-3W-99H" secondAttribute="top" constant="32" id="wWE-Rn-uzF"/>
@@ -1957,7 +1974,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RuV-YH-cjw">
-                                <rect key="frame" x="0.0" y="20" width="320" height="64"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <color key="barTintColor" red="0.50196078430000002" green="0.7843137255" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
                                     <navigationItem id="78j-oK-Pbl">
@@ -2030,15 +2047,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="BjS-wm-rNw" firstAttribute="leading" secondItem="3FP-5o-G9o" secondAttribute="leadingMargin" id="42d-P3-i18"/>
-                            <constraint firstItem="BjS-wm-rNw" firstAttribute="top" secondItem="RuV-YH-cjw" secondAttribute="bottom" constant="-15" id="6ui-5w-M89"/>
+                            <constraint firstItem="BjS-wm-rNw" firstAttribute="top" secondItem="RuV-YH-cjw" secondAttribute="bottom" constant="5" id="6ui-5w-M89"/>
                             <constraint firstItem="dx1-Cd-tYO" firstAttribute="centerX" secondItem="RuV-YH-cjw" secondAttribute="centerX" id="8sD-hL-sdt"/>
                             <constraint firstItem="BjS-wm-rNw" firstAttribute="centerX" secondItem="5PU-Am-jQ8" secondAttribute="centerX" id="KZ6-p0-7V7"/>
-                            <constraint firstItem="RuV-YH-cjw" firstAttribute="top" secondItem="fyN-vR-1Nk" secondAttribute="bottom" constant="20" id="Kb8-c1-HJw"/>
+                            <constraint firstItem="RuV-YH-cjw" firstAttribute="top" secondItem="fyN-vR-1Nk" secondAttribute="bottom" id="Kb8-c1-HJw"/>
                             <constraint firstItem="anv-0k-QXo" firstAttribute="top" secondItem="5PU-Am-jQ8" secondAttribute="bottom" id="T2b-b3-kAK"/>
                             <constraint firstAttribute="trailingMargin" secondItem="RuV-YH-cjw" secondAttribute="trailing" constant="-16" id="bvT-bF-4YM"/>
                             <constraint firstAttribute="trailingMargin" secondItem="5PU-Am-jQ8" secondAttribute="trailing" constant="-16" id="cTD-kL-QYg"/>
                             <constraint firstItem="BjS-wm-rNw" firstAttribute="top" secondItem="3FP-5o-G9o" secondAttribute="top" constant="69" id="cXv-en-3Yh"/>
-                            <constraint firstItem="dx1-Cd-tYO" firstAttribute="centerY" secondItem="RuV-YH-cjw" secondAttribute="centerY" constant="-10.5" id="gBE-ab-Cc0"/>
+                            <constraint firstItem="dx1-Cd-tYO" firstAttribute="centerY" secondItem="RuV-YH-cjw" secondAttribute="centerY" constant="-0.5" id="gBE-ab-Cc0"/>
                             <constraint firstItem="5PU-Am-jQ8" firstAttribute="top" secondItem="BjS-wm-rNw" secondAttribute="bottom" constant="8" symbolic="YES" id="j5R-86-z9y"/>
                             <constraint firstItem="BjS-wm-rNw" firstAttribute="centerX" secondItem="RuV-YH-cjw" secondAttribute="centerX" id="jNI-jn-exz"/>
                             <constraint firstItem="5PU-Am-jQ8" firstAttribute="leading" secondItem="3FP-5o-G9o" secondAttribute="leadingMargin" constant="-16" id="mB2-BX-YYr"/>
@@ -2586,7 +2603,7 @@ tapping the 'Find' tab on the bottom.</string>
                         <outlet property="tapGestureRecognizer" destination="ReY-F7-rMX" id="I7r-Vc-gZ3"/>
                         <outlet property="timeLabel" destination="mXI-05-696" id="pwd-04-YXB"/>
                         <segue destination="jVX-jg-yhr" kind="showDetail" identifier="eventInfoToInviteFriends" id="2aX-yK-MH8"/>
-                        <segue destination="SLw-45-19W" kind="show" identifier="eventInfoToHome" id="pzN-Gt-EXJ"/>
+                        <segue destination="eJd-at-5kc" kind="show" identifier="eventInfoToHome" id="NQQ-JQ-Jp9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dg2-r9-yMr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2699,9 +2716,6 @@ tapping the 'Find' tab on the bottom.</string>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="✓" id="FT5-vr-VuK">
                                             <color key="tintColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <connections>
-                                                <segue destination="SLw-45-19W" kind="show" identifier="eventGroupCreationToHome" id="Jvj-7x-MX8"/>
-                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -2750,6 +2764,7 @@ tapping the 'Find' tab on the bottom.</string>
                         <outlet property="attendeeListTableView" destination="jAc-ZB-BfO" id="l0l-WS-MIN"/>
                         <outlet property="eventTitleLabel" destination="665-wd-SIF" id="LCq-Ve-xIj"/>
                         <outlet property="groupNameTextField" destination="AVq-wm-CWm" id="GtO-Sa-hD5"/>
+                        <segue destination="eJd-at-5kc" kind="show" identifier="eventGroupCreationToHome" id="O8M-ik-eiD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wak-ct-Ynh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3011,7 +3026,7 @@ tapping the 'Find' tab on the bottom.</string>
                     <connections>
                         <outlet property="eventTitleLabel" destination="zu7-2A-T9s" id="2W3-oB-sgt"/>
                         <outlet property="groupsTableView" destination="gao-GA-6NJ" id="IK6-bD-fju"/>
-                        <segue destination="SLw-45-19W" kind="show" identifier="bindGroupToHome" id="bIb-fA-Nj2"/>
+                        <segue destination="eJd-at-5kc" kind="show" identifier="bindGroupToHome" id="M2a-sX-iMI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ziR-hR-WJQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3199,12 +3214,12 @@ tapping the 'Find' tab on the bottom.</string>
         <image name="PartyUp_arrow_placeholder.png" width="999" height="999"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="GqP-Zs-IDl"/>
-        <segue reference="2aX-yK-MH8"/>
-        <segue reference="lY5-SE-ddG"/>
-        <segue reference="Cdc-xi-cBr"/>
+        <segue reference="d1i-1v-4PY"/>
+        <segue reference="rs0-CJ-HVU"/>
         <segue reference="VSP-cM-gCU"/>
         <segue reference="in5-ko-7n1"/>
-        <segue reference="bIb-fA-Nj2"/>
+        <segue reference="cHW-lo-zWR"/>
+        <segue reference="4fK-gC-rRW"/>
+        <segue reference="zR6-5U-mw3"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -45,6 +45,8 @@ class MasterViewController: PartyUpViewController, HomepageViewControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        PULog("Loading Master View Controller")
+        
         homepageViewController = UIStoryboard.homepageViewController()
         homepageViewController.delegate = self
         

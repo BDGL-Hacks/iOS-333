@@ -59,11 +59,6 @@ class HomepageViewController: PartyUpViewController, SideMenuViewControllerDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setActiveView(.GroupsDetail)
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
         
         // Display the groups detail page at the start, hid everything else
         groupsListChildView.hidden = true
@@ -71,6 +66,11 @@ class HomepageViewController: PartyUpViewController, SideMenuViewControllerDeleg
         myEventsChildView.hidden = true
         searchEventsChildView.hidden = true
         alertsChildView.hidden = true
+        setActiveView(.GroupsDetail)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
         // If the user is not logged in, delete cookies and go to login screen
         if (!isLoggedIn()) {

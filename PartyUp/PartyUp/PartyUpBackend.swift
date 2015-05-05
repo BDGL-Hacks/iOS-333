@@ -268,7 +268,7 @@ class PartyUpBackend {
         let username: NSString = userDefaults.objectForKey("USERNAME") as! NSString
         
         var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/api/groups/addevent"
-        var postParams: [String: String] = ["id": groupID as String]
+        var postParams: [String: String] = ["group": groupID as String]
         
         var stringOfEventIDs: String = ""
         var i: Int = 0

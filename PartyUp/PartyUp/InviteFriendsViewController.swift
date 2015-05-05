@@ -104,6 +104,7 @@ class InviteFriendsViewController: PartyUpViewController, UITableViewDataSource,
             let destinationVC = segue.destinationViewController as! EventInfoViewController
             var eventID = "\(DataManager.getEventID(event!))"
             destinationVC.setEventData(eventID: eventID)
+            //destinationVC.setIsCreatedEvent(isCreatedEvent)
         }
         else if segue.identifier == "inviteFriendsToGroupInfo" {
             PULog("Preparing for segue")

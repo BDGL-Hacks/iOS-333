@@ -31,6 +31,9 @@
 		7E8E6EBB1AE952DF008294C2 /* AddFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8E6EBA1AE952DF008294C2 /* AddFriendsViewController.swift */; };
 		7E99E7761AF7D1A600066C17 /* RobotoSlab-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E99E7751AF7D1A600066C17 /* RobotoSlab-Regular.ttf */; };
 		7E99E7781AF7D1C700066C17 /* Rancho-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E99E7771AF7D1C700066C17 /* Rancho-Regular.ttf */; };
+		7E99E77A1AF81AD900066C17 /* GroupEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E99E7791AF81AD900066C17 /* GroupEventsViewController.swift */; };
+		7E99E77C1AF81AFD00066C17 /* GroupPingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E99E77B1AF81AFD00066C17 /* GroupPingViewController.swift */; };
+		7E99E77E1AF81C5C00066C17 /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = 7E99E77D1AF81C5C00066C17 /* test.html */; };
 		7EA0DD021ACE25E900FC3EC1 /* MainGroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA0DD011ACE25E900FC3EC1 /* MainGroupsViewController.swift */; };
 		7EA0DD041ACE260500FC3EC1 /* MyEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA0DD031ACE260500FC3EC1 /* MyEventsViewController.swift */; };
 		7ECBC7951ACE4A50005329B5 /* HomepageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECBC7941ACE4A50005329B5 /* HomepageViewController.swift */; };
@@ -102,6 +105,9 @@
 		7E8E6EBA1AE952DF008294C2 /* AddFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsViewController.swift; sourceTree = "<group>"; };
 		7E99E7751AF7D1A600066C17 /* RobotoSlab-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoSlab-Regular.ttf"; sourceTree = "<group>"; };
 		7E99E7771AF7D1C700066C17 /* Rancho-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rancho-Regular.ttf"; sourceTree = "<group>"; };
+		7E99E7791AF81AD900066C17 /* GroupEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupEventsViewController.swift; sourceTree = "<group>"; };
+		7E99E77B1AF81AFD00066C17 /* GroupPingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupPingViewController.swift; sourceTree = "<group>"; };
+		7E99E77D1AF81C5C00066C17 /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = test.html; path = PartyUp/WebViews/test.html; sourceTree = SOURCE_ROOT; };
 		7EA0DD011ACE25E900FC3EC1 /* MainGroupsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainGroupsViewController.swift; sourceTree = "<group>"; };
 		7EA0DD031ACE260500FC3EC1 /* MyEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyEventsViewController.swift; sourceTree = "<group>"; };
 		7ECBC7941ACE4A50005329B5 /* HomepageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomepageViewController.swift; sourceTree = "<group>"; };
@@ -186,6 +192,7 @@
 				7E99E7751AF7D1A600066C17 /* RobotoSlab-Regular.ttf */,
 				7EDC76D31AC7C46000252753 /* PartyUp_icon_3x_placeholder.png */,
 				7E12883C1ABF3E2400922622 /* PartyUp_arrow_placeholder.png */,
+				7E99E77D1AF81C5C00066C17 /* test.html */,
 			);
 			name = Resources;
 			path = PartyUp/Resources;
@@ -264,6 +271,8 @@
 				7E1A6C321AF28104006164A0 /* PartyUpAlertCell.swift */,
 				7E1A6C341AF28781006164A0 /* PartyUpAlertCell.xib */,
 				7EDD4EDD1ABE727C00CEECD0 /* LaunchScreen.xib */,
+				7E99E7791AF81AD900066C17 /* GroupEventsViewController.swift */,
+				7E99E77B1AF81AFD00066C17 /* GroupPingViewController.swift */,
 				7EDD4ED21ABE727C00CEECD0 /* Supporting Files */,
 				7EDC76D61AC7C83A00252753 /* todo.txt */,
 			);
@@ -390,6 +399,7 @@
 				7EDC76D51AC7C46000252753 /* PartyUp_icon_3x_placeholder.png in Resources */,
 				7EDC76D71AC7C83A00252753 /* todo.txt in Resources */,
 				8B77C2EF1AD987A500E6E8AE /* PartyUpUserCell.xib in Resources */,
+				7E99E77E1AF81C5C00066C17 /* test.html in Resources */,
 				7E99E7781AF7D1C700066C17 /* Rancho-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -455,6 +465,7 @@
 				8B9140241AC86E0200205FA6 /* PartyUpBackend.swift in Sources */,
 				7E54DB5B1ACE6D0D002E43E3 /* FindEventsViewController.swift in Sources */,
 				7E60C3541AD1FBF1001DAA4B /* Globals.swift in Sources */,
+				7E99E77C1AF81AFD00066C17 /* GroupPingViewController.swift in Sources */,
 				8B6AD0F31AF2CD64005752DE /* DatePickerCell.swift in Sources */,
 				8B4F21CF1AE1A4D700114381 /* CreateGroup1ViewController.swift in Sources */,
 				7E4E798F1ADD9B5B0023C95A /* SearchGroupsModel.swift in Sources */,
@@ -462,6 +473,7 @@
 				8BB153F01AD32A7600B0371B /* KeyboardViewController.swift in Sources */,
 				7EA0DD021ACE25E900FC3EC1 /* MainGroupsViewController.swift in Sources */,
 				7EEA89D51AD4311000EA9985 /* CreateEvent1ViewController.swift in Sources */,
+				7E99E77A1AF81AD900066C17 /* GroupEventsViewController.swift in Sources */,
 				8B6AD0F71AF53705005752DE /* InviteFriendsViewController.swift in Sources */,
 				7E8E6EBB1AE952DF008294C2 /* AddFriendsViewController.swift in Sources */,
 				7E0FA6221AD9864300E59BE3 /* PUDynamicTableView.swift in Sources */,
@@ -613,7 +625,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4a5cfe40-cb12-43ed-9c27-a7466043ccd2";
+				PROVISIONING_PROFILE = "0a31e685-22ec-4c39-964f-07def24058ce";
 				SWIFT_OBJC_BRIDGING_HEADER = "PartyUp/PartyUp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -631,7 +643,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4a5cfe40-cb12-43ed-9c27-a7466043ccd2";
+				PROVISIONING_PROFILE = "0a31e685-22ec-4c39-964f-07def24058ce";
 				SWIFT_OBJC_BRIDGING_HEADER = "PartyUp/PartyUp-Bridging-Header.h";
 			};
 			name = Release;

@@ -37,6 +37,13 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UI
         // Do any additional setup after loading the view.
         navBar.delegate = self
         scrollView.contentSize = scrollView.subviews[0].frame.size
+        setDelegates()
+    }
+    
+    func setDelegates() {
+        descriptionTextField.delegate = self
+        locationTextField.delegate = self
+        eventTitleTextField.delegate = self
     }
     
     var activeTextField: UITextField? {
@@ -65,6 +72,11 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UI
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        let newLength = count(textField.text) + count(string) - range.length
+        return newLength <= 100 // Bool
     }
     
     /* User changes the date in the date picker */
@@ -224,6 +236,9 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UI
     * if form is invalid, nil otherwise. */
     func validateForm() -> NSString?
     {
+        if (backendDate == nil) {
+            return "Date and Time are required"
+        }
         var eventTitle: NSString = eventTitleTextField.text
         var eventLocation: NSString = locationTextField.text
         var eventTime: NSString = backendDate!
@@ -233,9 +248,6 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UI
         }
         if (eventLocation == "") {
             return "Event location is required."
-        }
-        if (eventTime == "Date and Time") {
-            return "Date and Time is required"
         }
         
         return nil

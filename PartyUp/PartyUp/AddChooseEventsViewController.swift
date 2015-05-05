@@ -89,10 +89,12 @@ class AddChooseEventsViewController: PartyUpViewController, UITableViewDelegate,
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    
     // Dismiss the view without adding events
     @IBAction func xButtonPressed(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
     
     /*----------------------------------------*
      * Table view methods                     *

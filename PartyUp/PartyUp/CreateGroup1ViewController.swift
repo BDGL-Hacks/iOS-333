@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UITableViewDataSource, UINavigationBarDelegate {
+class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UITableViewDataSource, UINavigationBarDelegate, UITextFieldDelegate {
     
     let createGroup: CreateModel = CreateModel()
     var groupMembers: NSMutableArray? = NSMutableArray()
@@ -24,6 +24,7 @@ class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UI
         
         groupMembersTableView.delegate = self
         groupMembersTableView.dataSource = self
+        groupNameTextField.delegate = self
         
         self.groupMembersTableView.sectionHeaderHeight = 53
         
@@ -59,6 +60,18 @@ class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UI
         super.viewDidAppear(animated)
         PULog("Displaying Create Group 1 page")
     }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        let newLength = count(textField.text) + count(string) - range.length
+        return newLength <= 100 // Bool
+    }
+    
+    
     
     /* Dismiss keyboard if view is tapped */
     @IBAction func viewTapped(sender: AnyObject) {

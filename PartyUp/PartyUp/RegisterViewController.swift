@@ -52,7 +52,17 @@ class RegisterViewController: PartyUpViewController, UITextFieldDelegate {
             
         }
     }
-    
+    /*--------------------------------------------*
+    * Configure the View
+    *--------------------------------------------*/
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        firstNameTextField.delegate = self
+        lastNameTextField.delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        retypePasswordTextField.delegate = self
+    }
     
    /*--------------------------------------------*
     * View response methods
@@ -121,6 +131,11 @@ class RegisterViewController: PartyUpViewController, UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        let newLength = count(textField.text) + count(string) - range.length
+        return newLength <= 50 // Bool
     }
    
     

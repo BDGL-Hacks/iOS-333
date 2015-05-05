@@ -27,10 +27,6 @@ class AlertsViewController: PartyUpViewController, UITableViewDelegate, UITableV
     
     @IBOutlet weak var placeholderLabel: UILabel!
     
-    @IBOutlet weak var checkUpAlertsLabel: UILabel!
-    @IBOutlet weak var groupInvitesLabel: UILabel!
-    @IBOutlet weak var eventInvitesLabel: UILabel!
-    
     @IBOutlet weak var checkUpAlertsTableView: PUDynamicTableView!
     @IBOutlet weak var groupInvitesTableView: PUDynamicTableView!
     @IBOutlet weak var eventInvitesTableView: PUDynamicTableView!
@@ -47,6 +43,11 @@ class AlertsViewController: PartyUpViewController, UITableViewDelegate, UITableV
         checkUpAlertsTableView.registerNib(customTableCellNib, forCellReuseIdentifier: "partyUpAlertCell")
         groupInvitesTableView.registerNib(customTableCellNib, forCellReuseIdentifier: "partyUpAlertCell")
         eventInvitesTableView.registerNib(customTableCellNib, forCellReuseIdentifier: "partyUpAlertCell")
+        
+        checkUpAlertsTableView.sectionHeaderHeight = 44
+        groupInvitesTableView.sectionHeaderHeight = 44
+        eventInvitesTableView.sectionHeaderHeight = 44
+        
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateViews", name: alertsModel.getUpdateNotificationName() as String, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "displayResponseFailedAlert", name: alertsModel.getErrorNotificationName() as String, object: nil)
@@ -116,14 +117,8 @@ class AlertsViewController: PartyUpViewController, UITableViewDelegate, UITableV
         }
         
         if (isCheckUpAlertsTableEmpty && isGroupInvitesTableEmpty && isEventInvitesTableEmpty) {
-            checkUpAlertsLabel.hidden = true
-            groupInvitesLabel.hidden = true
-            eventInvitesLabel.hidden = true
             placeholderLabel.hidden = false
         } else {
-            checkUpAlertsLabel.hidden = false
-            groupInvitesLabel.hidden = false
-            eventInvitesLabel.hidden = false
             placeholderLabel.hidden = true
         }
     }
@@ -189,6 +184,29 @@ class AlertsViewController: PartyUpViewController, UITableViewDelegate, UITableV
         
         cell.loadCell(data, type: type, contentText: contentText, index: index)
         return cell
+    }
+    
+    /* Populate the section headers of each table */
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        if (tableView == checkUpAlertsTableView) {
+            let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
+            headerCell.backgroundColor = UIColorFromRGB(0xE6C973)
+            headerCell.headerTextLabel.text = "Safety Alerts";
+            return headerCell
+        }
+        else if (tableView == groupInvitesTableView) {
+            let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
+            headerCell.backgroundColor = UIColorFromRGB(0xE6C973)
+            headerCell.headerTextLabel.text = "Group Invites";
+            return headerCell
+        }
+        else {
+            let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
+            headerCell.backgroundColor = UIColorFromRGB(0xE6C973)
+            headerCell.headerTextLabel.text = "Event Invites";
+            return headerCell
+        }
     }
     
     /* Determines what to do when a table cell is selected */

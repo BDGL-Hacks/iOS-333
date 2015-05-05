@@ -26,8 +26,8 @@ class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, 
         addedEventsTableView.dataSource = self
         
         
-        self.addedEventsTableView.rowHeight = 60
-        self.addedEventsTableView.sectionHeaderHeight = 44
+        self.addedEventsTableView.rowHeight = 65
+        self.addedEventsTableView.sectionHeaderHeight = 65
         
         addedEvents?.addObjectsFromArray(createGroup!.getGroupEvents() as [AnyObject])
         

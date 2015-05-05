@@ -44,8 +44,8 @@ class AddChooseEventsViewController: PartyUpViewController, UITableViewDelegate,
         eventsTableView.dataSource = self
         navBar.delegate = self
 
-        self.eventsTableView.rowHeight = 60
-        self.eventsTableView.sectionHeaderHeight = 53
+        self.eventsTableView.rowHeight = 65
+        self.eventsTableView.sectionHeaderHeight = 65
         
 
         var customTableCellNib: UINib = UINib(nibName: "PartyUpTableCell", bundle: nil)

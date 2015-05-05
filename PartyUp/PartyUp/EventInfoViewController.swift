@@ -29,7 +29,6 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
-    @IBOutlet weak var groupLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var ageRestrictionsLabel: UILabel!
@@ -118,7 +117,6 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
         let date: NSString = DataManager.getEventDate(event)
         let startTime: NSString = DataManager.getEventStartTime(event)
         let locationName: NSString = DataManager.getEventLocationName(event)
-        let group: NSString? = DataManager.getEventGroup(event)
         let desc: NSString = DataManager.getEventDescription(event)
         let price: NSInteger? = DataManager.getEventPrice(event)
         let ageRestriction: NSInteger? = DataManager.getEventAgeRestriction(event)
@@ -129,20 +127,15 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
         timeLabel.text = startTime as String
         locationLabel.text = locationName as String
         descriptionLabel.text = desc as String
-        if (group != nil) {
-            groupLabel.text = group! as String
-        } else {
-            groupLabel.text = "Going solo..."
-        }
         if (price != nil) {
-            priceLabel.text = "This event costs $\(price!) to attend."
+            priceLabel.text = "$\(price!)"
         } else {
-            priceLabel.text = "This event is free."
+            priceLabel.text = "Free"
         }
         if (ageRestriction != nil) {
-            ageRestrictionsLabel.text = "You must be at \(ageRestriction!) or older to attend."
+            ageRestrictionsLabel.text = "\(ageRestriction!)"
         } else {
-            ageRestrictionsLabel.text = "This event is open for all ages"
+            ageRestrictionsLabel.text = "None"
         }
     }
     
@@ -190,7 +183,7 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
         headerCell.backgroundColor = UIColorFromRGB(0xE6C973)
-        headerCell.headerTextLabel.text = "Attendees";
+        headerCell.headerTextLabel.text = "Attendees"
         return headerCell
     }
 

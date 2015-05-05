@@ -57,11 +57,13 @@ class RegisterViewController: PartyUpViewController, UITextFieldDelegate {
     *--------------------------------------------*/
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         firstNameTextField.delegate = self
         lastNameTextField.delegate = self
         emailTextField.delegate = self
         passwordTextField.delegate = self
         retypePasswordTextField.delegate = self
+
     }
     
    /*--------------------------------------------*
@@ -197,7 +199,7 @@ class RegisterViewController: PartyUpViewController, UITextFieldDelegate {
     
     func textFieldDidEndEditing(textField: UITextField) {
         activeTextField = nil
-        scrollView.scrollEnabled = false
+        //scrollView.scrollEnabled = false
     }
     
     

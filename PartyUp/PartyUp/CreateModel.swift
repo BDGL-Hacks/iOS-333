@@ -43,7 +43,7 @@ class CreateModel {
         eventTitle = title
         eventLocation = location
         self.dateTime = dateTime
-        eventPrice = "10000000"
+        eventPrice = "100"
         self.eventPublic = eventPublic
         eventAgeRestrictions = "0"
         self.eventDescription = eventDescription

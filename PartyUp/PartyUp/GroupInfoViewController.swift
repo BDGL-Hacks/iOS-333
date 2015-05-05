@@ -29,6 +29,8 @@ class GroupInfoViewController: UIViewController, UITableViewDelegate, UITableVie
         var customTableCellNib: UINib = UINib(nibName: "PartyUpTableCell", bundle: nil)
         groupEventsTableView.registerNib(customTableCellNib, forCellReuseIdentifier: "eventCellPrototype")
         groupMembersTableView.rowHeight = 45
+        groupMembersTableView.sectionHeaderHeight = 65
+        groupEventsTableView.sectionHeaderHeight = 65
         
         navBar.delegate = self
         // Do any additional setup after loading the view.

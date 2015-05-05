@@ -69,6 +69,7 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UI
         return UIBarPosition.TopAttached
     }
     
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -101,11 +102,14 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UI
     
     
     /* Tap anywhere outside text field dismisses keyboard */
-    @IBAction func viewTapped(sender: AnyObject) {
+   
+    @IBAction func viewTapped(sender: UITapGestureRecognizer) {
         eventTitleTextField.resignFirstResponder()
         locationTextField.resignFirstResponder()
         descriptionTextField.resignFirstResponder()
+        
     }
+    
     
     
     override func viewWillAppear(animated: Bool) {
@@ -146,7 +150,6 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UI
     
     func textFieldDidEndEditing(textField: UITextField) {
         activeTextField = nil
-        scrollView.scrollEnabled = false
     }
     
     

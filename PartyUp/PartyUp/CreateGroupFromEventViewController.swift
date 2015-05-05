@@ -39,7 +39,7 @@ class CreateGroupFromEventViewController: PartyUpViewController, UITableViewData
         navBar.delegate = self
         
         self.attendeeListTableView.rowHeight = 45
-        self.attendeeListTableView.sectionHeaderHeight = 53
+        self.attendeeListTableView.sectionHeaderHeight = 45
         attendeeListTableView.allowsMultipleSelection = true
         
         loadEventData()

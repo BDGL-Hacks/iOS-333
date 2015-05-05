@@ -925,9 +925,8 @@ class PartyUpBackend {
             return ("User is not logged in.", nil)
         }
         
-        //var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/events/getid/"
         var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/api/groups/getid/"
-        var postParams: [String: String] = ["group": groupID! as String]
+        var postParams: [String: String] = ["id": groupID! as String]
         
         var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
         

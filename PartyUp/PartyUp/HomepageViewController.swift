@@ -66,7 +66,7 @@ class HomepageViewController: PartyUpViewController, SideMenuViewControllerDeleg
         myEventsChildView.hidden = true
         searchEventsChildView.hidden = true
         alertsChildView.hidden = true
-        setActiveView(.GroupsList)
+        setActiveView(.GroupsDetail)
         
         // If the user is not logged in, delete cookies and go to login screen
         if (!isLoggedIn()) {

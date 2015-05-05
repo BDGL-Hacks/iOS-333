@@ -170,7 +170,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Date and Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n6w-49-FuA">
                                                 <rect key="frame" x="10" y="229" width="191" height="24"/>
                                                 <fontDescription key="fontDescription" name="RobotoSlab-Regular" family="Roboto Slab" pointSize="18"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="oiM-dU-Bjd">
@@ -505,7 +505,7 @@
                             <constraint firstItem="cIp-YJ-ZZ8" firstAttribute="leading" secondItem="GD2-KK-j7t" secondAttribute="leading" id="N6v-Zd-vF9"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7lY-Hm-DhW" secondAttribute="trailing" constant="-20" id="cHf-VV-m8I"/>
                             <constraint firstItem="YT4-oh-QmW" firstAttribute="top" secondItem="cIp-YJ-ZZ8" secondAttribute="bottom" constant="22" id="dJ0-jT-VyI"/>
-                            <constraint firstItem="cIp-YJ-ZZ8" firstAttribute="top" secondItem="SqE-WI-11I" secondAttribute="bottom" id="gth-Pz-Av8"/>
+                            <constraint firstItem="cIp-YJ-ZZ8" firstAttribute="top" secondItem="SqE-WI-11I" secondAttribute="bottom" constant="20" id="gth-Pz-Av8"/>
                             <constraint firstItem="7lY-Hm-DhW" firstAttribute="trailing" secondItem="YT4-oh-QmW" secondAttribute="trailing" id="iJd-qj-AFd"/>
                             <constraint firstItem="7lY-Hm-DhW" firstAttribute="bottom" secondItem="bzn-77-Yi6" secondAttribute="top" id="l3R-cx-lf1"/>
                             <constraint firstItem="7lY-Hm-DhW" firstAttribute="top" secondItem="YT4-oh-QmW" secondAttribute="bottom" constant="8" symbolic="YES" id="lxc-a2-Rwg"/>
@@ -556,7 +556,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="67" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jQO-Io-zuG">
-                                <rect key="frame" x="0.0" y="123" width="320" height="445"/>
+                                <rect key="frame" x="0.0" y="123" width="320" height="477"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HeaderCell" rowHeight="53" id="IRA-Ab-PCU" customClass="CustomHeaderTableViewCell" customModule="PartyUp" customModuleProvider="target">
@@ -659,7 +659,7 @@
                             <constraint firstAttribute="trailing" secondItem="7y5-m4-GQe" secondAttribute="trailing" id="8TQ-So-Xpm"/>
                             <constraint firstItem="rvb-dp-4N4" firstAttribute="top" secondItem="jQO-Io-zuG" secondAttribute="bottom" constant="1" id="BVh-xS-eRu"/>
                             <constraint firstItem="jQO-Io-zuG" firstAttribute="leading" secondItem="x4c-Gd-OP3" secondAttribute="leading" id="HJn-Nk-v5h"/>
-                            <constraint firstItem="rvb-dp-4N4" firstAttribute="top" secondItem="jQO-Io-zuG" secondAttribute="bottom" id="Ht0-bj-ZWQ"/>
+                            <constraint firstItem="rvb-dp-4N4" firstAttribute="top" secondItem="jQO-Io-zuG" secondAttribute="bottom" constant="-33" id="Ht0-bj-ZWQ"/>
                             <constraint firstItem="7y5-m4-GQe" firstAttribute="leading" secondItem="x4c-Gd-OP3" secondAttribute="leading" id="PXp-hP-2rM"/>
                             <constraint firstItem="7y5-m4-GQe" firstAttribute="leading" secondItem="jQO-Io-zuG" secondAttribute="leading" id="TP5-Li-Rna"/>
                             <constraint firstItem="DWS-g7-k6f" firstAttribute="leading" secondItem="x4c-Gd-OP3" secondAttribute="leadingMargin" id="cW7-lg-rKV"/>
@@ -668,7 +668,7 @@
                             <constraint firstAttribute="trailing" secondItem="jQO-Io-zuG" secondAttribute="trailing" id="mAS-hq-gpZ"/>
                             <constraint firstItem="DWS-g7-k6f" firstAttribute="top" secondItem="7y5-m4-GQe" secondAttribute="bottom" constant="12" id="vsS-AK-0ZG"/>
                             <constraint firstAttribute="trailing" secondItem="7y5-m4-GQe" secondAttribute="trailing" id="woS-E6-y1a"/>
-                            <constraint firstItem="7y5-m4-GQe" firstAttribute="top" secondItem="Yro-Aj-W5F" secondAttribute="bottom" id="yrd-8b-qOk"/>
+                            <constraint firstItem="7y5-m4-GQe" firstAttribute="top" secondItem="Yro-Aj-W5F" secondAttribute="bottom" constant="20" id="yrd-8b-qOk"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -790,7 +790,7 @@
                                     <constraint firstItem="GMz-Aa-Nqq" firstAttribute="centerY" secondItem="4og-gd-tyk" secondAttribute="centerY" id="bLr-zP-bk7"/>
                                     <constraint firstItem="MB1-06-84O" firstAttribute="width" secondItem="4og-gd-tyk" secondAttribute="height" multiplier="25:142" id="dls-uO-Y6l"/>
                                     <constraint firstItem="GMz-Aa-Nqq" firstAttribute="top" secondItem="8Kl-Zw-u9h" secondAttribute="bottom" id="fit-xj-yZ9"/>
-                                    <constraint firstAttribute="bottom" secondItem="p0X-gD-McP" secondAttribute="bottom" constant="97" id="gAh-aN-8av"/>
+                                    <constraint firstAttribute="bottom" secondItem="p0X-gD-McP" secondAttribute="bottom" constant="99" id="gAh-aN-8av"/>
                                     <constraint firstItem="8Kl-Zw-u9h" firstAttribute="leading" secondItem="GMz-Aa-Nqq" secondAttribute="leading" id="jnx-lv-joX"/>
                                     <constraint firstItem="evh-wE-3ds" firstAttribute="top" secondItem="GMz-Aa-Nqq" secondAttribute="bottom" constant="20" id="kQH-Hb-0lM"/>
                                     <constraint firstAttribute="trailing" secondItem="8Kl-Zw-u9h" secondAttribute="trailing" constant="35" id="lYX-jf-D7b"/>
@@ -1329,7 +1329,7 @@
                                     <constraint firstAttribute="trailing" secondItem="rwo-ZZ-Opp" secondAttribute="trailing" id="I0m-Sh-Gn2"/>
                                     <constraint firstItem="rwo-ZZ-Opp" firstAttribute="leading" secondItem="F4h-Ox-jcb" secondAttribute="leading" id="NaH-RC-PIM"/>
                                     <constraint firstAttribute="trailing" secondItem="rwo-ZZ-Opp" secondAttribute="trailing" id="Nqn-xP-yoG"/>
-                                    <constraint firstAttribute="bottom" secondItem="lcs-Y8-AU7" secondAttribute="bottom" constant="36" id="RxO-f3-7n1"/>
+                                    <constraint firstAttribute="bottom" secondItem="lcs-Y8-AU7" secondAttribute="bottom" constant="16" id="RxO-f3-7n1"/>
                                     <constraint firstItem="rwo-ZZ-Opp" firstAttribute="leading" secondItem="F4h-Ox-jcb" secondAttribute="leading" id="VYM-iI-FqO"/>
                                     <constraint firstAttribute="trailing" secondItem="lcs-Y8-AU7" secondAttribute="trailing" id="Yrd-vm-yAc"/>
                                     <constraint firstItem="lcs-Y8-AU7" firstAttribute="leading" secondItem="F4h-Ox-jcb" secondAttribute="leading" id="YxD-gm-Yao"/>
@@ -1367,7 +1367,7 @@
                             <constraint firstItem="jWc-9l-osb" firstAttribute="top" secondItem="F4h-Ox-jcb" secondAttribute="bottom" id="Boq-md-RYi"/>
                             <constraint firstItem="7aD-H1-M1R" firstAttribute="centerX" secondItem="8WO-Np-s5m" secondAttribute="centerX" id="GpR-wQ-Dzg"/>
                             <constraint firstAttribute="width" secondItem="lcs-Y8-AU7" secondAttribute="width" id="NJs-ja-aSb"/>
-                            <constraint firstItem="8WO-Np-s5m" firstAttribute="top" secondItem="78z-mU-mv1" secondAttribute="bottom" id="SyN-Ig-GR0"/>
+                            <constraint firstItem="8WO-Np-s5m" firstAttribute="top" secondItem="78z-mU-mv1" secondAttribute="bottom" constant="20" id="SyN-Ig-GR0"/>
                             <constraint firstAttribute="trailing" secondItem="8WO-Np-s5m" secondAttribute="trailing" id="VJZ-oQ-3R3"/>
                             <constraint firstAttribute="trailing" secondItem="F4h-Ox-jcb" secondAttribute="trailing" id="arB-Bz-gqB"/>
                             <constraint firstItem="F4h-Ox-jcb" firstAttribute="leading" secondItem="dYi-Dp-Ngv" secondAttribute="leading" id="wGz-uP-IeZ"/>
@@ -1670,7 +1670,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="TEE-0o-2Cy">
-                                <rect key="frame" x="0.0" y="163" width="320" height="405"/>
+                                <rect key="frame" x="0.0" y="163" width="320" height="437"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HeaderCell" rowHeight="53" id="MLO-hG-20S" customClass="CustomHeaderTableViewCell" customModule="PartyUp" customModuleProvider="target">
@@ -1790,7 +1790,7 @@
                         <constraints>
                             <constraint firstItem="HOz-7i-mDc" firstAttribute="top" secondItem="Pa8-Ml-MCZ" secondAttribute="bottom" constant="2" id="08p-zt-uZC"/>
                             <constraint firstItem="rw6-vx-BvS" firstAttribute="leading" secondItem="TEE-0o-2Cy" secondAttribute="leading" id="2ya-ad-x00"/>
-                            <constraint firstItem="rw6-vx-BvS" firstAttribute="top" secondItem="Kda-G0-bIV" secondAttribute="bottom" id="3gY-rB-Tdr"/>
+                            <constraint firstItem="rw6-vx-BvS" firstAttribute="top" secondItem="Kda-G0-bIV" secondAttribute="bottom" constant="20" id="3gY-rB-Tdr"/>
                             <constraint firstItem="NP7-Ly-Iya" firstAttribute="baseline" secondItem="Hyt-86-g2y" secondAttribute="baseline" id="6c8-z1-8Ol"/>
                             <constraint firstItem="Hyt-86-g2y" firstAttribute="leading" secondItem="NP7-Ly-Iya" secondAttribute="trailing" constant="70" id="9Pd-j6-vwu"/>
                             <constraint firstItem="Hyt-86-g2y" firstAttribute="leading" secondItem="NP7-Ly-Iya" secondAttribute="trailing" constant="49" id="AIO-dG-itt"/>
@@ -1801,7 +1801,7 @@
                             <constraint firstItem="NP7-Ly-Iya" firstAttribute="baseline" secondItem="Hyt-86-g2y" secondAttribute="baseline" id="JAe-CT-zDh"/>
                             <constraint firstItem="rw6-vx-BvS" firstAttribute="trailing" secondItem="TEE-0o-2Cy" secondAttribute="trailing" id="Jub-We-96n"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Pa8-Ml-MCZ" secondAttribute="trailing" constant="5" id="K3f-wK-GR5"/>
-                            <constraint firstItem="v0j-Wi-8jg" firstAttribute="top" secondItem="TEE-0o-2Cy" secondAttribute="bottom" id="LpS-G9-yFe"/>
+                            <constraint firstItem="v0j-Wi-8jg" firstAttribute="top" secondItem="TEE-0o-2Cy" secondAttribute="bottom" constant="-32" id="LpS-G9-yFe"/>
                             <constraint firstItem="NP7-Ly-Iya" firstAttribute="top" secondItem="Pa8-Ml-MCZ" secondAttribute="bottom" constant="3" id="TO5-fU-8rO"/>
                             <constraint firstItem="rw6-vx-BvS" firstAttribute="leading" secondItem="aaS-xf-twX" secondAttribute="leading" id="bxw-oO-2CD"/>
                             <constraint firstItem="NP7-Ly-Iya" firstAttribute="leading" secondItem="aaS-xf-twX" secondAttribute="leadingMargin" id="eXy-PN-nYN"/>
@@ -1852,7 +1852,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="QEe-sn-aiG">
-                                <rect key="frame" x="0.0" y="109" width="320" height="459"/>
+                                <rect key="frame" x="0.0" y="109" width="320" height="491"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="eventCellPrototype" id="6xv-Ma-tMl" customClass="PartyUpTableCell" customModule="PartyUp" customModuleProvider="target">
@@ -1919,10 +1919,10 @@
                             <constraint firstItem="lpv-m7-1vp" firstAttribute="top" secondItem="iP0-sK-vgU" secondAttribute="bottom" constant="8" id="byn-UE-Lrp"/>
                             <constraint firstItem="lpv-m7-1vp" firstAttribute="leading" secondItem="jwM-4b-nLR" secondAttribute="leadingMargin" id="cl2-Oe-8Hy"/>
                             <constraint firstItem="7XB-Qh-ITb" firstAttribute="centerX" secondItem="HWB-pp-USm" secondAttribute="centerX" constant="-0.5" id="ejY-QU-MQd"/>
-                            <constraint firstItem="7XB-Qh-ITb" firstAttribute="top" secondItem="iP0-sK-vgU" secondAttribute="bottom" id="qcT-3w-2mc"/>
+                            <constraint firstItem="7XB-Qh-ITb" firstAttribute="top" secondItem="iP0-sK-vgU" secondAttribute="bottom" constant="20" id="qcT-3w-2mc"/>
                             <constraint firstItem="QEe-sn-aiG" firstAttribute="centerX" secondItem="lpv-m7-1vp" secondAttribute="centerX" id="uvE-Vq-3yr"/>
                             <constraint firstItem="QEe-sn-aiG" firstAttribute="top" secondItem="lpv-m7-1vp" secondAttribute="bottom" constant="60" id="vUu-JS-yi6"/>
-                            <constraint firstItem="QEe-sn-aiG" firstAttribute="bottom" secondItem="9oE-3W-99H" secondAttribute="top" id="wWE-Rn-uzF"/>
+                            <constraint firstItem="QEe-sn-aiG" firstAttribute="bottom" secondItem="9oE-3W-99H" secondAttribute="top" constant="32" id="wWE-Rn-uzF"/>
                             <constraint firstItem="QEe-sn-aiG" firstAttribute="top" secondItem="lpv-m7-1vp" secondAttribute="bottom" constant="8" symbolic="YES" id="x3h-Ah-aw2"/>
                             <constraint firstItem="lpv-m7-1vp" firstAttribute="top" secondItem="7XB-Qh-ITb" secondAttribute="bottom" constant="16" id="zL9-vt-Wz8"/>
                         </constraints>
@@ -1957,7 +1957,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RuV-YH-cjw">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="64"/>
                                 <color key="barTintColor" red="0.50196078430000002" green="0.7843137255" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
                                     <navigationItem id="78j-oK-Pbl">
@@ -2026,39 +2026,19 @@
                                 <color key="textColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RuV-YH-cjw">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                                <color key="barTintColor" red="0.50196078430000002" green="0.7843137255" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <items>
-                                    <navigationItem id="78j-oK-Pbl">
-                                        <barButtonItem key="leftBarButtonItem" title="✕" id="22C-dL-lIl">
-                                            <color key="tintColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <connections>
-                                                <action selector="xButtonPressed:" destination="eek-mW-1nM" id="svC-VY-MR0"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="✓" id="Dz3-sg-eTj">
-                                            <color key="tintColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <connections>
-                                                <action selector="checkmarkPressed:" destination="eek-mW-1nM" id="5zB-2H-HGi"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="BjS-wm-rNw" firstAttribute="leading" secondItem="3FP-5o-G9o" secondAttribute="leadingMargin" id="42d-P3-i18"/>
-                            <constraint firstItem="BjS-wm-rNw" firstAttribute="top" secondItem="RuV-YH-cjw" secondAttribute="bottom" constant="5" id="6ui-5w-M89"/>
+                            <constraint firstItem="BjS-wm-rNw" firstAttribute="top" secondItem="RuV-YH-cjw" secondAttribute="bottom" constant="-15" id="6ui-5w-M89"/>
                             <constraint firstItem="dx1-Cd-tYO" firstAttribute="centerX" secondItem="RuV-YH-cjw" secondAttribute="centerX" id="8sD-hL-sdt"/>
                             <constraint firstItem="BjS-wm-rNw" firstAttribute="centerX" secondItem="5PU-Am-jQ8" secondAttribute="centerX" id="KZ6-p0-7V7"/>
-                            <constraint firstItem="RuV-YH-cjw" firstAttribute="top" secondItem="fyN-vR-1Nk" secondAttribute="bottom" id="Kb8-c1-HJw"/>
+                            <constraint firstItem="RuV-YH-cjw" firstAttribute="top" secondItem="fyN-vR-1Nk" secondAttribute="bottom" constant="20" id="Kb8-c1-HJw"/>
                             <constraint firstItem="anv-0k-QXo" firstAttribute="top" secondItem="5PU-Am-jQ8" secondAttribute="bottom" id="T2b-b3-kAK"/>
                             <constraint firstAttribute="trailingMargin" secondItem="RuV-YH-cjw" secondAttribute="trailing" constant="-16" id="bvT-bF-4YM"/>
                             <constraint firstAttribute="trailingMargin" secondItem="5PU-Am-jQ8" secondAttribute="trailing" constant="-16" id="cTD-kL-QYg"/>
                             <constraint firstItem="BjS-wm-rNw" firstAttribute="top" secondItem="3FP-5o-G9o" secondAttribute="top" constant="69" id="cXv-en-3Yh"/>
-                            <constraint firstItem="dx1-Cd-tYO" firstAttribute="centerY" secondItem="RuV-YH-cjw" secondAttribute="centerY" constant="-0.5" id="gBE-ab-Cc0"/>
+                            <constraint firstItem="dx1-Cd-tYO" firstAttribute="centerY" secondItem="RuV-YH-cjw" secondAttribute="centerY" constant="-10.5" id="gBE-ab-Cc0"/>
                             <constraint firstItem="5PU-Am-jQ8" firstAttribute="top" secondItem="BjS-wm-rNw" secondAttribute="bottom" constant="8" symbolic="YES" id="j5R-86-z9y"/>
                             <constraint firstItem="BjS-wm-rNw" firstAttribute="centerX" secondItem="RuV-YH-cjw" secondAttribute="centerX" id="jNI-jn-exz"/>
                             <constraint firstItem="5PU-Am-jQ8" firstAttribute="leading" secondItem="3FP-5o-G9o" secondAttribute="leadingMargin" constant="-16" id="mB2-BX-YYr"/>
@@ -2570,7 +2550,7 @@ tapping the 'Find' tab on the bottom.</string>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="RQJ-zm-x96" secondAttribute="trailing" id="0LN-bB-8Io"/>
                                     <constraint firstItem="RQJ-zm-x96" firstAttribute="centerX" secondItem="tAu-rf-qID" secondAttribute="centerX" id="2rh-34-22z"/>
-                                    <constraint firstAttribute="bottom" secondItem="RQJ-zm-x96" secondAttribute="bottom" constant="-126" id="G9K-Vn-peQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="RQJ-zm-x96" secondAttribute="bottom" constant="-146" id="G9K-Vn-peQ"/>
                                     <constraint firstItem="RQJ-zm-x96" firstAttribute="top" secondItem="tAu-rf-qID" secondAttribute="top" id="Pdq-I2-5Kx"/>
                                     <constraint firstItem="RQJ-zm-x96" firstAttribute="leading" secondItem="tAu-rf-qID" secondAttribute="leading" id="ocT-1h-rpQ"/>
                                 </constraints>
@@ -2582,8 +2562,8 @@ tapping the 'Find' tab on the bottom.</string>
                             <constraint firstItem="tAu-rf-qID" firstAttribute="top" secondItem="kC7-Rx-TQO" secondAttribute="bottom" id="Itu-RM-Kfg"/>
                             <constraint firstItem="kC7-Rx-TQO" firstAttribute="leading" secondItem="tAu-rf-qID" secondAttribute="leading" id="L5O-64-sZD"/>
                             <constraint firstItem="kC7-Rx-TQO" firstAttribute="trailing" secondItem="tAu-rf-qID" secondAttribute="trailing" id="Nnj-pj-9xr"/>
-                            <constraint firstItem="49o-eV-80V" firstAttribute="top" secondItem="uWB-iJ-1rV" secondAttribute="bottom" constant="11" id="OEI-iu-qBk"/>
-                            <constraint firstItem="kC7-Rx-TQO" firstAttribute="top" secondItem="uWB-iJ-1rV" secondAttribute="bottom" id="cq3-UQ-RNw"/>
+                            <constraint firstItem="49o-eV-80V" firstAttribute="top" secondItem="uWB-iJ-1rV" secondAttribute="bottom" constant="31" id="OEI-iu-qBk"/>
+                            <constraint firstItem="kC7-Rx-TQO" firstAttribute="top" secondItem="uWB-iJ-1rV" secondAttribute="bottom" constant="20" id="cq3-UQ-RNw"/>
                             <constraint firstAttribute="trailing" secondItem="tAu-rf-qID" secondAttribute="trailing" id="ndh-fP-i3Z"/>
                             <constraint firstItem="tAu-rf-qID" firstAttribute="leading" secondItem="ujy-PB-YbQ" secondAttribute="leading" id="q76-Jf-uTg"/>
                             <constraint firstItem="kC7-Rx-TQO" firstAttribute="centerX" secondItem="49o-eV-80V" secondAttribute="centerX" id="tFT-SZ-7iU"/>
@@ -2741,11 +2721,11 @@ tapping the 'Find' tab on the bottom.</string>
                             <constraint firstItem="AVq-wm-CWm" firstAttribute="top" secondItem="665-wd-SIF" secondAttribute="bottom" constant="73" id="5RT-aX-et8"/>
                             <constraint firstItem="665-wd-SIF" firstAttribute="centerX" secondItem="AVq-wm-CWm" secondAttribute="centerX" id="6ky-x9-TAw"/>
                             <constraint firstItem="665-wd-SIF" firstAttribute="centerY" secondItem="5nT-qN-GeD" secondAttribute="centerY" id="FSP-mM-mmV"/>
-                            <constraint firstItem="5nT-qN-GeD" firstAttribute="top" secondItem="6uQ-AE-yd8" secondAttribute="bottom" id="NwM-2s-QqN"/>
+                            <constraint firstItem="5nT-qN-GeD" firstAttribute="top" secondItem="6uQ-AE-yd8" secondAttribute="bottom" constant="20" id="NwM-2s-QqN"/>
                             <constraint firstItem="5nT-qN-GeD" firstAttribute="leading" secondItem="jAc-ZB-BfO" secondAttribute="leading" id="R35-4h-00a"/>
                             <constraint firstItem="jAc-ZB-BfO" firstAttribute="centerX" secondItem="AVq-wm-CWm" secondAttribute="centerX" id="RIP-fQ-FoK"/>
                             <constraint firstItem="AVq-wm-CWm" firstAttribute="leading" secondItem="zXB-n0-PKl" secondAttribute="leading" id="Rz8-Jo-Ls5"/>
-                            <constraint firstItem="665-wd-SIF" firstAttribute="top" secondItem="6uQ-AE-yd8" secondAttribute="bottom" constant="11" id="VD1-tX-OQ7"/>
+                            <constraint firstItem="665-wd-SIF" firstAttribute="top" secondItem="6uQ-AE-yd8" secondAttribute="bottom" constant="31" id="VD1-tX-OQ7"/>
                             <constraint firstItem="zXB-n0-PKl" firstAttribute="leading" secondItem="KHY-wQ-8PV" secondAttribute="leadingMargin" id="W7B-lI-Sqy"/>
                             <constraint firstItem="665-wd-SIF" firstAttribute="centerX" secondItem="5nT-qN-GeD" secondAttribute="centerX" id="WjN-oZ-O0y"/>
                             <constraint firstItem="665-wd-SIF" firstAttribute="centerX" secondItem="AVq-wm-CWm" secondAttribute="centerX" id="Yw9-hI-Ynf"/>
@@ -2757,9 +2737,9 @@ tapping the 'Find' tab on the bottom.</string>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="wDr-Nm-dlf"/>
                                 <exclude reference="6ky-x9-TAw"/>
                                 <exclude reference="WjN-oZ-O0y"/>
+                                <exclude reference="wDr-Nm-dlf"/>
                             </mask>
                         </variation>
                         <connections>
@@ -2908,7 +2888,7 @@ tapping the 'Find' tab on the bottom.</string>
                             <constraint firstItem="Y5U-6f-kWE" firstAttribute="leading" secondItem="71G-xu-0IQ" secondAttribute="leading" id="0fC-pK-A0f"/>
                             <constraint firstItem="Y5U-6f-kWE" firstAttribute="top" secondItem="4jF-cT-PGz" secondAttribute="bottom" constant="8" symbolic="YES" id="1V0-Uv-HQJ"/>
                             <constraint firstItem="4jF-cT-PGz" firstAttribute="leading" secondItem="71G-xu-0IQ" secondAttribute="leadingMargin" id="FER-Qc-bkl"/>
-                            <constraint firstItem="zEz-eU-YAq" firstAttribute="top" secondItem="Uat-MV-8jh" secondAttribute="bottom" id="HOD-UA-cEE"/>
+                            <constraint firstItem="zEz-eU-YAq" firstAttribute="top" secondItem="Uat-MV-8jh" secondAttribute="bottom" constant="20" id="HOD-UA-cEE"/>
                             <constraint firstAttribute="trailing" secondItem="Y5U-6f-kWE" secondAttribute="trailing" id="PZe-wA-pNX"/>
                             <constraint firstAttribute="trailing" secondItem="zEz-eU-YAq" secondAttribute="trailing" id="Qq1-Cv-Ce7"/>
                             <constraint firstItem="4jF-cT-PGz" firstAttribute="top" secondItem="zEz-eU-YAq" secondAttribute="bottom" constant="23" id="UpK-Wr-iw2"/>
@@ -2937,7 +2917,7 @@ tapping the 'Find' tab on the bottom.</string>
                         <viewControllerLayoutGuide type="bottom" id="XDf-ev-TIf"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="jyi-aP-k0b">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gao-GA-6NJ">
@@ -2995,7 +2975,7 @@ tapping the 'Find' tab on the bottom.</string>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zu7-2A-T9s">
                                 <rect key="frame" x="120" y="31" width="81" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -3056,7 +3036,7 @@ tapping the 'Find' tab on the bottom.</string>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Safety Alerts" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OmF-0c-Y8Q">
                                         <rect key="frame" x="111" y="21" width="98" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Jzu-v6-SNf" customClass="PUDynamicTableView" customModule="PartyUp" customModuleProvider="target">
@@ -3085,7 +3065,7 @@ tapping the 'Find' tab on the bottom.</string>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group Invitations" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oty-R0-Ihg">
                                         <rect key="frame" x="95" y="172" width="131" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jLu-k4-eK2" customClass="PUDynamicTableView" customModule="PartyUp" customModuleProvider="target">
@@ -3113,7 +3093,7 @@ tapping the 'Find' tab on the bottom.</string>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Invitations" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WSo-ap-1c4">
                                         <rect key="frame" x="97" y="323" width="127" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1Nx-Zl-kgz" customClass="PUDynamicTableView" customModule="PartyUp" customModuleProvider="target">
@@ -3141,7 +3121,7 @@ tapping the 'Find' tab on the bottom.</string>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have no alerts at this time." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XYC-Pq-ls1">
                                         <rect key="frame" x="42" y="238" width="235" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -3219,12 +3199,12 @@ tapping the 'Find' tab on the bottom.</string>
         <image name="PartyUp_arrow_placeholder.png" width="999" height="999"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="in5-ko-7n1"/>
-        <segue reference="VSP-cM-gCU"/>
+        <segue reference="GqP-Zs-IDl"/>
+        <segue reference="2aX-yK-MH8"/>
         <segue reference="lY5-SE-ddG"/>
-        <segue reference="zR6-5U-mw3"/>
-        <segue reference="d1i-1v-4PY"/>
-        <segue reference="Jvj-7x-MX8"/>
-        <segue reference="4fK-gC-rRW"/>
+        <segue reference="Cdc-xi-cBr"/>
+        <segue reference="VSP-cM-gCU"/>
+        <segue reference="in5-ko-7n1"/>
+        <segue reference="bIb-fA-Nj2"/>
     </inferredMetricsTieBreakers>
 </document>

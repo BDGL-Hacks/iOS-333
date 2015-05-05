@@ -46,13 +46,6 @@
 		7EDD4EEB1ABE727D00CEECD0 /* PartyUpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDD4EEA1ABE727D00CEECD0 /* PartyUpTests.swift */; };
 		7EEA89D51AD4311000EA9985 /* CreateEvent1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEA89D41AD4311000EA9985 /* CreateEvent1ViewController.swift */; };
 		7EFBCB391ADA251B0046E250 /* EventInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFBCB381ADA251B0046E250 /* EventInfoViewController.swift */; };
-		8B01E3261AF94B2F00BC0C9D /* Cancel Filled-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B01E31F1AF94B2F00BC0C9D /* Cancel Filled-50.png */; };
-		8B01E3271AF94B2F00BC0C9D /* Checkmark Filled-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B01E3201AF94B2F00BC0C9D /* Checkmark Filled-50.png */; };
-		8B01E3281AF94B2F00BC0C9D /* Menu-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B01E3211AF94B2F00BC0C9D /* Menu-50.png */; };
-		8B01E3291AF94B2F00BC0C9D /* Back-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B01E3221AF94B2F00BC0C9D /* Back-50.png */; };
-		8B01E32A1AF94B2F00BC0C9D /* Plus Math-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B01E3231AF94B2F00BC0C9D /* Plus Math-50.png */; };
-		8B01E32B1AF94B2F00BC0C9D /* Delete Sign-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B01E3241AF94B2F00BC0C9D /* Delete Sign-50.png */; };
-		8B01E32C1AF94B2F00BC0C9D /* Forward-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B01E3251AF94B2F00BC0C9D /* Forward-50.png */; };
 		8B461DF71AE617CB00C3CFB9 /* AddChooseEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B461DF61AE617CB00C3CFB9 /* AddChooseEventsViewController.swift */; };
 		8B4F21CF1AE1A4D700114381 /* CreateGroup1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4F21CE1AE1A4D700114381 /* CreateGroup1ViewController.swift */; };
 		8B4F21D31AE5DA8C00114381 /* CreateGroup2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4F21D21AE5DA8C00114381 /* CreateGroup2ViewController.swift */; };
@@ -129,13 +122,6 @@
 		7EDD4EEA1ABE727D00CEECD0 /* PartyUpTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyUpTests.swift; sourceTree = "<group>"; };
 		7EEA89D41AD4311000EA9985 /* CreateEvent1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEvent1ViewController.swift; sourceTree = "<group>"; };
 		7EFBCB381ADA251B0046E250 /* EventInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventInfoViewController.swift; sourceTree = "<group>"; };
-		8B01E31F1AF94B2F00BC0C9D /* Cancel Filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Cancel Filled-50.png"; path = "../../../../Downloads/Cancel Filled-50.png"; sourceTree = "<group>"; };
-		8B01E3201AF94B2F00BC0C9D /* Checkmark Filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Checkmark Filled-50.png"; path = "../../../../Downloads/Checkmark Filled-50.png"; sourceTree = "<group>"; };
-		8B01E3211AF94B2F00BC0C9D /* Menu-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Menu-50.png"; path = "../../../../Downloads/Menu-50.png"; sourceTree = "<group>"; };
-		8B01E3221AF94B2F00BC0C9D /* Back-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Back-50.png"; path = "../../../../Downloads/Back-50.png"; sourceTree = "<group>"; };
-		8B01E3231AF94B2F00BC0C9D /* Plus Math-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Plus Math-50.png"; path = "../../../../Downloads/Plus Math-50.png"; sourceTree = "<group>"; };
-		8B01E3241AF94B2F00BC0C9D /* Delete Sign-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Delete Sign-50.png"; path = "../../../../Downloads/Delete Sign-50.png"; sourceTree = "<group>"; };
-		8B01E3251AF94B2F00BC0C9D /* Forward-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Forward-50.png"; path = "../../../../Downloads/Forward-50.png"; sourceTree = "<group>"; };
 		8B461DF61AE617CB00C3CFB9 /* AddChooseEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddChooseEventsViewController.swift; sourceTree = "<group>"; };
 		8B4F21CE1AE1A4D700114381 /* CreateGroup1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroup1ViewController.swift; sourceTree = "<group>"; };
 		8B4F21D21AE5DA8C00114381 /* CreateGroup2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroup2ViewController.swift; sourceTree = "<group>"; };
@@ -197,13 +183,6 @@
 		7E12883B1ABF3E2400922622 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				8B01E31F1AF94B2F00BC0C9D /* Cancel Filled-50.png */,
-				8B01E3201AF94B2F00BC0C9D /* Checkmark Filled-50.png */,
-				8B01E3211AF94B2F00BC0C9D /* Menu-50.png */,
-				8B01E3221AF94B2F00BC0C9D /* Back-50.png */,
-				8B01E3231AF94B2F00BC0C9D /* Plus Math-50.png */,
-				8B01E3241AF94B2F00BC0C9D /* Delete Sign-50.png */,
-				8B01E3251AF94B2F00BC0C9D /* Forward-50.png */,
 				7EDC76D21AC7C46000252753 /* PartyUp_icon_2x_placeholder.png */,
 				7E99E7771AF7D1C700066C17 /* Rancho-Regular.ttf */,
 				7E99E7751AF7D1A600066C17 /* RobotoSlab-Regular.ttf */,
@@ -403,22 +382,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B01E3291AF94B2F00BC0C9D /* Back-50.png in Resources */,
 				7EDC76D41AC7C46000252753 /* PartyUp_icon_2x_placeholder.png in Resources */,
 				7EDD4EDA1ABE727C00CEECD0 /* Main.storyboard in Resources */,
 				7E12FFDF1AD750610066D0DC /* PartyUpTableCell.xib in Resources */,
-				8B01E32C1AF94B2F00BC0C9D /* Forward-50.png in Resources */,
 				7E99E7761AF7D1A600066C17 /* RobotoSlab-Regular.ttf in Resources */,
-				8B01E32B1AF94B2F00BC0C9D /* Delete Sign-50.png in Resources */,
-				8B01E32A1AF94B2F00BC0C9D /* Plus Math-50.png in Resources */,
 				7E12883D1ABF3E2400922622 /* PartyUp_arrow_placeholder.png in Resources */,
-				8B01E3281AF94B2F00BC0C9D /* Menu-50.png in Resources */,
-				8B01E3261AF94B2F00BC0C9D /* Cancel Filled-50.png in Resources */,
 				7EDD4EDF1ABE727C00CEECD0 /* LaunchScreen.xib in Resources */,
 				7EDD4EDC1ABE727C00CEECD0 /* Images.xcassets in Resources */,
 				7E1A6C351AF28781006164A0 /* PartyUpAlertCell.xib in Resources */,
 				7EDC76D51AC7C46000252753 /* PartyUp_icon_3x_placeholder.png in Resources */,
-				8B01E3271AF94B2F00BC0C9D /* Checkmark Filled-50.png in Resources */,
 				7EDC76D71AC7C83A00252753 /* todo.txt in Resources */,
 				8B77C2EF1AD987A500E6E8AE /* PartyUpUserCell.xib in Resources */,
 				7E99E77E1AF81C5C00066C17 /* test.html in Resources */,

@@ -141,10 +141,10 @@ class BindEventToGroupViewController: PartyUpViewController, UITableViewDelegate
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
         headerCell.headerTextLabel.text = "Select one of your existing groups"
-        /*
-        headerCell.contentView.layer.borderColor = UIColorFromRGB(0x332F3E).CGColor
+        headerCell.backgroundColor = UIColorFromRGB(0xFFFFFF)
+        headerCell.headerTextLabel.textColor = UIColorFromRGB(0x80C8B5)
+        headerCell.contentView.layer.borderColor = UIColorFromRGB(0x80C8B5).CGColor
         headerCell.contentView.layer.borderWidth = 2.0
-        */
         return headerCell
     }
 

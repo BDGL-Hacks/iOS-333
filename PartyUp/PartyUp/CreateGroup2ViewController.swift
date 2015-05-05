@@ -8,19 +8,20 @@
 
 import UIKit
 
-class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, UITableViewDelegate {
+class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate {
     
     var createGroup: CreateModel?
     var group: NSDictionary?
     var addedEvents: NSMutableArray? = NSMutableArray()
     @IBOutlet weak var addedEventsTableView: UITableView!
     var fromGroupInfo = false
-    
         
+    @IBOutlet weak var navBar: UINavigationBar!
     /* Set up the table and fetch data from create model */
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navBar.delegate = self
         addedEventsTableView.delegate = self
         addedEventsTableView.dataSource = self
         
@@ -46,6 +47,10 @@ class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         PULog("Displaying create group 2 page")
+    }
+    
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+        return UIBarPosition.TopAttached
     }
     
     func setGroupData(group: NSDictionary) {
@@ -99,8 +104,6 @@ class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, 
         }
         else if segue.identifier == "createGroup2ToHome" {
             finalizeGroup()
-            let destinationVC = segue.destinationViewController as! HomepageViewController
-            //destinationVC.setActiveView(.GroupsList)
         }
         else if segue.identifier == "createGroup2ToGroupInfo" {
             PULog("Preparing for segue")

@@ -8,11 +8,12 @@
 
 import UIKit
 
-class AddBrowseEventsViewController: PartyUpViewController, UISearchResultsUpdating, UITableViewDelegate, UITableViewDataSource
+class AddBrowseEventsViewController: PartyUpViewController, UISearchResultsUpdating, UITableViewDelegate, UITableViewDataSource, UINavigationBarDelegate
 {
 
     @IBOutlet weak var findEventsTableView: UITableView!
     
+    @IBOutlet weak var navBar: UINavigationBar!
     let searchEventsModel: SearchEventsModel = SearchEventsModel()
     var previousViewController: CreateGroup2ViewController?
     var createEvent: CreateModel?
@@ -29,6 +30,7 @@ class AddBrowseEventsViewController: PartyUpViewController, UISearchResultsUpdat
         
         findEventsTableView.delegate = self
         findEventsTableView.dataSource = self
+        navBar.delegate = self
         
         self.findEventsTableView.rowHeight = 60
         
@@ -68,6 +70,10 @@ class AddBrowseEventsViewController: PartyUpViewController, UISearchResultsUpdat
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         PULog("Displaying search public events page for group creation")
+    }
+    
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+        return UIBarPosition.TopAttached
     }
 
     // Add selected events and dismiss view controller

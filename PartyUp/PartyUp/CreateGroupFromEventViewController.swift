@@ -8,9 +8,10 @@
 
 import UIKit
 
-class CreateGroupFromEventViewController: PartyUpViewController, UITableViewDataSource, UITableViewDelegate {
+class CreateGroupFromEventViewController: PartyUpViewController, UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate {
 
     
+    @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var eventTitleLabel: UILabel!
     var event: NSDictionary?
     var createGroup = CreateModel()
@@ -35,6 +36,8 @@ class CreateGroupFromEventViewController: PartyUpViewController, UITableViewData
         attendeeListTableView.delegate = self
         attendeeListTableView.dataSource = self
         
+        navBar.delegate = self
+        
         self.attendeeListTableView.rowHeight = 45
         self.attendeeListTableView.sectionHeaderHeight = 53
         attendeeListTableView.allowsMultipleSelection = true
@@ -42,6 +45,10 @@ class CreateGroupFromEventViewController: PartyUpViewController, UITableViewData
         loadEventData()
         // Do any additional setup after loading the view.
         
+    }
+    
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+        return UIBarPosition.TopAttached
     }
     
     /* Loads the event data into the views */
@@ -70,8 +77,6 @@ class CreateGroupFromEventViewController: PartyUpViewController, UITableViewData
         if segue.identifier == "eventGroupCreationToHome" {
             PULog("Preparing for segue")
             addFriends()
-            let destinationVC = segue.destinationViewController as! HomepageViewController
-            destinationVC.setActiveView(.GroupsList)
         }
     }
     

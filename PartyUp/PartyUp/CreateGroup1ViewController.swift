@@ -8,16 +8,19 @@
 
 import UIKit
 
-class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UITableViewDataSource {
+class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UITableViewDataSource, UINavigationBarDelegate {
     
     let createGroup: CreateModel = CreateModel()
     var groupMembers: NSMutableArray? = NSMutableArray()
     @IBOutlet weak var groupNameTextField: UITextField!
     @IBOutlet weak var groupMembersTableView: UITableView!
+    @IBOutlet weak var navBar: UINavigationBar!
     
     /* Set up table and fetch data from create model */
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navBar.delegate = self
         
         groupMembersTableView.delegate = self
         groupMembersTableView.dataSource = self
@@ -60,6 +63,10 @@ class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UI
     /* Dismiss keyboard if view is tapped */
     @IBAction func viewTapped(sender: AnyObject) {
         groupNameTextField.resignFirstResponder()
+    }
+    
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+        return UIBarPosition.TopAttached
     }
     
     /* Dismiss the view */

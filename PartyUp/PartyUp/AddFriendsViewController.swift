@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
+class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UINavigationBarDelegate {
     
     enum PrevType {
         case CreateGroup1
@@ -17,6 +17,7 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
     }
     var prevType = PrevType.CreateGroup1
     
+    @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var queryTableView: UITableView!
     var previousViewController: AnyObject?
     var queryResults: NSArray? = NSArray()
@@ -51,6 +52,7 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
         // set delegates
         queryTableView.delegate = self
         queryTableView.dataSource = self
+        navBar.delegate = self
         
         self.queryTableView.rowHeight = 65
         
@@ -64,6 +66,9 @@ class AddFriendsViewController: PartyUpViewController, UITableViewDataSource, UI
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+        return UIBarPosition.TopAttached
+    }
     
     /* Make a query to the backend and reload the table */
     func refresh() {

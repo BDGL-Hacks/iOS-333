@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate
+class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UINavigationBarDelegate
 {
     
     var itemIndex: Int = 0
@@ -29,11 +29,13 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate
     var isFromGroup: Bool = false
     var previousViewController: CreateGroup2ViewController?
     @IBOutlet weak var selectedDate: UILabel!
+    @IBOutlet weak var navBar: UINavigationBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // createPageViewController()
         // Do any additional setup after loading the view.
+        navBar.delegate = self
         scrollView.contentSize = scrollView.subviews[0].frame.size
     }
     
@@ -54,6 +56,10 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate
         set {
             
         }
+    }
+    
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+        return UIBarPosition.TopAttached
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -162,12 +168,6 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate
         self.performSegueWithIdentifier("eventCreationOneToTwo", sender: self)
     }
     
-    /* Continue to next page. Send data to create model */
-    func addFriends() {
-        
-        
-    }
-    
     /* Alternate button for group creation flow. Creates event
        using emails of friends already added and information
        from this page */
@@ -202,13 +202,16 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate
         if (backendError != nil)
         {
             displayAlert("Event creation Failed", message: backendError!)
+            self.dismissViewControllerAnimated(true, completion: nil)
         }
         
-        /* Update backend array and update the table of the
+        else {
+            /* Update backend array and update the table of the
            previous view controller */
-        createEvent!.updateNewlyCreatedEvents(eventID as NSString?)
-        previousViewController!.updateAddedEvents(true)
-        self.dismissViewControllerAnimated(true, completion: nil)
+            createEvent!.updateNewlyCreatedEvents(eventID as NSString?)
+            previousViewController!.updateAddedEvents(true)
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
     }
     
     /*--------------------------------------------*

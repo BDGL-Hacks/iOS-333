@@ -8,9 +8,9 @@
 
 import UIKit
 
-class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate {
-    
-   /*--------------------------------------------*
+class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate, UINavigationBarDelegate {
+
+    /*--------------------------------------------*
     * Instance variables
     *--------------------------------------------*/
     
@@ -21,6 +21,7 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
     * UI Components
     *--------------------------------------------*/
     
+    @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var eventTitleLabel: UILabel!
     
@@ -78,6 +79,7 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
         loadEventData()
         PULog("Displaying Event Info Page")
         attendeeTable.sectionHeaderHeight = 53
+        navBar.delegate = self
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -97,6 +99,10 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
     @IBAction func inviteFriendsPressed(sender: UITapGestureRecognizer) {
         PULog("Invite button pressed")
         self.performSegueWithIdentifier("eventInfoToInviteFriends", sender: self)
+    }
+    
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+        return UIBarPosition.TopAttached
     }
     
    /*--------------------------------------------*

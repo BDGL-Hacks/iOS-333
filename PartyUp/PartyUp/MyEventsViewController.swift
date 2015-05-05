@@ -37,6 +37,7 @@ class MyEventsViewController: PartyUpViewController, UITableViewDelegate, UITabl
         super.viewDidLoad()
         var customTableCellNib: UINib = UINib(nibName: "PartyUpTableCell", bundle: nil)
         userEventsTableView.registerNib(customTableCellNib, forCellReuseIdentifier: "partyUpTableCell")
+        self.userEventsTableView.sectionHeaderHeight = 53
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -108,6 +109,13 @@ class MyEventsViewController: PartyUpViewController, UITableViewDelegate, UITabl
         cell.loadCell(dayText: dayText, dayNumber: dayNumber, mainText: mainText, subText: subText)
         cell.setCellData(event)
         return cell
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
+        headerCell.contentView.backgroundColor = UIColorFromRGB(0xE6C973)
+        headerCell.headerTextLabel.text = "My Events"
+        return headerCell.contentView
     }
     
     /* Determines what to do when a table cell is selected */

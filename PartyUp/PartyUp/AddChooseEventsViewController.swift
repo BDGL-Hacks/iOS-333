@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddChooseEventsViewController: PartyUpViewController, UITableViewDelegate, UITableViewDataSource {
+class AddChooseEventsViewController: PartyUpViewController, UITableViewDelegate, UITableViewDataSource, UINavigationBarDelegate {
 
     
     /* Constants for section numbers */
@@ -34,6 +34,7 @@ class AddChooseEventsViewController: PartyUpViewController, UITableViewDelegate,
     var createEvent: CreateModel?
     
     @IBOutlet weak var eventsTableView: UITableView!
+    @IBOutlet weak var navBar: UINavigationBar!
     
     
     override func viewDidLoad() {
@@ -41,6 +42,7 @@ class AddChooseEventsViewController: PartyUpViewController, UITableViewDelegate,
         
         eventsTableView.delegate = self
         eventsTableView.dataSource = self
+        navBar.delegate = self
 
         self.eventsTableView.rowHeight = 60
         self.eventsTableView.sectionHeaderHeight = 53
@@ -75,6 +77,10 @@ class AddChooseEventsViewController: PartyUpViewController, UITableViewDelegate,
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         PULog("Displaying search events page")
+    }
+    
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+        return UIBarPosition.TopAttached
     }
     
     // Add selected events and dismiss the view

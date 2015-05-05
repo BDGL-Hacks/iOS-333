@@ -94,7 +94,7 @@ class AddChooseEventsViewController: PartyUpViewController, UITableViewDelegate,
     
     /* Returns the number of sections in the table */
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
+        return 1
     }
     
     /* Returns the number of cells in each section of the table */

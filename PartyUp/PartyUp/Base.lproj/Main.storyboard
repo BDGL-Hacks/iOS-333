@@ -1379,16 +1379,16 @@
                         <outlet property="groupNameLabel" destination="7aD-H1-M1R" id="pJS-dW-1gQ"/>
                         <segue destination="kxU-B7-LE2" kind="presentation" identifier="groupInfoToEventInfo" id="d1i-1v-4PY"/>
                         <segue destination="Qyd-JY-sD0" kind="presentation" identifier="groupInfoToAddEvents" id="VSP-cM-gCU"/>
-                        <segue destination="jVX-jg-yhr" kind="presentation" identifier="groupInfoToInviteFriends" id="zR6-5U-mw3"/>
+                        <segue destination="jVX-jg-yhr" kind="showDetail" identifier="groupInfoToInviteFriends" id="zR6-5U-mw3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fim-g2-ea7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="TLC-5X-dGg">
+                <tapGestureRecognizer cancelsTouchesInView="NO" id="TLC-5X-dGg">
                     <connections>
                         <action selector="addEventPressed:" destination="ves-xh-wWo" id="07z-mY-l1B"/>
                     </connections>
                 </tapGestureRecognizer>
-                <tapGestureRecognizer id="sMz-pS-gpz">
+                <tapGestureRecognizer cancelsTouchesInView="NO" id="sMz-pS-gpz">
                     <connections>
                         <action selector="addMemberPressed:" destination="ves-xh-wWo" id="fs5-JE-C6w"/>
                     </connections>
@@ -1956,6 +1956,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RuV-YH-cjw">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <color key="barTintColor" red="0.50196078430000002" green="0.7843137255" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <items>
+                                    <navigationItem id="78j-oK-Pbl">
+                                        <barButtonItem key="leftBarButtonItem" title="✕" id="22C-dL-lIl">
+                                            <color key="tintColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <action selector="xButtonPressed:" destination="eek-mW-1nM" id="svC-VY-MR0"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="✓" id="Dz3-sg-eTj">
+                                            <color key="tintColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <action selector="checkmarkPressed:" destination="eek-mW-1nM" id="5zB-2H-HGi"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="5PU-Am-jQ8">
                                 <rect key="frame" x="0.0" y="111" width="320" height="457"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1997,9 +2017,12 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose Events" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rjt-mH-yIs">
-                                <rect key="frame" x="0.0" y="0.0" width="125" height="24"/>
-                                <fontDescription key="fontDescription" name="RobotoSlab-Regular" family="Roboto Slab" pointSize="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Events" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dx1-Cd-tYO">
+                                <rect key="frame" x="95" y="30" width="130" height="23"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="130" id="ydJ-Xb-uAh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="RobotoSlab-Regular" family="Roboto Slab" pointSize="17"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -2028,12 +2051,14 @@
                         <constraints>
                             <constraint firstItem="BjS-wm-rNw" firstAttribute="leading" secondItem="3FP-5o-G9o" secondAttribute="leadingMargin" id="42d-P3-i18"/>
                             <constraint firstItem="BjS-wm-rNw" firstAttribute="top" secondItem="RuV-YH-cjw" secondAttribute="bottom" constant="5" id="6ui-5w-M89"/>
+                            <constraint firstItem="dx1-Cd-tYO" firstAttribute="centerX" secondItem="RuV-YH-cjw" secondAttribute="centerX" id="8sD-hL-sdt"/>
                             <constraint firstItem="BjS-wm-rNw" firstAttribute="centerX" secondItem="5PU-Am-jQ8" secondAttribute="centerX" id="KZ6-p0-7V7"/>
                             <constraint firstItem="RuV-YH-cjw" firstAttribute="top" secondItem="fyN-vR-1Nk" secondAttribute="bottom" id="Kb8-c1-HJw"/>
                             <constraint firstItem="anv-0k-QXo" firstAttribute="top" secondItem="5PU-Am-jQ8" secondAttribute="bottom" id="T2b-b3-kAK"/>
                             <constraint firstAttribute="trailingMargin" secondItem="RuV-YH-cjw" secondAttribute="trailing" constant="-16" id="bvT-bF-4YM"/>
                             <constraint firstAttribute="trailingMargin" secondItem="5PU-Am-jQ8" secondAttribute="trailing" constant="-16" id="cTD-kL-QYg"/>
                             <constraint firstItem="BjS-wm-rNw" firstAttribute="top" secondItem="3FP-5o-G9o" secondAttribute="top" constant="69" id="cXv-en-3Yh"/>
+                            <constraint firstItem="dx1-Cd-tYO" firstAttribute="centerY" secondItem="RuV-YH-cjw" secondAttribute="centerY" constant="-0.5" id="gBE-ab-Cc0"/>
                             <constraint firstItem="5PU-Am-jQ8" firstAttribute="top" secondItem="BjS-wm-rNw" secondAttribute="bottom" constant="8" symbolic="YES" id="j5R-86-z9y"/>
                             <constraint firstItem="BjS-wm-rNw" firstAttribute="centerX" secondItem="RuV-YH-cjw" secondAttribute="centerX" id="jNI-jn-exz"/>
                             <constraint firstItem="5PU-Am-jQ8" firstAttribute="leading" secondItem="3FP-5o-G9o" secondAttribute="leadingMargin" constant="-16" id="mB2-BX-YYr"/>
@@ -2046,7 +2071,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AhE-uI-Ef7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5487" y="1010"/>
+            <point key="canvasLocation" x="5508" y="1053"/>
         </scene>
         <!--My Events View Controller-->
         <scene sceneID="CCZ-uQ-tNn">
@@ -2352,27 +2377,31 @@ tapping the 'Find' tab on the bottom.</string>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G0m-b1-2wt" id="VZx-py-Hly">
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Attendees" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QMR-CM-336">
-                                                                    <rect key="frame" x="8" y="15" width="198" height="21"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attendees" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QMR-CM-336">
+                                                                    <rect key="frame" x="8" y="14" width="82" height="23"/>
                                                                     <fontDescription key="fontDescription" name="RobotoSlab-Regular" family="Roboto Slab" pointSize="17"/>
                                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="tap to invite" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKo-VK-CVG">
-                                                                    <rect key="frame" x="214" y="15" width="98" height="21"/>
-                                                                    <gestureRecognizers/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tap to add" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aQ6-22-eFA">
+                                                                    <rect key="frame" x="232" y="14" width="80" height="23"/>
                                                                     <fontDescription key="fontDescription" name="RobotoSlab-Regular" family="Roboto Slab" pointSize="17"/>
                                                                     <color key="textColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
-                                                                    <connections>
-                                                                        <outletCollection property="gestureRecognizers" destination="bh4-tY-W4H" appends="YES" id="SLr-s4-VJD"/>
-                                                                    </connections>
                                                                 </label>
                                                             </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="QMR-CM-336" firstAttribute="leading" secondItem="VZx-py-Hly" secondAttribute="leadingMargin" id="MYU-ho-Fin"/>
+                                                                <constraint firstItem="aQ6-22-eFA" firstAttribute="trailing" secondItem="VZx-py-Hly" secondAttribute="trailingMargin" id="aba-Sm-OcC"/>
+                                                                <constraint firstItem="QMR-CM-336" firstAttribute="centerY" secondItem="aQ6-22-eFA" secondAttribute="centerY" id="fbz-Cz-a9b"/>
+                                                                <constraint firstAttribute="centerY" secondItem="QMR-CM-336" secondAttribute="centerY" constant="0.5" id="ofh-YR-uzR"/>
+                                                            </constraints>
                                                         </tableViewCellContentView>
                                                         <color key="backgroundColor" red="0.90196078430000004" green="0.78823529410000004" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <gestureRecognizers/>
                                                         <connections>
                                                             <outlet property="headerTextLabel" destination="QMR-CM-336" id="tpf-fY-md8"/>
+                                                            <outletCollection property="gestureRecognizers" destination="ReY-F7-rMX" appends="YES" id="Hyl-Uk-xNb"/>
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>
@@ -2574,15 +2603,16 @@ tapping the 'Find' tab on the bottom.</string>
                         <outlet property="groupLabel" destination="c47-4H-JqF" id="gEo-39-WN3"/>
                         <outlet property="locationLabel" destination="lZa-yQ-DgU" id="U7M-so-RcI"/>
                         <outlet property="priceLabel" destination="9Go-06-f3e" id="5bg-OH-pYi"/>
-                        <outlet property="tapGestureRecognizer" destination="bh4-tY-W4H" id="eVy-V8-qMg"/>
+                        <outlet property="tapGestureRecognizer" destination="ReY-F7-rMX" id="I7r-Vc-gZ3"/>
                         <outlet property="timeLabel" destination="mXI-05-696" id="pwd-04-YXB"/>
-                        <segue destination="jVX-jg-yhr" kind="presentation" identifier="eventInfoToInviteFriends" id="2aX-yK-MH8"/>
+                        <segue destination="jVX-jg-yhr" kind="showDetail" identifier="eventInfoToInviteFriends" id="2aX-yK-MH8"/>
+                        <segue destination="SLw-45-19W" kind="show" identifier="eventInfoToHome" id="pzN-Gt-EXJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dg2-r9-yMr" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="bh4-tY-W4H">
+                <tapGestureRecognizer cancelsTouchesInView="NO" id="ReY-F7-rMX">
                     <connections>
-                        <action selector="inviteFriendsPressed:" destination="kxU-B7-LE2" id="qhv-gy-l6q"/>
+                        <action selector="inviteFriendsPressed:" destination="kxU-B7-LE2" id="Vsj-wO-wWl"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -2793,6 +2823,9 @@ tapping the 'Find' tab on the bottom.</string>
                                             </variation>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.90196078430000004" green="0.78823529410000004" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="headerTextLabel" destination="LCU-sE-fff" id="QRm-kS-dh1"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCell" rowHeight="61" id="bfz-K4-2Z9" customClass="AddFriendsTableViewCell" customModule="PartyUp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -2836,6 +2869,9 @@ tapping the 'Find' tab on the bottom.</string>
                                     <navigationItem id="vjh-IN-gqh">
                                         <barButtonItem key="leftBarButtonItem" title="✕" id="QYl-ZT-7dW">
                                             <color key="tintColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <action selector="backButtonPressed:" destination="jVX-jg-yhr" id="jbd-pl-jJa"/>
+                                            </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="✓" id="kCe-oU-avT">
                                             <color key="tintColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2884,8 +2920,8 @@ tapping the 'Find' tab on the bottom.</string>
                     </view>
                     <connections>
                         <outlet property="invitedFriendsTableView" destination="Y5U-6f-kWE" id="eRM-Lx-ZOy"/>
-                        <segue destination="kxU-B7-LE2" kind="show" identifier="inviteFriendsToEventInfo" id="GqP-Zs-IDl"/>
-                        <segue destination="ves-xh-wWo" kind="show" identifier="inviteFriendsToGroupInfo" id="lY5-SE-ddG"/>
+                        <segue destination="kxU-B7-LE2" kind="showDetail" identifier="inviteFriendsToEventInfo" id="GqP-Zs-IDl"/>
+                        <segue destination="ves-xh-wWo" kind="showDetail" identifier="inviteFriendsToGroupInfo" id="lY5-SE-ddG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="inc-hW-LQh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2901,7 +2937,7 @@ tapping the 'Find' tab on the bottom.</string>
                         <viewControllerLayoutGuide type="bottom" id="XDf-ev-TIf"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="jyi-aP-k0b">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gao-GA-6NJ">

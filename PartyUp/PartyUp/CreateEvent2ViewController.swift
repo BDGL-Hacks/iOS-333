@@ -12,6 +12,7 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
 
     var createEvent: CreateModel?
     
+    
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var addedFriendsTableView: UITableView!
     var addedFriends: NSMutableArray? = NSMutableArray()
@@ -53,6 +54,11 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
         var inviteList = addedFriends! as NSArray
         createEvent?.setInviteList(inviteList)
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
+    @IBAction func finishButtonPressed(sender: UIBarButtonItem) {
+        self.performSegueWithIdentifier("eventCreationTwoToHome", sender: self)
     }
     
     

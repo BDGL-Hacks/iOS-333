@@ -199,6 +199,7 @@ class AlertsViewController: PartyUpViewController, UITableViewDelegate, UITableV
             let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
             headerCell.headerTextLabel.text = "Group Invites";
             headerCell.backgroundColor = UIColorFromRGB(0xFFFFFF)
+            headerCell.contentView.backgroundColor = UIColorFromRGB(0xFFFFFF)
             headerCell.headerTextLabel.textColor = UIColorFromRGB(0x80C8B5)
             headerCell.contentView.layer.borderColor = UIColorFromRGB(0x80C8B5).CGColor
             headerCell.contentView.layer.borderWidth = 2.0
@@ -208,6 +209,7 @@ class AlertsViewController: PartyUpViewController, UITableViewDelegate, UITableV
             let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
             headerCell.headerTextLabel.text = "Event Invites";
             headerCell.backgroundColor = UIColorFromRGB(0xFFFFFF)
+            headerCell.contentView.backgroundColor = UIColorFromRGB(0xFFFFFF)
             headerCell.headerTextLabel.textColor = UIColorFromRGB(0x80C8B5)
             headerCell.contentView.layer.borderColor = UIColorFromRGB(0x80C8B5).CGColor
             headerCell.contentView.layer.borderWidth = 2.0

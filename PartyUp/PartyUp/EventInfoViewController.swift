@@ -126,12 +126,12 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
         timeLabel.text = startTime as String
         locationLabel.text = locationName as String
         descriptionLabel.text = desc as String
-        if (price != nil) {
+        if (price != nil || price == 0) {
             priceLabel.text = "$\(price!)"
         } else {
             priceLabel.text = "Free"
         }
-        if (ageRestriction != nil) {
+        if (ageRestriction != nil || ageRestriction == 0) {
             ageRestrictionsLabel.text = "\(ageRestriction!)"
         } else {
             ageRestrictionsLabel.text = "None"

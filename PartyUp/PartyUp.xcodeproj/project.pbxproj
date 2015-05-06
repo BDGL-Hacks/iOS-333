@@ -17,6 +17,17 @@
 		7E1A6C371AF28B7C006164A0 /* AlertsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1A6C361AF28B7C006164A0 /* AlertsModel.swift */; };
 		7E3199A51AE4812000C5AF09 /* GroupChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3199A41AE4812000C5AF09 /* GroupChatViewController.swift */; };
 		7E36CF801AE6E0EF00AAC1F4 /* GroupChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E36CF7F1AE6E0EF00AAC1F4 /* GroupChatModel.swift */; };
+		7E3873CF1AF961E400683291 /* Back-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E3873C81AF961E400683291 /* Back-50.png */; };
+		7E3873D01AF961E400683291 /* Cancel Filled-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E3873C91AF961E400683291 /* Cancel Filled-50.png */; };
+		7E3873D11AF961E400683291 /* Checkmark Filled-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E3873CA1AF961E400683291 /* Checkmark Filled-50.png */; };
+		7E3873D21AF961E400683291 /* Delete Sign-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E3873CB1AF961E400683291 /* Delete Sign-50.png */; };
+		7E3873D31AF961E400683291 /* Forward-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E3873CC1AF961E400683291 /* Forward-50.png */; };
+		7E3873D41AF961E400683291 /* Menu-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E3873CD1AF961E400683291 /* Menu-50.png */; };
+		7E3873D51AF961E400683291 /* Plus Math-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E3873CE1AF961E400683291 /* Plus Math-50.png */; };
+		7E3873DC1AF9667100683291 /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E3873DA1AF9667000683291 /* Icon-60@2x.png */; };
+		7E3873DD1AF9667100683291 /* Icon-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E3873DB1AF9667100683291 /* Icon-60@3x.png */; };
+		7E3873E11AF9676000683291 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E3873E01AF9676000683291 /* Icon.png */; };
+		7E3873E31AF96B0C00683291 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E3873E21AF96B0C00683291 /* background.png */; };
 		7E3C4CFF1ADB5A2600DD444E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3C4CFE1ADB5A2600DD444E /* DataManager.swift */; };
 		7E4B3D5A1AF6EDAC00BC96E1 /* PartyUpSideMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4B3D591AF6EDAC00BC96E1 /* PartyUpSideMenuCell.swift */; };
 		7E4B3D5C1AF7144500BC96E1 /* GroupDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4B3D5B1AF7144500BC96E1 /* GroupDetailViewController.swift */; };
@@ -88,6 +99,17 @@
 		7E1A6C361AF28B7C006164A0 /* AlertsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertsModel.swift; sourceTree = "<group>"; };
 		7E3199A41AE4812000C5AF09 /* GroupChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupChatViewController.swift; sourceTree = "<group>"; };
 		7E36CF7F1AE6E0EF00AAC1F4 /* GroupChatModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupChatModel.swift; sourceTree = "<group>"; };
+		7E3873C81AF961E400683291 /* Back-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Back-50.png"; sourceTree = "<group>"; };
+		7E3873C91AF961E400683291 /* Cancel Filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cancel Filled-50.png"; sourceTree = "<group>"; };
+		7E3873CA1AF961E400683291 /* Checkmark Filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Checkmark Filled-50.png"; sourceTree = "<group>"; };
+		7E3873CB1AF961E400683291 /* Delete Sign-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Delete Sign-50.png"; sourceTree = "<group>"; };
+		7E3873CC1AF961E400683291 /* Forward-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Forward-50.png"; sourceTree = "<group>"; };
+		7E3873CD1AF961E400683291 /* Menu-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Menu-50.png"; sourceTree = "<group>"; };
+		7E3873CE1AF961E400683291 /* Plus Math-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Plus Math-50.png"; sourceTree = "<group>"; };
+		7E3873DA1AF9667000683291 /* Icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@2x.png"; sourceTree = "<group>"; };
+		7E3873DB1AF9667100683291 /* Icon-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@3x.png"; sourceTree = "<group>"; };
+		7E3873E01AF9676000683291 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		7E3873E21AF96B0C00683291 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		7E3C4CFE1ADB5A2600DD444E /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		7E4B3D591AF6EDAC00BC96E1 /* PartyUpSideMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyUpSideMenuCell.swift; sourceTree = "<group>"; };
 		7E4B3D5B1AF7144500BC96E1 /* GroupDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupDetailViewController.swift; sourceTree = "<group>"; };
@@ -183,6 +205,17 @@
 		7E12883B1ABF3E2400922622 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7E3873E21AF96B0C00683291 /* background.png */,
+				7E3873E01AF9676000683291 /* Icon.png */,
+				7E3873DA1AF9667000683291 /* Icon-60@2x.png */,
+				7E3873DB1AF9667100683291 /* Icon-60@3x.png */,
+				7E3873C81AF961E400683291 /* Back-50.png */,
+				7E3873C91AF961E400683291 /* Cancel Filled-50.png */,
+				7E3873CA1AF961E400683291 /* Checkmark Filled-50.png */,
+				7E3873CB1AF961E400683291 /* Delete Sign-50.png */,
+				7E3873CC1AF961E400683291 /* Forward-50.png */,
+				7E3873CD1AF961E400683291 /* Menu-50.png */,
+				7E3873CE1AF961E400683291 /* Plus Math-50.png */,
 				7EDC76D21AC7C46000252753 /* PartyUp_icon_2x_placeholder.png */,
 				7E99E7771AF7D1C700066C17 /* Rancho-Regular.ttf */,
 				7E99E7751AF7D1A600066C17 /* RobotoSlab-Regular.ttf */,
@@ -383,18 +416,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				7EDC76D41AC7C46000252753 /* PartyUp_icon_2x_placeholder.png in Resources */,
+				7E3873E31AF96B0C00683291 /* background.png in Resources */,
+				7E3873D41AF961E400683291 /* Menu-50.png in Resources */,
 				7EDD4EDA1ABE727C00CEECD0 /* Main.storyboard in Resources */,
 				7E12FFDF1AD750610066D0DC /* PartyUpTableCell.xib in Resources */,
+				7E3873D31AF961E400683291 /* Forward-50.png in Resources */,
 				7E99E7761AF7D1A600066C17 /* RobotoSlab-Regular.ttf in Resources */,
 				7E12883D1ABF3E2400922622 /* PartyUp_arrow_placeholder.png in Resources */,
+				7E3873CF1AF961E400683291 /* Back-50.png in Resources */,
 				7EDD4EDF1ABE727C00CEECD0 /* LaunchScreen.xib in Resources */,
+				7E3873E11AF9676000683291 /* Icon.png in Resources */,
 				7EDD4EDC1ABE727C00CEECD0 /* Images.xcassets in Resources */,
+				7E3873DD1AF9667100683291 /* Icon-60@3x.png in Resources */,
 				7E1A6C351AF28781006164A0 /* PartyUpAlertCell.xib in Resources */,
 				7EDC76D51AC7C46000252753 /* PartyUp_icon_3x_placeholder.png in Resources */,
 				7EDC76D71AC7C83A00252753 /* todo.txt in Resources */,
 				8B77C2EF1AD987A500E6E8AE /* PartyUpUserCell.xib in Resources */,
 				7E99E77E1AF81C5C00066C17 /* test.html in Resources */,
+				7E3873D21AF961E400683291 /* Delete Sign-50.png in Resources */,
 				7E99E7781AF7D1C700066C17 /* Rancho-Regular.ttf in Resources */,
+				7E3873DC1AF9667100683291 /* Icon-60@2x.png in Resources */,
+				7E3873D11AF961E400683291 /* Checkmark Filled-50.png in Resources */,
+				7E3873D01AF961E400683291 /* Cancel Filled-50.png in Resources */,
+				7E3873D51AF961E400683291 /* Plus Math-50.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

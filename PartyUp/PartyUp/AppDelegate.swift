@@ -48,6 +48,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     /* Handle receiving a push notification */
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         PULog("Printing out JSON: \(userInfo)")
+        PULog("Re-querying for alerts")
+        AlertsModel.instance.update()
     }
 
     func applicationWillResignActive(application: UIApplication) {

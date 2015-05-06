@@ -83,7 +83,7 @@ class GroupInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
     }
     
     @IBAction func backButtonPressed(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.performSegueWithIdentifier("groupInfoToGroupDetail", sender: self)
     }
     
     
@@ -175,6 +175,7 @@ class GroupInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
             let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
             headerCell.headerTextLabel.text = "Events";
             headerCell.backgroundColor = UIColorFromRGB(0xFFFFFF)
+            headerCell.contentView.backgroundColor = UIColorFromRGB(0xFFFFFF)
             headerCell.headerTextLabel.textColor = UIColorFromRGB(0x80C8B5)
             headerCell.contentView.layer.borderColor = UIColorFromRGB(0x80C8B5).CGColor
             headerCell.contentView.layer.borderWidth = 2.0
@@ -184,6 +185,7 @@ class GroupInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
             let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
             headerCell.headerTextLabel.text = "Members";
             headerCell.backgroundColor = UIColorFromRGB(0xFFFFFF)
+            headerCell.contentView.backgroundColor = UIColorFromRGB(0xFFFFFF)
             headerCell.headerTextLabel.textColor = UIColorFromRGB(0x80C8B5)
             headerCell.contentView.layer.borderColor = UIColorFromRGB(0x80C8B5).CGColor
             headerCell.contentView.layer.borderWidth = 2.0

@@ -190,6 +190,7 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
         headerCell.headerTextLabel.text = "Added Friends (swipe to delete)";
         headerCell.backgroundColor = UIColorFromRGB(0xFFFFFF)
+        headerCell.contentView.backgroundColor = UIColorFromRGB(0xFFFFFF)
         headerCell.headerTextLabel.textColor = UIColorFromRGB(0x80C8B5)
         headerCell.contentView.layer.borderColor = UIColorFromRGB(0x80C8B5).CGColor
         headerCell.contentView.layer.borderWidth = 2.0

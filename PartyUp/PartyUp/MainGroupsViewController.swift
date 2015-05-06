@@ -122,10 +122,11 @@ class MainGroupsViewController: PartyUpViewController, UITableViewDelegate, UITa
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
         headerCell.headerTextLabel.text = "My Groups"
         headerCell.backgroundColor = UIColorFromRGB(0xFFFFFF)
+        headerCell.contentView.backgroundColor = UIColorFromRGB(0xFFFFFF)
         headerCell.headerTextLabel.textColor = UIColorFromRGB(0x80C8B5)
         headerCell.contentView.layer.borderColor = UIColorFromRGB(0x80C8B5).CGColor
         headerCell.contentView.layer.borderWidth = 2.0
-        return headerCell.contentView
+        return headerCell
     }
     
     /* Determines what to do when a table cell is selected */

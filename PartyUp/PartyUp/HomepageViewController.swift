@@ -150,6 +150,7 @@ class HomepageViewController: PartyUpViewController, SideMenuViewControllerDeleg
             case .Alerts:
                 activeView = alertsChildView
                 createButton.hidden = true
+                AlertsModel.instance.update()
             default:
                 break
         }

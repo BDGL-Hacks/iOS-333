@@ -1067,7 +1067,7 @@ class PartyUpBackend {
         PULog("Querying for user's pings...")
         
         var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/api/users/ping/get"
-        var postParams: [String: String] = [" ": " "]
+        var postParams: [String: String] = ["a": "b"]
         
         var postData: NSDictionary? = sendPostRequest(postParams, url: postURL)
         

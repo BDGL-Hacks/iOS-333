@@ -289,7 +289,7 @@ class DataManager {
     Ping JSON Object:
     {
         user <User>
-        group <group>
+        group <Group's ID>
         response <Bool>
     }
     */
@@ -298,8 +298,8 @@ class DataManager {
         return ping["user"] as! NSDictionary
     }
     
-    class func getPingGroup(ping: NSDictionary) -> NSDictionary {
-        return ping["group"] as! NSDictionary
+    class func getPingGroupID(ping: NSDictionary) -> NSInteger {
+        return ping["group"] as! NSInteger
     }
     
     class func getPingResponse(ping: NSDictionary) -> Bool {

@@ -65,6 +65,7 @@ class AlertsModel {
             PULog("Invite Update Success!")
             groupInvites = groupInviteResults!
             eventInvites = eventInviteResults!
+            NSNotificationCenter.defaultCenter().postNotificationName(getUpdateNotificationName() as String, object: self)
             return nil
         }
     }
@@ -76,7 +77,7 @@ class AlertsModel {
         // Ping responded to: Update backend and delete from table
         if (type == AlertType.CheckUp) {
             PULog("Ping response button pressed")
-            let errorMsg: NSString? = PartyUpBackend.instance.respondToPing(DataManager.getGroupID(DataManager.getPingGroup(data)), response: response)
+            let errorMsg: NSString? = PartyUpBackend.instance.respondToPing(DataManager.getPingGroupID(data), response: response)
             if (errorMsg == nil) {
                 let tempPingsArray: NSMutableArray = NSMutableArray(array: self.pingResults)
                 tempPingsArray.removeObjectAtIndex(index)

@@ -57,7 +57,8 @@ class PartyUpAlertCell: UITableViewCell
         self.data = data
         self.type = type
         self.index = index
-        typeLabel.text = type.rawValue as String
+        //typeLabel.text = type.rawValue as String
+        typeLabel.text = ""
         contentLabel.text = contentText as String
     }
     

@@ -21,6 +21,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let settings = UIUserNotificationSettings(forTypes: .Alert, categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(settings)
         
+        // Handle master view controller
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        let masterViewController = MasterViewController()
+        window!.rootViewController = masterViewController
+        window!.makeKeyAndVisible()
+        return true
+        /*
         // Check if the user is logged in...
         var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
         let isLoggedIn = userDefaults.boolForKey("IS_LOGGED_IN")
@@ -40,6 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window!.makeKeyAndVisible()
         return true
+        */
     }
     
     /* Handle registering for push notifications */

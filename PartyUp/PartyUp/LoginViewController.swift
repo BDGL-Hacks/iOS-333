@@ -27,6 +27,10 @@ class LoginViewController: PartyUpViewController, UITextFieldDelegate {
     *--------------------------------------------*/
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         emailTextField.delegate = self
         passwordTextField.delegate = self
     }

@@ -21,12 +21,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let settings = UIUserNotificationSettings(forTypes: .Alert, categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(settings)
         
-        // Handle master container view
+        // Check if the user is logged in...
+        var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let isLoggedIn = userDefaults.boolForKey("IS_LOGGED_IN")
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        let masterViewController = MasterViewController()
-        window!.rootViewController = masterViewController
-        window!.makeKeyAndVisible()
         
+        // If logged in, go straight to master view controller
+        if (isLoggedIn) {
+            let masterViewController = MasterViewController()
+            window!.rootViewController = masterViewController
+        }
+        
+        // If you aren't logged in, go to login view controller
+        else {
+            let loginViewController = LoginViewController()
+            window!.rootViewController = loginViewController
+        }
+        
+        window!.makeKeyAndVisible()
         return true
     }
     

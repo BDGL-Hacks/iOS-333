@@ -47,9 +47,11 @@ class AlertsModel {
     func update() -> NSString?
     {
         PULog("Updating pings...")
+        pingResults = NSArray()
         let (errMessage: NSString?, pingQueryResults: NSArray?) = PartyUpBackend.instance.queryUserPings()
         if (errMessage != nil) {
             PULog("Ping Update Failed: \(errMessage!)")
+            NSNotificationCenter.defaultCenter().postNotificationName(getUpdateNotificationName() as String, object: self)
             return errMessage!
         } else {
             PULog("Ping Update Success!")
@@ -60,6 +62,7 @@ class AlertsModel {
         let (errorMessage: NSString?, groupInviteResults: NSArray?, eventInviteResults: NSArray?) = PartyUpBackend.instance.queryUserInvitations()
         if (errorMessage != nil) {
             PULog("Invite Update Failed: \(errorMessage!)")
+            NSNotificationCenter.defaultCenter().postNotificationName(getUpdateNotificationName() as String, object: self)
             return errorMessage!
         } else {
             PULog("Invite Update Success!")

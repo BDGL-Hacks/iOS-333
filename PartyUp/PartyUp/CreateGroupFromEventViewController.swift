@@ -11,13 +11,27 @@ import UIKit
 class CreateGroupFromEventViewController: PartyUpViewController, UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate {
 
     
+    /*--------------------------------------------*
+    * UI Components
+    *--------------------------------------------*/
+    
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var eventTitleLabel: UILabel!
+    @IBOutlet weak var groupNameTextField: UITextField!
+    @IBOutlet weak var attendeeListTableView: UITableView!
+    
+    /*--------------------------------------------*
+    * Instance variables
+    *--------------------------------------------*/
+    
     var event: NSDictionary?
     var createGroup = CreateModel()
     var attendeeList: NSArray?
-    @IBOutlet weak var groupNameTextField: UITextField!
-    @IBOutlet weak var attendeeListTableView: UITableView!
+    
+    /*---------------------------------------------*
+    * Setter methods called by previous view       *
+    * controller when segueing to this one         *
+    *----------------------------------------------*/
     
     /* Called by previous view controller to initialize event */
     func setEventData(event: NSDictionary) {
@@ -29,6 +43,9 @@ class CreateGroupFromEventViewController: PartyUpViewController, UITableViewData
         self.attendeeList = attendeeList
     }
     
+    /*--------------------------------------------*
+    * View response methods
+    *--------------------------------------------*/
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +64,7 @@ class CreateGroupFromEventViewController: PartyUpViewController, UITableViewData
         
     }
     
+    /* Set position of top navigation bar */
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
         return UIBarPosition.TopAttached
     }
@@ -67,7 +85,7 @@ class CreateGroupFromEventViewController: PartyUpViewController, UITableViewData
         groupNameTextField.resignFirstResponder()
     }
     
-    /* Dismiss the view controller */
+    /* Dismiss the view controller and perform segue */
     @IBAction func backButtonPressed(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -84,6 +102,10 @@ class CreateGroupFromEventViewController: PartyUpViewController, UITableViewData
             addFriends()
         }
     }
+    
+    /*--------------------------------------------*
+    * TableView methods
+    *--------------------------------------------*/
     
     /* Return number of sections in the table */
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -120,6 +142,7 @@ class CreateGroupFromEventViewController: PartyUpViewController, UITableViewData
         
     }
     
+    /* Determines format and content for a header cell */
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
         headerCell.headerTextLabel.text = "Select members from attendee list";
@@ -150,6 +173,10 @@ class CreateGroupFromEventViewController: PartyUpViewController, UITableViewData
             cell.accessoryType = UITableViewCellAccessoryType.None
         }
     }
+    
+    /*--------------------------------------------*
+    * View helper methods
+    *--------------------------------------------*/
     
     /* Iterate through selected friends and create a group for this event */
     func addFriends() {
@@ -191,15 +218,5 @@ class CreateGroupFromEventViewController: PartyUpViewController, UITableViewData
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

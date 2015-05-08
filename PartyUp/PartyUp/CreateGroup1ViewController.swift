@@ -10,11 +10,25 @@ import UIKit
 
 class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UITableViewDataSource, UINavigationBarDelegate, UITextFieldDelegate {
     
-    let createGroup: CreateModel = CreateModel()
-    var groupMembers: NSMutableArray? = NSMutableArray()
+    
+    /*--------------------------------------------*
+    * UI Components
+    *--------------------------------------------*/
+    
     @IBOutlet weak var groupNameTextField: UITextField!
     @IBOutlet weak var groupMembersTableView: UITableView!
     @IBOutlet weak var navBar: UINavigationBar!
+    
+    /*--------------------------------------------*
+    * Instance variables
+    *--------------------------------------------*/
+    
+    let createGroup: CreateModel = CreateModel()
+    var groupMembers: NSMutableArray? = NSMutableArray()
+    
+    /*--------------------------------------------*
+    * View response methods
+    *--------------------------------------------*/
     
     /* Set up table and fetch data from create model */
     override func viewDidLoad() {
@@ -32,23 +46,7 @@ class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UI
         // possibly take out (using so that names remain when go back to this page)
         groupMembers?.addObjectsFromArray(createGroup.getInvitedList() as [AnyObject])
 
-        // Do any additional setup after loading the view.
     }
-    
-    
-    /* only insert if necessary to scroll up */
-    /* var activeTextField: UITextField? {
-        get {
-            if (groupNameTextField.isFirstResponder()) {
-                return eventTitleTextField
-            }
-            return nil
-        }
-        set {
-            
-        }
-    }
-    */
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -62,16 +60,17 @@ class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UI
         PULog("Displaying Create Group 1 page")
     }
     
+    /* Dismisses keyboard when user taps return key */
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
+    /* Sets limit on maximum number of characters the user can enter into a text field */
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         let newLength = count(textField.text) + count(string) - range.length
         return newLength <= 100 // Bool
     }
-    
     
     
     /* Dismiss keyboard if view is tapped */
@@ -79,6 +78,7 @@ class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UI
         groupNameTextField.resignFirstResponder()
     }
     
+    /* Sets position of top navigation bar */
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
         return UIBarPosition.TopAttached
     }
@@ -88,7 +88,6 @@ class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UI
         PULog("Going back to groups home page")
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    
     
     /* Prepare for segues */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -106,6 +105,10 @@ class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UI
             destinationVC.createGroup = self.createGroup
         }
     }
+    
+    /*--------------------------------------------*
+    * View helper methods
+    *--------------------------------------------*/
     
     /* Iterate through friends in table and send emails to create
        group model object. */
@@ -127,20 +130,26 @@ class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UI
                 friendEmails.append(usernameEmail)
             }
         }
-    
-        
-        /* Check that friends list was actually populated */
-        /*for friend in friendIDs {
-            PULog("\(friend)")
-        }*/
         
         /* Send to backend */
-        
         var groupName: NSString = groupNameTextField.text
         createGroup.groupFirstPage(friendIDs, groupName: groupName, inviteEmails: friendEmails)
     }
     
+    /* Called by AddFriendsViewController in order to update
+    the table based on user additions */
+    func updateAddedFriends() {
+        var friendsToAdd: NSArray = createGroup.getSelectedUsers()
+        groupMembers?.addObjectsFromArray(friendsToAdd as [AnyObject])
+        createGroup.setInviteList(groupMembers! as NSArray)
+        groupMembersTableView.reloadData()
+    }
+    
     // MARK: Table methods
+    
+    /*----------------------------------------*
+    * Table view methods                      *
+    *-----------------------------------------*/
     
     /* Return number of sections in the table */
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -173,6 +182,7 @@ class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UI
         return cell
     }
     
+    /* Determines format and content for a header cell */
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
         headerCell.headerTextLabel.text = "Added Friends (swipe to delete)";
@@ -183,18 +193,8 @@ class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UI
         headerCell.contentView.layer.borderWidth = 2.0
         return headerCell.contentView
     }
-
     
-    /* Called by AddFriendsViewController in order to update
-       the table based on user additions */
-    func updateAddedFriends() {
-        var friendsToAdd: NSArray = createGroup.getSelectedUsers()
-        groupMembers?.addObjectsFromArray(friendsToAdd as [AnyObject])
-        createGroup.setInviteList(groupMembers! as NSArray)
-        groupMembersTableView.reloadData()
-    }
-    
-    // Override to support editing the table view.
+    /* Can swipe tp delete cells in table view. */
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             groupMembers!.removeObjectAtIndex(indexPath.row)
@@ -204,8 +204,6 @@ class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UI
         }
     }
 
-    
-    
     /*--------------------------------------------*
     * View helper methods
     *--------------------------------------------*/
@@ -229,16 +227,5 @@ class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UI
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

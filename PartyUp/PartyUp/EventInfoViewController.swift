@@ -15,7 +15,8 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
     *--------------------------------------------*/
     
     var event: NSDictionary = NSDictionary()
-    
+    var isEventOwner: Bool = false
+    var isFromGroupInfo: Bool = false
     
    /*--------------------------------------------*
     * UI Components
@@ -25,16 +26,12 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
     @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var eventTitleLabel: UILabel!
     
-    
-    
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var ageRestrictionsLabel: UILabel!
-    var isEventOwner: Bool = false
-    var isFromGroupInfo: Bool = false
     
     @IBOutlet weak var bindEventToGroupButton: UIButton!
     @IBOutlet weak var createGroupButton: UIButton!
@@ -45,6 +42,7 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
     * View response methods
     *--------------------------------------------*/
     
+    /* User dismisses the view */
     @IBAction func backButtonPressed(sender: UIBarButtonItem) {
         PULog("Back button pressed")
         PULog("Returning to previous screen")
@@ -52,6 +50,7 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    /* Prepare for segue to other views */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "eventInfoToCreateGroup" {
             PULog("Preparing for segue")
@@ -91,14 +90,12 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
     }
     
     /* User taps cell to add people to the event */
-    
-    
     @IBAction func addFriendsButtonPressed(sender: UIButton) {
         PULog("Invite button pressed")
         self.performSegueWithIdentifier("eventInfoToInviteFriends", sender: self)
     }
     
-    
+    /* Determines navigation bar position */
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
         return UIBarPosition.TopAttached
     }
@@ -138,11 +135,15 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
         }
     }
     
+    /* Called by previous view controller to set event data *
+     * Argument is event dictionary                         */
     func setEventData(#event: NSDictionary) {
         self.event = event
         isEventOwner = DataManager.getEventIsAdmin(event)
     }
     
+    /* Called by previous view controller to set event data *
+     * Argument is event ID number                          */
     func setEventData(#eventID: NSString) {
         let (errorMessage: NSString?, queryResult: NSDictionary?) =
         PartyUpBackend.instance.queryEventSearchByID(eventID)
@@ -155,7 +156,7 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
         isEventOwner = DataManager.getEventIsAdmin(event)
     }
     
-    
+    /* Called by previous view controller */
     func setFromGroupInfo(isFromGroupInfo: Bool) {
         self.isFromGroupInfo = isFromGroupInfo
     }

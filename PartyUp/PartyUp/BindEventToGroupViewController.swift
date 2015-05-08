@@ -11,8 +11,18 @@ import UIKit
 class BindEventToGroupViewController: PartyUpViewController, UITableViewDelegate, UITableViewDataSource, UINavigationBarDelegate {
 
     
+    /*--------------------------------------------*
+    * UI Components
+    *--------------------------------------------*/
+    
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var eventTitleLabel: UILabel!
+    @IBOutlet weak var groupsTableView: UITableView!
+    
+    /*--------------------------------------------*
+    * Instance variables
+    *--------------------------------------------*/
+    
     var searchGroupsModel: SearchGroupsModel = SearchGroupsModel()
     var attendingQueryResults: NSArray? = NSArray()
     var shouldPerformQueries: Bool = true
@@ -20,15 +30,22 @@ class BindEventToGroupViewController: PartyUpViewController, UITableViewDelegate
     var previousViewController: CreateGroup2ViewController?
     var updateGroup: CreateModel = CreateModel()
     var event: NSDictionary?
-    
-    @IBOutlet weak var groupsTableView: UITableView!
     var selectedGroupData: NSDictionary? = nil
+    
+    
+    /*---------------------------------------------*
+    * Setter methods called by previous view       *
+    * controller when segueing to this one         *
+    *----------------------------------------------*/
     
     /* Called by previous view controller to initialize event */
     func setEventData(event: NSDictionary) {
         self.event = event
     }
     
+    /*--------------------------------------------*
+    * View response methods
+    *--------------------------------------------*/
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,8 +63,6 @@ class BindEventToGroupViewController: PartyUpViewController, UITableViewDelegate
         groupsTableView.registerNib(customTableCellNib, forCellReuseIdentifier: "groupCellPrototype")
         
         loadEventData()
-        
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -63,6 +78,7 @@ class BindEventToGroupViewController: PartyUpViewController, UITableViewDelegate
         }
     }
     
+    /* Set position for top navigation bar */
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
         return UIBarPosition.TopAttached
     }
@@ -73,7 +89,7 @@ class BindEventToGroupViewController: PartyUpViewController, UITableViewDelegate
         eventTitleLabel.text = eventTitle as String
     }
     
-    
+    /* User taps checkmark to confirm choice; dismiss view */
     @IBAction func checkmarkPressed(sender: UIBarButtonItem) {
         if selectedGroupIsNil() == true {
             displayAlert("Error", message: "Must select a group")
@@ -83,12 +99,11 @@ class BindEventToGroupViewController: PartyUpViewController, UITableViewDelegate
         }
     }
     
-    
+    /* Dismiss the view when user taps X button */
     @IBAction func xButtonPressed(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
 
     }
-   
     
     /* Prepare for segue back to home page */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -97,6 +112,10 @@ class BindEventToGroupViewController: PartyUpViewController, UITableViewDelegate
             addEventToGroup()
         }
     }
+    
+    /*--------------------------------------------*
+    * TableView methods
+    *--------------------------------------------*/
     
     /* Return number of sections in the table */
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -118,7 +137,6 @@ class BindEventToGroupViewController: PartyUpViewController, UITableViewDelegate
         var group: NSDictionary = NSDictionary()
         group = attendingQueryResults![indexPath.row] as! NSDictionary
         
-        
         var dayText: NSString = DataManager.getGroupDayText(group)
         var dayNumber: NSString = DataManager.getGroupDayNumber(group)
         var mainText: NSString = DataManager.getGroupTitle(group)
@@ -138,6 +156,7 @@ class BindEventToGroupViewController: PartyUpViewController, UITableViewDelegate
         return cell
     }
     
+    /* Determines format and content for a header cell */
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
         headerCell.headerTextLabel.text = "Select one of your existing groups"
@@ -162,7 +181,6 @@ class BindEventToGroupViewController: PartyUpViewController, UITableViewDelegate
     }
     
     
-    
     /* Called when user deselects a cell in the table  *
     Removes the checkmark to indiciate deselection  */
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
@@ -174,7 +192,9 @@ class BindEventToGroupViewController: PartyUpViewController, UITableViewDelegate
         }
     }
     
-    
+    /*--------------------------------------------*
+    * View helper methods
+    *--------------------------------------------*/
     
     /* Iterate through selected friends and create a group for this event */
     func addEventToGroup() {
@@ -199,15 +219,5 @@ class BindEventToGroupViewController: PartyUpViewController, UITableViewDelegate
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

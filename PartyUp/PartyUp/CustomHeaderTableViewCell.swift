@@ -10,9 +10,16 @@ import UIKit
 
 class CustomHeaderTableViewCell: UITableViewCell {
 
+    /*--------------------------------------------*
+    * UI Components
+    *--------------------------------------------*/
     
     @IBOutlet weak var addFriendsButton: UIButton!
     @IBOutlet weak var headerTextLabel: UILabel!
+    
+    /*--------------------------------------------*
+    * View response methods
+    *--------------------------------------------*/
     
     override func awakeFromNib() {
         super.awakeFromNib()

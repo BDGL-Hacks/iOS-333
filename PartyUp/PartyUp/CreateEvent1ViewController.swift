@@ -12,40 +12,33 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UI
 {
     
     var itemIndex: Int = 0
-    //private var pageViewController: UIPageViewController?
-    //private let numPages = 3
     
+    /*--------------------------------------------*
+    * UI Components
+    *--------------------------------------------*/
     
     @IBOutlet weak var myDatePicker: UIDatePicker!
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var addFriendsButton: UIButton!
     @IBOutlet weak var publicSwitch: UISwitch!
-    var createEvent: CreateModel? = CreateModel()
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var eventTitleTextField: UITextField!
-    @IBOutlet weak var locationTextField: UITextField!
-    var backendDate: String?
-    var isFromGroup: Bool = false
-    var previousViewController: CreateGroup2ViewController?
     @IBOutlet weak var selectedDate: UILabel!
     @IBOutlet weak var navBar: UINavigationBar!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // createPageViewController()
-        // Do any additional setup after loading the view.
-        navBar.delegate = self
-        scrollView.contentSize = scrollView.subviews[0].frame.size
-        setDelegates()
-    }
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var eventTitleTextField: UITextField!
+    @IBOutlet weak var locationTextField: UITextField!
     
-    func setDelegates() {
-        descriptionTextField.delegate = self
-        locationTextField.delegate = self
-        eventTitleTextField.delegate = self
-    }
+    /*--------------------------------------------*
+    * Instance variables
+    *--------------------------------------------*/
     
+    var backendDate: String?
+    var isFromGroup: Bool = false
+    var previousViewController: CreateGroup2ViewController?
+    var createEvent: CreateModel? = CreateModel()
+    
+    /* Computed property for active text field */
     var activeTextField: UITextField? {
         get {
             if (eventTitleTextField.isFirstResponder()) {
@@ -65,25 +58,44 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UI
         }
     }
     
+    /*--------------------------------------------*
+    * View response methods
+    *--------------------------------------------*/
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // createPageViewController()
+        
+        navBar.delegate = self
+        scrollView.contentSize = scrollView.subviews[0].frame.size
+        setDelegates()
+    }
+    
+    /* Set text field delegates */
+    func setDelegates() {
+        descriptionTextField.delegate = self
+        locationTextField.delegate = self
+        eventTitleTextField.delegate = self
+    }
+    
+    /* Set position for top naviation bar */
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
         return UIBarPosition.TopAttached
     }
     
-    
+    /* Dismisses keyboard when user taps return key */
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
+    /* Sets limit on maximum number of characters the user can enter into a text field */
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         let newLength = count(textField.text) + count(string) - range.length
         return newLength <= 100 // Bool
     }
     
     /* User changes the date in the date picker */
-    
-        
-  
     @IBAction func datePickerChanged(sender: UIDatePicker) {
         var dateFormatter = NSDateFormatter()
         dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
@@ -101,8 +113,7 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UI
     }
     
     
-    /* Tap anywhere outside text field dismisses keyboard */
-   
+    /* Tapping anywhere outside text field dismisses keyboard */
     @IBAction func viewTapped(sender: UITapGestureRecognizer) {
         eventTitleTextField.resignFirstResponder()
         locationTextField.resignFirstResponder()
@@ -110,8 +121,7 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UI
         
     }
     
-    
-    
+    /* Hide buttons depending on previous view controller */
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         if (isFromGroup == true) {
@@ -138,25 +148,7 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UI
         }
     }
     
-    
-    /*--------------------------------------------*
-    * UITextField Delegate Methods
-    *--------------------------------------------*/
-    
-    func textFieldDidBeginEditing(textField: UITextField) {
-        activeTextField = textField
-        scrollView.scrollEnabled = true
-    }
-    
-    func textFieldDidEndEditing(textField: UITextField) {
-        activeTextField = nil
-    }
-    
-    
-    
-    /*--------------------------------------------*
-    * View response methods
-    *--------------------------------------------*/
+    /* User taps add friends button to move on to next page */
     @IBAction func addFriendsPressed(sender: UIButton) {
         PULog("Add friends button pressed")
         
@@ -213,7 +205,6 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UI
     
         
         let (backendError: NSString?, eventID: NSString?) = createEvent!.eventSendToBackend()
-        /* Not sure if need this code because segue is already bound to the button */
         if (backendError != nil)
         {
             displayAlert("Event creation Failed", message: backendError!)
@@ -232,7 +223,6 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UI
     /*--------------------------------------------*
     * View helper methods
     *--------------------------------------------*/
-    
    
     /* Validates the form fields.         *
     * Returns an error message string    *
@@ -254,6 +244,19 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UI
         }
         
         return nil
+    }
+    
+    /*--------------------------------------------*
+    * UITextField Delegate Methods
+    *--------------------------------------------*/
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        activeTextField = textField
+        scrollView.scrollEnabled = true
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        activeTextField = nil
     }
     
     /*--------------------------------------------*
@@ -302,244 +305,9 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UI
     }
     
     
-    
-    
-    /* DatePicker Table View Methods */
-    
-    /*
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
-        return 1
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
-        var numberOfRows = tableData!.count
-        
-        if hasInlineTableViewCell() {
-            numberOfRows += 1
-        }
-        return numberOfRows
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        var dataRow = indexPath.row
-        
-        if selectedIndexPath != nil && selectedIndexPath!.section == indexPath.section && selectedIndexPath!.row < indexPath.row {
-            dataRow -= 1;
-        }
-        
-        
-        // Configure the cell...
-        var rowData = tableData![dataRow]
-        let title = rowData["title"]! as! String
-        let type = rowData["type"]! as! String
-        if selectedIndexPath != nil && selectedIndexPath!.section == indexPath.section && selectedIndexPath!.row == indexPath.row - 1 {
-            
-                if type == "datepicker" {
-                    let datePickerCell = tableView.dequeueReusableCellWithIdentifier("DatePickerCell", forIndexPath: indexPath) as! DatePickerCell
-                
-                    datePickerCell.datePicker.addTarget(self, action:"handleDatePickerValueChanged:", forControlEvents: UIControlEvents.ValueChanged)
-                
-                    if title == "StartDate" {
-                        datePickerCell.datePicker.datePickerMode = .DateAndTime
-                    }
-                   
-                
-                    if let date :AnyObject = rowData["value"] {
-                        datePickerCell.datePicker.setDate(date as! NSDate, animated: true)
-                    }
-                
-                    return datePickerCell
-                }
-        }
-        
-        
-        let cell = tableView.dequeueReusableCellWithIdentifier("NormalCell", forIndexPath: indexPath) as! UITableViewCell
-        
-        
-        cell.textLabel!.text = title
-        if let valueOfRow: AnyObject = rowData["value"] {
-            if title == "StartTime" {
-                dateFormatter!.dateStyle = .FullStyle
-                dateFormatter!.dateFormat = "hh:mm a"
-                cell.detailTextLabel!.text = dateFormatter!.stringFromDate(valueOfRow as! NSDate)
-                
-                /* Fill backend string */
-                dateFormatter!.dateFormat = "YYYYMMddhhmm"
-                var backendStr = dateFormatter!.stringFromDate(valueOfRow as! NSDate)
-                PULog(backendStr)
-                backendDate = backendStr
-            
-            }
-            else {
-                cell.detailTextLabel!.text = valueOfRow as? String
-            }
-        }
-        else {
-            cell.detailTextLabel!.text = "Any"
-        }
-        
-        return cell
-    }
-    
-        
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        var heightForRow :CGFloat = 44.0
-        if selectedIndexPath != nil && selectedIndexPath!.section == indexPath.section
-            && selectedIndexPath!.row == indexPath.row - 1 {
-                heightForRow = 216.0
-        }
-            
-        return heightForRow
-    }
-        
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        PULog("Cell selected")
-        var dataRow = indexPath.row
-        if selectedIndexPath != nil && selectedIndexPath!.section == indexPath.section && selectedIndexPath!.row < indexPath.row {
-                dataRow -= 1
-        }
-            
-        var rowData = tableData![dataRow]
-        var type = rowData["type"]! as! String
-        if type != "normal" {
-            displayOrHideInlinePickerViewForIndexPath(indexPath)
-        }
-            
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
-    }
-        
-    func displayOrHideInlinePickerViewForIndexPath(indexPath: NSIndexPath!) {
-        
-        datePickerTableView.beginUpdates()
-            
-        if selectedIndexPath == nil {
-            
-            selectedIndexPath = indexPath
-            datePickerTableView.insertRowsAtIndexPaths([NSIndexPath(forRow: indexPath.row + 1, inSection: indexPath.section)], withRowAnimation: .Fade)
-            
-        } else if selectedIndexPath!.section == indexPath.section && selectedIndexPath!.row == indexPath.row {
-            
-            datePickerTableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: indexPath.row + 1, inSection: indexPath.section)], withRowAnimation: .Fade)
-            selectedIndexPath = nil
-            
-        } else if selectedIndexPath!.section != indexPath.section || selectedIndexPath!.row != indexPath.row {
-            
-            datePickerTableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: selectedIndexPath!.row + 1, inSection: selectedIndexPath!.section)], withRowAnimation: .Fade)
-            
-            // After the deletion operation the then indexPath of original table view changed to the resulting table view
-            if (selectedIndexPath!.section == indexPath.section && selectedIndexPath!.row < indexPath.row) {
-                
-                datePickerTableView.insertRowsAtIndexPaths([NSIndexPath(forRow: indexPath.row, inSection: indexPath.section)], withRowAnimation: .Fade)
-                selectedIndexPath = NSIndexPath(forRow: indexPath.row - 1, inSection: indexPath.section)
-                
-            } else {
-                
-                datePickerTableView.insertRowsAtIndexPaths([NSIndexPath(forRow: indexPath.row + 1, inSection: indexPath.section)], withRowAnimation: .Fade)
-                selectedIndexPath = indexPath
-            }
-        }
-        
-        
-        
-        datePickerTableView.endUpdates()
-    }
-        
-    func hasInlineTableViewCell() -> Bool {
-            return !(self.selectedIndexPath == nil)
-    }
-        
-    func handleDatePickerValueChanged(datePicker: UIDatePicker!) {
-        var index = selectedIndexPath!.row
-        var rowData = tableData![index]
-        rowData["value"] = datePicker.date
-        if var tmpArray = tableData {
-            tmpArray[index] = rowData
-            tableData = tmpArray
-        }
-            
-        datePickerTableView.reloadRowsAtIndexPaths([selectedIndexPath!], withRowAnimation: .Fade)
-    }
-    
-    */
-    
-
-    /*
-    private func createPageViewController() {
-    let pageController = self.storyboard!.instantiateViewControllerWithIdentifier("GroupController") as UIPageViewController
-    pageController.dataSource = self
-    
-    let firstController = getItemController(0)!
-    let startingViewControllers: NSArray  = [firstController]
-    pageController.setViewControllers(startingViewControllers, direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
-    
-    pageViewController = pageController
-    addChildViewController(pageViewController!)
-    self.view.addSubview(pageViewController!.view)
-    pageViewController?.didMoveToParentViewController(self)
-    }
-    
-    /* Implemenet UIPageViewControllerDataSource Methods */
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-    
-    let itemController = viewController as GC1ViewController
-    
-    if itemController.itemIndex > 0 {
-    return getItemController(itemController.itemIndex - 1)
-    }
-    return nil
-    }
-    
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
-    
-    let itemController = viewController as GC1ViewController
-    
-    if itemController.itemIndex+1 < numPages {
-    return getItemController(itemController.itemIndex + 1)
-    }
-    
-    return nil
-    }
-    
-    private func getItemController(itemIndex: Int) -> GC1ViewController? {
-    
-    if itemIndex < numPages {
-    let pageItemController = self.storyboard!.instantiateViewControllerWithIdentifier("GroupCreation1") as GC1ViewController?
-    pageItemController?.itemIndex = itemIndex
-    return pageItemController
-    }
-    return nil
-    }
-    
-    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
-    return numPages
-    }
-    
-    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
-    return 0
-    }
-    */
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
-    /*
-    // MARK: - Navigation
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    }
-    */
     
 }

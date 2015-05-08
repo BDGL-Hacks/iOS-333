@@ -118,6 +118,10 @@ class PartyUpBackend {
         }
     }
     
+    /*------------------------------------------
+    * Group and Event Creation
+    *------------------------------------------*/
+    
     /* Performs backend event creation.      *
      * Returns an error message string if    *
      * event creation failed, nil otherwise. */
@@ -132,6 +136,7 @@ class PartyUpBackend {
         var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/api/events/create/"
         var postParams: [String: String] = ["title": title as String, "public": isPublic as String, "age_restrictions": ageRestrictions as String, "price": price as String, "location_name": location as String, "time": dateTime as String, "description": description as String]
         
+        // user IDs passed as a list of comma-separated values
         var stringOfFriendIDs: String = ""
         var i: Int = 0
         for friend in inviteList {
@@ -193,6 +198,7 @@ class PartyUpBackend {
         var postURL: NSString = "http://\(UBUNTU_SERVER_IP)/api/groups/create"
         var postParams: [String: String] = ["title": groupName as String]
         
+        // user and event IDs passed as a list of comma-separated values
         var stringOfUserIDs: String = ""
         var stringOfEventIDs: String = ""
         var i: Int = 0
@@ -273,6 +279,7 @@ class PartyUpBackend {
         var stringOfEventIDs: String = ""
         var i: Int = 0
         
+        // event IDs passed as a list of comma-separated values
         for event in eventIDs {
             if i == 0 {
                 stringOfEventIDs += (event as String)
@@ -392,6 +399,7 @@ class PartyUpBackend {
         var stringOfUserIDs: String = ""
         var i: Int = 0
         
+        // user IDs passed as a list of comma-separated values
         for user in userIDs {
             if i == 0 {
                 stringOfUserIDs += (user as String)
@@ -1103,10 +1111,10 @@ class PartyUpBackend {
         }
     }
     
-    /* Queries backend for search users to populate table in *
-     * add friend view controller. Returns a tuple: an       *
-     * error message string if something went wrong, and     *
-     * query results as dictionary if successful.            */
+    /* Queries backend for users by search query. Query can be   *
+     * first name, last name, email, or user ID.                 *
+     * Returns a tuple: an error message string if something     *
+     * went wrong, and query results as dictionary if successful.*/
     func queryUsers(search: NSString) -> (NSString?, NSArray?)
     {
         PULog("Querying for users to populate table in add freinds ...");
@@ -1157,10 +1165,10 @@ class PartyUpBackend {
         }
     }
     
-    /* Queries backend for search users to populate table *
-     * in add friend view controller. Returns a tuple: an *
-     * error message string if something went wrong, and  *
-     * a batch of users as dictionary if successful.      */
+    /* Queries backend for a batch of 10 random users.    *
+     * Returns a tuple: an error message string if        *
+     * something went wrong, and a batch of users as      *
+     * an NS dictionary if successful.                    */
     func queryBatch() -> (NSString?, NSArray?)
     {
         PULog("Querying a random batch  ...");

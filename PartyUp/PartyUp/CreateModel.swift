@@ -38,7 +38,7 @@ class CreateModel {
     * Event Methods
     *-------------------------------------*/
     
-    
+    /* Store values entered by user in first event creation page */
     func eventFirstPage (title: NSString, location: NSString, dateTime: NSString, eventPublic: NSString, eventDescription: NSString) {
         eventTitle = title
         eventLocation = location
@@ -50,12 +50,14 @@ class CreateModel {
         
     }
     
+    /* Store values entered by user in second event creation page */
     func eventSecondPage(friends: [NSString]) {
         
         friendsList = [NSString]() // reinitialize in case someone goes back to first page
         friendsList = friends
     }
     
+    /* Create an event */
     func eventSendToBackend() -> (NSString?, NSString?) {
       
         // Registration successful: Dismiss Registration view and attempt login
@@ -68,14 +70,13 @@ class CreateModel {
         }
     }
     
-    /*-------------------------------------------*/
-    
     // MARK: Group methods
 
     /*-------------------------------------*
      * Group Methods
      *-------------------------------------*/
 
+    /* Store values entered by user in first group creation page */
     func groupFirstPage(inviteIDs: [NSString], groupName: NSString, inviteEmails: [NSString])
     {
         self.inviteIDs = inviteIDs
@@ -83,15 +84,17 @@ class CreateModel {
         self.groupName = groupName
     }
     
+    /* Store values entered by user in first group creation page */
     func groupSecondPage(eventIDs: [NSString]) {
         self.eventIDs = eventIDs
     }
     
+    /* Return array of invite IDs from first group creation page */
     func getInviteIDs() -> [NSString] {
         return inviteIDs
     }
 
-
+    /* Create a group */
     func groupSendToBackend() -> NSString?
     {
         // Registration successful: Dismiss Registration view and attempt login
@@ -107,7 +110,11 @@ class CreateModel {
 
     /*-------------------------------------------*/
     
-    /* Call backend function to update group with newly added events */
+    /*-------------------------------------*
+    * Update Methods
+    *-------------------------------------*/
+    
+    /* Add events to a group */
     func addEventsToGroup(groupID: NSString, eventIDs: [NSString]) -> NSString?
     {
         var backendError: NSString? = PartyUpBackend.instance.backendUpdateGroup(groupID, eventIDs: eventIDs)
@@ -119,7 +126,7 @@ class CreateModel {
         }
     }
     
-    
+    /* Invite friends to an event */
     func inviteFriendsToEvent(eventID: NSString, userIDs: [NSString]) -> NSString? {
         var backendError: NSString? = PartyUpBackend.instance.backendEventAddFriends(eventID, userIDs: userIDs)
         if backendError == nil {
@@ -130,6 +137,7 @@ class CreateModel {
         }
     }
     
+    /* Invite friends to a group */
     func inviteFriendsToGroup(groupID: NSString, userIDs: [NSString]) -> NSString? {
         var backendError: NSString? = PartyUpBackend.instance.backendGroupAddFriends(groupID, userIDs: userIDs)
         if backendError == nil {
@@ -216,6 +224,9 @@ class CreateModel {
      * Get methods
      *--------------------------------------------*/
     
+    /* Returns list of users returned by the backend query *
+     * omitting any results that are already in the invite *
+     * list to avoid multiple inclusion.                   */
     func getSearchUsers() -> NSArray {
         var usersToDisplay: NSMutableArray = NSMutableArray()
         for query in searchUsersQueryResults {
@@ -235,7 +246,7 @@ class CreateModel {
                 usersToDisplay.addObject(query)
             }
         }
-        // fix this
+        
         return usersToDisplay as NSArray
         // return searchUsersQueryResults
     }
@@ -244,12 +255,8 @@ class CreateModel {
         return batchUsersQueryResults
     }
     
-    /* Returns the selected friends from search     *
-     * Omits users who have already been added to   *
-     * the invite list. Made this design decision   *
-     * rather than only displaying uninvited guests *
-     * in a query because a query could potentially *
-       return thousands of names                    */
+    /* Returns the selected friends from search. Omits users *
+    *  who have already been added to the invite list.       */
     func getSelectedUsers() -> NSArray {
         var usersToAdd: NSMutableArray = NSMutableArray()
         for selected in selectedUsers {
@@ -274,8 +281,6 @@ class CreateModel {
     func getInvitedList() -> NSArray {
         return inviteList
     }
-    
-    /*-------------------------------------------*/
     
     
     // MARK: Events
@@ -318,6 +323,7 @@ class CreateModel {
         selectedEvents = selected
     }
     
+    /* Queries backend for an event by ID and stores event returned */
     func updateNewlyCreatedEvents(search: NSString?) -> NSString? {
         PULog("Updating newly created events...")
         let (errorMessage: NSString?, queryResult: NSDictionary?) =
@@ -384,7 +390,7 @@ class CreateModel {
                 eventsToDisplay.addObject(query)
             }
         }
-        // fix this
+        
         return eventsToDisplay as NSArray
     }
     
@@ -417,6 +423,6 @@ class CreateModel {
     }
     
     class func getUserEmail(user: NSDictionary) -> NSString {
-        return user["username"] as! NSString // email?
+        return user["username"] as! NSString //
     }
 }

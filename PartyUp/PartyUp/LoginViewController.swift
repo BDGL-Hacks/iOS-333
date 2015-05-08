@@ -66,16 +66,19 @@ class LoginViewController: PartyUpViewController, UITextFieldDelegate {
         }
     }
     
+    /* Tapping anywhere in the view dismisses the keyboard */
     @IBAction func viewTapped(sender : AnyObject) {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
     }
     
+    /* Dismiss the keyboard */
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
+    /* Sets maximum number of characters the user can enter */
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         let newLength = count(textField.text) + count(string) - range.length
         return newLength <= 50 // Bool

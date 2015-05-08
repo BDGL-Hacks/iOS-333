@@ -10,11 +10,19 @@ import UIKit
 
 class GroupInfoViewController: PartyUpViewController, UITableViewDelegate, UITableViewDataSource, UINavigationBarDelegate
  {
+    
+    /*--------------------------------------------*
+    * UI Components
+    *--------------------------------------------*/
+    
     @IBOutlet weak var groupEventsTableView: UITableView!
     @IBOutlet weak var groupMembersTableView: UITableView!
     @IBOutlet weak var groupNameLabel: UILabel!
-    
     @IBOutlet weak var navBar: UINavigationBar!
+    
+    /*--------------------------------------------*
+    * Instance variables
+    *--------------------------------------------*/
     
     var groupEvents: NSArray = NSArray()
     var groupMembers: NSArray = NSArray()
@@ -22,6 +30,30 @@ class GroupInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
     var selectedCellEventData: NSDictionary = NSDictionary()
     var group: NSDictionary = NSDictionary()
     
+    /*--------------------------------------------*
+    * Helper methods
+    *--------------------------------------------*/
+    
+    /* Set the group data */
+    func setGroupData(#group: NSDictionary) {
+        self.group = group
+        PULog("Group Id: " + "\(DataManager.getGroupID(group))")
+    }
+    
+    func setGroupData(#groupID: NSString) {
+        let (errorMessage: NSString?, queryResult: NSDictionary?) =
+        PartyUpBackend.instance.queryGroupSearchByID(groupID)
+        if (errorMessage != nil) {
+            PULog("Get event by ID failed: \(errorMessage!)")
+        } else {
+            PULog("Update Success!")
+        }
+        self.group = queryResult!
+    }
+    
+    /*--------------------------------------------*
+    * View response methods
+    *--------------------------------------------*/
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,10 +85,12 @@ class GroupInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
         groupMembersTableView.reloadData()
     }
     
+    /* Set position for top navigation bar */
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
         return UIBarPosition.TopAttached
     }
     
+    /* Prepare for segues to other views */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "groupInfoToEventInfo") {
             let eventInfoVC: EventInfoViewController = segue.destinationViewController
@@ -82,26 +116,20 @@ class GroupInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
         PULog("Displaying group info page")
     }
     
+    /* User dismisses the view */
     @IBAction func backButtonPressed(sender: UIBarButtonItem) {
         self.performSegueWithIdentifier("groupInfoToGroupDetail", sender: self)
     }
     
-    
-    /* Set the group data */
-    func setGroupData(#group: NSDictionary) {
-        self.group = group
-        PULog("Group Id: " + "\(DataManager.getGroupID(group))")
+    /* Segue to add events page if user presses button in event table header */
+    @IBAction func addEventsPressed(sender: UIButton) {
+        
+        self.performSegueWithIdentifier("groupInfoToAddEvents", sender: self)
     }
     
-    func setGroupData(#groupID: NSString) {
-        let (errorMessage: NSString?, queryResult: NSDictionary?) =
-        PartyUpBackend.instance.queryGroupSearchByID(groupID)
-        if (errorMessage != nil) {
-            PULog("Get event by ID failed: \(errorMessage!)")
-        } else {
-            PULog("Update Success!")
-        }
-        self.group = queryResult!
+    /* Segue to invite friends page if user presses button in user table header */
+    @IBAction func addMembersPressed(sender: UIButton) {
+        self.performSegueWithIdentifier("groupInfoToInviteFriends", sender: self)
     }
     
     /*--------------------------------------------*
@@ -131,9 +159,11 @@ class GroupInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
     * Loads the display and event data into each cell.   */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
+        // Event table view cells
         if (tableView == groupEventsTableView) {
             var cell: PartyUpTableCell = tableView.dequeueReusableCellWithIdentifier("eventCellPrototype") as! PartyUpTableCell
         
+            // Get the event from the groupEvents array
             var event: NSDictionary = NSDictionary()
             event = groupEvents[indexPath.row] as! NSDictionary
             var dayText: NSString = DataManager.getEventDayText(event)
@@ -147,6 +177,7 @@ class GroupInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
             PULog("\(event)")
             return cell
         }
+        // User table view cells
         else {
             var cell = tableView.dequeueReusableCellWithIdentifier("userCell") as! AddFriendsTableViewCell
             
@@ -217,27 +248,6 @@ class GroupInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }
     }
-    
-    /* Segue to add events page if user presses header of event table */
-    
-    @IBAction func addEventsPressed(sender: UIButton) {
-    
-        self.performSegueWithIdentifier("groupInfoToAddEvents", sender: self)
-    }
-    
-    
-    
-    
-    /* Segue to invite friends page if user presses header of members table */
-    
-    @IBAction func addMembersPressed(sender: UIButton) {
-        self.performSegueWithIdentifier("groupInfoToInviteFriends", sender: self)
-    }
-    
-    
-    
-    
-
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

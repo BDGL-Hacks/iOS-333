@@ -10,13 +10,26 @@ import UIKit
 
 class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate {
     
+    
+    /*--------------------------------------------*
+    * UI Components
+    *--------------------------------------------*/
+    @IBOutlet weak var addedEventsTableView: UITableView!
+    @IBOutlet weak var navBar: UINavigationBar!
+    
+    /*--------------------------------------------*
+    * Instance variables
+    *--------------------------------------------*/
+    
     var createGroup: CreateModel?
     var group: NSDictionary?
     var addedEvents: NSMutableArray? = NSMutableArray()
-    @IBOutlet weak var addedEventsTableView: UITableView!
     var fromGroupInfo = false
-        
-    @IBOutlet weak var navBar: UINavigationBar!
+    
+    /*--------------------------------------------*
+    * View response methods
+    *--------------------------------------------*/
+    
     /* Set up the table and fetch data from create model */
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +37,6 @@ class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, 
         navBar.delegate = self
         addedEventsTableView.delegate = self
         addedEventsTableView.dataSource = self
-        
         
         self.addedEventsTableView.rowHeight = 65
         self.addedEventsTableView.sectionHeaderHeight = 65
@@ -50,10 +62,12 @@ class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, 
         PULog("Displaying create group 2 page")
     }
     
+    /* Set position for top navigation bar */
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
         return UIBarPosition.TopAttached
     }
     
+    /* Called by previous view controller to pass group data */
     func setGroupData(group: NSDictionary) {
         self.group = group
         createGroup = CreateModel()
@@ -63,10 +77,9 @@ class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, 
         self.fromGroupInfo = fromGroupInfo
     }
 
-    /* Store added events in create model and dismiss view */
     
-    /* User presses checkmark and execute segue */
-    
+    /* User presses checkmark. Store added events in create model 
+    *  segues to appropriate view */
     @IBAction func checkmarkPressed(sender: UIBarButtonItem) {
         if (fromGroupInfo) {
             self.performSegueWithIdentifier("createGroup2ToGroupInfo", sender: self)
@@ -77,7 +90,7 @@ class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, 
     }
     
     
-    
+    /* Dismiss the view */
     @IBAction func backToLastPage(sender: UIBarButtonItem) {
         PULog("Going back to first group creation page")
         if (!fromGroupInfo) {
@@ -86,8 +99,6 @@ class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, 
         }
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    
     
     
     /* Prepare for segues */
@@ -120,6 +131,10 @@ class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, 
         }
     }
     
+    /*--------------------------------------------*
+    * View helper methods
+    *--------------------------------------------*/
+    
     /* Iterate through events and send event IDs to create model.
        Call method to create the group and report an error if 
        something went wrong */
@@ -140,16 +155,9 @@ class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, 
                 
             }
         }
-        
-        /* Check that friends list was actually populated
-        for event in eventIDs {
-            PULog(event)
-        }
-        */
-        
-        
-        
+   
         /* Send to backend */
+        
         if (fromGroupInfo) {
             var groupID: NSString = "\(DataManager.getGroupID(group!))"
             var backendError: NSString? = createGroup!.addEventsToGroup(groupID, eventIDs: eventIDs)
@@ -194,6 +202,10 @@ class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, 
     }
     
     
+    /*----------------------------------------*
+    * Table view methods                      *
+    *-----------------------------------------*/
+    
     /* Return number of sections in the table */
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -223,6 +235,7 @@ class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, 
         return cell
     }
     
+    /* Determines format and content for a header cell */
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
         headerCell.headerTextLabel.text = "Added Events (swipe to delete)";
@@ -256,18 +269,4 @@ class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, 
         // Dispose of any resources that can be recreated.
     }
     
-    
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

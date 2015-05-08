@@ -11,14 +11,48 @@ import UIKit
 class InviteFriendsViewController: PartyUpViewController, UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate {
 
     
+    /*--------------------------------------------*
+    * UI Components
+    *--------------------------------------------*/
+    
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var invitedFriendsTableView: UITableView!
+    
+    /*--------------------------------------------*
+    * Instance variables
+    *--------------------------------------------*/
+    
     var update: CreateModel = CreateModel()
     var invitedFriends: NSMutableArray? = NSMutableArray()
     var event: NSDictionary?
     var group: NSDictionary?
     var isEvent: Bool = false
     var isCreatedEvent: Bool = false
+    
+    /*--------------------------------------------*
+    * Setter methods called by previous controller
+    *--------------------------------------------*/
+    
+    func setEventData(event: NSDictionary) {
+        self.event = event
+    }
+    
+    func setGroupData(group: NSDictionary) {
+        self.group = group
+    }
+    
+    func setGroupOrEvent(isEvent: Bool) {
+        self.isEvent = isEvent
+    }
+    
+    func setCreatedEvent(isCreatedEvent: Bool) {
+        self.isCreatedEvent = isCreatedEvent
+    }
+
+    
+    /*--------------------------------------------*
+    * View response methods
+    *--------------------------------------------*/
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,26 +64,7 @@ class InviteFriendsViewController: PartyUpViewController, UITableViewDataSource,
         
         self.invitedFriendsTableView.rowHeight = 65
         self.invitedFriendsTableView.sectionHeaderHeight = 65
-        
-        // Do any additional setup after loading the view.
     }
-    
-    func setEventData(event: NSDictionary) {
-        self.event = event
-    }
-    
-    func setGroupData(group: NSDictionary) {
-        self.group = group
-    }
-   
-    func setGroupOrEvent(isEvent: Bool) {
-        self.isEvent = isEvent
-    }
-    
-    func setCreatedEvent(isCreatedEvent: Bool) {
-        self.isCreatedEvent = isCreatedEvent
-    }
-    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -63,11 +78,12 @@ class InviteFriendsViewController: PartyUpViewController, UITableViewDataSource,
         PULog("Displaying invite friends to group or event page")
     }
     
+    /* Set position for top navigation bar */
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
         return UIBarPosition.TopAttached
     }
     
-    
+    /* Segue back to previous page if user confirms invites */
     @IBAction func checkmarkPressed(sender: UIBarButtonItem) {
         if isEvent {
             self.performSegueWithIdentifier("inviteFriendsToEventInfo", sender: self)
@@ -77,11 +93,6 @@ class InviteFriendsViewController: PartyUpViewController, UITableViewDataSource,
         }
     }
     
-    /*
-    checkmarkPressed
-    if event -> perform inviteToEventInfo (setEventData with ID)
-    else perform inviteToGroupInfo (setGroupDataWithID
-    */
     
     /* Button to return to fist event creation page */
     @IBAction func backButtonPressed(sender: UIBarButtonItem) {
@@ -115,6 +126,10 @@ class InviteFriendsViewController: PartyUpViewController, UITableViewDataSource,
         }
 
     }
+    
+    /*--------------------------------------------*
+    * View helper methods
+    *--------------------------------------------*/
     
     /* User finalizes choices and creates event */
     func finalizeInvites() {
@@ -151,10 +166,20 @@ class InviteFriendsViewController: PartyUpViewController, UITableViewDataSource,
                 displayAlert("Group Update Failed", message: backendError!)
             }
         }
-        
-        
     }
-
+    
+    /* Called by next page to update the table based on
+    user additions */
+    func updateAddedFriends() {
+        var friendsToAdd: NSArray = update.getSelectedUsers()
+        invitedFriends!.addObjectsFromArray(friendsToAdd as [AnyObject])
+        update.setInviteList(invitedFriends! as NSArray)
+        invitedFriendsTableView.reloadData()
+    }
+    
+    /*--------------------------------------------*
+    * TableView methods
+    *--------------------------------------------*/
         
     /* Return the number of sections in the table */
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -187,6 +212,7 @@ class InviteFriendsViewController: PartyUpViewController, UITableViewDataSource,
         return cell
     }
     
+    /* Determines format and content for a header cell */
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
         headerCell.headerTextLabel.text = "Friends to invite (swipe to delete)"
@@ -196,15 +222,6 @@ class InviteFriendsViewController: PartyUpViewController, UITableViewDataSource,
         headerCell.contentView.layer.borderColor = UIColorFromRGB(0x80C8B5).CGColor
         headerCell.contentView.layer.borderWidth = 2.0
         return headerCell.contentView
-    }
-    
-    /* Called by next page to update the table based on
-    user additions */
-    func updateAddedFriends() {
-        var friendsToAdd: NSArray = update.getSelectedUsers()
-        invitedFriends!.addObjectsFromArray(friendsToAdd as [AnyObject])
-        update.setInviteList(invitedFriends! as NSArray)
-        invitedFriendsTableView.reloadData()
     }
     
     // Override to support editing the table view.

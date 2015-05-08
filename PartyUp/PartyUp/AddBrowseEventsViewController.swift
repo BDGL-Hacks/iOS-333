@@ -10,10 +10,18 @@ import UIKit
 
 class AddBrowseEventsViewController: PartyUpViewController, UISearchResultsUpdating, UITableViewDelegate, UITableViewDataSource, UINavigationBarDelegate
 {
-
-    @IBOutlet weak var findEventsTableView: UITableView!
     
+    /*--------------------------------------------*
+    * UI Components
+    *--------------------------------------------*/
+    
+    @IBOutlet weak var findEventsTableView: UITableView!
     @IBOutlet weak var navBar: UINavigationBar!
+    
+    /*--------------------------------------------*
+    * Instance variables
+    *--------------------------------------------*/
+    
     let searchEventsModel: SearchEventsModel = SearchEventsModel()
     var previousViewController: CreateGroup2ViewController?
     var createEvent: CreateModel?
@@ -24,6 +32,9 @@ class AddBrowseEventsViewController: PartyUpViewController, UISearchResultsUpdat
     var selectedCellEventData: NSDictionary = NSDictionary()
     var searchBarController: UISearchController = UISearchController()
     
+    /*--------------------------------------------*
+    * View response methods
+    *--------------------------------------------*/
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,10 +62,9 @@ class AddBrowseEventsViewController: PartyUpViewController, UISearchResultsUpdat
         findEventsTableView.tableHeaderView = searchBarController.searchBar
         findEventsTableView.reloadData()
 
-        // Do any additional setup after loading the view.
     }
     
-    // Acquire table data from create model
+    /* Acquire table data from create model */
     override func viewWillAppear(animated: Bool) {
         if (shouldPerformQueries && isLoggedIn()) {
             searchEventsModel.update(SearchEventsModel.QueryType.Find)
@@ -72,18 +82,19 @@ class AddBrowseEventsViewController: PartyUpViewController, UISearchResultsUpdat
         PULog("Displaying search public events page for group creation")
     }
     
+    /* Set position of search bar */
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
         return UIBarPosition.TopAttached
     }
 
-    // Add selected events and dismiss view controller
+    /* Add selected events and dismiss view controller */
     @IBAction func checkmarkPressed(sender: UIBarButtonItem) {
         addEvents()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    // Dismiss view without adding events
     
+    /* Dismiss view without adding events */
     @IBAction func xButtonPressed(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -158,6 +169,10 @@ class AddBrowseEventsViewController: PartyUpViewController, UISearchResultsUpdat
         }
     }
     
+    /*----------------------------------------*
+    * Helper methods                          *
+    *-----------------------------------------*/
+    
     /* Iterate through selected events and update selectedEvents array
        in the create model */
     func addEvents() {
@@ -196,15 +211,4 @@ class AddBrowseEventsViewController: PartyUpViewController, UISearchResultsUpdat
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

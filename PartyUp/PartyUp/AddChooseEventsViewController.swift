@@ -11,31 +11,31 @@ import UIKit
 class AddChooseEventsViewController: PartyUpViewController, UITableViewDelegate, UITableViewDataSource, UINavigationBarDelegate {
 
     
-    /* Constants for section numbers */
-    /*
-    let Owned = 0
-    let Attending = 1
-    let Invited = 2
-    */
+  
+    /*--------------------------------------------*
+    * UI Components
+    *--------------------------------------------*/
     
-    /* Table section names */
-    /*
-    var sectionsInTable = ["Owned", "Invited", "Attending"]
-    */
+    @IBOutlet weak var eventsTableView: UITableView!
+    @IBOutlet weak var navBar: UINavigationBar!
+    
+    /*--------------------------------------------*
+    * Instance variables
+    *--------------------------------------------*/
     
     let searchEventsModel: SearchEventsModel = SearchEventsModel()
-    //var ownedQueryResults: NSArray? = NSArray()
     var attendingQueryResults: NSArray? = NSArray()
     //var invitedQueryResults: NSArray? = NSArray()
+    //var ownedQueryResults: NSArray? = NSArray()
     
     var shouldPerformQueries: Bool = true
     var selectedCellEventData: NSDictionary = NSDictionary()
     var previousViewController: CreateGroup2ViewController?
     var createEvent: CreateModel?
     
-    @IBOutlet weak var eventsTableView: UITableView!
-    @IBOutlet weak var navBar: UINavigationBar!
-    
+    /*--------------------------------------------*
+    * View response methods
+    *--------------------------------------------*/
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,23 +50,22 @@ class AddChooseEventsViewController: PartyUpViewController, UITableViewDelegate,
 
         var customTableCellNib: UINib = UINib(nibName: "PartyUpTableCell", bundle: nil)
         eventsTableView.registerNib(customTableCellNib, forCellReuseIdentifier: "eventCellPrototype")
-        // Do any additional setup after loading the view.
     }
     
-    // Acquire table data from create model
+    /* Acquire table data from create model */
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         if (shouldPerformQueries && isLoggedIn()) {
             searchEventsModel.update(SearchEventsModel.QueryType.User)
             
             /* Set all model arrays */
-            //createEvent?.setOwnedQueryResults(searchEventsModel.getCreatedEvents())
             createEvent?.setAttendingQueryResults(searchEventsModel.getAttendingEvents())
             //createEvent?.setInvitedQueryResults(searchEventsModel.getInvitedEvents())
+            //createEvent?.setOwnedQueryResults(searchEventsModel.getCreatedEvents())
             
-            //ownedQueryResults = createEvent?.getOwnedQueryResults()
             attendingQueryResults = createEvent?.getAttendingQueryResults()
             //invitedQueryResults = createEvent?.getInvitedQueryResults()
+            //ownedQueryResults = createEvent?.getOwnedQueryResults()
             
             shouldPerformQueries = false
             PULog("About to reload data")
@@ -79,6 +78,7 @@ class AddChooseEventsViewController: PartyUpViewController, UITableViewDelegate,
         PULog("Displaying search events page")
     }
     
+    /* Set position of navigation bar */
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
         return UIBarPosition.TopAttached
     }
@@ -163,6 +163,7 @@ class AddChooseEventsViewController: PartyUpViewController, UITableViewDelegate,
     }
     */
     
+    /* Determines format and content for a header cell */
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
         headerCell.headerTextLabel.text = "Events"
@@ -173,6 +174,10 @@ class AddChooseEventsViewController: PartyUpViewController, UITableViewDelegate,
         headerCell.contentView.layer.borderWidth = 2.0
         return headerCell
     }
+    
+    /*----------------------------------------*
+    * Helper methods                          *
+    *-----------------------------------------*/
     
     /* Adds selected events to table of added events in previous view controller */
     func addEvents() {
@@ -190,7 +195,6 @@ class AddChooseEventsViewController: PartyUpViewController, UITableViewDelegate,
         }
         
         createEvent?.setSelectedEvents(selectedEvents as NSArray)
-        // PULog("\(createEvent?.getSelectedEvents())")
         previousViewController?.updateAddedEvents(false)
     }
 

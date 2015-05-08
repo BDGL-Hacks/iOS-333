@@ -9,13 +9,24 @@
 import UIKit
 
 class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate  {
-
-    var createEvent: CreateModel?
     
+    /*--------------------------------------------*
+    * UI Components
+    *--------------------------------------------*/
     
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var addedFriendsTableView: UITableView!
+    
+    /*--------------------------------------------*
+    * Instance variables
+    *--------------------------------------------*/
+    
+    var createEvent: CreateModel?
     var addedFriends: NSMutableArray? = NSMutableArray()
+    
+    /*--------------------------------------------*
+    * View response methods
+    *--------------------------------------------*/
     
     /* Set up table and fetch data from create model */
     override func viewDidLoad() {
@@ -34,6 +45,7 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
         // Do any additional setup after loading the view.
     }
 
+    /* Reload the table view */
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         if (isLoggedIn()) {
@@ -46,6 +58,7 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
         PULog("Displaying create event 2 page")
     }
     
+    /* Set position of top navigation bar */
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
         return UIBarPosition.TopAttached
     }
@@ -58,11 +71,10 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    
+    /* User taps confirm button to create event */
     @IBAction func finishButtonPressed(sender: UIBarButtonItem) {
         self.performSegueWithIdentifier("eventCreationTwoToHome", sender: self)
     }
-    
     
     /* Prepare for segues */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -79,7 +91,11 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
         }
     }
     
-    /* User finalizes choices and creates event */
+    /*--------------------------------------------*
+    * View helper methods
+    *--------------------------------------------*/
+    
+    /* Finalize invite choices and creates event */
     func finalizeEvent() {
         PULog("Finalize event pressed")
         /* Iterate through friends list and send it to the backend */
@@ -100,8 +116,7 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
             PULog("\(friend)")
         }
         
-        /* Send to backend */
-        
+        // Send to backend
         createEvent?.eventSecondPage(friendIDs)
         
         let (backendError: NSString?, eventID: NSString?) = createEvent!.eventSendToBackend()
@@ -113,47 +128,19 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
         }
     }
     
-    
-    
-    /*--------------------------------
-    /* Table search helper methods */
-    --------------------------------*/
-    
-    /*
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-        searchActive = true;
+    /* Called by next page to update the table based on
+    user additions */
+    func updateAddedFriends() {
+        var friendsToAdd: NSArray = createEvent!.getSelectedUsers()
+        addedFriends?.addObjectsFromArray(friendsToAdd as [AnyObject])
+        createEvent?.setInviteList(addedFriends! as NSArray)
+        addedFriendsTableView.reloadData()
     }
     
-    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-        searchActive = false;
-    }
     
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        searchActive = false;
-    }
-    
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        
-        self.performSegueWithIdentifier("eventCreationTwoToResults", sender: self)
-        searchActive = false;
-    }
-    
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        filtered = usernameList.filter({ (text) -> Bool in
-            let tmp: NSString = text
-            let range = tmp.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch)
-            return range.location != NSNotFound
-        })
-        if(filtered.count == 0){
-            searchActive = false;
-        } else {
-            searchActive = true;
-        }
-        self.usersTableView.reloadData()
-    }
-
-    */
+    /*----------------------------------------*
+    * Table view methods                     *
+    *----------------------------------------*/
     
     /* Return the number of sections in the table */
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -186,6 +173,7 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
         return cell
     }
     
+    /* Determines format and content for a header cell */
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
         headerCell.headerTextLabel.text = "Added Friends (swipe to delete)";
@@ -195,15 +183,6 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
         headerCell.contentView.layer.borderColor = UIColorFromRGB(0x80C8B5).CGColor
         headerCell.contentView.layer.borderWidth = 2.0
         return headerCell.contentView
-    }
-    
-    /* Called by next page to update the table based on 
-       user additions */
-    func updateAddedFriends() {
-        var friendsToAdd: NSArray = createEvent!.getSelectedUsers()
-        addedFriends?.addObjectsFromArray(friendsToAdd as [AnyObject])
-        createEvent?.setInviteList(addedFriends! as NSArray)
-        addedFriendsTableView.reloadData()
     }
     
     // Override to support editing the table view.
@@ -220,15 +199,5 @@ class CreateEvent2ViewController: PartyUpViewController, UITableViewDataSource, 
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

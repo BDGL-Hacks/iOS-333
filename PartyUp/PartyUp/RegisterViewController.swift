@@ -112,6 +112,7 @@ class RegisterViewController: PartyUpViewController, UITextFieldDelegate {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    /* Tapping anywhere in the view dismisses the keyboard */
     @IBAction func viewTapped(sender : AnyObject) {
         firstNameTextField.resignFirstResponder()
         lastNameTextField.resignFirstResponder()
@@ -130,11 +131,13 @@ class RegisterViewController: PartyUpViewController, UITextFieldDelegate {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
+    /* Dismisses the keyboard */
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
+    /* Limits number of characters the user can enter to a text field */
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         let newLength = count(textField.text) + count(string) - range.length
         return newLength <= 50 // Bool

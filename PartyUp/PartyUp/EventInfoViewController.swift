@@ -46,8 +46,12 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
     @IBAction func backButtonPressed(sender: UIBarButtonItem) {
         PULog("Back button pressed")
         PULog("Returning to previous screen")
-        //self.performSegueWithIdentifier("eventInfoToHome", sender: self)
-        self.dismissViewControllerAnimated(true, completion: nil)
+        if isFromGroupInfo {
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+        else {
+            self.performSegueWithIdentifier("eventInfoToHome", sender: self)
+        }
     }
     
     /* Prepare for segue to other views */
@@ -183,7 +187,7 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderTableViewCell
         headerCell.headerTextLabel.text = "Attendees"
-        if (!isEventOwner || !(DataManager.getEventPublic(event))) {
+        if (!isEventOwner || !isEventOwner) {
             headerCell.hideButton()
         }
         

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SLw-45-19W">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SLw-45-19W">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -643,7 +643,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="67" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jQO-Io-zuG">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="67" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jQO-Io-zuG">
                                 <rect key="frame" x="0.0" y="123" width="320" height="478"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -710,7 +710,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7y5-m4-GQe">
+                            <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7y5-m4-GQe">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <color key="barTintColor" red="0.50196078430000002" green="0.7843137255" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
@@ -730,7 +730,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWS-g7-k6f">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWS-g7-k6f">
                                 <rect key="frame" x="16" y="76" width="125" height="39"/>
                                 <color key="backgroundColor" red="0.50196078430000002" green="0.7843137255" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -1371,6 +1371,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8WO-Np-s5m">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <color key="barTintColor" red="0.50196078430000002" green="0.7843137255" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <items>
+                                    <navigationItem id="25a-fg-WyT">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="f82-Ze-3WO">
+                                            <color key="tintColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <action selector="backButtonPressed:" destination="ves-xh-wWo" id="agf-KL-JyX"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F4h-Ox-jcb">
                                 <rect key="frame" x="0.0" y="44" width="320" height="524"/>
                                 <subviews>
@@ -1607,20 +1621,6 @@
                                     </mask>
                                 </variation>
                             </scrollView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8WO-Np-s5m">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                <color key="barTintColor" red="0.50196078430000002" green="0.7843137255" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <items>
-                                    <navigationItem id="25a-fg-WyT">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" id="f82-Ze-3WO">
-                                            <color key="tintColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <connections>
-                                                <action selector="backButtonPressed:" destination="ves-xh-wWo" id="agf-KL-JyX"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1628,8 +1628,12 @@
                             <constraint firstItem="rwo-ZZ-Opp" firstAttribute="width" secondItem="dYi-Dp-Ngv" secondAttribute="width" id="8LJ-JD-hvK"/>
                             <constraint firstItem="F4h-Ox-jcb" firstAttribute="top" secondItem="8WO-Np-s5m" secondAttribute="bottom" id="8bt-SW-xpr"/>
                             <constraint firstItem="jWc-9l-osb" firstAttribute="top" secondItem="F4h-Ox-jcb" secondAttribute="bottom" id="Boq-md-RYi"/>
+                            <constraint firstItem="8WO-Np-s5m" firstAttribute="top" secondItem="78z-mU-mv1" secondAttribute="bottom" constant="20" id="Cxt-qd-CPh"/>
                             <constraint firstItem="F4h-Ox-jcb" firstAttribute="top" secondItem="8WO-Np-s5m" secondAttribute="bottom" id="E0j-lg-yYw"/>
+                            <constraint firstItem="8WO-Np-s5m" firstAttribute="top" secondItem="78z-mU-mv1" secondAttribute="bottom" constant="8" id="E1d-S1-DP7"/>
                             <constraint firstItem="jWc-9l-osb" firstAttribute="top" secondItem="F4h-Ox-jcb" secondAttribute="bottom" id="Kam-8r-Ypg"/>
+                            <constraint firstItem="F4h-Ox-jcb" firstAttribute="top" secondItem="8WO-Np-s5m" secondAttribute="bottom" id="LR2-nX-tuD"/>
+                            <constraint firstItem="F4h-Ox-jcb" firstAttribute="top" secondItem="8WO-Np-s5m" secondAttribute="bottom" id="MCB-M6-Xot"/>
                             <constraint firstAttribute="width" secondItem="lcs-Y8-AU7" secondAttribute="width" id="NJs-ja-aSb"/>
                             <constraint firstItem="8WO-Np-s5m" firstAttribute="top" secondItem="78z-mU-mv1" secondAttribute="bottom" constant="20" id="SyN-Ig-GR0"/>
                             <constraint firstAttribute="bottomMargin" secondItem="F4h-Ox-jcb" secondAttribute="bottom" constant="-32" id="Uzh-4a-wE1"/>
@@ -1637,25 +1641,39 @@
                             <constraint firstAttribute="trailing" secondItem="8WO-Np-s5m" secondAttribute="trailing" id="VJZ-oQ-3R3"/>
                             <constraint firstItem="F4h-Ox-jcb" firstAttribute="top" secondItem="8WO-Np-s5m" secondAttribute="bottom" id="WiY-BJ-VWG"/>
                             <constraint firstItem="F4h-Ox-jcb" firstAttribute="top" secondItem="8WO-Np-s5m" secondAttribute="bottom" id="YCE-og-OGh"/>
+                            <constraint firstItem="jWc-9l-osb" firstAttribute="top" secondItem="F4h-Ox-jcb" secondAttribute="bottom" id="YdF-JJ-oDD"/>
                             <constraint firstItem="F4h-Ox-jcb" firstAttribute="top" secondItem="8WO-Np-s5m" secondAttribute="bottom" id="YeW-s5-ePP"/>
                             <constraint firstItem="8WO-Np-s5m" firstAttribute="top" secondItem="78z-mU-mv1" secondAttribute="bottom" constant="20" id="adw-fd-GJa"/>
                             <constraint firstAttribute="trailing" secondItem="F4h-Ox-jcb" secondAttribute="trailing" id="arB-Bz-gqB"/>
+                            <constraint firstItem="8WO-Np-s5m" firstAttribute="top" secondItem="78z-mU-mv1" secondAttribute="bottom" id="baM-8A-dev"/>
+                            <constraint firstItem="jWc-9l-osb" firstAttribute="top" secondItem="F4h-Ox-jcb" secondAttribute="bottom" id="c0z-Ld-hyE"/>
                             <constraint firstItem="8WO-Np-s5m" firstAttribute="top" secondItem="dYi-Dp-Ngv" secondAttribute="topMargin" id="db4-Ls-O5d"/>
+                            <constraint firstItem="jWc-9l-osb" firstAttribute="top" secondItem="F4h-Ox-jcb" secondAttribute="bottom" id="eEL-PI-5kg"/>
                             <constraint firstItem="7aD-H1-M1R" firstAttribute="top" secondItem="8WO-Np-s5m" secondAttribute="bottom" constant="8" id="jww-ux-eLj"/>
                             <constraint firstItem="F4h-Ox-jcb" firstAttribute="leading" secondItem="dYi-Dp-Ngv" secondAttribute="leading" id="wGz-uP-IeZ"/>
+                            <constraint firstItem="8WO-Np-s5m" firstAttribute="top" secondItem="78z-mU-mv1" secondAttribute="bottom" constant="24" id="xAn-bp-cjc"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="Cxt-qd-CPh"/>
+                                <exclude reference="E1d-S1-DP7"/>
                                 <exclude reference="SyN-Ig-GR0"/>
                                 <exclude reference="V6W-27-SlL"/>
                                 <exclude reference="adw-fd-GJa"/>
+                                <exclude reference="db4-Ls-O5d"/>
+                                <exclude reference="xAn-bp-cjc"/>
                                 <exclude reference="8bt-SW-xpr"/>
+                                <exclude reference="E0j-lg-yYw"/>
+                                <exclude reference="MCB-M6-Xot"/>
                                 <exclude reference="Uzh-4a-wE1"/>
                                 <exclude reference="WiY-BJ-VWG"/>
                                 <exclude reference="YCE-og-OGh"/>
                                 <exclude reference="YeW-s5-ePP"/>
                                 <exclude reference="jww-ux-eLj"/>
                                 <exclude reference="Boq-md-RYi"/>
+                                <exclude reference="Kam-8r-Ypg"/>
+                                <exclude reference="YdF-JJ-oDD"/>
+                                <exclude reference="eEL-PI-5kg"/>
                             </mask>
                         </variation>
                     </view>
@@ -2010,7 +2028,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="TEE-0o-2Cy">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="TEE-0o-2Cy">
                                 <rect key="frame" x="0.0" y="165" width="320" height="403"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -2047,7 +2065,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a new event, choose from existing events, or browse public events" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pa8-Ml-MCZ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Create a new event, choose from existing events, or browse public events" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pa8-Ml-MCZ">
                                 <rect key="frame" x="16" y="64" width="283" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="MMg-eN-5hs"/>
@@ -2062,7 +2080,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hyt-86-g2y">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hyt-86-g2y">
                                 <rect key="frame" x="125" y="118" width="70" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="53" id="hcA-Wv-Y2G"/>
@@ -2081,7 +2099,7 @@
                                     <segue destination="eek-mW-1nM" kind="presentation" identifier="createGroup2ToSearchEvents" id="snm-DT-fsS"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NP7-Ly-Iya">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NP7-Ly-Iya">
                                 <rect key="frame" x="15" y="118" width="61" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="46" id="vJU-AN-YDV"/>
@@ -2100,7 +2118,7 @@
                                     <segue destination="iDH-9r-U2n" kind="presentation" identifier="createGroup2ToCreateEvent" id="in5-ko-7n1"/>
                                 </connections>
                             </button>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rw6-vx-BvS">
+                            <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rw6-vx-BvS">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -2129,7 +2147,7 @@
                                     </mask>
                                 </variation>
                             </navigationBar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HOz-7i-mDc">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HOz-7i-mDc">
                                 <rect key="frame" x="233" y="118" width="70" height="39"/>
                                 <fontDescription key="fontDescription" name="RobotoSlab-Regular" family="Roboto Slab" pointSize="20"/>
                                 <state key="normal" title="Browse">
@@ -2227,7 +2245,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7XB-Qh-ITb">
+                            <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7XB-Qh-ITb">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <color key="barTintColor" red="0.50196078430000002" green="0.7843137255" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
@@ -2247,7 +2265,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Browse Events" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HWB-pp-USm">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Browse Events" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HWB-pp-USm">
                                 <rect key="frame" x="98" y="30" width="126" height="24"/>
                                 <fontDescription key="fontDescription" name="RobotoSlab-Regular" family="Roboto Slab" pointSize="18"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2288,7 +2306,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="5PU-Am-jQ8">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="5PU-Am-jQ8">
                                 <rect key="frame" x="0.0" y="69" width="320" height="499"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -2325,7 +2343,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vyA-G8-oFO">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vyA-G8-oFO">
                                 <rect key="frame" x="0.0" y="25" width="320" height="44"/>
                                 <color key="barTintColor" red="0.50196078430000002" green="0.7843137255" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
@@ -2345,7 +2363,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Choose Events" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dx1-Cd-tYO">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Events" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dx1-Cd-tYO">
                                 <rect key="frame" x="95" y="35" width="130" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="130" id="ydJ-Xb-uAh"/>
@@ -3017,7 +3035,7 @@ tapping the 'Find' tab on the bottom.</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jAc-ZB-BfO">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jAc-ZB-BfO">
                                 <rect key="frame" x="0.0" y="134" width="320" height="434"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -3081,13 +3099,13 @@ tapping the 'Find' tab on the bottom.</string>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Group Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXB-n0-PKl">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXB-n0-PKl">
                                 <rect key="frame" x="16" y="64" width="107" height="24"/>
                                 <fontDescription key="fontDescription" name="RobotoSlab-Regular" family="Roboto Slab" pointSize="18"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5nT-qN-GeD">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5nT-qN-GeD">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
                                 <color key="barTintColor" red="0.50196078430000002" green="0.7843137255" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
@@ -3107,13 +3125,13 @@ tapping the 'Find' tab on the bottom.</string>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Best group ever" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AVq-wm-CWm">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Best group ever" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AVq-wm-CWm">
                                 <rect key="frame" x="16" y="96" width="288" height="30"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="RobotoSlab-Regular" family="Roboto Slab" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Event title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="665-wd-SIF">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="665-wd-SIF">
                                 <rect key="frame" x="67" y="11" width="187" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="187" id="xLD-X0-DVC"/>
@@ -3188,7 +3206,7 @@ tapping the 'Find' tab on the bottom.</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="61" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Y5U-6f-kWE">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="61" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Y5U-6f-kWE">
                                 <rect key="frame" x="0.0" y="135" width="320" height="433"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -3257,7 +3275,7 @@ tapping the 'Find' tab on the bottom.</string>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zEz-eU-YAq">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zEz-eU-YAq">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <color key="barTintColor" red="0.50196078430000002" green="0.7843137255" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
@@ -3277,13 +3295,13 @@ tapping the 'Find' tab on the bottom.</string>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Invite Friends" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mJe-ST-ZOL">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invite Friends" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mJe-ST-ZOL">
                                 <rect key="frame" x="104" y="10" width="113" height="23"/>
                                 <fontDescription key="fontDescription" name="RobotoSlab-Regular" family="Roboto Slab" pointSize="17"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4jF-cT-PGz">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4jF-cT-PGz">
                                 <rect key="frame" x="16" y="70" width="90" height="39"/>
                                 <color key="backgroundColor" red="0.50196078430000002" green="0.7843137255" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -3351,7 +3369,7 @@ tapping the 'Find' tab on the bottom.</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gao-GA-6NJ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gao-GA-6NJ">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -3389,7 +3407,7 @@ tapping the 'Find' tab on the bottom.</string>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Td-R7-rAC">
+                            <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Td-R7-rAC">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <color key="barTintColor" red="0.50196078430000002" green="0.7843137255" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
@@ -3409,7 +3427,7 @@ tapping the 'Find' tab on the bottom.</string>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zu7-2A-T9s">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Event Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zu7-2A-T9s">
                                 <rect key="frame" x="77" y="31" width="166" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="166" id="JOH-uK-UiD"/>
@@ -3692,12 +3710,12 @@ tapping the 'Find' tab on the bottom.</string>
         <image name="Plus Math-50.png" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NJp-kO-aCE"/>
-        <segue reference="bG2-fK-XHR"/>
-        <segue reference="zR6-5U-mw3"/>
-        <segue reference="rs0-CJ-HVU"/>
-        <segue reference="VSP-cM-gCU"/>
         <segue reference="in5-ko-7n1"/>
+        <segue reference="VSP-cM-gCU"/>
+        <segue reference="DGP-Di-hMi"/>
+        <segue reference="NJp-kO-aCE"/>
+        <segue reference="7YA-9f-uLH"/>
+        <segue reference="bG2-fK-XHR"/>
         <segue reference="d1i-1v-4PY"/>
         <segue reference="zpp-ms-LlV"/>
     </inferredMetricsTieBreakers>

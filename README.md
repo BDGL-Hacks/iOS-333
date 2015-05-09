@@ -1,9 +1,8 @@
 # iOS-333
-iOS app for COS 333 project
 
-Welcome to the PartyUp Frontend Readme. 
+Welcome to the PartyUp iOS Readme. 
 
-Our code follows the model-view-controller design pattern. All of the views are built using Xcode's interface builder tool, which generates xml for the Main.storyboard file. Each view is linked to a view controller class. These file names all have ViewController as a suffix. The view controllers dictate how to render the information for their associated views and handle user actions. Many of the view controllers implement the UITableViewDelegate protocol, whose methods determine how to populate the cells of a table. The three primary methods of the protocol are:
+Our code follows the Model-View-Controller design paradigm. All of the views are built using Xcode's interface builder tool, which generates xml for the Main.storyboard file. Each view is linked to a view controller class. These file names all have ViewController as a suffix. The view controllers dictate how to render the information for their associated views and handle user actions. Many of the view controllers implement the UITableViewDelegate protocol, whose methods determine how to populate the cells of a table. The three primary methods of the protocol are:
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int

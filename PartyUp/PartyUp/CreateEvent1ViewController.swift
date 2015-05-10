@@ -156,7 +156,7 @@ class CreateEvent1ViewController: PartyUpViewController, UITextFieldDelegate, UI
         var validationError: NSString? = validateForm()
         if (validationError != nil) {
             PULog("Form is invalid: \(validationError!)")
-            displayAlert("Event creation failed", message: validationError!)
+            displayAlert("Some required fields left blank", message: validationError!)
             return
         }
         

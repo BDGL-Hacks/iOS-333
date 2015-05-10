@@ -100,7 +100,6 @@ class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UI
         }
         else if segue.identifier == "createGroup1ToCreateGroup2" {
             PULog("Preparing for segue")
-            addFriends()
             let destinationVC = segue.destinationViewController as! CreateGroup2ViewController
             destinationVC.createGroup = self.createGroup
             destinationVC.previousViewController = self
@@ -114,8 +113,19 @@ class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UI
     
     /* Iterate through friends in table and send emails to create
        group model object. */
-    func addFriends() {
+    
+    @IBAction func confirmButtonPressed(sender: UIBarButtonItem) {
         PULog("Next page group pressed")
+        
+        // Ensure the form is valid
+        var validationError: NSString? = validateForm()
+        if (validationError != nil) {
+            PULog("Form is invalid: \(validationError!)")
+            displayAlert("Some required fields left blank", message: validationError!)
+            return
+        }
+
+        
         /* Iterate through friends list and send it to the backend */
         var friendIDs: [NSString] = [NSString]()
         var friendEmails: [NSString] = [NSString]()
@@ -136,7 +146,9 @@ class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UI
         /* Send to backend */
         var groupName: NSString = groupNameTextField.text
         createGroup.groupFirstPage(friendIDs, groupName: groupName, inviteEmails: friendEmails)
+        self.performSegueWithIdentifier("createGroup1ToCreateGroup2", sender: self)
     }
+    
     
     /* Called by AddFriendsViewController in order to update
     the table based on user additions */
@@ -218,7 +230,7 @@ class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UI
         var groupName: NSString = groupNameTextField.text
         
         if (groupName == "") {
-            return "Event title is required."
+            return "Group title is required."
         }
         return nil
     }

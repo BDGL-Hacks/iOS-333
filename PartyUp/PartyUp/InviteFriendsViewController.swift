@@ -10,6 +10,11 @@ import UIKit
 
 class InviteFriendsViewController: PartyUpViewController, UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate {
 
+    enum PrevType {
+        case EventInfo
+        case GroupInfo
+        case GroupDetail
+    }
     
     /*--------------------------------------------*
     * UI Components
@@ -28,6 +33,8 @@ class InviteFriendsViewController: PartyUpViewController, UITableViewDataSource,
     var group: NSDictionary?
     var isEvent: Bool = false
     var isCreatedEvent: Bool = false
+    var previousViewController: AnyObject?
+    var prevType = PrevType.EventInfo
     
     /*--------------------------------------------*
     * Setter methods called by previous controller
@@ -47,6 +54,11 @@ class InviteFriendsViewController: PartyUpViewController, UITableViewDataSource,
     
     func setCreatedEvent(isCreatedEvent: Bool) {
         self.isCreatedEvent = isCreatedEvent
+    }
+    
+    /* Set type of previous view controller */
+    func setPrev(typeOfPrev: PrevType) {
+        self.prevType = typeOfPrev
     }
 
     
@@ -85,11 +97,26 @@ class InviteFriendsViewController: PartyUpViewController, UITableViewDataSource,
     
     /* Segue back to previous page if user confirms invites */
     @IBAction func checkmarkPressed(sender: UIBarButtonItem) {
-        if isEvent {
-            self.performSegueWithIdentifier("inviteFriendsToEventInfo", sender: self)
-        }
-        else {
-            self.performSegueWithIdentifier("inviteFriendsToGroupInfo", sender: self)
+        switch prevType {
+        case .EventInfo:
+            PULog("Preparing for segue")
+            finalizeInvites()
+            let prevVC = previousViewController as! EventInfoViewController
+            var eventID = "\(DataManager.getEventID(event!))"
+            prevVC.setEventData(eventID: eventID)
+            self.dismissViewControllerAnimated(true, completion: nil)
+        case .GroupInfo:
+            PULog("Preparing for segue")
+            finalizeInvites()
+            let prevVC = previousViewController as! GroupInfoViewController
+            var groupID = "\(DataManager.getGroupID(group!))"
+            prevVC.setGroupData(groupID: groupID)
+            self.dismissViewControllerAnimated(true, completion: nil)
+        case .GroupDetail:
+            PULog("Preparing for segue")
+        
+        default:
+            PULog("Invalid case")
         }
     }
     
@@ -109,6 +136,7 @@ class InviteFriendsViewController: PartyUpViewController, UITableViewDataSource,
             destinationVC.previousViewController = self
             destinationVC.setPrev(AddFriendsViewController.PrevType.InviteFriends)
         }
+        /*
         else if segue.identifier == "inviteFriendsToEventInfo" {
             PULog("Preparing for segue")
             finalizeInvites()
@@ -124,6 +152,7 @@ class InviteFriendsViewController: PartyUpViewController, UITableViewDataSource,
             var groupID = "\(DataManager.getGroupID(group!))"
             destinationVC.setGroupData(groupID: groupID)
         }
+        */
 
     }
     

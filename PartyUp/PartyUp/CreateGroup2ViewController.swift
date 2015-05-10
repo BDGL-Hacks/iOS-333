@@ -10,6 +10,10 @@ import UIKit
 
 class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate {
     
+    enum PrevType {
+        case CreateGroup1
+        case GroupInfo
+    }
     
     /*--------------------------------------------*
     * UI Components
@@ -25,6 +29,17 @@ class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, 
     var group: NSDictionary?
     var addedEvents: NSMutableArray? = NSMutableArray()
     var fromGroupInfo = false
+    var previousViewController: AnyObject?
+    var prevType = PrevType.CreateGroup1
+    
+    /*--------------------------------------------*
+    * Setter methods called by previous controller
+    *--------------------------------------------*/
+    
+    /* Set type of previous view controller */
+    func setPrev(typeOfPrev: PrevType) {
+        self.prevType = typeOfPrev
+    }
     
     /*--------------------------------------------*
     * View response methods
@@ -81,10 +96,15 @@ class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, 
     /* User presses checkmark. Store added events in create model 
     *  segues to appropriate view */
     @IBAction func checkmarkPressed(sender: UIBarButtonItem) {
-        if (fromGroupInfo) {
-            self.performSegueWithIdentifier("createGroup2ToGroupInfo", sender: self)
-        }
-        else {
+        switch prevType {
+        case .GroupInfo:
+            PULog("Preparing for segue")
+            finalizeGroup()
+            let prevVC = previousViewController as! GroupInfoViewController
+            var groupID = "\(DataManager.getGroupID(group!))"
+            prevVC.setGroupData(groupID: groupID)
+            self.dismissViewControllerAnimated(true, completion: nil)
+        case .CreateGroup1:
             self.performSegueWithIdentifier("createGroup2ToHome", sender: self)
         }
     }
@@ -122,6 +142,7 @@ class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, 
         else if segue.identifier == "createGroup2ToHome" {
             finalizeGroup()
         }
+        /*
         else if segue.identifier == "createGroup2ToGroupInfo" {
             PULog("Preparing for segue")
             finalizeGroup()
@@ -129,6 +150,7 @@ class CreateGroup2ViewController: PartyUpViewController, UITableViewDataSource, 
             var groupID = "\(DataManager.getGroupID(group!))"
             destinationVC.setGroupData(groupID: groupID)
         }
+        */
     }
     
     /*--------------------------------------------*

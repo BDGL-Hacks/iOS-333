@@ -103,6 +103,8 @@ class CreateGroup1ViewController: PartyUpViewController, UITableViewDelegate, UI
             addFriends()
             let destinationVC = segue.destinationViewController as! CreateGroup2ViewController
             destinationVC.createGroup = self.createGroup
+            destinationVC.previousViewController = self
+            destinationVC.setPrev(CreateGroup2ViewController.PrevType.CreateGroup1)
         }
     }
     

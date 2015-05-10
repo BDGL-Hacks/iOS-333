@@ -102,12 +102,16 @@ class GroupInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
             let addEventsVC: CreateGroup2ViewController = segue.destinationViewController as! CreateGroup2ViewController
             addEventsVC.setGroupData(group)
             addEventsVC.setIsFromGroupInfo(true)
+            addEventsVC.previousViewController = self
+            addEventsVC.setPrev(CreateGroup2ViewController.PrevType.GroupInfo)
         }
         
         else if (segue.identifier == "groupInfoToInviteFriends") {
             let inviteFriendsVC: InviteFriendsViewController = segue.destinationViewController as! InviteFriendsViewController
             inviteFriendsVC.setGroupData(group)
             inviteFriendsVC.setGroupOrEvent(false)
+            inviteFriendsVC.previousViewController = self
+            inviteFriendsVC.setPrev(InviteFriendsViewController.PrevType.GroupInfo)
         }
     }
     
@@ -118,12 +122,12 @@ class GroupInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
     
     /* User dismisses the view */
     @IBAction func backButtonPressed(sender: UIBarButtonItem) {
-        self.performSegueWithIdentifier("groupInfoToGroupDetail", sender: self)
+        //self.performSegueWithIdentifier("groupInfoToGroupDetail", sender: self)
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     /* Segue to add events page if user presses button in event table header */
     @IBAction func addEventsPressed(sender: UIButton) {
-        
         self.performSegueWithIdentifier("groupInfoToAddEvents", sender: self)
     }
     

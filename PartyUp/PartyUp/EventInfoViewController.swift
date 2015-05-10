@@ -46,12 +46,15 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
     @IBAction func backButtonPressed(sender: UIBarButtonItem) {
         PULog("Back button pressed")
         PULog("Returning to previous screen")
+        /*
         if isFromGroupInfo {
             self.dismissViewControllerAnimated(true, completion: nil)
         }
         else {
             self.performSegueWithIdentifier("eventInfoToHome", sender: self)
         }
+        */
+         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     /* Prepare for segue to other views */
@@ -73,6 +76,8 @@ class EventInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
             destinationVC.setEventData(event)
             destinationVC.setGroupOrEvent(true)
             destinationVC.setCreatedEvent(isEventOwner)
+            destinationVC.previousViewController = self
+            destinationVC.setPrev(InviteFriendsViewController.PrevType.EventInfo)
         }
     }
     

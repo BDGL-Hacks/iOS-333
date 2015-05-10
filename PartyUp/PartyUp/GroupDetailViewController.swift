@@ -63,6 +63,8 @@ class GroupDetailViewController: PartyUpViewController, UIWebViewDelegate {
             let inviteFriendsVC: InviteFriendsViewController = segue.destinationViewController as! InviteFriendsViewController
             inviteFriendsVC.setGroupData(groupData)
             inviteFriendsVC.setGroupOrEvent(false)
+            inviteFriendsVC.previousViewController = self
+            inviteFriendsVC.setPrev(InviteFriendsViewController.PrevType.GroupDetail)
         }
     }
     

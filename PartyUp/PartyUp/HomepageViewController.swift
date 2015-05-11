@@ -167,8 +167,11 @@ class HomepageViewController: PartyUpViewController, SideMenuViewControllerDeleg
         }
         PULog("Deleting app preferences...")
         var userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        var deviceTokenData: NSData? = userDefaults.objectForKey("DEVICE_ID") as! NSData?
         let appDomain: String = NSBundle.mainBundle().bundleIdentifier!
         userDefaults.removePersistentDomainForName(appDomain)
+        userDefaults.synchronize()
+        userDefaults.setObject(deviceTokenData, forKey: "DEVICE_ID")
         userDefaults.synchronize()
         PULog("Transitioning to Login screen")
         delegate!.hideSideMenu()

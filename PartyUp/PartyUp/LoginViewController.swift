@@ -22,9 +22,10 @@ class LoginViewController: PartyUpViewController, UITextFieldDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     
     
-    /*--------------------------------------------*
+   /*--------------------------------------------*
     * Configure the View
     *--------------------------------------------*/
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -59,7 +60,8 @@ class LoginViewController: PartyUpViewController, UITextFieldDelegate {
         // Attempt backend authentication
         var backendError: NSString? = authenticate(email, password: password)
         if (backendError == nil) {
-            self.dismissViewControllerAnimated(true, completion:nil)
+            self.performSegueWithIdentifier("loginToHome", sender: self)
+            //self.dismissViewControllerAnimated(true, completion:nil)
         }
         else {
             displayAlert("Login Failed", message: backendError!)

@@ -55,7 +55,7 @@ class FindEventsViewController: PartyUpViewController, UISearchResultsUpdating
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        if (shouldPerformQueries /* && isLoggedIn() */) {
+        if (shouldPerformQueries  && isLoggedIn()) {
             searchEventsModel.update(SearchEventsModel.QueryType.Find)
             shouldPerformQueries = false
             findEventsTableView.reloadData()

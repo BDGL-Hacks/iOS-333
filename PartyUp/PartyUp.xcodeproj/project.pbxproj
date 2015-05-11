@@ -268,6 +268,7 @@
 				7EA0DD011ACE25E900FC3EC1 /* MainGroupsViewController.swift */,
 				7E4B3D5B1AF7144500BC96E1 /* GroupDetailViewController.swift */,
 				7E3199A41AE4812000C5AF09 /* GroupChatViewController.swift */,
+				8B6AD0F81AF55CF7005752DE /* GroupInfoViewController.swift */,
 				7EA0DD031ACE260500FC3EC1 /* MyEventsViewController.swift */,
 				7E54DB5A1ACE6D0D002E43E3 /* FindEventsViewController.swift */,
 				7EFBCB381ADA251B0046E250 /* EventInfoViewController.swift */,
@@ -278,20 +279,19 @@
 				8BB153F31AD38A5200B0371B /* CreateEvent2ViewController.swift */,
 				8B4F21CE1AE1A4D700114381 /* CreateGroup1ViewController.swift */,
 				8B4F21D21AE5DA8C00114381 /* CreateGroup2ViewController.swift */,
+				8BB4641E1AE9CD0100CA2A21 /* CreateGroupFromEventViewController.swift */,
+				8B6AD0F41AF3E252005752DE /* BindEventToGroupViewController.swift */,
+				8B6AD0F61AF53705005752DE /* InviteFriendsViewController.swift */,
 				7E1A6C301AF27E82006164A0 /* AlertsViewController.swift */,
 				7E706A161AC78CC500B991F2 /* LoginViewController.swift */,
 				8B9140211AC5DB1300205FA6 /* RegisterViewController.swift */,
 				8BB153EF1AD32A7600B0371B /* KeyboardViewController.swift */,
 				7EDD4ED81ABE727C00CEECD0 /* Main.storyboard */,
-				8B6AD1021AF5737E005752DE /* CustomHeaderTableViewCell.swift */,
-				8B6AD0F81AF55CF7005752DE /* GroupInfoViewController.swift */,
-				8B6AD0F61AF53705005752DE /* InviteFriendsViewController.swift */,
-				8B6AD0F41AF3E252005752DE /* BindEventToGroupViewController.swift */,
-				8B6AD0F21AF2CD64005752DE /* DatePickerCell.swift */,
-				8BB4641E1AE9CD0100CA2A21 /* CreateGroupFromEventViewController.swift */,
 				7EDD4EDB1ABE727C00CEECD0 /* Images.xcassets */,
 				7E0FA6211AD9864300E59BE3 /* PUDynamicTableView.swift */,
 				8B77C2F81ADA297E00E6E8AE /* AddFriendsTableViewCell.swift */,
+				8B6AD1021AF5737E005752DE /* CustomHeaderTableViewCell.swift */,
+				8B6AD0F21AF2CD64005752DE /* DatePickerCell.swift */,
 				7E4B3D591AF6EDAC00BC96E1 /* PartyUpSideMenuCell.swift */,
 				7E12FFE01AD764890066D0DC /* PartyUpTableCell.swift */,
 				7E12FFDE1AD750610066D0DC /* PartyUpTableCell.xib */,
@@ -661,7 +661,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4a5cfe40-cb12-43ed-9c27-a7466043ccd2";
+				PROVISIONING_PROFILE = "0a31e685-22ec-4c39-964f-07def24058ce";
 				SWIFT_OBJC_BRIDGING_HEADER = "PartyUp/PartyUp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -679,7 +679,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4a5cfe40-cb12-43ed-9c27-a7466043ccd2";
+				PROVISIONING_PROFILE = "0a31e685-22ec-4c39-964f-07def24058ce";
 				SWIFT_OBJC_BRIDGING_HEADER = "PartyUp/PartyUp-Bridging-Header.h";
 			};
 			name = Release;

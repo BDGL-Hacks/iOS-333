@@ -44,8 +44,10 @@ class GroupDetailViewController: PartyUpViewController, UIWebViewDelegate {
             shouldUsePingURL = false
         }
         
-        let url: NSURL = NSURL(string: loadURL)!
-        webView.loadRequest(NSURLRequest(URL: url))
+        if (isLoggedIn()) {
+            let url: NSURL = NSURL(string: loadURL)!
+            webView.loadRequest(NSURLRequest(URL: url))
+        }
     }
     
     /* If we are segueing to GroupChatVC, send the cell's group data beforehand */

@@ -136,7 +136,7 @@
                                                 <rect key="frame" x="10" y="495" width="300" height="30"/>
                                                 <color key="textColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="RobotoSlab-Regular" family="Roboto Slab" pointSize="18"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BIe-ij-IGK">
                                                 <rect key="frame" x="101" y="566" width="118" height="36"/>
@@ -173,7 +173,7 @@
                                                 <rect key="frame" x="10" y="136" width="300" height="30"/>
                                                 <color key="textColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="RobotoSlab-Regular" family="Roboto Slab" pointSize="18"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Date and Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n6w-49-FuA">
                                                 <rect key="frame" x="10" y="236" width="212" height="27"/>
@@ -210,7 +210,7 @@
                                                 <rect key="frame" x="10" y="51" width="300" height="30"/>
                                                 <color key="textColor" red="0.20000000000000001" green="0.1843137255" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="RobotoSlab-Regular" family="Roboto Slab" pointSize="18"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Cq-CR-gSQ">
                                                 <rect key="frame" x="10" y="460" width="83" height="27"/>

@@ -50,7 +50,7 @@ class SideMenuViewController: PartyUpViewController, UITableViewDelegate, UITabl
         
         switch cellNumber {
             case 0:
-                cell.loadCell("PartyUp_icon_2x_placeholder.png", labelText: "Groups Detail")
+                cell.loadCell("PartyUp_icon_2x_placeholder.png", labelText: "My Groups")
             case 1:
                 cell.loadCell("PartyUp_icon_2x_placeholder.png", labelText: "My Events")
             case 2:
@@ -74,10 +74,10 @@ class SideMenuViewController: PartyUpViewController, UITableViewDelegate, UITabl
         let labelText: NSString = cell.getLabelText()
         PULog("Cell at row \(indexPath.item) pressed. Label: \(labelText)")
         
-        if (labelText == "My Groups") {
+        if (labelText == "Groups List") {
             delegate!.setActiveView(.GroupsList)
         }
-        else if (labelText == "Groups Detail") {
+        else if (labelText == "My Groups") {
             delegate!.setActiveView(.GroupsDetail)
         }
         else if (labelText == "My Events") {

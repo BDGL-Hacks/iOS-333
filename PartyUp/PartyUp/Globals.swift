@@ -13,7 +13,7 @@ import Foundation
  * OBJECTS
  *--------------------------------------------*/
 
-private let DEBUG_MODE: Bool = true
+private let DEBUG_MODE: Bool = false
 
 
 /*--------------------------------------------*

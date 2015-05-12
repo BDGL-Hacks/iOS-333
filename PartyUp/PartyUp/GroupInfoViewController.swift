@@ -248,14 +248,9 @@ class GroupInfoViewController: PartyUpViewController, UITableViewDelegate, UITab
             PULog("Transitioning to Event Info screen")
             self.performSegueWithIdentifier("groupInfoToEventInfo", sender: self)
         }
-        else if (tableView == groupEventsTableView) {
+        else if (tableView == groupMembersTableView) {
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 }
